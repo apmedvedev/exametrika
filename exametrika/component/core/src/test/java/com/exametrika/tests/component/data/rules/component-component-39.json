@@ -1,0 +1,803 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-39/data-39.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-39/data-39.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-39/data-39.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:group1 (component-component-39/data-39.dt)", "scope:group2 (component-component-39/data-39.dt)"]
+                },
+                {
+                    "space": "component-component-39/data-39.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]"
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:hosts.host1 (component-component-39/data-39.dt)"],
+        "healthComponents": 
+        ["scope:hosts.host1 (component-component-39/data-39.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-39/data-39.dt",
+                "key": 3,
+                "scope": "group2",
+                "component": "AggregationGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "group2",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "group2",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly]",
+                        "components": 
+                        ["scope:hosts.host1 (component-component-39/data-39.dt)"]
+                    }
+                ],
+                "groupRules": 
+                ["rule7", "rule8", "test"]
+            },
+            {
+                "space": "component-component-39/data-39.dt",
+                "key": 2,
+                "scope": "group1",
+                "component": "AggregationGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "group1",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly]"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "group1",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly]",
+                        "components": 
+                        ["scope:hosts.host1 (component-component-39/data-39.dt)"]
+                    }
+                ],
+                "groupRules": 
+                ["rule5", "rule6", "test", "check2", "rule9"]
+            },
+            {
+                "space": "component-component-39/data-39.dt",
+                "key": 1,
+                "scope": "hosts.host1",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic, maintenance]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "state": "maintenance",
+                        "maintenanceMessage": "test"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "groups": 
+                        ["scope:group2 (component-component-39/data-39.dt)"],
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "groups": 
+                        ["scope:group1 (component-component-39/data-39.dt)", "scope:group2 (component-component-39/data-39.dt)"],
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "state": "normal"
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.check from: created to: normal"
+                    },
+                    {
+                        "id": 2,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p2"
+                    },
+                    {
+                        "id": 3,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.test - host.cpu:p2"
+                    },
+                    {
+                        "id": 4,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.mem:p2"
+                    },
+                    {
+                        "id": 5,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.test - host.mem:p2"
+                    },
+                    {
+                        "id": 6,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.complex1 - [host.cpu, host.mem]"
+                    },
+                    {
+                        "id": 7,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p1"
+                    },
+                    {
+                        "id": 8,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.cpu:p1"
+                    },
+                    {
+                        "id": 9,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule1 - host.cpu:p1"
+                    },
+                    {
+                        "id": 10,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p2"
+                    },
+                    {
+                        "id": 11,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.cpu:p2"
+                    },
+                    {
+                        "id": 12,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule1 - host.cpu:p2"
+                    },
+                    {
+                        "id": 13,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.mem:p2"
+                    },
+                    {
+                        "id": 14,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.mem:p2"
+                    },
+                    {
+                        "id": 15,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule1 - host.mem:p2"
+                    },
+                    {
+                        "id": 16,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule8"
+                    },
+                    {
+                        "id": 17,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.complex1 - [host.cpu, host.mem]"
+                    },
+                    {
+                        "id": 18,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule4"
+                    },
+                    {
+                        "id": 19,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule6"
+                    },
+                    {
+                        "id": 20,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule9 - host.cpu:p1"
+                    },
+                    {
+                        "id": 21,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p1"
+                    },
+                    {
+                        "id": 22,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.cpu:p1"
+                    },
+                    {
+                        "id": 23,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule1 - host.cpu:p1"
+                    },
+                    {
+                        "id": 24,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule9 - host.cpu:p2"
+                    },
+                    {
+                        "id": 25,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p2"
+                    },
+                    {
+                        "id": 26,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.cpu:p2"
+                    },
+                    {
+                        "id": 27,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule1 - host.cpu:p2"
+                    },
+                    {
+                        "id": 28,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule9 - host.mem:p2"
+                    },
+                    {
+                        "id": 29,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.mem:p2"
+                    },
+                    {
+                        "id": 30,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.mem:p2"
+                    },
+                    {
+                        "id": 31,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule1 - host.mem:p2"
+                    },
+                    {
+                        "id": 32,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule8"
+                    },
+                    {
+                        "id": 33,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.complex1 - [host.cpu, host.mem]"
+                    },
+                    {
+                        "id": 34,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule4"
+                    },
+                    {
+                        "id": 35,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule6"
+                    },
+                    {
+                        "id": 36,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule9 - host.cpu:p1"
+                    },
+                    {
+                        "id": 37,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p1"
+                    },
+                    {
+                        "id": 38,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.cpu:p1"
+                    },
+                    {
+                        "id": 39,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule9 - host.cpu:p2"
+                    },
+                    {
+                        "id": 40,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p2"
+                    },
+                    {
+                        "id": 41,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.cpu:p2"
+                    },
+                    {
+                        "id": 42,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule9 - host.mem:p2"
+                    },
+                    {
+                        "id": 43,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.mem:p2"
+                    },
+                    {
+                        "id": 44,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.mem:p2"
+                    },
+                    {
+                        "id": 45,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule8"
+                    },
+                    {
+                        "id": 46,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.complex1 - [host.cpu, host.mem]"
+                    },
+                    {
+                        "id": 47,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule4"
+                    },
+                    {
+                        "id": 48,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule6"
+                    },
+                    {
+                        "id": 49,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p1"
+                    },
+                    {
+                        "id": 50,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.cpu:p1"
+                    },
+                    {
+                        "id": 51,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p2"
+                    },
+                    {
+                        "id": 52,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.cpu:p2"
+                    },
+                    {
+                        "id": 53,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.mem:p2"
+                    },
+                    {
+                        "id": 54,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "group2.test - host.mem:p2"
+                    },
+                    {
+                        "id": 55,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule8"
+                    },
+                    {
+                        "id": 56,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.complex1 - [host.cpu, host.mem]"
+                    },
+                    {
+                        "id": 57,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule4"
+                    },
+                    {
+                        "id": 58,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p1"
+                    },
+                    {
+                        "id": 59,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component.test - host.cpu:p1"
+                    },
+                    {
+                        "id": 60,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p2"
+                    },
+                    {
+                        "id": 61,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component.test - host.cpu:p2"
+                    },
+                    {
+                        "id": 62,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.mem:p2"
+                    },
+                    {
+                        "id": 63,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component.test - host.mem:p2"
+                    },
+                    {
+                        "id": 64,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.complex1 - [host.cpu, host.mem]"
+                    },
+                    {
+                        "id": 65,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule4"
+                    },
+                    {
+                        "id": 66,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component1.check from: normal to: maintenance"
+                    },
+                    {
+                        "id": 67,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.check from: normal to: maintenance"
+                    },
+                    {
+                        "id": 68,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "enableMaintenanceMode",
+                        "parameters": 
+                        {
+                            "message": "test"
+                        }
+                    },
+                    {
+                        "id": 69,
+                        "time": 8000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component1.check from: maintenance to: normal"
+                    },
+                    {
+                        "id": 70,
+                        "time": 8000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.check from: maintenance to: normal"
+                    },
+                    {
+                        "id": 71,
+                        "time": 8000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "disableMaintenanceMode"
+                    },
+                    {
+                        "id": 72,
+                        "time": 8000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p1"
+                    },
+                    {
+                        "id": 73,
+                        "time": 8000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component.test - host.cpu:p1"
+                    },
+                    {
+                        "id": 74,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p2"
+                    },
+                    {
+                        "id": 75,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component.test - host.cpu:p2"
+                    },
+                    {
+                        "id": 76,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.mem:p2"
+                    },
+                    {
+                        "id": 77,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component.test - host.mem:p2"
+                    },
+                    {
+                        "id": 78,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.complex1 - [host.cpu, host.mem]"
+                    },
+                    {
+                        "id": 79,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule4"
+                    },
+                    {
+                        "id": 80,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p1"
+                    },
+                    {
+                        "id": 81,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component.test - host.cpu:p1"
+                    },
+                    {
+                        "id": 82,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.cpu:p2"
+                    },
+                    {
+                        "id": 83,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component.test - host.cpu:p2"
+                    },
+                    {
+                        "id": 84,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule10 - host.mem"
+                    },
+                    {
+                        "id": 85,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.simple1 - host.mem:p2"
+                    },
+                    {
+                        "id": 86,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "component.test - host.mem:p2"
+                    },
+                    {
+                        "id": 87,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "schema.complex1 - [host.cpu, host.mem]"
+                    },
+                    {
+                        "id": 88,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "rule4"
+                    }
+                ],
+                "rules": 
+                ["rule2", "rule3", "rule4", "check1", "test", "rule10"]
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

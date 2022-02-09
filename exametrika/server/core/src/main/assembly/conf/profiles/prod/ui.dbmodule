@@ -1,0 +1,50 @@
+{
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		ui:
+	    {
+		    models:
+	        {
+		        allIncidents: {instanceOf: "StructuredModel", selector: "allIncidents", cacheable = true}
+	        }
+		    navBar:
+	        {
+		        children:
+	            [
+	                { instanceOf: "NavBarLink", name: "home", title: "Home", icon: "homeIcon", link: "#views/home"},
+                    { 
+	                    instanceOf: "NavBarLink", name: "incidents", title: "Incidents", icon: "incidentIcon", link: "#views/incidents", 
+	                    badge: {color: "red"}, model: "allIncidents", filter: {instanceOf: "TableLeafCountFilter"}
+                    }
+	            ]
+	        }
+		
+		    notifications:
+	        [
+	             { 
+	                 model: "allIncidents", formatter:{ instanceOf:"IncidentNotificationFormatter" }, type = "error", multiType = "incident"
+	             }
+	        ]
+		
+    		views:
+    	    {
+    		    incidents: 
+                {
+                    instanceOf: "IncidentsView"
+                }
+    	    }
+	    }
+		components:
+	    {
+		    RootGroup:
+            {
+                instanceOf = "group"
+                selectors:
+                {
+                    allIncidents = {instanceOf = "AllIncidentsSelector"}
+                }
+            }
+	    }
+	}}}}
+}

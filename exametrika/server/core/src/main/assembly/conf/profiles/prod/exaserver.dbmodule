@@ -1,0 +1,485 @@
+{
+    imports = ["exaserver-ui.dbmodule"]
+    
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		
+		components:
+		{
+			ExaServer:
+			{
+				instanceOf = "exaServer"
+			    healthComponentType = "HealthComponentType"
+			    actions:
+		        {
+			        enableMaintenanceMode = {instanceOf = "EnableMaintenanceModeAction"}
+                    disableMaintenanceMode = {instanceOf = "DisableMaintenanceModeAction"}
+			        log = {instanceOf = "LogAction"}
+			        measurementStrategy = {instanceOf = "MeasurementStrategyAction"}
+		        }
+				alerts:
+			    {
+				    health:
+                    {
+                        instanceOf = "HealthAlert"
+                        description = "The health alert."
+                        channels:
+                        [
+                            {
+                                instanceOf = "MailAlertChannel"
+                                name = "mail"
+                                onTemplate = "Component <%component.title%> has become failed, component state: <%state%>."
+                                offTemplate = "<%# if (resolved){ %>Health of component <%component.title%> has been restored.\
+                                    <%# } else { %>Incident <%name%> of component <%component.title%> has been deleted.<%# } %>"
+                                statusTemplate = "Component <%component.title%> remains failed, component state: <%state%>."
+                                schedule:
+                                {
+                                    instanceOf = "StandardSchedule"
+                                    expression = "time(08:00..20:00)"
+                                    timeFormat = "HH:mm"
+                                }
+                                    
+                                period:
+                                {
+                                    instanceOf = "StandardSchedulePeriod"
+                                    type = "day"
+                                    kind = "absolute"
+                                    amount = 1
+                                }
+                                
+                                recipients:
+                                [
+                                    {
+                                        type = "role"
+                                        name = "operator"
+                                    }
+                                ]
+                                    
+                                onSubject = "Health incident notification."
+                                offSubject = "Health incident off notification."
+                                statusSubject = "Health incident status notification."
+                                formatted = false
+                            }
+                        ]
+                    }
+                }
+				aggregationSchema:
+				{
+					p2:
+					{
+					    exa.server:
+                        {
+                            instanceOf = "NameComponentType"
+                            ruleRepresentation = null
+                            componentDiscoveryStrategies = [{ instanceOf = "ExaServerDiscoveryStrategy" component = "ExaServer"}]
+                        }
+			        
+                        exa.aggregator:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.aggregator.aggregateTime:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                    ]}}
+                                }
+                            
+                                exa.aggregator.aggregateCount:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                    ]}}
+                                }
+                                
+                                exa.aggregator.closePeriodTime:
+                                {
+                                    @reference = "[exa.aggregator.aggregateTime]"
+                                }
+                                
+                                exa.aggregator.selectTime:
+                                {
+                                    @reference = "[exa.aggregator.aggregateTime]"
+                                }
+                                    
+                                exa.aggregator.selectSize:
+                                {
+                                    @reference = "[exa.aggregator.aggregateCount]"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        exa.rawdb:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.rawdb.memoryManager: {instanceOf = "Info"}
+                                exa.rawdb.pagePool:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.rawdb.file.read.time:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateTime]"
+                                }
+                                exa.rawdb.file.read.bytes:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.rawdb.file.write.time:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateTime]"
+                                }
+                                exa.rawdb.file.write.bytes:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.rawdb.file.currentLoaded:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.rawdb.file.loaded:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.rawdb.file.unloaded:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.rawdb.transactionLog.flush.time:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateTime]"
+                                }
+                                exa.rawdb.transactionLog.flush.bytes:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.rawdb.transaction.queue:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.rawdb.transaction.time:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateTime]"
+                                }
+                                
+                                exa.rawdb.transaction.errors.count:
+                                {
+                                    instanceOf = "Counter"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        exa.rawdb.transaction.errors.log:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.rawdb.transaction.errors.log:
+                                {
+                                    instanceOf = "Log"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        exa.rawdb.pageCache:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.rawdb.pageCache.size:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.rawdb.pageCache.maxSize:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.rawdb.pageCache.quota:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.rawdb.pageCache.totalLoaded:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.rawdb.pageCache.totalUnloaded:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.rawdb.pageCache.unloadedByOverflow:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.rawdb.pageCache.unloadedByTimer:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        exa.rawdb.pageType:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.rawdb.pageType.regionsCount:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.rawdb.pageType.regionsSize:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.rawdb.pageType.allocated:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.rawdb.pageType.freed:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        exa.exadb.fullText:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.exadb.fullText.addTime:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateTime]"
+                                }
+                                exa.exadb.fullText.updateTime:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateTime]"
+                                }
+                                exa.exadb.fullText.deleteTime:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateTime]"
+                                }
+                                exa.exadb.fullText.searchTime:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateTime]"
+                                }
+                                exa.exadb.fullText.searcherUpdateTime:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateTime]"
+                                }
+                                exa.exadb.fullText.commitTime:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateTime]"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        exa.exadb.nodeCache:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.exadb.nodeCache.size:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.exadb.nodeCache.maxSize:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.exadb.nodeCache.quota:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.exadb.nodeCache.totalLoaded:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.exadb.nodeCache.totalUnloaded:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.exadb.nodeCache.unloadedByOverflow:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.exadb.nodeCache.unloadedByTimer:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        exa.aggregator.nameCache:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.aggregator.nameCache.size:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.aggregator.nameCache.maxSize:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.aggregator.nameCache.quota:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                    instanceOf = "Gauge"
+                                }
+                                exa.aggregator.nameCache.totalLoaded:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.aggregator.nameCache.totalUnloaded:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.aggregator.nameCache.unloadedByOverflow:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                                exa.aggregator.nameCache.unloadedByTimer:
+                                {
+                                    @reference = "../../[exa.aggregator][metricTypes][exa.aggregator.aggregateCount]"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        host.kpi.server:
+                        {
+                            @reference = "../../../[Host][aggregationSchema][p2][host.kpi]"
+                            scopeAggregationStrategies = "@remove"
+                            allowHierarchyAggregation = "@remove"
+                            allowTransferDerived = "@remove"
+                            componentDiscoveryStrategies = "@remove"
+                            componentDeletionStrategy = "@remove"
+                        }
+                            
+                        jvm.kpi.server:
+                        {
+                            @reference = "../../../[JvmNode][aggregationSchema][p2][jvm.kpi]"
+                            scopeAggregationStrategies = "@remove"
+                            allowHierarchyAggregation = "@remove"
+                            allowTransferDerived = "@remove"
+                            componentDiscoveryStrategies = "@remove"
+                            componentDeletionStrategy = "@remove"
+                        }
+					}
+				    
+				    p3:
+			        {
+				        @reference = "p2"
+				            
+			            exa.server:
+                        {
+		                    componentDiscoveryStrategies = "@remove"
+                            componentDeletionStrategy = "@remove"
+                        }
+			        }
+					
+					p4:
+                    {
+                        @reference = "p3"
+                            
+                        host.kpi.server:
+                        {
+                            componentBindingStrategies = [{ instanceOf = "SimpleComponentBindingStrategy" }]
+                        }
+                        jvm.kpi.server:
+                        {
+                            componentBindingStrategies = [{ instanceOf = "SimpleComponentBindingStrategy" }]
+                        }
+                    }
+			        
+			        p5:
+                    {
+                        @reference = "p3"
+                    }
+					    
+				    p6:
+                    {
+                        @reference = "p3"
+                    }
+                        
+                    p7:
+                    {
+                        @reference = "p3"
+                    }
+                        
+                    p8:
+                    {
+                        @reference = "p3"
+                    }
+				}
+		        groupDiscoveryStrategies = [{ instanceOf = "SimpleGroupDiscoveryStrategy" group = "servers"}]
+			}
+		
+		    ExaServersGroup:
+            {
+                instanceOf = "group"
+                componentTypes = ["ExaServer"]
+                groupTypes = []
+                aggregationGroup = true
+            }
+		}
+		
+		groups:
+        {
+            servers:
+            {
+                groupType = "ExaServersGroup"
+            }
+        }
+	}}}}
+}

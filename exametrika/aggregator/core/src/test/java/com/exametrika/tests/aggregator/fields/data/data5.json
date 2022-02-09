@@ -1,0 +1,220 @@
+[
+    {
+        "metrics": 
+        {
+            "metricType1": 
+            {
+                "std.count": 300,
+                "std.sum": 3000,
+                "std.min": 3,
+                "std.max": 30,
+                "std.avg": 10
+            },
+            "metricType2": 
+            {
+                "std.count": 300,
+                "std.sum": 3000,
+                "std.min": 3,
+                "std.max": 30,
+                "std.avg": 10
+            },
+            "metricType3": 
+            {
+                "inherent": 
+                {
+                    "std.count": 300,
+                    "std.sum": 3000,
+                    "std.min": 3,
+                    "std.max": 30,
+                    "std.avg": 10
+                },
+                "total": 
+                {
+                    "std.count": 300,
+                    "std.sum": 3000,
+                    "std.min": 3,
+                    "std.max": 30,
+                    "std.avg": 10
+                }
+            },
+            "metricType4": 
+            {
+                "message": "hello3",
+                "time": 333
+            }
+        },
+        "time": 3000,
+        "period": 100,
+        "metadata": 
+        {
+            "key": "value"
+        }
+    },
+    {
+        "metricType1": 
+        {
+            "std.count": 300,
+            "std.sum": 3000,
+            "std.min": 3,
+            "std.max": 30,
+            "std.avg": 10,
+            "%current(std.count,metricType2.std.sum)": 10
+        },
+        "metricType2": 
+        {
+            "std.count": 300,
+            "std.sum": 3000,
+            "std.min": 3,
+            "std.max": 30,
+            "std.avg": 10
+        },
+        "metricType3": 
+        {
+            "inherent": 
+            {
+                "std.count": 300,
+                "std.sum": 3000,
+                "std.min": 3,
+                "std.max": 30,
+                "std.avg": 10
+            },
+            "total": 
+            {
+                "std.count": 300,
+                "std.sum": 3000,
+                "std.min": 3,
+                "std.max": 30,
+                "std.avg": 10
+            }
+        },
+        "metricType4": "hello3"
+    },
+    {
+        "metrics": 
+        {
+            "metricType1": 
+            {
+                "std.count": 200,
+                "std.sum": 2000,
+                "std.min": 2,
+                "std.max": 20,
+                "std.avg": 10
+            },
+            "metricType2": 
+            {
+                "std.count": 200,
+                "std.sum": 2000,
+                "std.min": 2,
+                "std.max": 20,
+                "std.avg": 10
+            },
+            "metricType3": 
+            {
+                "inherent": 
+                {
+                    "std.count": 200,
+                    "std.sum": 2000,
+                    "std.min": 2,
+                    "std.max": 20,
+                    "std.avg": 10
+                },
+                "total": 
+                {
+                    "std.count": 200,
+                    "std.sum": 2000,
+                    "std.min": 2,
+                    "std.max": 20,
+                    "std.avg": 10
+                }
+            },
+            "metricType4": 
+            {
+                "message": "hello2",
+                "time": 222
+            }
+        },
+        "time": 3000,
+        "period": 100,
+        "metadata": 
+        {
+            "key": "value"
+        }
+    },
+    {
+        "metricType1": 
+        {
+            "std.count": 200,
+            "std.sum": 2000,
+            "std.min": 2,
+            "std.max": 20,
+            "std.avg": 10,
+            "period(std.sum).delta": 1000,
+            "period(std.sum).delta%": 100,
+            "%current(std.count,metricType2.std.sum)": 10
+        },
+        "metricType2": 
+        {
+            "std.count": 200,
+            "std.sum": 2000,
+            "std.min": 2,
+            "std.max": 20,
+            "std.avg": 10,
+            "period(std.sum).delta": 1000,
+            "period(std.sum).delta%": 100
+        },
+        "metricType3": 
+        {
+            "inherent": 
+            {
+                "std.count": 200,
+                "std.sum": 2000,
+                "std.min": 2,
+                "std.max": 20,
+                "std.avg": 10,
+                "period(std.sum).delta": 1000,
+                "period(std.sum).delta%": 100
+            },
+            "total": 
+            {
+                "std.count": 200,
+                "std.sum": 2000,
+                "std.min": 2,
+                "std.max": 20,
+                "std.avg": 10,
+                "period(std.sum).delta": 1000,
+                "period(std.sum).delta%": 100
+            }
+        },
+        "metricType4": "hello2"
+    },
+    {
+        "metrics": 
+        {
+            "metricType5": 
+            {
+                "message": "hello2",
+                "time": 222
+            }
+        },
+        "time": 3000,
+        "period": 100
+    },
+    {
+        "metricType5": "hello2"
+    },
+    {
+        "metrics": 
+        {
+            "metricType5": 
+            {
+                "message": "hello1",
+                "time": 111
+            }
+        },
+        "time": 1000,
+        "period": 100
+    },
+    {
+        "metricType5": "hello1"
+    }
+]

@@ -1,0 +1,13 @@
+{
+	name = "test.exadb"
+	
+	types:
+	{
+		TestDatabase:
+		{
+			instanceOf = "object"
+			base = "Database"
+			final = true
+		}
+	}
+}

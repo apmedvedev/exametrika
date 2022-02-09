@@ -1,0 +1,358 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-28/data-28.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:group1 (component-component-28/data-28.dt)", "scope:group3 (component-component-28/data-28.dt)"]
+                },
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:group1 (component-component-28/data-28.dt)", "scope:group2 (component-component-28/data-28.dt)"]
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:hosts.host1 (component-component-28/data-28.dt)", "scope:hosts.host2 (component-component-28/data-28.dt)", "scope:hosts2.host1 (component-component-28/data-28.dt)"],
+        "nodes": 
+        ["scope:nodes.node1 (component-component-28/data-28.dt)", "scope:nodes.node2 (component-component-28/data-28.dt)"],
+        "transactions": 
+        ["scope:txs.transaction (component-component-28/data-28.dt)"],
+        "healthComponents": 
+        ["scope:hosts.host1 (component-component-28/data-28.dt)", "scope:hosts.host2 (component-component-28/data-28.dt)", "scope:nodes.node1 (component-component-28/data-28.dt)", "scope:nodes.node2 (component-component-28/data-28.dt)", "scope:txs.transaction (component-component-28/data-28.dt)", "scope:hosts2.host1 (component-component-28/data-28.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 16,
+                "scope": "hosts2.host1",
+                "component": "Host2",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts2.host1",
+                        "component": "Host2",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 15,
+                "scope": "group3",
+                "component": "Group1",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group3",
+                        "component": "Group1",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value3-2"
+                        }
+                    }
+                ],
+                "tags": 
+                ["tag3-"]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 13,
+                "scope": "group1.group13",
+                "component": "Group2",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group13",
+                        "component": "Group2",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value13-2"
+                        }
+                    }
+                ],
+                "tags": 
+                ["tag13-"]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 11,
+                "scope": "txs.transaction",
+                "component": "Transaction",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "txs.transaction",
+                        "component": "Transaction",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-2.1"
+                        },
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 10,
+                "scope": "nodes.node2",
+                "component": "Node",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "nodes.node2",
+                        "component": "Node",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-2.1",
+                            "host": "hosts.host2"
+                        },
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 9,
+                "scope": "nodes.node1",
+                "component": "Node",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "nodes.node1",
+                        "component": "Node",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            },
+                            "host": "hosts.host1"
+                        },
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 8,
+                "scope": "hosts.host2",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts.host2",
+                        "component": "Host",
+                        "flags": "[readonly, unavailable]",
+                        "properties": 
+                        {
+                            "key": "value-2.1"
+                        },
+                        "state": "unavailable",
+                        "nodes": 
+                        ["scope:nodes.node2 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts.host2",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-2.1"
+                        },
+                        "state": "normal",
+                        "nodes": 
+                        ["scope:nodes.node2 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 7,
+                "scope": "hosts.host1",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "state": "normal",
+                        "nodes": 
+                        ["scope:nodes.node1 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 6,
+                "scope": "group2",
+                "component": "Group1",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group2",
+                        "component": "Group1",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group2",
+                        "component": "Group1",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value2-1"
+                        }
+                    }
+                ],
+                "tags": 
+                ["tag2"]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 4,
+                "scope": "group1.group12",
+                "component": "Group2",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group12",
+                        "component": "Group2",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group12",
+                        "component": "Group2",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value12-1"
+                        }
+                    }
+                ],
+                "tags": 
+                ["tag12"]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 2,
+                "scope": "group1.group11",
+                "component": "Group2",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group11",
+                        "component": "Group2",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value11-2"
+                        }
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group11",
+                        "component": "Group2",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value11-1"
+                        }
+                    }
+                ],
+                "tags": 
+                ["tag11-"]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 1,
+                "scope": "group1",
+                "component": "Group1",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1",
+                        "component": "Group1",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value1-2"
+                        },
+                        "children": 
+                        ["scope:group1.group11 (component-component-28/data-28.dt)", "scope:group1.group12 (component-component-28/data-28.dt)", "scope:group1.group13 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1",
+                        "component": "Group1",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value1-1"
+                        },
+                        "children": 
+                        ["scope:group1.group11 (component-component-28/data-28.dt)", "scope:group1.group12 (component-component-28/data-28.dt)"]
+                    }
+                ],
+                "tags": 
+                ["tag1-"]
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

@@ -1,0 +1,102 @@
+{
+    "<root>": 
+    {
+        "space": "system-security-13/data-13.dt",
+        "rootGroup": 
+        {
+            "space": "system-security-13/data-13.dt",
+            "key": "",
+            "children": 
+            {
+                "group1": 
+                {
+                    "space": "system-security-13/data-13.dt",
+                    "key": "group1",
+                    "roles": 
+                    {
+                        "role2": 
+                        {
+                            "space": "system-security-13/data-13.dt"
+                        }
+                    },
+                    "children": 
+                    {
+                        "group11": 
+                        {
+                            "space": "system-security-13/data-13.dt",
+                            "key": "group1.group11",
+                            "roles": 
+                            {
+                                "role4": 
+                                {
+                                    "space": "system-security-13/data-13.dt"
+                                }
+                            }
+                        }
+                    }
+                },
+                "group2": 
+                {
+                    "space": "system-security-13/data-13.dt",
+                    "key": "group2",
+                    "roles": 
+                    {
+                        "role3": 
+                        {
+                            "space": "system-security-13/data-13.dt"
+                        }
+                    }
+                }
+            }
+        },
+        "users": 
+        {
+            "admin": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "admin",
+                "roles": 
+                {
+                    "admin": 
+                    {
+                        "space": "system-security-13/data-13.dt"
+                    }
+                }
+            },
+            "user1": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "user1"
+            },
+            "Admin": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "Admin",
+                "roles": 
+                {
+                    "administrator": 
+                    {
+                        "space": "system-security-13/data-13.dt"
+                    }
+                }
+            }
+        },
+        "auditLog": 
+        [
+            {
+                "user": "user1",
+                "permission": "session:open",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "admin",
+                "permission": "session:open",
+                "object": null,
+                "succeeded": true
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

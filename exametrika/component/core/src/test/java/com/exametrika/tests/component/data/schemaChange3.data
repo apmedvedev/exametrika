@@ -1,0 +1,304 @@
+{
+    "time": "1970.01.01 03:00:00.100",
+    "schemaVersion": 1,
+    "measurements": 
+    [
+        {
+            "id": 
+            {
+                "scope": "hosts.host1",
+                "location": "",
+                "componentType": "Host"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 10,
+                                "sum": 40,
+                                "min": 20,
+                                "max": 30
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-1.1"
+        			nodeProperties:{ dynamic : true}
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "hosts.host2",
+                "location": "",
+                "componentType": "Host"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 20,
+                                "sum": 100,
+                                "min": 30,
+                                "max": 40
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-2.1"
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "nodes.node1",
+                "location": "",
+                "componentType": "Node"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 10,
+                                "sum": 40,
+                                "min": 20,
+                                "max": 30
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-1.1"
+        			nodeProperties:{ dynamic : true}
+    				"host" : "hosts.host1"
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "nodes.node2",
+                "location": "",
+                "componentType": "Node"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 20,
+                                "sum": 100,
+                                "min": 30,
+                                "max": 40
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-2.1"
+    				"host" : "hosts.host2"
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "hosts.host1",
+                "location": "",
+                "componentType": "Host"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 10,
+                                "sum": 40,
+                                "min": 20,
+                                "max": 30
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-1.1"
+        			nodeProperties:{ dynamic : true}
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "hosts.host2",
+                "location": "",
+                "componentType": "Host"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 20,
+                                "sum": 100,
+                                "min": 30,
+                                "max": 40
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-2.1"
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "nodes.node1",
+                "location": "",
+                "componentType": "Node"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 10,
+                                "sum": 40,
+                                "min": 20,
+                                "max": 30
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-1.1"
+        			nodeProperties:{ dynamic : true}
+    				"host" : "hosts.host1"
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "nodes.node2",
+                "location": "",
+                "componentType": "Node"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 20,
+                                "sum": 100,
+                                "min": 30,
+                                "max": 40
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-2.1"
+    				"host" : "hosts.host2"
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "hosts2.host1",
+                "location": "",
+                "componentType": "Host2"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 10,
+                                "sum": 40,
+                                "min": 20,
+                                "max": 30
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-1.1"
+        			nodeProperties:{ dynamic : true}
+        		}
+            },
+            "period": 10
+        }
+    ]
+}

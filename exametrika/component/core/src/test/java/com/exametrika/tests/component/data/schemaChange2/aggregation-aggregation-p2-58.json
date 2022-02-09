@@ -1,0 +1,314 @@
+{
+    "cyclePeriod ": 
+    {
+        "<root>": 
+        {
+            "id": "3@aggregation-aggregation-p2-58/data-59.cy[cycle]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        []
+    },
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "29@aggregation-aggregation-p2-58/data-58.dt[0]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "46@aggregation-aggregation-p2-58/data-58.dt[0]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "Host",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1",
+                    "nodeProperties": 
+                    {
+                        "dynamic": true
+                    }
+                }
+            },
+            {
+                "id": "59@aggregation-aggregation-p2-58/data-58.dt[0]",
+                "scope": "hosts.host2",
+                "metric": "",
+                "componentType": "Host",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 40,
+                        "std.sum": 200,
+                        "std.min": 30,
+                        "std.max": 40,
+                        "std.avg": 5
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-2.1"
+                }
+            },
+            {
+                "id": "72@aggregation-aggregation-p2-58/data-58.dt[0]",
+                "scope": "nodes.node1",
+                "metric": "",
+                "componentType": "Node",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1",
+                    "nodeProperties": 
+                    {
+                        "dynamic": true
+                    },
+                    "host": "hosts.host1"
+                }
+            },
+            {
+                "id": "85@aggregation-aggregation-p2-58/data-58.dt[0]",
+                "scope": "nodes.node2",
+                "metric": "",
+                "componentType": "Node",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 40,
+                        "std.sum": 200,
+                        "std.min": 30,
+                        "std.max": 40,
+                        "std.avg": 5
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-2.1",
+                    "host": "hosts.host2"
+                }
+            },
+            {
+                "id": "98@aggregation-aggregation-p2-58/data-58.dt[0]",
+                "scope": "hosts2.host1",
+                "metric": "",
+                "componentType": "Host2",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 10,
+                        "std.sum": 40,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1",
+                    "nodeProperties": 
+                    {
+                        "dynamic": true
+                    }
+                }
+            },
+            {
+                "id": "111@aggregation-aggregation-p2-58/data-58.dt[0]",
+                "scope": "hosts.host2",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000,
+                        "std.min": 1000000,
+                        "std.max": 1000000,
+                        "std.avg": 1000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000,
+                        "std.min": 1000000,
+                        "std.max": 1000000,
+                        "std.avg": 1000000
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "124@aggregation-aggregation-p2-58/data-58.dt[0]",
+                "scope": "hosts2.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "137@aggregation-aggregation-p2-58/data-58.dt[0]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "150@aggregation-aggregation-p2-58/data-58.dt[0]",
+                "scope": "nodes.node1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "163@aggregation-aggregation-p2-58/data-58.dt[0]",
+                "scope": "nodes.node2",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            }
+        ]
+    }
+}

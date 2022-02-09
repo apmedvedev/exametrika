@@ -1,0 +1,232 @@
+{
+    imports = ["ops.dbmodule", "ui.dbmodule", "app.dbmodule", "jvm.dbmodule", "host.dbmodule", "exaagent.dbmodule", "exaserver.dbmodule"]
+    
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		version = 1
+		combineType = "stack"//TODO:"transaction"
+		periods:
+		{
+		    p1:
+            {
+                period:
+                {
+                    kind = "relative"
+                    type = "minute"
+                    amount = 5
+                }
+                cyclePeriodCount = 1
+                nonAggregating = true
+            }
+		
+			p2:
+			{
+				period:
+				{
+					kind = "absolute"
+					type = "minute"
+					amount = 1
+				}
+				cyclePeriodCount = 1000
+			}
+                
+            p3:
+            {
+                period:
+                {
+                    kind = "absolute"
+                    type = "minute"
+                    amount = 2//TODO:5
+                }
+                cyclePeriodCount = 1000
+            }
+				
+			p4:
+            {
+                period:
+                {
+                    kind = "absolute"
+                    type = "minute"
+                    amount = 4//TODO:15
+                }
+                cyclePeriodCount = 1000
+            }
+                
+            p5:
+            {
+                period:
+                {
+                    kind = "absolute"
+                    type = "minute"//TODO:"hour"
+                    amount = 8//TODO:1
+                }
+                cyclePeriodCount = 1000
+            }
+                
+            p6:
+            {
+                period:
+                {
+                    kind = "absolute"
+                    type = "minute"//TODO:"day"
+                    amount = 16//TODO:1
+                }
+                cyclePeriodCount = 100
+            }
+                
+            p7:
+            {
+                period:
+                {
+                    kind = "absolute"
+                    type = "minute"//TODO:"month"
+                    amount = 32//TODO:1
+                }
+                cyclePeriodCount = 100
+            }
+                
+            p8:
+            {
+                period:
+                {
+                    kind = "absolute"
+                    type = "minute"//TODO:"year"
+                    amount = 64//TODO:1
+                }
+                cyclePeriodCount = 100
+            }
+		}
+		
+		health:
+		{
+			firstAggregationPeriod = "p2"
+		}
+		
+		components:
+		{
+			HealthComponent:
+			{
+				instanceOf = "healthComponent"
+				healthComponentType = "HealthComponentType"
+				aggregationSchema:
+				{
+					p2:
+					{
+						HealthComponentType:
+						{
+							instanceOf = "NameComponentType"
+							metricTypes:
+							{
+							    totalCounter:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                         {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: {default:{fields:
+                                    [
+                                         {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+							
+								upCounter:
+								{
+									instanceOf = "Counter"
+								    fields:
+							        [
+							             {instanceOf = "StandardFields"}
+							        ]
+									representations: {default:{fields:
+								    [
+								         {instanceOf = "StandardRepresentation"}
+								         {instanceOf = "PercentageRepresentation" name = "%up" navigationType = "current" currentField = "std.sum" baseField = "totalCounter.std.sum"}
+								    ]}}
+								}
+							
+								downCounter:
+								{
+									instanceOf = "Counter"
+                                    fields:
+                                    [
+                                         {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: {default:{fields:
+                                    [
+                                         {instanceOf = "StandardRepresentation"}
+                                         {instanceOf = "PercentageRepresentation" name = "%down" navigationType = "current" currentField = "std.sum" baseField = "totalCounter.std.sum"}
+                                    ]}}
+								}
+									
+								failureCounter:
+								{
+									instanceOf = "Counter"
+                                    fields:
+                                    [
+                                         {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: {default:{fields:
+                                    [
+                                         {instanceOf = "StandardRepresentation"}
+                                         {instanceOf = "PercentageRepresentation" name = "%failure" navigationType = "current" currentField = "std.sum" baseField = "totalCounter.std.sum"}
+                                    ]}}
+								}
+									
+								maintenanceCounter:
+								{
+									instanceOf = "Counter"
+                                    fields:
+                                    [
+                                         {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: {default:{fields:
+                                    [
+                                         {instanceOf = "StandardRepresentation"}
+                                         {instanceOf = "PercentageRepresentation" name = "%maintenance" navigationType = "current" currentField = "std.sum" baseField = "totalCounter.std.sum"}
+                                    ]}}
+								}
+							}
+							hasLog = true
+						}
+					}
+				
+				    p3:
+                    {
+                        @reference = "p2"
+                    }
+					
+					p4:
+                    {
+                        @reference = "p2"
+                    }
+                        
+                    p5:
+                    {
+                        @reference = "p2"
+                    }
+                        
+                    p6:
+                    {
+                        @reference = "p2"
+                    }
+                        
+                    p7:
+                    {
+                        @reference = "p2"
+                    }
+                        
+                    p8:
+                    {
+                        @reference = "p2"
+                    }
+				}
+			}
+			
+			RootGroup:
+            {
+                instanceOf = "group"
+            }
+		}
+	}}}}
+}

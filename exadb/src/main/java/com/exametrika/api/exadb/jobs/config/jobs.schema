@@ -1,0 +1,41 @@
+{
+	name = "com.exametrika.exadb.jobs-1.0"
+	description = "Jobs configuration."
+
+	types:
+	{
+		JobService:
+		{
+			instanceOf = "object"
+			description = "Job service configuration."
+			base = "DomainService"
+			final = true
+			properties:
+			{
+				threadCount:
+				{
+					description = "Jobs executor thread count."
+					required = false
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+			
+				schedulePeriod:
+				{
+					description = "Schedule period in milliseconds."
+					required = true
+					default = 100
+					type:
+					{
+						instanceOf = "long"
+						min = 10
+						converter = "periods"
+					}
+				}
+			}
+		}
+	}
+}

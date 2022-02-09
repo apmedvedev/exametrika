@@ -1,0 +1,120 @@
+{
+	name = "test.aggregation"
+	
+	types:
+	{
+		TestAggregationLogFilter:
+		{
+			instanceOf = "object"
+			base = "AggregationLogFilter"
+			properties:
+			{
+				pattern:
+				{
+					required = false
+					type = "string"
+				}
+			}
+		}
+	
+		TestMeasurementFilter:
+		{
+			instanceOf = "object"
+			base = "MeasurementFilter"
+			properties:
+			{
+				pattern:
+				{
+					required = false
+					type = "string"
+				}
+			}
+		}
+	
+		TestAggregationLogTransformer:
+		{
+			instanceOf = "object"
+			base = "AggregationLogTransformer"
+		}
+			
+		TestScopeAggregationStrategy:
+		{
+			instanceOf = "object"
+			base = "ScopeAggregationStrategy"
+			properties:
+			{
+				prefix:
+				{
+					required = false
+					type = "string"
+				}
+			}
+		}
+			
+		TestMetricAggregationStrategy:
+		{
+			instanceOf = "object"
+			base = "MetricAggregationStrategy"
+			properties:
+			{
+				prefix:
+				{
+					required = false
+					type = "string"
+				}
+			}
+		}
+			
+		TestAggregationFilter:
+		{
+			instanceOf = "object"
+			base = "AggregationFilter"
+			properties:
+			{
+				pattern:
+				{
+					required = false
+					type = "string"
+				}
+			}
+		}
+			
+		TestErrorAggregationStrategy:
+		{
+			instanceOf = "object"
+			base = "ErrorAggregationStrategy"
+			properties:
+			{
+				pattern:
+				{
+					required = false
+					type = "string"
+				}
+			
+				prefix:
+				{
+					required = false
+					type = "string"
+				}
+			}
+		}
+			
+		TestDocumentSchemaFactory:
+		{
+			instanceOf = "object"
+			base = "DocumentSchemaFactory"
+		}
+			
+		TestObjectRepresentation:
+		{
+			instanceOf = "object"
+			base = "ObjectMetricRepresentation"
+		}
+			
+		TestBehaviorTypeLabelStrategy:
+		{
+			instanceOf = "object"
+			base = "BehaviorTypeLabelStrategy"
+		}
+	}
+}

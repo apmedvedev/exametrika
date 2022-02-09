@@ -1,0 +1,890 @@
+{
+    "cyclePeriod ": 
+    {
+        "<root>": 
+        {
+            "id": "3@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "21@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.1"
+                    },
+                    {
+                        "metricType1": "value-1.2"
+                    },
+                    {
+                        "metricType1": "value-1.3"
+                    },
+                    {
+                        "metricType1": "value-1.4"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.6"
+                    },
+                    {
+                        "metricType1": "value-1.1"
+                    },
+                    {
+                        "metricType1": "value-1.2"
+                    },
+                    {
+                        "metricType1": "value-1.3"
+                    },
+                    {
+                        "metricType1": "value-1.4"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.6"
+                    },
+                    {
+                        "metricType1": "value-1.1"
+                    },
+                    {
+                        "metricType1": "value-1.2"
+                    },
+                    {
+                        "metricType1": "value-1.3"
+                    },
+                    {
+                        "metricType1": "value-1.4"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.6"
+                    },
+                    {
+                        "metricType1": "value-1.1"
+                    },
+                    {
+                        "metricType1": "value-1.2"
+                    },
+                    {
+                        "metricType1": "value-1.3"
+                    },
+                    {
+                        "metricType1": "value-1.4"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.6"
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "26@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "logCounter",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 12,
+                            "std.sum": 12,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 12,
+                            "std.sum": 12,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "31@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "s1",
+                "metric": "m1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    }
+                ]
+            },
+            {
+                "id": "36@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "s1",
+                "metric": "m1.metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    }
+                ]
+            },
+            {
+                "id": "41@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "s1",
+                "metric": "m1.metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    }
+                ]
+            },
+            {
+                "id": "46@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "s1.scopes",
+                "metric": "m1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    }
+                ]
+            },
+            {
+                "id": "51@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "s1.scopes",
+                "metric": "m1.metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    }
+                ]
+            },
+            {
+                "id": "56@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "s1.scopes",
+                "metric": "m1.metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    }
+                ]
+            },
+            {
+                "id": "61@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "s1.scopes.scope1",
+                "metric": "m1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    }
+                ]
+            },
+            {
+                "id": "66@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "s1.scopes.scope1",
+                "metric": "m1.metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    }
+                ]
+            },
+            {
+                "id": "71@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "s1.scopes.scope1",
+                "metric": "m1.metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    }
+                ]
+            },
+            {
+                "id": "76@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "scopes",
+                "metric": "metrics",
+                "componentType": "logCounter",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 12,
+                            "std.sum": 12,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 12,
+                            "std.sum": 12,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "81@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "scopes",
+                "metric": "metrics.metric1",
+                "componentType": "logCounter",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 12,
+                            "std.sum": 12,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 12,
+                            "std.sum": 12,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "86@aggregation-aggregation-p3-17/data-18.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "metrics",
+                "componentType": "logCounter",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 12,
+                            "std.sum": 12,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 12,
+                            "std.sum": 12,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "6@aggregation-aggregation-p3-17/data-17.dt[0]",
+            "scope": "",
+            "metric": "",
+            "nodes": 
+            [
+                {
+                    "id": "49@aggregation-aggregation-p3-17/data-17.dt[0]",
+                    "scope": "s1",
+                    "metric": "m1",
+                    "componentType": "name1",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": ""
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "62@aggregation-aggregation-p3-17/data-17.dt[0]",
+                            "scope": "s1",
+                            "metric": "m1.metrics",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": ""
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "75@aggregation-aggregation-p3-17/data-17.dt[0]",
+                                    "scope": "s1",
+                                    "metric": "m1.metrics.metric1",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": ""
+                                    },
+                                    "scopeChildren": 
+                                    ["scope:s1.scopes, location:m1.metrics.metric1 (114@aggregation-aggregation-p3-17/data-17.dt[0])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            ["scope:s1.scopes, location:m1.metrics (101@aggregation-aggregation-p3-17/data-17.dt[0])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "88@aggregation-aggregation-p3-17/data-17.dt[0]",
+                            "scope": "s1.scopes",
+                            "metric": "m1",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": ""
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "101@aggregation-aggregation-p3-17/data-17.dt[0]",
+                                    "scope": "s1.scopes",
+                                    "metric": "m1.metrics",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": ""
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "114@aggregation-aggregation-p3-17/data-17.dt[0]",
+                                            "scope": "s1.scopes",
+                                            "metric": "m1.metrics.metric1",
+                                            "componentType": "name1",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": ""
+                                            },
+                                            "scopeChildren": 
+                                            ["scope:s1.scopes.scope1, location:m1.metrics.metric1 (153@aggregation-aggregation-p3-17/data-17.dt[0])"]
+                                        }
+                                    ],
+                                    "scopeChildren": 
+                                    ["scope:s1.scopes.scope1, location:m1.metrics (140@aggregation-aggregation-p3-17/data-17.dt[0])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            [
+                                {
+                                    "id": "127@aggregation-aggregation-p3-17/data-17.dt[0]",
+                                    "scope": "s1.scopes.scope1",
+                                    "metric": "m1",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": ""
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "140@aggregation-aggregation-p3-17/data-17.dt[0]",
+                                            "scope": "s1.scopes.scope1",
+                                            "metric": "m1.metrics",
+                                            "componentType": "name1",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": ""
+                                            },
+                                            "metricChildren": 
+                                            [
+                                                {
+                                                    "id": "153@aggregation-aggregation-p3-17/data-17.dt[0]",
+                                                    "scope": "s1.scopes.scope1",
+                                                    "metric": "m1.metrics.metric1",
+                                                    "componentType": "name1",
+                                                    "flags": "[derived]",
+                                                    "measurements": 
+                                                    {
+                                                        "metricType1": ""
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "166@aggregation-aggregation-p3-17/data-17.dt[0]",
+                    "scope": "scopes",
+                    "metric": "metrics",
+                    "componentType": "logCounter",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 12,
+                            "std.sum": 12,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "179@aggregation-aggregation-p3-17/data-17.dt[0]",
+                            "scope": "scopes",
+                            "metric": "metrics.metric1",
+                            "componentType": "logCounter",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 12,
+                                    "std.sum": 12,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "scopeChildren": 
+                            ["scope:scopes.scope1, location:metrics.metric1 (36@aggregation-aggregation-p3-17/data-17.dt[0])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "192@aggregation-aggregation-p3-17/data-17.dt[0]",
+                            "scope": "scopes.scope1",
+                            "metric": "metrics",
+                            "componentType": "logCounter",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 12,
+                                    "std.sum": 12,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "36@aggregation-aggregation-p3-17/data-17.dt[0]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "metrics.metric1",
+                                    "componentType": "logCounter",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 12,
+                                            "std.sum": 12,
+                                            "std.min": 1,
+                                            "std.max": 1,
+                                            "std.avg": 1
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "23@aggregation-aggregation-p3-17/data-17.dt[0]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                {
+                    "metricType1": "value-1.6"
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    },
+    "period 1": 
+    {
+        "<root>": 
+        {
+            "id": "207@aggregation-aggregation-p3-17/data-17.dt[1]",
+            "scope": "",
+            "metric": "",
+            "nodes": 
+            [
+                {
+                    "id": "250@aggregation-aggregation-p3-17/data-17.dt[1]",
+                    "scope": "s1",
+                    "metric": "m1",
+                    "componentType": "name1",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": ""
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "263@aggregation-aggregation-p3-17/data-17.dt[1]",
+                            "scope": "s1",
+                            "metric": "m1.metrics",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": ""
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "276@aggregation-aggregation-p3-17/data-17.dt[1]",
+                                    "scope": "s1",
+                                    "metric": "m1.metrics.metric1",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": ""
+                                    },
+                                    "scopeChildren": 
+                                    ["scope:s1.scopes, location:m1.metrics.metric1 (315@aggregation-aggregation-p3-17/data-17.dt[1])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            ["scope:s1.scopes, location:m1.metrics (302@aggregation-aggregation-p3-17/data-17.dt[1])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "289@aggregation-aggregation-p3-17/data-17.dt[1]",
+                            "scope": "s1.scopes",
+                            "metric": "m1",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": ""
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "302@aggregation-aggregation-p3-17/data-17.dt[1]",
+                                    "scope": "s1.scopes",
+                                    "metric": "m1.metrics",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": ""
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "315@aggregation-aggregation-p3-17/data-17.dt[1]",
+                                            "scope": "s1.scopes",
+                                            "metric": "m1.metrics.metric1",
+                                            "componentType": "name1",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": ""
+                                            },
+                                            "scopeChildren": 
+                                            ["scope:s1.scopes.scope1, location:m1.metrics.metric1 (354@aggregation-aggregation-p3-17/data-17.dt[1])"]
+                                        }
+                                    ],
+                                    "scopeChildren": 
+                                    ["scope:s1.scopes.scope1, location:m1.metrics (341@aggregation-aggregation-p3-17/data-17.dt[1])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            [
+                                {
+                                    "id": "328@aggregation-aggregation-p3-17/data-17.dt[1]",
+                                    "scope": "s1.scopes.scope1",
+                                    "metric": "m1",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": ""
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "341@aggregation-aggregation-p3-17/data-17.dt[1]",
+                                            "scope": "s1.scopes.scope1",
+                                            "metric": "m1.metrics",
+                                            "componentType": "name1",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": ""
+                                            },
+                                            "metricChildren": 
+                                            [
+                                                {
+                                                    "id": "354@aggregation-aggregation-p3-17/data-17.dt[1]",
+                                                    "scope": "s1.scopes.scope1",
+                                                    "metric": "m1.metrics.metric1",
+                                                    "componentType": "name1",
+                                                    "flags": "[derived]",
+                                                    "measurements": 
+                                                    {
+                                                        "metricType1": ""
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "367@aggregation-aggregation-p3-17/data-17.dt[1]",
+                    "scope": "scopes",
+                    "metric": "metrics",
+                    "componentType": "logCounter",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 12,
+                            "std.sum": 12,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "380@aggregation-aggregation-p3-17/data-17.dt[1]",
+                            "scope": "scopes",
+                            "metric": "metrics.metric1",
+                            "componentType": "logCounter",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 12,
+                                    "std.sum": 12,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "scopeChildren": 
+                            ["scope:scopes.scope1, location:metrics.metric1 (237@aggregation-aggregation-p3-17/data-17.dt[1])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "393@aggregation-aggregation-p3-17/data-17.dt[1]",
+                            "scope": "scopes.scope1",
+                            "metric": "metrics",
+                            "componentType": "logCounter",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 12,
+                                    "std.sum": 12,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "237@aggregation-aggregation-p3-17/data-17.dt[1]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "metrics.metric1",
+                                    "componentType": "logCounter",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 12,
+                                            "std.sum": 12,
+                                            "std.min": 1,
+                                            "std.max": 1,
+                                            "std.avg": 1
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "224@aggregation-aggregation-p3-17/data-17.dt[1]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                {
+                    "metricType1": "value-1.6"
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,478 @@
+{
+    "cyclePeriod ": 
+    {
+        "<root>": 
+        {
+            "id": "3@aggregation-aggregation-p2-17/data-18.cy[cycle]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        []
+    },
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "29@aggregation-aggregation-p2-17/data-17.dt[0]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "46@aggregation-aggregation-p2-17/data-17.dt[0]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "Host",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4,
+                        "histo.bins": 
+                        [2, 4, 0, 4, 0, 2, 0, 2, 0, 2],
+                        "histo.min-oob": 2,
+                        "histo.max-oob": 2,
+                        "histo.bins%": 
+                        [10, 20, 0, 20, 0, 10, 0, 10, 0, 10],
+                        "histo.min-oob%": 10,
+                        "histo.max-oob%": 10,
+                        "histo.percentiles": 
+                        {
+                            "%": 
+                            ["10", "25", "50", "75", "90"],
+                            "values": 
+                            [20, 20, 30, 30, 30],
+                            "errors": 
+                            [0, 0, 0, 0, 0]
+                        },
+                        "histo.scale": 
+                        [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+                        "anomaly(percentile(50)).score": 0.5,
+                        "anomaly(percentile(50)).level": "error",
+                        "anomaly(percentile(50)).primary": true,
+                        "anomaly(percentile(50)).behaviorType": 
+                        {
+                            "name": "anomaly-01.01.70 3:00",
+                            "labels": 
+                            []
+                        },
+                        "forecast(percentile(75).score": 0.5,
+                        "forecast(percentile(75).level": "error",
+                        "forecast(percentile(75).primary": true,
+                        "forecast(percentile(75).behaviorType": 
+                        {
+                            "name": "anomaly-01.01.70 3:00",
+                            "labels": 
+                            []
+                        },
+                        "forecast(percentile(75).predictions": 
+                        [
+                            {
+                                "value": 30,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 30,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 30,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 30,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 30,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 30,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 30,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 30,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 30,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 30,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            }
+                        ]
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "59@aggregation-aggregation-p2-17/data-17.dt[0]",
+                "scope": "scopes.scope2",
+                "metric": "metrics.metric2",
+                "componentType": "Host",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 40,
+                        "std.sum": 200,
+                        "std.min": 30,
+                        "std.max": 40,
+                        "std.avg": 5,
+                        "histo.bins": 
+                        [4, 8, 0, 8, 0, 4, 0, 4, 0, 4],
+                        "histo.min-oob": 4,
+                        "histo.max-oob": 4,
+                        "histo.bins%": 
+                        [10, 20, 0, 20, 0, 10, 0, 10, 0, 10],
+                        "histo.min-oob%": 10,
+                        "histo.max-oob%": 10,
+                        "histo.percentiles": 
+                        {
+                            "%": 
+                            ["10", "25", "50", "75", "90"],
+                            "values": 
+                            [30, 30, 40, 40, 40],
+                            "errors": 
+                            [0, 0, 10, 0, 0]
+                        },
+                        "histo.scale": 
+                        [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+                        "anomaly(percentile(50)).score": 0.5,
+                        "anomaly(percentile(50)).level": "error",
+                        "anomaly(percentile(50)).primary": true,
+                        "anomaly(percentile(50)).behaviorType": 
+                        {
+                            "name": "anomaly-01.01.70 3:00",
+                            "labels": 
+                            []
+                        },
+                        "forecast(percentile(75).score": 0.5,
+                        "forecast(percentile(75).level": "error",
+                        "forecast(percentile(75).primary": true,
+                        "forecast(percentile(75).behaviorType": 
+                        {
+                            "name": "anomaly-01.01.70 3:00",
+                            "labels": 
+                            []
+                        },
+                        "forecast(percentile(75).predictions": 
+                        [
+                            {
+                                "value": 40,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 40,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 40,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 40,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 40,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 40,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 40,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 40,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 40,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 40,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            }
+                        ]
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-2.1"
+                }
+            },
+            {
+                "id": "72@aggregation-aggregation-p2-17/data-17.dt[0]",
+                "scope": "scopes.scope3",
+                "metric": "metrics.metric3",
+                "componentType": "Host",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 60,
+                        "std.sum": 400,
+                        "std.min": 40,
+                        "std.max": 50,
+                        "std.avg": 6.667,
+                        "histo.bins": 
+                        [6, 12, 0, 12, 0, 6, 0, 6, 0, 6],
+                        "histo.min-oob": 6,
+                        "histo.max-oob": 6,
+                        "histo.bins%": 
+                        [10, 20, 0, 20, 0, 10, 0, 10, 0, 10],
+                        "histo.min-oob%": 10,
+                        "histo.max-oob%": 10,
+                        "histo.percentiles": 
+                        {
+                            "%": 
+                            ["10", "25", "50", "75", "90"],
+                            "values": 
+                            [40, 40, 40, 50, 50],
+                            "errors": 
+                            [0, 0, 0, 0, 0]
+                        },
+                        "histo.scale": 
+                        [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+                        "anomaly(percentile(50)).score": 0.5,
+                        "anomaly(percentile(50)).level": "error",
+                        "anomaly(percentile(50)).primary": true,
+                        "anomaly(percentile(50)).behaviorType": 
+                        {
+                            "name": "anomaly-01.01.70 3:00",
+                            "labels": 
+                            []
+                        },
+                        "forecast(percentile(75).score": 0.5,
+                        "forecast(percentile(75).level": "error",
+                        "forecast(percentile(75).primary": true,
+                        "forecast(percentile(75).behaviorType": 
+                        {
+                            "name": "anomaly-01.01.70 3:00",
+                            "labels": 
+                            []
+                        },
+                        "forecast(percentile(75).predictions": 
+                        [
+                            {
+                                "value": 50,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 50,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 50,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 50,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 50,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 50,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 50,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 50,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 50,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            },
+                            {
+                                "value": 50,
+                                "behaviorType": 
+                                {
+                                    "name": "anomaly-01.01.70 3:00",
+                                    "labels": 
+                                    []
+                                }
+                            }
+                        ]
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-3.1"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Premain-Class: com.exametrika.impl.boot.Bootstrap
+Agent-Class: com.exametrika.impl.boot.Bootstrap
+Main-Class: com.exametrika.impl.boot.Bootstrap
+Can-Retransform-Classes: true
+Class-Path: javax.mail.jar

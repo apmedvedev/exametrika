@@ -1,0 +1,26 @@
+<project name="test" basedir="." default="exception">
+
+    <include file="../base.xml" />
+    <property name="build.dir" value="../.." />
+    
+    <target name="exception">
+		<java classname="exception.TestExceptionClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+    <target name="exception2">
+		<java classname="exception.TestExceptionClass2" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+</project>

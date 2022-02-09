@@ -1,0 +1,1459 @@
+{
+    imports = ["jvm-ui.dbmodule"]
+    
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		
+		components:
+		{
+			JvmNode:
+			{
+				instanceOf = "node"
+			    healthComponentType = "HealthComponentType"
+                profilerConfigurationName = "${resource.path}/jvm-profiler.conf"
+                actions:
+                {
+                    enableMaintenanceMode = {instanceOf = "EnableMaintenanceModeAction"}
+                    disableMaintenanceMode = {instanceOf = "DisableMaintenanceModeAction"}
+                    log = {instanceOf = "LogAction"}
+                    measurementStrategy = {instanceOf = "MeasurementStrategyAction"}
+                }
+                alerts:
+                {
+                    health:
+                    {
+                        instanceOf = "HealthAlert"
+                        description = "The health alert."
+                        channels:
+                        [
+                            {
+                                instanceOf = "MailAlertChannel"
+                                name = "mail"
+                                onTemplate = "Component <%component.title%> has become failed, component state: <%state%>."
+                                offTemplate = "<%# if (resolved){ %>Health of component <%component.title%> has been restored.\
+                                    <%# } else { %>Incident <%name%> of component <%component.title%> has been deleted.<%# } %>"
+                                statusTemplate = "Component <%component.title%> remains failed, component state: <%state%>."
+                                schedule:
+                                {
+                                    instanceOf = "StandardSchedule"
+                                    expression = "time(08:00..20:00)"
+                                    timeFormat = "HH:mm"
+                                }
+                                    
+                                period:
+                                {
+                                    instanceOf = "StandardSchedulePeriod"
+                                    type = "day"
+                                    kind = "absolute"
+                                    amount = 1
+                                }
+                                
+                                recipients:
+                                [
+                                    {
+                                        type = "role"
+                                        name = "operator"
+                                    }
+                                ]
+                                    
+                                onSubject = "Health incident notification."
+                                offSubject = "Health incident off notification."
+                                statusSubject = "Health incident status notification."
+                                formatted = false
+                            }
+                        ]
+                    }
+                }
+                groupDiscoveryStrategies:
+                [
+                     {instanceOf = "PatternGroupDiscoveryStrategy" component = "JvmNodeGroup" pattern = "jvmNodes*" group = "jvmNodes"}
+                ]
+				aggregationSchema:
+				{
+				    p1:
+			        {
+				        jvm.kpi:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.process.threads:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.process.state:{ instanceOf = "Info" }
+                                host.process.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.process.cpu.max:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.process.cpu.total:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total" navigationType = "current" currentField = "std.sum" baseField = "host.process.cpu.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.cpu.user:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%user" navigationType = "current" currentField = "std.sum" baseField = "host.process.cpu.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.cpu.sys:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%sys" navigationType = "current" currentField = "std.sum" baseField = "host.process.cpu.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.fd:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.process.memory.max:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.process.memory.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total" navigationType = "current" currentField = "std.sum" baseField = "host.process.memory.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.memory.shared:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%shared" navigationType = "current" currentField = "std.sum" baseField = "host.process.memory.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.memory.resident:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%resident" navigationType = "current" currentField = "std.sum" baseField = "host.process.memory.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.memory.majorFaults:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.process.memory.minorFaults:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.process.processor:{ instanceOf = "Info" }
+                                jvm.threads.total:
+                                {
+                                    instanceOf = "Gauge"
+                                }
+                                jvm.memory.heap.init:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%init" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.heap.max.std.sum"}
+                                    ]}}
+                                }
+                                jvm.memory.heap.committed:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%committed" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.heap.max.std.sum"}
+                                    ]}}
+                                }
+                                jvm.memory.heap.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.heap.max.std.sum"}
+                                    ]}}
+                                }
+                                jvm.memory.heap.max:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                jvm.memory.nonHeap.init:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%init" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.nonHeap.max.std.sum"}
+                                    ]}}
+                                }
+                                jvm.memory.nonHeap.committed:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%committed" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.nonHeap.max.std.sum"}
+                                    ]}}
+                                }
+                                jvm.memory.nonHeap.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.nonHeap.max.std.sum"}
+                                    ]}}
+                                }
+                                jvm.memory.nonHeap.max:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                jvm.memory.buffer.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.buffer.max.std.sum"}
+                                    ]}}
+                                }
+                                jvm.memory.buffer.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.buffer.max.std.sum"}
+                                    ]}}
+                                }
+                                jvm.memory.buffer.max:
+                                {
+                                    instanceOf = "Gauge"
+                                }
+                                jvm.gc.collectionTime:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%collectionTime" navigationType = "current" currentField = "std.sum" baseField = "host.process.time.std.sum"}
+                                    ]}}
+                                }
+                                jvm.gc.stops:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                jvm.cpu.workload: 
+                                {
+                                    instanceOf = "JvmWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "JvmWorkloadRepresentation" type = "jvm.cpu.workload"
+                                    }}
+                                }
+                                jvm.memory.workload: 
+                                {
+                                    instanceOf = "JvmWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "JvmWorkloadRepresentation" type = "jvm.memory.workload"
+                                    }}
+                                }
+                                jvm.swap.errors: 
+                                {
+                                    instanceOf = "JvmErrorsMetric"
+                                    representations: { default: {
+                                        instanceOf = "JvmErrorsRepresentation" type = "jvm.swap.errors"
+                                        warningThreshold = 5 errorThreshold = 10
+                                    }}
+                                }
+                                anomalyIndex: 
+                                { 
+                                    instanceOf = "AnomalyIndex"
+                                }
+                                workloadIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "WorkloadIndexRepresentation"
+                                    }}
+                                }
+                                errorsIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "ErrorsIndexRepresentation"
+                                    }}
+                                }
+                                healthIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "HealthIndexRepresentation"
+                                    }}
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+			        }
+				    
+					p2:
+					{
+                        jvm.kpi:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.process.threads:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.state:{ instanceOf = "Info" }
+                                host.process.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.process.cpu.max:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.process.cpu.total:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "ForecastFields" name = "forecast(%total)" baseField = "%total"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total" navigationType = "current" currentField = "std.sum" baseField = "host.process.cpu.max.std.sum"}
+                                        {instanceOf = "ForecastRepresentation" name = "forecast(%total)"}
+                                    ]}}
+                                }
+                                host.process.cpu.user:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%user" navigationType = "current" currentField = "std.sum" baseField = "host.process.cpu.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.cpu.sys:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%sys" navigationType = "current" currentField = "std.sum" baseField = "host.process.cpu.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.fd:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.memory.max:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.memory.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total" navigationType = "current" currentField = "std.sum" baseField = "host.process.memory.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.memory.shared:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%shared" navigationType = "current" currentField = "std.sum" baseField = "host.process.memory.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.memory.resident:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%resident" navigationType = "current" currentField = "std.sum" baseField = "host.process.memory.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.memory.majorFaults:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.process.memory.minorFaults:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.process.processor:{ instanceOf = "Info" }
+                                jvm.threads.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    sumByGroup = true
+                                }
+                                jvm.memory.heap.init:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%init" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.heap.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.heap.committed:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%committed" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.heap.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.heap.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "ForecastFields" name = "forecast(%used)" baseField = "%used"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.heap.max.std.sum"}
+                                        {instanceOf = "ForecastRepresentation" name = "forecast(%used)"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.heap.max:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.nonHeap.init:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%init" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.nonHeap.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.nonHeap.committed:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%committed" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.nonHeap.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.nonHeap.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.nonHeap.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.nonHeap.max:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.buffer.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.buffer.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.buffer.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.buffer.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.buffer.max:
+                                {
+                                    instanceOf = "Gauge"
+                                    sumByGroup = true
+                                }
+                                jvm.gc.collectionTime:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%collectionTime" navigationType = "current" currentField = "std.sum" baseField = "host.process.time.std.sum"}
+                                    ]}}
+                                }
+                                jvm.gc.stops:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                jvm.cpu.workload: 
+                                {
+                                    instanceOf = "JvmWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "JvmWorkloadRepresentation" type = "jvm.cpu.workload"
+                                    }}
+                                }
+                                jvm.memory.workload: 
+                                {
+                                    instanceOf = "JvmWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "JvmWorkloadRepresentation" type = "jvm.memory.workload"
+                                    }}
+                                }
+                                jvm.gc.errors: 
+                                {
+                                    instanceOf = "JvmErrorsMetric"
+                                    representations: { default: {
+                                        instanceOf = "JvmErrorsRepresentation" type = "jvm.gc.errors"
+                                        warningThreshold = 0.05 errorThreshold = 0.1
+                                    }}
+                                }
+                                jvm.swap.errors: 
+                                {
+                                    instanceOf = "JvmErrorsMetric"
+                                    representations: { default: {
+                                        instanceOf = "JvmErrorsRepresentation" type = "jvm.swap.errors"
+                                        warningThreshold = 5 errorThreshold = 10
+                                    }}
+                                }
+                                anomalyIndex: 
+                                { 
+                                    instanceOf = "AnomalyIndex"
+                                }
+                                workloadIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "WorkloadIndexRepresentation"
+                                    }}
+                                }
+                                errorsIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "ErrorsIndexRepresentation"
+                                    }}
+                                }
+                                healthIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "HealthIndexRepresentation"
+                                    }}
+                                }
+                            }
+                            
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy" }]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                            componentDiscoveryStrategies = [{ instanceOf = "NodeDiscoveryStrategy" component = "JvmNode" }]
+                            componentDeletionStrategy = { instanceOf = "NodeDeletionStrategy"}
+                        }
+                            
+                        jvm.buffer:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                jvm.memory.buffer.count:
+                                {
+                                    instanceOf = "Gauge"
+                                    sumByGroup = true
+                                }
+                                jvm.memory.buffer.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "AnomalyFields" name = "anomaly(%used)" baseField = "%used" fast = true anomalyAutoLabeling = false}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.buffer.max.std.sum"}
+                                        {instanceOf = "AnomalyRepresentation" name = "anomaly(%used)" computeBehaviorTypes = false}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.buffer.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.buffer.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.buffer.max:
+                                {
+                                    instanceOf = "Gauge"
+                                    sumByGroup = true
+                                }
+                            }
+                            
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy" hasSubScope = true}]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                        }
+                            
+                        jvm.code:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                jvm.code.loadedClasses:
+                                {
+                                    instanceOf = "Gauge"
+                                    sumByGroup = true
+                                }
+                                jvm.code.unloadedClasses:
+                                {
+                                    instanceOf = "Gauge"
+                                    sumByGroup = true
+                                }
+                                jvm.code.currentClasses:
+                                {
+                                    instanceOf = "Gauge"
+                                    sumByGroup = true
+                                }
+                                host.process.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                jvm.code.compilationTime:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%compilationTime" navigationType = "current" currentField = "std.sum" baseField = "host.process.time.std.sum"}
+                                    ]}}
+                                }
+                            }
+                            
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy"}]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                        }
+                            
+                        jvm.pool:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                jvm.memory.pool.init:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%init" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.pool.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.pool.committed:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%committed" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.pool.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.pool.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "AnomalyFields" name = "anomaly(%used)" baseField = "%used" fast = true anomalyAutoLabeling = false}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "jvm.memory.pool.max.std.sum"}
+                                        {instanceOf = "AnomalyRepresentation" name = "anomaly(%used)" computeBehaviorTypes = false}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                jvm.memory.pool.max:
+                                {
+                                    instanceOf = "Gauge"
+                                    sumByGroup = true
+                                }
+                                host.process.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                jvm.gc.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "UniformHistogramFields" maxBound = 2000 binCount = 20}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "UniformHistogramRepresentation" maxBound = 2000 binCount = 20}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "current" currentField = "std.sum" baseField = "host.process.time.std.sum"}
+                                    ]}}
+                                }
+                                jvm.gc.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 20}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 20}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                jvm.gc.stops:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            }
+                            
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy"  hasSubScope = true}]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                        }
+                            
+                        jvm.gc:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.process.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                jvm.gc.collectionTime:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%collectionTime" navigationType = "current" currentField = "std.sum" baseField = "host.process.time.std.sum"}
+                                    ]}}
+                                }
+                                jvm.gc.collectionCount:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                jvm.gc.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "UniformHistogramFields" maxBound = 2000 binCount = 20}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "UniformHistogramRepresentation" maxBound = 2000 binCount = 20}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "current" currentField = "std.sum" baseField = "host.process.time.std.sum"}
+                                    ]}}
+                                }
+                                jvm.gc.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 20}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 20}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                jvm.gc.stops:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            }
+                            
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy" hasSubScope = true}]
+                            allowHierarchyAggregation = true
+                        }
+                            
+                        jvm.gc.log:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                jvm.gc.log:
+                                {
+                                    instanceOf = "Log"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        jvm.threads:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                jvm.threads.daemons:
+                                {
+                                    instanceOf = "Gauge"
+                                    sumByGroup = true
+                                }
+                                jvm.threads.started:
+                                {
+                                    instanceOf = "Gauge"
+                                    sumByGroup = true
+                                }
+                            }
+                            
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy"}]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                        }
+                            
+                        jvm.thread:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                jvm.thread.state:
+                                {
+                                    instanceOf = "Info"
+                                }
+                                jvm.thread.time:
+                                {
+                                    instanceOf = "Counter"
+                                }
+                                jvm.thread.cpu.max:
+                                {
+                                    instanceOf = "Counter"
+                                }
+                                jvm.thread.cpu.total:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total(cpu)" navigationType = "current" currentField = "std.sum" baseField = "jvm.thread.cpu.max.std.sum"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total(time)" navigationType = "current" currentField = "std.sum" baseField = "jvm.thread.time.std.sum"}
+                                    ]}}
+                                }
+                                jvm.thread.cpu.user:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%user(cpu)" navigationType = "current" currentField = "std.sum" baseField = "jvm.thread.cpu.max.std.sum"}
+                                        {instanceOf = "PercentageRepresentation" name = "%user(time)" navigationType = "current" currentField = "std.sum" baseField = "jvm.thread.time.std.sum"}
+                                    ]}}
+                                }
+                                jvm.thread.cpu.sys:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%sys(cpu)" navigationType = "current" currentField = "std.sum" baseField = "jvm.thread.cpu.max.std.sum"}
+                                        {instanceOf = "PercentageRepresentation" name = "%sys(time)" navigationType = "current" currentField = "std.sum" baseField = "jvm.thread.time.std.sum"}
+                                    ]}}
+                                }
+                                jvm.thread.time.waited:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%waited(time)" navigationType = "current" currentField = "std.sum" baseField = "jvm.thread.time.std.sum"}
+                                    ]}}
+                                }
+                                jvm.thread.time.blocked:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%blocked(time)" navigationType = "current" currentField = "std.sum" baseField = "jvm.thread.time.std.sum"}
+                                    ]}}
+                                }
+                                jvm.thread.lock:
+                                {
+                                    instanceOf = "Info"
+                                }
+                                jvm.thread.locked:
+                                {
+                                    instanceOf = "Info"
+                                }
+                                jvm.thread.stackTrace:
+                                {
+                                    instanceOf = "Info"
+                                }
+                                jvm.thread.allocated:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            }
+                            
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "SimpleScopeAggregationStrategy" hasSubScope = true}]
+                            allowHierarchyAggregation = true
+                        }
+					}
+				    
+				    p3:
+                    {
+                        @reference = "p2"
+                            
+                        jvm.kpi:
+                        {
+                            componentDiscoveryStrategies = "@remove"
+                            componentDeletionStrategy = "@remove"
+                        }
+                    }
+                    
+                    p4:
+                    {
+                        @reference = "p3"
+
+                        jvm.kpi:
+                        {
+                            componentBindingStrategies = [{ instanceOf = "SimpleComponentBindingStrategy" }]
+                        }
+                    }
+					
+			        p5:
+                    {
+                        @reference = "p3"
+                    }
+					    
+				    p6:
+                    {
+                        @reference = "p3"
+
+                        jvm.gc.log = "@remove"
+                        jvm.thread = "@remove"
+                    }
+                        
+                    p7:
+                    {
+                        @reference = "p6"
+                    }
+                        
+                    p8:
+                    {
+                        @reference = "p6"
+                    }
+				}
+			}
+		
+            JvmNodeGroup:
+            {
+                instanceOf = "group"
+                componentTypes = ["JvmNode"]
+                groupTypes = ["JvmNodeGroup"]
+                aggregationGroup = true
+                actions:
+                {
+                    enableMaintenanceMode = {instanceOf = "EnableMaintenanceModeAction"}
+                    disableMaintenanceMode = {instanceOf = "DisableMaintenanceModeAction"}
+                    log = {instanceOf = "LogAction"}
+                }
+                healthComponentType = "HealthComponentType"
+                availabilityCondition:
+                {
+                    instanceOf = "ExpressionGroupAvailabilityCondition"
+                    expression = "available > 0"
+                }
+                alerts:
+                {
+                    @reference = "../JvmNode.alerts"
+                }
+                groupDiscoveryStrategies:
+                [
+                    {
+                        instanceOf = "PatternGroupDiscoveryStrategy"
+                        pattern = "jvmNodes*"
+                        component = "JvmNodeGroup"
+                        group = "jvmNodes"
+                    }
+                ]
+            }
+            
+            JvmNodesGroup:
+            {
+                instanceOf = "group"
+                componentTypes = ["JvmNode"]
+                groupTypes = ["JvmNodeGroup"]
+                aggregationGroup = false
+            }
+		}
+		
+		groups:
+        {
+            jvmNodes:
+            {
+                groupType = "JvmNodesGroup"
+            }
+        }
+	}}}}
+}

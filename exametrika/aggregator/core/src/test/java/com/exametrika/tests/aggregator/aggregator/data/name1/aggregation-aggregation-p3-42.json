@@ -1,0 +1,768 @@
+{
+    "cyclePeriod ": 
+    {
+        "<root>": 
+        {
+            "id": "3@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "21@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "26@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "s1",
+                "metric": "m1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "31@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "s1",
+                "metric": "m1.metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "36@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "s1",
+                "metric": "m1.metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "41@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "s1.scopes",
+                "metric": "m1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "46@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "s1.scopes",
+                "metric": "m1.metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "51@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "s1.scopes",
+                "metric": "m1.metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "56@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "s1.scopes.scope1",
+                "metric": "m1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "61@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "s1.scopes.scope1",
+                "metric": "m1.metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "66@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "s1.scopes.scope1",
+                "metric": "m1.metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "6@aggregation-aggregation-p3-42/data-42.dt[0]",
+            "scope": "",
+            "metric": "",
+            "nodes": 
+            [
+                {
+                    "id": "36@aggregation-aggregation-p3-42/data-42.dt[0]",
+                    "scope": "s1",
+                    "metric": "m1",
+                    "componentType": "name1",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "49@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "s1",
+                            "metric": "m1.metrics",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 40,
+                                    "std.sum": 160,
+                                    "std.min": 20,
+                                    "std.max": 30,
+                                    "std.avg": 4
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "62@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "s1",
+                                    "metric": "m1.metrics.metric1",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 40,
+                                            "std.sum": 160,
+                                            "std.min": 20,
+                                            "std.max": 30,
+                                            "std.avg": 4
+                                        }
+                                    },
+                                    "scopeChildren": 
+                                    ["scope:s1.scopes, location:m1.metrics.metric1 (101@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            ["scope:s1.scopes, location:m1.metrics (88@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "75@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "s1.scopes",
+                            "metric": "m1",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 40,
+                                    "std.sum": 160,
+                                    "std.min": 20,
+                                    "std.max": 30,
+                                    "std.avg": 4
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "88@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "s1.scopes",
+                                    "metric": "m1.metrics",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 40,
+                                            "std.sum": 160,
+                                            "std.min": 20,
+                                            "std.max": 30,
+                                            "std.avg": 4
+                                        }
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "101@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                            "scope": "s1.scopes",
+                                            "metric": "m1.metrics.metric1",
+                                            "componentType": "name1",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "std.count": 40,
+                                                    "std.sum": 160,
+                                                    "std.min": 20,
+                                                    "std.max": 30,
+                                                    "std.avg": 4
+                                                }
+                                            },
+                                            "scopeChildren": 
+                                            ["scope:s1.scopes.scope1, location:m1.metrics.metric1 (140@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                                        }
+                                    ],
+                                    "scopeChildren": 
+                                    ["scope:s1.scopes.scope1, location:m1.metrics (127@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            [
+                                {
+                                    "id": "114@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "s1.scopes.scope1",
+                                    "metric": "m1",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 40,
+                                            "std.sum": 160,
+                                            "std.min": 20,
+                                            "std.max": 30,
+                                            "std.avg": 4
+                                        }
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "127@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                            "scope": "s1.scopes.scope1",
+                                            "metric": "m1.metrics",
+                                            "componentType": "name1",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "std.count": 40,
+                                                    "std.sum": 160,
+                                                    "std.min": 20,
+                                                    "std.max": 30,
+                                                    "std.avg": 4
+                                                }
+                                            },
+                                            "metricChildren": 
+                                            [
+                                                {
+                                                    "id": "140@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                                    "scope": "s1.scopes.scope1",
+                                                    "metric": "m1.metrics.metric1",
+                                                    "componentType": "name1",
+                                                    "flags": "[derived]",
+                                                    "measurements": 
+                                                    {
+                                                        "metricType1": 
+                                                        {
+                                                            "std.count": 40,
+                                                            "std.sum": 160,
+                                                            "std.min": 20,
+                                                            "std.max": 30,
+                                                            "std.avg": 4
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "23@aggregation-aggregation-p3-42/data-42.dt[0]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 40,
+                        "std.sum": 160,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    },
+    "period 1": 
+    {
+        "<root>": 
+        {
+            "id": "155@aggregation-aggregation-p3-42/data-42.dt[1]",
+            "scope": "",
+            "metric": "",
+            "nodes": 
+            [
+                {
+                    "id": "185@aggregation-aggregation-p3-42/data-42.dt[1]",
+                    "scope": "s1",
+                    "metric": "m1",
+                    "componentType": "name1",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "198@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "s1",
+                            "metric": "m1.metrics",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 40,
+                                    "std.sum": 160,
+                                    "std.min": 20,
+                                    "std.max": 30,
+                                    "std.avg": 4
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "211@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "s1",
+                                    "metric": "m1.metrics.metric1",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 40,
+                                            "std.sum": 160,
+                                            "std.min": 20,
+                                            "std.max": 30,
+                                            "std.avg": 4
+                                        }
+                                    },
+                                    "scopeChildren": 
+                                    ["scope:s1.scopes, location:m1.metrics.metric1 (250@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            ["scope:s1.scopes, location:m1.metrics (237@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "224@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "s1.scopes",
+                            "metric": "m1",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 40,
+                                    "std.sum": 160,
+                                    "std.min": 20,
+                                    "std.max": 30,
+                                    "std.avg": 4
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "237@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "s1.scopes",
+                                    "metric": "m1.metrics",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 40,
+                                            "std.sum": 160,
+                                            "std.min": 20,
+                                            "std.max": 30,
+                                            "std.avg": 4
+                                        }
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "250@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                            "scope": "s1.scopes",
+                                            "metric": "m1.metrics.metric1",
+                                            "componentType": "name1",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "std.count": 40,
+                                                    "std.sum": 160,
+                                                    "std.min": 20,
+                                                    "std.max": 30,
+                                                    "std.avg": 4
+                                                }
+                                            },
+                                            "scopeChildren": 
+                                            ["scope:s1.scopes.scope1, location:m1.metrics.metric1 (289@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                                        }
+                                    ],
+                                    "scopeChildren": 
+                                    ["scope:s1.scopes.scope1, location:m1.metrics (276@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            [
+                                {
+                                    "id": "263@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "s1.scopes.scope1",
+                                    "metric": "m1",
+                                    "componentType": "name1",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 40,
+                                            "std.sum": 160,
+                                            "std.min": 20,
+                                            "std.max": 30,
+                                            "std.avg": 4
+                                        }
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "276@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                            "scope": "s1.scopes.scope1",
+                                            "metric": "m1.metrics",
+                                            "componentType": "name1",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "std.count": 40,
+                                                    "std.sum": 160,
+                                                    "std.min": 20,
+                                                    "std.max": 30,
+                                                    "std.avg": 4
+                                                }
+                                            },
+                                            "metricChildren": 
+                                            [
+                                                {
+                                                    "id": "289@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                                    "scope": "s1.scopes.scope1",
+                                                    "metric": "m1.metrics.metric1",
+                                                    "componentType": "name1",
+                                                    "flags": "[derived]",
+                                                    "measurements": 
+                                                    {
+                                                        "metricType1": 
+                                                        {
+                                                            "std.count": 40,
+                                                            "std.sum": 160,
+                                                            "std.min": 20,
+                                                            "std.max": 30,
+                                                            "std.avg": 4
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "172@aggregation-aggregation-p3-42/data-42.dt[1]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 40,
+                        "std.sum": 160,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    }
+}

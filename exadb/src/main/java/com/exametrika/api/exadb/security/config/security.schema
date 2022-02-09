@@ -1,0 +1,43 @@
+{
+	name = "com.exametrika.exadb.security-1.0"
+	description = "Security configuration."
+
+	types:
+	{
+		SecurityService:
+		{
+			instanceOf = "object"
+			description = "Security service configuration."
+			base = "DomainService"
+			final = true
+			properties:
+			{
+				sessionTimeoutPeriod:
+				{
+					description = "Session timeout period in milliseconds."
+					required = true
+					default = 1800000
+					type:
+					{
+						instanceOf = "long"
+						min = 1000
+						converter = "periods"
+					}
+				}
+			
+				roleMappingUpdatePeriod:
+				{
+					description = "Role mapping update period in milliseconds."
+					required = true
+					default = 60000
+					type:
+					{
+						instanceOf = "long"
+						min = 1000
+						converter = "periods"
+					}
+				}
+			}
+		}
+	}
+}

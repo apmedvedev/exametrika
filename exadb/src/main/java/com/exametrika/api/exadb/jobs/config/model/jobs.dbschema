@@ -1,0 +1,334 @@
+{
+	name = "com.exametrika.exadb.jobs-1.0"
+	description = "Jobs schema."
+
+	types:
+	{
+		Schedule:
+		{
+			instanceOf = "object"
+			description = "Job schedule schema."
+			abstract = true
+		}
+	
+		StandardSchedule:
+		{
+			instanceOf = "object"
+			description = "Standard schedule schema."
+			final = true
+			base = "Schedule"
+			properties:
+			{
+				expression:
+				{
+					description = "Schedule expression in the following format:\
+						<schedule> ::= <time_schedule> | <date_schedule> | <day_of_month_schedule> | <day_of_year_schedule> |\
+							<day_of_week_schedule> | <day_of_week_in_month_schedule> | <month_schedule> | <low_memory_schedule> |\
+							<low_disk_schedule> | <composite_schedule>\
+						<time_schedule> ::= 'time(' <from_time> '..' <to_time> ')' | 'time(' <time> ')'\
+							<from_time> ::= <time>, <to_time> ::= <time>, <time> ::= time format of current locale\
+						<date_schedule> ::= 'date(' <from_date> '..' <to_date> ')' | 'date(' <date> ')'\
+							<from_date> ::= <date>, <to_date> ::= <date>, <date> ::= date and time format of current locale\
+						<day_of_month_schedule> ::= 'dayOfMonth(' <from_day> '..' <to_day> ')' | 'dayOfMonth(' <day> ')'\
+						<day_of_year_schedule> ::= 'dayOfYear(' <from_day> '..' <to_day> ')' | 'dayOfYear(' <day> ')'\
+							<from_day> ::= <day>, <to_day> ::= <day>, <day> ::= <day_index> | <last_day> | <last_day> '-' <offset_index>\
+							<last_day> ::= '*'\
+							<day_index> ::= index of day starting from 1\
+							<offset_index> ::= offset index starting from 0\
+						<day_of_week_schedule> ::= 'dayOfWeek(' <day_index_list> ')'\
+							<day_index_list> ::= <day_index_list> ',' <day_index> | <day_index>\
+							<day_index> ::= index of day in week, 1 - locale specific first week day\
+						<day_of_week_in_month_schedule> ::= 'dayOfWeekInMonth(' <from_day_of_week_in_month> '..' <to_day_of_week_in_month> ')'\
+															| 'dayOfWeekInMonth(' <day_of_week_in_month> ')'\
+							<from_day_of_week_in_month> ::= <day_of_week_in_month>, <to_day_of_week_in_month> ::= <day_of_week_in_month>,\
+							<day_of_week_in_month> ::= <day_of_week_index> '/' <day_of_week_in_month_index>\
+							<day_of_week_in_month_index> ::= <day_of_week_in_month_ordinal> | <last_day_of_week_in_month>\
+															| <last_day_of_week_in_month> '-' <offset_index>\
+							<last_day_of_week_in_month> ::= '*'\
+							<day_of_week_index> ::= index of day in week, 1 - locale specific first week day\
+							<day_of_week_in_month_ordinal> ::= index of day of week in month starting from 1\
+							<offset_index> ::= offset index starting from 0\
+						<month_schedule> ::= 'month(' <month_index_list> ')'\
+							<month_index_list> ::= <month_index_list> ',' <month_index> | <month_index>\
+							<month_index> ::= index of month in year, 0 - january\
+							<low_memory_schedule> ::= 'lowMemory(' <min_free_space> ')'\
+							<low_disk_schedule> ::= 'lowDisk(' <path> ',' <min_free_space> ')'\
+						<composite_schedule> ::= 'and(' <schedule_list> ')' | 'or(' <schedule_list> ')'\
+						    <schedule_list> ::= <schedule_list> ',' <schedule> | <schedule>\
+						Each schedule has general format: <schedule_name> '(' <schedule_parameters> ')'. Minus sign ('-') after <schedule_name>\
+						     designates excluding schedule.\
+						Examples:\
+							time schedule: time-(10:30:45.475..10:46) / time(10:30) \
+							date schedule: date(01.12.2001 10:30:45.475..01.12.2001 10:46) / date(01.12.2001 10:46)\
+							day of month schedule: dayOfMonth(5..*) / dayOfMonth-(*-3..*-2) / dayOfMonth(5) / dayOfMonth(*)\
+							day of year schedule: dayOfYear(5..*) / dayOfYear(*-3..*-2) / dayOfYear(5) / dayOfYear(*)\
+							day of week schedule: dayOfWeek(1,3,5)\
+							month schedule: month(1,3,5)\
+							day of week in month schedule: dayOfWeekInMonth(5/2..7/*-1) / dayOfWeekInMonth(1/1) / dayOfWeekInMonth(1/*)\
+							composite schedule: and(or(time(10:30:45.475..10:46), time(10:30:45.475..10:46))), dayOfWeek(1,2,3), dayOfYear(0..*-1))"
+					required = true
+					type = "string"
+				}
+			
+				timeZone:
+				{
+					description = "Time zone."
+					required = false
+					type = "string"
+				}
+					
+				locale:
+				{
+					description = "Locale."
+					required = false
+					type = "string"
+				}
+					
+				dateFormat:
+				{
+					description = "Date and time format as specified in java.text.SimpleDateFormat."
+					required = false
+					type = "string"
+				}
+					
+				timeFormat:
+				{
+					description = "Time format as specified in java.text.SimpleDateFormat."
+					required = false
+					type = "string"
+				}
+			}
+		}
+			
+		SchedulePeriod:
+		{
+			instanceOf = "object"
+			description = "Job schedule period schema."
+			abstract = true
+		}
+			
+		StandardSchedulePeriod.UnitType:
+		{
+			instanceOf = "string"
+			enumeration: ["millisecond" "second" "minute" "hour" "day", "week", "month", "year"]
+		}
+			
+		StandardSchedulePeriod.Kind:
+		{
+			instanceOf = "string"
+			enumeration: ["relative" "absolute"]
+		}
+			
+		StandardSchedulePeriod:
+		{
+			instanceOf = "object"
+			description = "Standard job schedule period schema."
+			base = "SchedulePeriod"
+			final = true
+			properties:
+			{
+				type:
+				{
+					description = "Period unit type."
+					required = true
+					type = "StandardSchedulePeriod.UnitType"
+				}
+			
+				kind:
+				{
+					description = "Period kind."
+					required = true
+					type = "StandardSchedulePeriod.Kind"
+				}
+					
+				amount:
+				{
+					description = "Amount of period units."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+					
+				timeZone:
+				{
+					description = "Time zone."
+					required = false
+					type = "string"
+				}
+			}
+		}	
+	
+		JobOperation:
+		{
+			instanceOf = "object"
+			description = "Job operation schema."
+			abstract = true
+		}
+	
+		Job:
+		{
+			instanceOf = "object"
+			description = "Job schema."
+			abstract = true
+			properties:
+			{
+				description:
+				{
+					description = "Job description."
+					required = false
+					type = "string"
+				}	
+			
+				group:
+				{
+					description = "Job group. Jobs from the same group can not be executed concurrently."
+					required = false
+					type = "string"
+				}
+					
+				parameters:
+				{
+					description = "Job parameters."
+					required = false
+					type:
+					{
+						instanceOf = "map"
+						valueType = "any"
+					}
+				}
+					
+				operation:
+				{
+					description = "Job operation."
+					required = true
+					type = "JobOperation"
+				}	
+				
+				schedule:
+				{
+					description = "Job schedule."
+					required = true
+					type = "Schedule"
+				}
+					
+				enabled:
+				{
+					description = "Is job enabled? Only enabled jobs are scheduled to execution."
+					required = false
+					default = true
+					type = "boolean"
+				}
+				
+				maxExecutionPeriod:
+				{
+					description = "Period in milliseconds since job start after which job is canceled."
+					required = false
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				restartCount:
+				{
+					description = "Number of restarts after job failure."
+					required = false
+					default = 3
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+					
+				restartPeriod:
+				{
+					description = "Period between subsequent restarts in milliseconds."
+					required = false
+					default = 10000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			}
+		}
+	
+		OneTimeJob:
+		{
+			instanceOf = "object"
+			description = "One-time job schema."
+			final = true
+			base = "Job"
+		}
+		
+		RecurrentJob:
+		{
+			instanceOf = "object"
+			description = "Recurrent job schema."
+			final = true
+			base = "Job"
+			properties:
+			{
+				repeatCount:
+				{
+					description = "Number of repeats of job execution."
+					required = false
+					default = 0x7fffffffffffffff
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+			
+				period:
+				{
+					description = "Period between end of job execution of previous job and start of job execution of next job."
+					required = true
+					type = "SchedulePeriod"
+				}
+			}
+		}
+	
+		JobService:
+		{
+			instanceOf = "object"
+			description = "Job service schema."
+			base = "DomainService"
+			final = true
+			properties:
+			{
+				predefinedJobs:
+				{
+					description = "List of predefined jobs."
+					required = false
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Job"
+					}
+				}
+			}
+		}
+		
+		PredefinedJobs:
+		{
+			instanceOf = "map"
+			valueType = "Job"
+		}
+		
+		Jobs:
+		{
+			instanceOf = "map"
+			valueType = "Job"
+		}
+	}
+}

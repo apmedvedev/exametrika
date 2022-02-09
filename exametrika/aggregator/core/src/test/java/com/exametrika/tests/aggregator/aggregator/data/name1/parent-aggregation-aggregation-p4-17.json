@@ -1,0 +1,391 @@
+{
+    "cyclePeriod ": 
+    {
+        "<root>": 
+        {
+            "id": "3@aggregation-aggregation-p4-17/data-18.cy[cycle]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "21@aggregation-aggregation-p4-17/data-18.cy[cycle]",
+                "scope": "s1",
+                "metric": "m1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 320,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "26@aggregation-aggregation-p4-17/data-18.cy[cycle]",
+                "scope": "s1",
+                "metric": "m1.metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 320,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "31@aggregation-aggregation-p4-17/data-18.cy[cycle]",
+                "scope": "s1",
+                "metric": "m1.metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 320,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "36@aggregation-aggregation-p4-17/data-18.cy[cycle]",
+                "scope": "s1.scopes",
+                "metric": "m1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 320,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "41@aggregation-aggregation-p4-17/data-18.cy[cycle]",
+                "scope": "s1.scopes",
+                "metric": "m1.metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 320,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "46@aggregation-aggregation-p4-17/data-18.cy[cycle]",
+                "scope": "s1.scopes",
+                "metric": "m1.metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 320,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "51@aggregation-aggregation-p4-17/data-18.cy[cycle]",
+                "scope": "s1.scopes.scope1",
+                "metric": "m1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 320,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "56@aggregation-aggregation-p4-17/data-18.cy[cycle]",
+                "scope": "s1.scopes.scope1",
+                "metric": "m1.metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 320,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "61@aggregation-aggregation-p4-17/data-18.cy[cycle]",
+                "scope": "s1.scopes.scope1",
+                "metric": "m1.metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 320,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "6@aggregation-aggregation-p4-17/data-17.dt[0]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "23@aggregation-aggregation-p4-17/data-17.dt[0]",
+                "scope": "s1",
+                "metric": "m1",
+                "componentType": "name1",
+                "flags": "[derivedAggregationBlocked]",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 80,
+                        "std.sum": 320,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metricChildren": 
+                [
+                    {
+                        "id": "36@aggregation-aggregation-p4-17/data-17.dt[0]",
+                        "scope": "s1",
+                        "metric": "m1.metrics",
+                        "componentType": "name1",
+                        "flags": "[derivedAggregationBlocked]",
+                        "measurements": 
+                        {
+                            "metricType1": 
+                            {
+                                "std.count": 80,
+                                "std.sum": 320,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 4
+                            }
+                        },
+                        "metricChildren": 
+                        [
+                            {
+                                "id": "49@aggregation-aggregation-p4-17/data-17.dt[0]",
+                                "scope": "s1",
+                                "metric": "m1.metrics.metric1",
+                                "componentType": "name1",
+                                "flags": "[derivedAggregationBlocked]",
+                                "measurements": 
+                                {
+                                    "metricType1": 
+                                    {
+                                        "std.count": 80,
+                                        "std.sum": 320,
+                                        "std.min": 20,
+                                        "std.max": 30,
+                                        "std.avg": 4
+                                    }
+                                },
+                                "scopeChildren": 
+                                ["scope:s1.scopes, location:m1.metrics.metric1 (88@aggregation-aggregation-p4-17/data-17.dt[0])"]
+                            }
+                        ],
+                        "scopeChildren": 
+                        ["scope:s1.scopes, location:m1.metrics (75@aggregation-aggregation-p4-17/data-17.dt[0])"]
+                    }
+                ],
+                "scopeChildren": 
+                [
+                    {
+                        "id": "62@aggregation-aggregation-p4-17/data-17.dt[0]",
+                        "scope": "s1.scopes",
+                        "metric": "m1",
+                        "componentType": "name1",
+                        "flags": "[derivedAggregationBlocked]",
+                        "measurements": 
+                        {
+                            "metricType1": 
+                            {
+                                "std.count": 80,
+                                "std.sum": 320,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 4
+                            }
+                        },
+                        "metricChildren": 
+                        [
+                            {
+                                "id": "75@aggregation-aggregation-p4-17/data-17.dt[0]",
+                                "scope": "s1.scopes",
+                                "metric": "m1.metrics",
+                                "componentType": "name1",
+                                "flags": "[derivedAggregationBlocked]",
+                                "measurements": 
+                                {
+                                    "metricType1": 
+                                    {
+                                        "std.count": 80,
+                                        "std.sum": 320,
+                                        "std.min": 20,
+                                        "std.max": 30,
+                                        "std.avg": 4
+                                    }
+                                },
+                                "metricChildren": 
+                                [
+                                    {
+                                        "id": "88@aggregation-aggregation-p4-17/data-17.dt[0]",
+                                        "scope": "s1.scopes",
+                                        "metric": "m1.metrics.metric1",
+                                        "componentType": "name1",
+                                        "flags": "[derivedAggregationBlocked]",
+                                        "measurements": 
+                                        {
+                                            "metricType1": 
+                                            {
+                                                "std.count": 80,
+                                                "std.sum": 320,
+                                                "std.min": 20,
+                                                "std.max": 30,
+                                                "std.avg": 4
+                                            }
+                                        },
+                                        "scopeChildren": 
+                                        ["scope:s1.scopes.scope1, location:m1.metrics.metric1 (127@aggregation-aggregation-p4-17/data-17.dt[0])"]
+                                    }
+                                ],
+                                "scopeChildren": 
+                                ["scope:s1.scopes.scope1, location:m1.metrics (114@aggregation-aggregation-p4-17/data-17.dt[0])"]
+                            }
+                        ],
+                        "scopeChildren": 
+                        [
+                            {
+                                "id": "101@aggregation-aggregation-p4-17/data-17.dt[0]",
+                                "scope": "s1.scopes.scope1",
+                                "metric": "m1",
+                                "componentType": "name1",
+                                "flags": "[derivedAggregationBlocked]",
+                                "measurements": 
+                                {
+                                    "metricType1": 
+                                    {
+                                        "std.count": 80,
+                                        "std.sum": 320,
+                                        "std.min": 20,
+                                        "std.max": 30,
+                                        "std.avg": 4
+                                    }
+                                },
+                                "metricChildren": 
+                                [
+                                    {
+                                        "id": "114@aggregation-aggregation-p4-17/data-17.dt[0]",
+                                        "scope": "s1.scopes.scope1",
+                                        "metric": "m1.metrics",
+                                        "componentType": "name1",
+                                        "flags": "[derivedAggregationBlocked]",
+                                        "measurements": 
+                                        {
+                                            "metricType1": 
+                                            {
+                                                "std.count": 80,
+                                                "std.sum": 320,
+                                                "std.min": 20,
+                                                "std.max": 30,
+                                                "std.avg": 4
+                                            }
+                                        },
+                                        "metricChildren": 
+                                        [
+                                            {
+                                                "id": "127@aggregation-aggregation-p4-17/data-17.dt[0]",
+                                                "scope": "s1.scopes.scope1",
+                                                "metric": "m1.metrics.metric1",
+                                                "componentType": "name1",
+                                                "flags": "[derivedAggregationBlocked]",
+                                                "measurements": 
+                                                {
+                                                    "metricType1": 
+                                                    {
+                                                        "std.count": 80,
+                                                        "std.sum": 320,
+                                                        "std.min": 20,
+                                                        "std.max": 30,
+                                                        "std.avg": 4
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

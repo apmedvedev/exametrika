@@ -1,0 +1,122 @@
+{
+	name = "com.exametrika.component-1.0"
+	description = "Components configuration."
+
+	types:
+	{
+		AlertChannel:
+		{
+			instanceOf = "object"
+			description = "Alert channel configuration."
+			abstract = true
+		}
+	
+		MailAlertChannel:
+		{
+			instanceOf = "object"
+			description = "Mail alert channel configuration."
+			base = "AlertChannel"
+			properties:
+			{
+				host:
+				{
+					description = "Smtp host."
+					required = true
+					type = "string"
+				}
+			
+				port:
+				{
+					description = "Smtp port."
+					required = true
+					default = 465
+					type = "long"
+				}
+					
+				userName:
+				{
+					description = "Mail box user name if server requires authentification."
+					required = false
+					type = "string"
+				}
+					
+				password:
+				{
+					description = "Mail box password if server requires authentification."
+					required = false
+					type = "string"
+				}
+					
+				secured:
+				{
+					description = "true if server requires ssl/tls version of smtp protocol."
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				senderName:
+				{
+					description = "Default sender name."
+					required = true
+					type = "string"
+				}
+					
+				senderAddress:
+				{
+					description = "Default sender address."
+					required = true
+					type = "string"
+				}
+					
+				sendDelay:
+                {
+                    description = "Period in milliseconds between subsequent message sends."
+                    required = true
+                    default = 1000
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+			}
+		}
+	
+		AlertService:
+		{
+			instanceOf = "object"
+			description = "Alert service configuration."
+			base = "DomainService"
+			final = true
+			properties:
+			{
+				channels:
+				{
+					description = "Alert channels."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "AlertChannel"
+					}
+				}
+			
+				schedulePeriod:
+				{
+					description = "Schedule period in milliseconds."
+					required = true
+					default = 600000
+					type:
+					{
+						instanceOf = "long"
+						min = 10
+						converter = "periods"
+					}
+				}
+			}
+		}
+	}
+}

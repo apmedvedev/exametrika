@@ -1,0 +1,16 @@
+<project name="base">
+
+    <condition property="agent.lib" value="exaa-x64.dll">
+        <os family="windows"/>
+    </condition>
+
+    <condition property="agent.lib" value="libexaa-x64.so">
+        <os family="unix"/>
+    </condition>
+
+    <property name="build.conf" value="test"/>
+    <property name="agent.dir" location="../../../build/components/all/${build.conf}/out"/>
+    <copy file="${agent.dir}/lib/libexaj-x64.so" todir="../../lib" failonerror="false"/>
+    <copy file="${agent.dir}/lib/exaj-x64.dll" todir="../../lib" failonerror="false"/>
+
+</project>

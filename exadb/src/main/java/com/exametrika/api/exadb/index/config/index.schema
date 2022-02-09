@@ -1,0 +1,99 @@
+{
+	name = "com.exametrika.exadb.index-1.0"
+	description = "Exa database Index schema."
+	
+	types:
+	{
+		FullTextIndex:
+		{
+			instanceOf = "object"
+			description = "Configuration of full text index."
+			final = true
+			properties:
+			{
+				writerCommitPeriod:
+				{
+					description = "Maximum period in milliseconds between to subsequent index writer commits."
+					required = true
+					default = 60000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			
+				searcherUpdatePeriod:
+				{
+					description = "Maximum period in milliseconds between to subsequent updates of near realtime index searcher."
+					required = true
+					default = 3000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+				
+				indexDeleteDelay:
+				{
+					description = "Delay in milliseconds of actual deletion of index files after index has been deleted."
+					required = true
+					default = 60000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+				
+				bufferSizePerIndex:
+				{
+					description = "Approximate maximum size in bytes of internal index memory buffer."
+					required = true
+					default = 16000000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+			}
+		}
+	
+		IndexDatabaseExtension:
+		{
+			instanceOf = "object"
+			description = "Configuration of index database extension."
+			base = "DatabaseExtension"
+			final = true
+			properties:
+			{
+				maxIndexIdlePeriod:
+				{
+					description = "Maximum period in milliseconds since last index access after which index is unloaded."
+					required = true
+					default = 300000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			
+				fullTextIndex:
+				{
+					description = "Full text index configuration."
+					required = true
+					default = {}
+					type = "FullTextIndex"
+				}
+			}
+		}
+	}
+}

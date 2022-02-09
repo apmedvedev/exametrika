@@ -1,0 +1,27 @@
+{
+	name = "test.jobs"
+	
+	types:
+	{
+		TestSchedule:
+		{
+			instanceOf = "object"
+			base = "Schedule"
+			final = true
+		}
+	
+		TestSchedulePeriod:
+		{
+			instanceOf = "object"
+			base = "SchedulePeriod"
+			final = true
+		}
+			
+		TestJobOperation:
+		{
+			instanceOf = "object"
+			base = "JobOperation"
+			final = true
+		}
+	}
+}

@@ -1,0 +1,36 @@
+{
+	name = "test.component"
+	
+	types:
+	{
+		TestLocalAction:
+		{
+			instanceOf = "object"
+			base = "Action"
+		}
+	
+		TestRemoteAction:
+		{
+			instanceOf = "object"
+			base = "Action"
+		}
+			
+		TestRule:
+		{
+			instanceOf = "object"
+			base = "Rule"
+		}
+			
+		TestComponentBindingStrategy:
+		{
+			instanceOf = "object"
+			base = "ComponentBindingStrategy"
+		}	
+			
+		TestGroupAvailabilityCondition:
+		{
+			instanceOf = "object"
+			base = "GroupAvailabilityCondition"
+		}
+	}
+}

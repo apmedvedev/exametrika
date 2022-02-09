@@ -1,0 +1,314 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-28/data-28.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:groups (component-component-28/data-28.dt)"]
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:hosts.host1 (component-component-28/data-28.dt)"],
+        "healthComponents": 
+        ["scope:hosts.host1 (component-component-28/data-28.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 8,
+                "scope": "groups.group2",
+                "component": "Group2",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group2",
+                        "component": "Group2",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "metadata": "group2"
+                        },
+                        "children": 
+                        ["scope:groups.group2.group21 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group2",
+                        "component": "Group2",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group2",
+                        "component": "Group2",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "metadata": "group2"
+                        },
+                        "children": 
+                        ["scope:groups.group2.group21 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 6,
+                "scope": "groups.group2.group21",
+                "component": "Group2",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group2.group21",
+                        "component": "Group2",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "metadata": "group21"
+                        },
+                        "components": 
+                        ["scope:hosts.host1 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group2.group21",
+                        "component": "Group2",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group2.group21",
+                        "component": "Group2",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "metadata": "group21"
+                        },
+                        "components": 
+                        ["scope:hosts.host1 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 5,
+                "scope": "groups.group1",
+                "component": "Group1",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group1",
+                        "component": "Group1",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "metadata": "group1"
+                        },
+                        "children": 
+                        ["scope:groups.group1.group11 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group1",
+                        "component": "Group1",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group1",
+                        "component": "Group1",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "metadata": "group1"
+                        },
+                        "children": 
+                        ["scope:groups.group1.group11 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 3,
+                "scope": "groups.group1.group11",
+                "component": "Group1",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group1.group11",
+                        "component": "Group1",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "metadata": "group11"
+                        },
+                        "components": 
+                        ["scope:hosts.host1 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group1.group11",
+                        "component": "Group1",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups.group1.group11",
+                        "component": "Group1",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "metadata": "group11"
+                        },
+                        "components": 
+                        ["scope:hosts.host1 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 2,
+                "scope": "hosts.host1",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "groups": 
+                                ["groups.group1.group11", "groups.group2.group21"],
+                                "groupsMetadata": 
+                                {
+                                    "groups.group1.group11": 
+                                    {
+                                        "metadata": "group11"
+                                    },
+                                    "groups.group2.group21": 
+                                    {
+                                        "metadata": "group21"
+                                    },
+                                    "groups.group1": 
+                                    {
+                                        "metadata": "group1"
+                                    },
+                                    "groups.group2": 
+                                    {
+                                        "metadata": "group2"
+                                    }
+                                },
+                                "dynamic": true
+                            }
+                        },
+                        "groups": 
+                        ["scope:groups.group1.group11 (component-component-28/data-28.dt)", "scope:groups.group2.group21 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, deleted]",
+                        "state": "deleted"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "groups": 
+                                ["groups.group1.group11", "groups.group2.group21"],
+                                "groupsMetadata": 
+                                {
+                                    "groups.group1.group11": 
+                                    {
+                                        "metadata": "group11"
+                                    },
+                                    "groups.group2.group21": 
+                                    {
+                                        "metadata": "group21"
+                                    },
+                                    "groups.group1": 
+                                    {
+                                        "metadata": "group1"
+                                    },
+                                    "groups.group2": 
+                                    {
+                                        "metadata": "group2"
+                                    }
+                                },
+                                "dynamic": true
+                            }
+                        },
+                        "groups": 
+                        ["scope:groups.group1.group11 (component-component-28/data-28.dt)", "scope:groups.group2.group21 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 1,
+                "scope": "groups",
+                "component": "Group",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups",
+                        "component": "Group",
+                        "flags": "[readonly, predefined]",
+                        "children": 
+                        ["scope:groups.group1 (component-component-28/data-28.dt)", "scope:groups.group2 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups",
+                        "component": "Group",
+                        "flags": "[readonly, predefined]",
+                        "children": 
+                        ["scope:groups.group1 (component-component-28/data-28.dt)", "scope:groups.group2 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "groups",
+                        "component": "Group",
+                        "flags": "[readonly, predefined]"
+                    }
+                ],
+                "tags": 
+                []
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

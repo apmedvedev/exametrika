@@ -1,0 +1,295 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-39/data-39.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-39/data-39.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-39/data-39.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]"
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:hosts.host1 (component-component-39/data-39.dt)"],
+        "healthComponents": 
+        ["scope:hosts.host1 (component-component-39/data-39.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-39/data-39.dt",
+                "key": 2,
+                "scope": "group1",
+                "component": "AggregationGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "group1",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly]",
+                        "components": 
+                        ["scope:hosts.host1 (component-component-39/data-39.dt)"]
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 3000,
+                        "component": "group1",
+                        "type": "AggregationGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "expressionAlert",
+                            "state": "on",
+                            "message": "Expression alert expressionAlert is on."
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "time": 3000,
+                        "component": "group1",
+                        "type": "AggregationGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "tagAlert",
+                            "state": "on",
+                            "message": "Tag alert tagAlert is on."
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "time": 10000,
+                        "component": "group1",
+                        "type": "AggregationGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "expressionAlert",
+                            "state": "off",
+                            "message": "Expression alert expressionAlert is off."
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "time": 10000,
+                        "component": "group1",
+                        "type": "AggregationGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "tagAlert",
+                            "state": "off",
+                            "message": "Tag alert tagAlert is off."
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "time": 12000,
+                        "component": "group1",
+                        "type": "AggregationGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "expressionAlert",
+                            "state": "on",
+                            "message": "Expression alert expressionAlert is on."
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "time": 12000,
+                        "component": "group1",
+                        "type": "AggregationGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "tagAlert",
+                            "state": "on",
+                            "message": "Tag alert tagAlert is on."
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "time": 12000,
+                        "component": "group1",
+                        "type": "AggregationGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "tagAlert",
+                            "state": "off",
+                            "message": "Tag alert tagAlert is off."
+                        }
+                    },
+                    {
+                        "id": 8,
+                        "time": 12000,
+                        "component": "group1",
+                        "type": "AggregationGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "expressionAlert",
+                            "state": "off",
+                            "message": "Expression alert expressionAlert is off."
+                        }
+                    }
+                ]
+            },
+            {
+                "space": "component-component-39/data-39.dt",
+                "key": 1,
+                "scope": "hosts.host1",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "groups": 
+                        ["scope:group1 (component-component-39/data-39.dt)"],
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "normal"
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple2",
+                            "state": "on",
+                            "message": "Simple alert simple2 is on."
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple2",
+                            "state": "off",
+                            "message": "Simple alert simple2 is off."
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "time": 12000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "time": 12000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple2",
+                            "state": "on",
+                            "message": "Simple alert simple2 is on."
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "time": 12000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple2",
+                            "state": "off",
+                            "message": "Simple alert simple2 is off."
+                        }
+                    },
+                    {
+                        "id": 8,
+                        "time": 12000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

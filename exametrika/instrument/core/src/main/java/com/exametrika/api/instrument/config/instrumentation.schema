@@ -1,0 +1,698 @@
+{
+	name = "com.exametrika.instrumentation-1.0"
+	description = "Instrumentation schema."
+	
+	types:
+	{
+		ClassNameFilterExpression:
+		{
+			instanceOf = "string"
+			description = "Class name filter expression. Class name filter expression has the following format:\
+				*  #reg_exp_pattern | glob_pattern. Where:\
+				** reg_exp-pattern - any valid regular expression pattern\
+				** glob_pattern - class name pattern containing * and ?"
+		}
+		
+		CompoundClassNameFilterExpression:
+		{
+			instanceOf = "compound"
+			types = ["ClassNameFilterExpression", "ClassNameFilter"]
+		}
+		
+		ClassNameFilter:
+		{
+			instanceOf = "object"
+			description = "Class name filter."
+			final = true
+			properties:
+			{
+				class:
+				{
+					description = "Class name filter."
+					required = false
+					type = "ClassNameFilterExpression"
+				}
+
+				include:
+				{
+					description = "Filter to include classes."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "CompoundClassNameFilterExpression"
+					}
+				}
+			
+				exclude:
+				{
+					description = "Filter to exclude classes."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "CompoundClassNameFilterExpression"
+					}
+				}
+			}
+		}
+	
+		ClassFilter:
+		{
+			instanceOf = "object"
+			description = "Class filter."
+			final = true
+			properties:
+			{
+				class:
+				{
+					description = "Class name filter expression."
+					required = false
+					type = "CompoundClassNameFilterExpression"
+				}
+				
+				annotations:
+				{
+					description = "Filter by class annotations"
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "CompoundClassNameFilterExpression"
+					}
+				}
+				
+				includeSubclasses:
+				{
+					description = "Are subclasses included in this filter? If true, subclasses are included in this filter."
+					required = true
+					default = false
+					type = "boolean"
+				}
+			
+				include:
+				{
+					description = "Filter to include classes."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "CompoundClassFilterExpression"
+					}
+				}
+			
+				exclude:
+				{
+					description = "Filter to exclude classes."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "CompoundClassFilterExpression"
+					}
+				}
+			}
+		}
+		
+		MemberNameFilterExpression:
+		{
+			instanceOf = "string"
+			description = "Member name filter expression. Member name filter expression has the following format:\
+				*  #reg_exp_pattern | glob_pattern. Where:\
+				** reg_exp-pattern - any valid regular expression pattern\
+				** glob_pattern - member name pattern containing * and ?"
+		}
+		
+		CompoundMemberNameFilterExpression:
+		{
+			instanceOf = "compound"
+			types = ["MemberNameFilterExpression", "MemberNameFilter"]
+		}
+			
+		MemberNameFilter:
+		{
+			instanceOf = "object"
+			description = "Member name filter."
+			final = true
+			properties:
+			{
+				member:
+				{
+					description = "Member name filter expression."
+					required = false
+					type = "MemberNameFilterExpression"
+				}
+
+				include:
+				{
+					description = "Filter to include members."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "CompoundMemberNameFilterExpression"
+					}
+				}
+			
+				exclude:
+				{
+					description = "Filter to exclude members."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "CompoundMemberNameFilterExpression"
+					}
+				}
+			}
+		}
+		
+		MemberFilter:
+		{
+			instanceOf = "object"
+			description = "Member filter."
+			final = true
+			properties:
+			{
+				member:
+				{
+					description = "Member name filter expression."
+					required = false
+					type = "CompoundMemberNameFilterExpression"
+				}
+				
+				annotations:
+				{
+					description = "Filter by member annotations"
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "CompoundClassNameFilterExpression"
+					}
+				}
+				
+				include:
+				{
+					description = "Filter to include members."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "CompoundMemberFilterExpression"
+					}
+				}
+			
+				exclude:
+				{
+					description = "Filter to exclude members."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "CompoundMemberFilterExpression"
+					}
+				}
+			}
+		}
+
+		QualifiedMemberNameFilter:
+		{
+			instanceOf = "object"
+			description = "Qualified member name filter."
+			final = true
+			properties:
+			{
+				class:
+				{
+					description = "Class name filter expression."
+					required = false
+					type = "CompoundClassNameFilterExpression"
+				}
+				
+				member:
+				{
+					description = "Member name filter expression."
+					required = false
+					type = "CompoundMemberNameFilterExpression"
+				}
+			
+				include:
+				{
+					description = "Filter to include members."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "QualifiedMemberNameFilter"
+					}
+				}
+			
+				exclude:
+				{
+					description = "Filter to exclude members."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "QualifiedMemberNameFilter"
+					}
+				}
+			}
+		}
+		
+		CompoundClassFilterExpression:
+		{
+			instanceOf = "compound"
+			types = ["ClassNameFilterExpression", "ClassFilter"]
+		}
+		
+		CompoundMemberFilterExpression:
+		{
+			instanceOf = "compound"
+			types = ["MemberNameFilterExpression", "MemberFilter"]
+		}
+		
+		QualifiedMethodFilter:
+		{
+			instanceOf = "object"
+			description = "Qualified method filter."
+			final = true
+			properties:
+			{
+				class:
+				{
+					description = "Class filter expression."
+					required = false
+					type = "CompoundClassFilterExpression"
+				}
+				
+				method:
+				{
+					description = "Method filter expression."
+					required = false
+					type = "CompoundMemberFilterExpression"
+				}
+			
+				include:
+				{
+					description = "Filter to include methods."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "QualifiedMethodFilter"
+					}
+				}
+			
+				exclude:
+				{
+					description = "Filter to exclude methods."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "QualifiedMethodFilter"
+					}
+				}
+				
+				minInstruction:
+				{
+					description = "Minimal opcode instruction number to match."
+					required = true
+					default = 0
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+				
+				maxInstruction:
+				{
+					description = "Maximal opcode instruction number to match."
+					required = true
+					default = 0x7fffffff
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+			}
+		}
+			
+		StaticInterceptor:
+		{
+			instanceOf = "object"
+			description = "Static interceptor."
+			abstract = true
+		}
+		
+		DynamicInterceptor:
+		{
+			instanceOf = "object"
+			description = "Dynamic interceptor."
+			abstract = true
+		}
+			
+		Pointcut:
+		{
+			instanceOf = "object"
+			description = "Pointcut."
+			abstract = true
+			properties:
+			{
+				intercepted:
+				{
+					description = "Filter of methods being intercepted."
+					required = false
+					type = "QualifiedMethodFilter"
+				}
+			
+				interceptor:
+				{
+					description = "Method interceptor."
+					required = true
+					type:
+					{
+						instanceOf = "compound"
+						types = ["DynamicInterceptor", "StaticInterceptor"]
+					}
+				}
+					
+				enabled:
+				{
+					description = "Is pointcut enabled?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+				
+				singleton:
+				{
+					description = "if true pointcut generates single join point."
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+			
+		ArrayGetPointcut:
+		{
+			instanceOf = "object"
+			description = "Array get pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				useParams:
+				{
+					description = "Are additional interception parameters used?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+		
+		ArraySetPointcut:
+		{
+			instanceOf = "object"
+			description = "Array set pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				useParams:
+				{
+					description = "Are additional interception parameters used?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+		
+		CallPointcut:
+		{
+			instanceOf = "object"
+			description = "Call pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				called:
+				{
+					description = "Filter of methods being called."
+					required = false
+					type = "QualifiedMemberNameFilter"
+				}
+			
+				useParams:
+				{
+					description = "Are additional interception parameters used?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+		
+		CatchPointcut:
+		{
+			instanceOf = "object"
+			description = "Catch pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				exception:
+				{
+					description = "Filter of exceptions being caught."
+					required = false
+					type = "ClassNameFilter"
+				}
+			}
+		}
+		
+		FieldGetPointcut:
+		{
+			instanceOf = "object"
+			description = "Field get pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				field:
+				{
+					description = "Filter of fields being intercepted."
+					required = false
+					type = "QualifiedMemberNameFilter"
+				}
+			
+				useParams:
+				{
+					description = "Are additional interception parameters used?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+		
+		FieldSetPointcut:
+		{
+			instanceOf = "object"
+			description = "Field set pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				field:
+				{
+					description = "Filter of fields being intercepted."
+					required = false
+					type = "QualifiedMemberNameFilter"
+				}
+			
+				useParams:
+				{
+					description = "Are additional interception parameters used?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+		
+		InterceptPointcut:
+		{
+			instanceOf = "object"
+			description = "Intercept pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				kinds:
+				{
+					description = "Array of interceptor kinds."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						elementType:
+						{
+							instanceOf = "string"
+							enumeration = ["enter", "returnExit", "throwExit"]
+						}
+					}
+				}
+			
+				useParams:
+				{
+					description = "Are additional interception parameters used?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+		
+		LinePointcut:
+		{
+			instanceOf = "object"
+			description = "Line pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				startLine:
+				{
+					description = "Start line number to intercept."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+			
+				endLine:
+				{
+					description = "End line number to intercept."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+			}
+		}
+		
+		MonitorInterceptPointcut:
+		{
+			instanceOf = "object"
+			description = "Monitor intercept pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				kinds:
+				{
+					description = "Array of interceptor kinds."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						elementType:
+						{
+							instanceOf = "string"
+							enumeration = ["beforeEnter", "afterEnter", "beforeExit", "afterExit"]
+						}
+					}
+				}
+			}
+		}
+		
+		NewArrayPointcut:
+		{
+			instanceOf = "object"
+			description = "New array pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				element:
+				{
+					description = "Filter of elements being intercepted."
+					required = false
+					type = "ClassNameFilter"
+				}
+			}
+		}
+		
+		NewObjectPointcut:
+		{
+			instanceOf = "object"
+			description = "New object pointcut."
+			final = true
+			base = "Pointcut"
+			properties:
+			{
+				object:
+				{
+					description = "Filter of objects being intercepted."
+					required = false
+					type = "ClassNameFilter"
+				}
+			}
+		}
+		
+		ThrowPointcut:
+		{
+			instanceOf = "object"
+			description = "Throw pointcut."
+			final = true
+			base = "Pointcut"
+		}
+		
+		Instrumentation:
+		{
+			instanceOf = "object"
+			description = "Instrumentation configuration."
+			final = true
+			properties:
+			{
+				pointcuts:
+				{
+					description = "Pointcuts."
+					required = false
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Pointcut"
+					}
+				}
+			
+				debug:
+				{
+					description = "Is instrumentation debugging enabled?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				maxJoinPointCount:
+				{
+					description = "Maximum number of instrumented join points."
+					required = true
+					default = 0x7fffffff
+					type = "long"
+				}
+			}
+		}
+	}
+}

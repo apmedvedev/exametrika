@@ -1,0 +1,1786 @@
+{
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		
+		components:
+		{
+			Host:
+			{
+				instanceOf = "host"
+				healthComponentType = "HealthComponentType"
+				profilerConfigurationName = "${resource.path}/host-profiler.conf"
+			    actions:
+		        {
+			        enableMaintenanceMode = {instanceOf = "EnableMaintenanceModeAction"}
+			        disableMaintenanceMode = {instanceOf = "DisableMaintenanceModeAction"}
+			        log = {instanceOf = "LogAction"}
+			        measurementStrategy = {instanceOf = "MeasurementStrategyAction"}
+		        }
+				alerts:
+			    {
+				    health:
+                    {
+                        instanceOf = "HealthAlert"
+                        description = "The health alert."
+                        channels:
+                        [
+                            {
+                                instanceOf = "MailAlertChannel"
+                                name = "mail"
+                                onTemplate = "Component <%component.title%> has become failed, component state: <%state%>."
+                                offTemplate = "<%# if (resolved){ %>Health of component <%component.title%> has been restored.\
+                                    <%# } else { %>Incident <%name%> of component <%component.title%> has been deleted.<%# } %>"
+                                statusTemplate = "Component <%component.title%> remains failed, component state: <%state%>."
+                                schedule:
+                                {
+                                    instanceOf = "StandardSchedule"
+                                    expression = "time(08:00..20:00)"
+                                    timeFormat = "HH:mm"
+                                }
+                                    
+                                period:
+                                {
+                                    instanceOf = "StandardSchedulePeriod"
+                                    type = "day"
+                                    kind = "absolute"
+                                    amount = 1
+                                }
+                                
+                                recipients:
+                                [
+                                    {
+                                        type = "role"
+                                        name = "operator"
+                                    }
+                                ]
+                                    
+                                onSubject = "Health incident notification."
+                                offSubject = "Health incident off notification."
+                                statusSubject = "Health incident status notification."
+                                formatted = false
+                            }
+                        ]
+                    }
+			    }
+		        groupDiscoveryStrategies:
+	            [
+	                 {instanceOf = "PatternGroupDiscoveryStrategy" component = "HostGroup" pattern = "hosts*" group = "hosts"}
+	            ]
+				aggregationSchema:
+				{
+				    p1:
+			        {
+				        host.kpi:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.cpu.total:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.cpu.idle:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%idle" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+                                host.cpu.used:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+                                host.cpu.io:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%io" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+                                host.memory.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.memory.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "host.memory.total.std.sum"}
+                                    ]}}
+                                }
+                                host.memory.free:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%free" navigationType = "current" currentField = "std.sum" baseField = "host.memory.total.std.sum"}
+                                    ]}}
+                                }
+                                host.disk.read:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                host.disk.write:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                host.net.received:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(packets)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                host.net.sent:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(packets)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                host.swap.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.swap.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "host.swap.total.std.sum"}
+                                    ]}}
+                                }
+                                host.swap.free:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%free" navigationType = "current" currentField = "std.sum" baseField = "host.swap.total.std.sum"}
+                                    ]}}
+                                }
+                                host.swap.pagesIn:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.cpu.workload: 
+                                {
+                                    instanceOf = "HostWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostWorkloadRepresentation" type = "host.cpu.workload"
+                                    }}
+                                }
+                                host.memory.workload: 
+                                {
+                                    instanceOf = "HostWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostWorkloadRepresentation" type = "host.memory.workload"
+                                    }}
+                                }
+                                host.swap.workload: 
+                                {
+                                    instanceOf = "HostWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostWorkloadRepresentation" type = "host.swap.workload"
+                                    }}
+                                }
+                                host.swap.errors: 
+                                {
+                                    instanceOf = "HostErrorsMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostErrorsRepresentation" type = "host.swap.errors"
+                                        warningThreshold = 5 errorThreshold = 10
+                                    }}
+                                }
+                                workloadIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "WorkloadIndexRepresentation"
+                                    }}
+                                }
+                                errorsIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "ErrorsIndexRepresentation"
+                                    }}
+                                }
+                                healthIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "HealthIndexRepresentation"
+                                    }}
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+			        }
+					p2:
+					{
+						host.kpi:
+						{
+							instanceOf = "NameComponentType"
+							metricTypes:
+							{
+								host.cpu.total:
+								{
+									instanceOf = "Counter"
+								    fields:
+							        [
+								        {instanceOf = "StandardFields"}
+							        ]
+									representations: { default: { fields:
+								    [
+									    {instanceOf = "StandardRepresentation"}
+								    ]}}
+								}
+							    host.cpu.idle:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%idle" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+							    host.cpu.used:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "ForecastFields" name = "forecast(%used)" baseField = "%used"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                        {instanceOf = "ForecastRepresentation" name = "forecast(%used)"}
+                                    ]}}
+                                }
+								host.cpu.io:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%io" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+                                host.memory.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+					            host.memory.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "ForecastFields" name = "forecast(%used)" baseField = "%used"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "host.memory.total.std.sum"}
+                                        {instanceOf = "ForecastRepresentation" name = "forecast(%used)"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.memory.free:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%free" navigationType = "current" currentField = "std.sum" baseField = "host.memory.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.disk.read:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                host.disk.write:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                host.net.received:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "ForecastFields" name = "forecast(rate(bytes))" baseField = "rate(bytes)"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(packets)" baseField = "std.count"}
+                                        {instanceOf = "ForecastRepresentation" name = "forecast(rate(bytes))"}
+                                    ]}}
+                                }
+                                host.net.sent:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "ForecastFields" name = "forecast(rate(bytes))" baseField = "rate(bytes)"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(packets)" baseField = "std.count"}
+                                        {instanceOf = "ForecastRepresentation" name = "forecast(rate(bytes))"}
+                                    ]}}
+                                }
+                                host.swap.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.swap.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "ForecastFields" name = "forecast(%used)" baseField = "%used"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "host.swap.total.std.sum"}
+                                        {instanceOf = "ForecastRepresentation" name = "forecast(%used)"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.swap.free:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%free" navigationType = "current" currentField = "std.sum" baseField = "host.swap.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.swap.pagesIn:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.cpu.workload: 
+                                {
+                                    instanceOf = "HostWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostWorkloadRepresentation" type = "host.cpu.workload"
+                                    }}
+                                }
+                                host.memory.workload: 
+                                {
+                                    instanceOf = "HostWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostWorkloadRepresentation" type = "host.memory.workload"
+                                    }}
+                                }
+                                host.disk.workload: 
+                                {
+                                    instanceOf = "HostWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostWorkloadRepresentation" type = "host.disk.workload"
+                                    }}
+                                }
+                                host.net.receive.workload: 
+                                {
+                                    instanceOf = "HostWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostWorkloadRepresentation" type = "host.net.receive.workload"
+                                    }}
+                                }
+                                host.net.send.workload: 
+                                {
+                                    instanceOf = "HostWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostWorkloadRepresentation" type = "host.net.send.workload"
+                                    }}
+                                }
+                                host.swap.workload: 
+                                {
+                                    instanceOf = "HostWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostWorkloadRepresentation" type = "host.swap.workload"
+                                    }}
+                                }
+                                host.net.errors: 
+                                {
+                                    instanceOf = "HostErrorsMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostErrorsRepresentation" type = "host.net.errors"
+                                        warningThreshold = 50 errorThreshold = 100
+                                    }}
+                                }
+                                host.swap.errors: 
+                                {
+                                    instanceOf = "HostErrorsMetric"
+                                    representations: { default: {
+                                        instanceOf = "HostErrorsRepresentation" type = "host.swap.errors"
+                                        warningThreshold = 5 errorThreshold = 10
+                                    }}
+                                }
+                                anomalyIndex: 
+                                { 
+                                    instanceOf = "AnomalyIndex"
+                                }
+								workloadIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "WorkloadIndexRepresentation"
+                                    }}
+                                }
+                                errorsIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "ErrorsIndexRepresentation"
+                                    }}
+                                }
+							    healthIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "HealthIndexRepresentation"
+                                    }}
+                                }
+							}
+							
+							hasLog = true
+							scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy" }]
+							allowHierarchyAggregation = true
+							allowTransferDerived = true
+							componentDiscoveryStrategies = [{ instanceOf = "HostDiscoveryStrategy" component = "Host" }]
+							componentDeletionStrategy = { instanceOf = "HostDeletionStrategy"}
+						}
+			        
+			            host.cpu:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.cpu.total:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.cpu.idle:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%idle" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+                                host.cpu.irq:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%irq" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+                                host.cpu.softIrq:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%softIrq" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+                                host.cpu.nice:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%nice" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+                                host.cpu.stolen:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%stolen" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+                                host.cpu.sys:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "AnomalyFields" name = "anomaly(%sys)" baseField = "%sys" fast = true anomalyAutoLabeling = false}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%sys" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                        {instanceOf = "AnomalyRepresentation" name = "anomaly(%sys)" computeBehaviorTypes = false}
+                                    ]}}
+                                }
+                                host.cpu.user:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "AnomalyFields" name = "anomaly(%user)" baseField = "%user" fast = true anomalyAutoLabeling = false}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%user" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                        {instanceOf = "AnomalyRepresentation" name = "anomaly(%user)" computeBehaviorTypes = false}
+                                    ]}}
+                                }
+                                host.cpu.iowait:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%iowait" navigationType = "current" currentField = "std.sum" baseField = "host.cpu.total.std.sum"}
+                                    ]}}
+                                }
+                            }
+                            
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy" hasSubScope = true}]
+                            allowHierarchyAggregation = true
+                        }
+						
+						host.fs:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                 host.disk.read:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                host.disk.write:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                host.disk.serviceTime:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.disk.queue:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.disk.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.disk.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "host.disk.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.disk.free:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%free" navigationType = "current" currentField = "std.sum" baseField = "host.disk.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.disk.available:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%available" navigationType = "current" currentField = "std.sum" baseField = "host.disk.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.disk.files.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.disk.files.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "host.disk.files.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                            }
+							hasLog = true
+							scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy" hasSubScope = true}]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                        }
+                            
+                        host.memory:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.memory.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.memory.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "AnomalyFields" name = "anomaly(%used)" baseField = "%used" fast = true anomalyAutoLabeling = false}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "host.memory.total.std.sum"}
+                                        {instanceOf = "AnomalyRepresentation" name = "anomaly(%used)" computeBehaviorTypes = false}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.memory.free:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%free" navigationType = "current" currentField = "std.sum" baseField = "host.memory.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.memory.cache:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%cache" navigationType = "current" currentField = "std.sum" baseField = "host.memory.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                            }
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy"}]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                        }
+							
+						host.nets:
+                        {
+                            instanceOf = "NameComponentType"
+                            ruleRepresentation = null
+                            metricTypes:
+                            {
+                                host.nets.dummy:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy"}]
+                            allowHierarchyAggregation = true
+                        }
+                            
+                        host.net:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.net.received:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "AnomalyFields" name = "anomaly(rate(bytes))" baseField = "rate(bytes)" fast = true anomalyAutoLabeling = false}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(packets)" baseField = "std.count"}
+                                        {instanceOf = "AnomalyRepresentation" name = "anomaly(rate(bytes))" computeBehaviorTypes = false}
+                                    ]}}
+                                }
+                                host.net.sent:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "AnomalyFields" name = "anomaly(rate(bytes))" baseField = "rate(bytes)" fast = true anomalyAutoLabeling = false}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(packets)" baseField = "std.count"}
+                                        {instanceOf = "AnomalyRepresentation" name = "anomaly(rate(bytes))" computeBehaviorTypes = false}
+                                    ]}}
+                                }
+                                host.net.rx.errors:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.net.tx.errors:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.net.rx.dropped:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.net.tx.dropped:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.net.rx.overruns:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.net.tx.overruns:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.net.rx.frame:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.net.tx.collisions:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.net.tx.carrier:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy" hasSubScope = true}]
+                            allowHierarchyAggregation = true
+                        }
+                            
+                        host.tcp:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.tcp.actives:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.tcp.passives:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.tcp.fails:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.tcp.resets:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.tcp.connections:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.tcp.in:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.tcp.out:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.tcp.retransmits:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.tcp.inErrors:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.tcp.outErrors:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy" hasSubScope = true}]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                        }
+                            
+                        host.swap:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.swap.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.swap.used:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "AnomalyFields" name = "anomaly(%used)" baseField = "%used" fast = true anomalyAutoLabeling = false}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%used" navigationType = "current" currentField = "std.sum" baseField = "host.swap.total.std.sum"}
+                                        {instanceOf = "AnomalyRepresentation" name = "anomaly(%used)" computeBehaviorTypes = false}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.swap.free:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%free" navigationType = "current" currentField = "std.sum" baseField = "host.swap.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.swap.pagesIn:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.swap.pagesOut:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy"}]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                        }
+                            
+                        host.processes:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.processes.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.processes.idle:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%idle" navigationType = "current" currentField = "std.sum" baseField = "host.processes.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.processes.running:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%running" navigationType = "current" currentField = "std.sum" baseField = "host.processes.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.processes.sleeping:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%sleeping" navigationType = "current" currentField = "std.sum" baseField = "host.processes.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.processes.stopped:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%stopped" navigationType = "current" currentField = "std.sum" baseField = "host.processes.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.processes.threads:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.processes.zombie:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%zombie" navigationType = "current" currentField = "std.sum" baseField = "host.processes.total.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                            }
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "GroupScopeAggregationStrategy"}]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                        }
+                            
+                        host.process:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                host.process.threads:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.state:{ instanceOf = "Info" }
+                                host.process.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.process.cpu.max:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                                host.process.cpu.total:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total" navigationType = "current" currentField = "std.sum" baseField = "host.process.cpu.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.cpu.user:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%user" navigationType = "current" currentField = "std.sum" baseField = "host.process.cpu.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.cpu.sys:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%sys" navigationType = "current" currentField = "std.sum" baseField = "host.process.cpu.max.std.sum"}
+                                    ]}}
+                                }
+                                host.process.fd:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.memory.max:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.memory.total:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%total" navigationType = "current" currentField = "std.sum" baseField = "host.process.memory.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.memory.shared:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%shared" navigationType = "current" currentField = "std.sum" baseField = "host.process.memory.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.memory.resident:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%resident" navigationType = "current" currentField = "std.sum" baseField = "host.process.memory.max.std.sum"}
+                                    ]}}
+                                    sumByGroup = true
+                                }
+                                host.process.memory.majorFaults:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.process.memory.minorFaults:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                host.process.processor:{ instanceOf = "Info" }
+                            }
+                            hasLog = true
+                            scopeAggregationStrategies = [{ instanceOf = "SimpleScopeAggregationStrategy" hasSubScope = true}]
+                            allowHierarchyAggregation = true
+                            allowTransferDerived = true
+                        }
+					}
+				    
+				    p3:
+			        {
+				        @reference = "p2"
+				            
+			            host.kpi:
+                        {
+		                    componentDiscoveryStrategies = "@remove"
+                            componentDeletionStrategy = "@remove"
+                        }
+			        }
+					
+					p4:
+				    {
+					    @reference = "p3"
+					        
+				        host.kpi:
+			            {
+				            componentBindingStrategies = [{ instanceOf = "SimpleComponentBindingStrategy" }]
+			            }
+				    }
+			        
+			        p5:
+                    {
+                        @reference = "p3"
+                    }
+					    
+				    p6:
+                    {
+                        @reference = "p3"
+                            
+                        host.process = "@remove"
+                    }
+                        
+                    p7:
+                    {
+                        @reference = "p6"
+                    }
+                        
+                    p8:
+                    {
+                        @reference = "p6"
+                    }
+				}
+			}
+		
+		    HostGroup:
+            {
+                instanceOf = "group"
+                componentTypes = ["Host"]
+                groupTypes = ["HostGroup"]
+                aggregationGroup = true
+                actions:
+                {
+                    enableMaintenanceMode = {instanceOf = "EnableMaintenanceModeAction"}
+                    disableMaintenanceMode = {instanceOf = "DisableMaintenanceModeAction"}
+                    log = {instanceOf = "LogAction"}
+                }
+                healthComponentType = "HealthComponentType"
+                availabilityCondition:
+                {
+                    instanceOf = "ExpressionGroupAvailabilityCondition"
+                    expression = "available > 0"
+                }
+                alerts:
+                {
+                    @reference = "../Host.alerts"
+                }
+                groupDiscoveryStrategies:
+                [
+                    {
+                        instanceOf = "PatternGroupDiscoveryStrategy"
+                        pattern = "hosts*"
+                        component = "HostGroup"
+                        group = "hosts"
+                    }
+                ]
+            }
+			
+			HostsGroup:
+            {
+                instanceOf = "group"
+                componentTypes = ["Host"]
+                groupTypes = ["HostGroup"]
+                aggregationGroup = false
+            }
+		}
+		
+		groups:
+        {
+            hosts:
+            {
+                groupType = "HostsGroup"
+            }
+        }
+	}}}}
+}

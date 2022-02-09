@@ -1,0 +1,509 @@
+{
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "4@aggregation-aggregation-p1-17/data-17.dt[0]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "22@aggregation-aggregation-p1-17/data-17.dt[0]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "33@aggregation-aggregation-p1-17/data-17.dt[0]",
+                "scope": "scopes.scope2",
+                "metric": "metrics.metric2",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 20,
+                            "std.sum": 100,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 20,
+                            "std.sum": 100,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 20,
+                            "std.sum": 100,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 20,
+                            "std.sum": 100,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 20,
+                            "std.sum": 100,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 20,
+                            "std.sum": 100,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 20,
+                            "std.sum": 100,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 20,
+                            "std.sum": 100,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-2.1"
+                }
+            },
+            {
+                "id": "44@aggregation-aggregation-p1-17/data-17.dt[0]",
+                "scope": "scopes.scope3",
+                "metric": "metrics.metric3",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 30,
+                            "std.sum": 200,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 30,
+                            "std.sum": 200,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 30,
+                            "std.sum": 200,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 30,
+                            "std.sum": 200,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 30,
+                            "std.sum": 200,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 30,
+                            "std.sum": 200,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 30,
+                            "std.sum": 200,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 30,
+                            "std.sum": 200,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-3.1"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,188 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-28/data-28.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]"
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:hosts.host2 (component-component-28/data-28.dt)"],
+        "nodes": 
+        ["scope:nodes.node2 (component-component-28/data-28.dt)"],
+        "transactions": 
+        ["scope:txs.transaction (component-component-28/data-28.dt)"],
+        "healthComponents": 
+        ["scope:hosts.host2 (component-component-28/data-28.dt)", "scope:nodes.node2 (component-component-28/data-28.dt)", "scope:txs.transaction (component-component-28/data-28.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 5,
+                "scope": "txs.transaction",
+                "component": "Transaction",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "txs.transaction",
+                        "component": "Transaction",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-2.1"
+                        },
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 4,
+                "scope": "nodes.node2",
+                "component": "Node",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "nodes.node2",
+                        "component": "Node",
+                        "flags": "[readonly, unavailable]",
+                        "properties": 
+                        {
+                            "key": "value-2.1",
+                            "host": "hosts.host2"
+                        },
+                        "state": "unavailable"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "nodes.node2",
+                        "component": "Node",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-2.1",
+                            "host": "hosts.host2"
+                        },
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 3,
+                "scope": "nodes.node1",
+                "component": "Node",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "nodes.node1",
+                        "component": "Node",
+                        "flags": "[readonly, deleted]",
+                        "state": "deleted"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "nodes.node1",
+                        "component": "Node",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            },
+                            "host": "hosts.host1"
+                        },
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 2,
+                "scope": "hosts.host2",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts.host2",
+                        "component": "Host",
+                        "flags": "[readonly, unavailable]",
+                        "properties": 
+                        {
+                            "key": "value-2.1"
+                        },
+                        "state": "unavailable",
+                        "nodes": 
+                        ["scope:nodes.node2 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts.host2",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-2.1"
+                        },
+                        "state": "normal",
+                        "nodes": 
+                        ["scope:nodes.node2 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 1,
+                "scope": "hosts.host1",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, deleted]",
+                        "state": "deleted"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "state": "normal",
+                        "nodes": 
+                        ["scope:nodes.node1 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

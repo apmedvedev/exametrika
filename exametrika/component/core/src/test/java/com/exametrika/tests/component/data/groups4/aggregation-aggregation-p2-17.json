@@ -1,0 +1,1402 @@
+{
+    "cyclePeriod ": 
+    {
+        "<root>": 
+        {
+            "id": "3@aggregation-aggregation-p2-17/data-18.cy[cycle]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        []
+    },
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "29@aggregation-aggregation-p2-17/data-17.dt[0]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "46@aggregation-aggregation-p2-17/data-17.dt[0]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.cpu",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 10,
+                        "std.sum": 40,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1",
+                    "nodeProperties": 
+                    {
+                        "groups": 
+                        ["groups.group1.group11", "groups.group2.group21"],
+                        "groupsMetadata": 
+                        {
+                            "groups.group1.group11": 
+                            {
+                                "metadata": "group11"
+                            },
+                            "groups.group2.group21": 
+                            {
+                                "metadata": "group21"
+                            },
+                            "groups.group1": 
+                            {
+                                "metadata": "group1"
+                            },
+                            "groups.group2": 
+                            {
+                                "metadata": "group2"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "id": "59@aggregation-aggregation-p2-17/data-17.dt[0]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.mem",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 40,
+                        "std.max": 60,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "72@aggregation-aggregation-p2-17/data-17.dt[0]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "85@aggregation-aggregation-p2-17/data-17.dt[0]",
+                "scope": "groups.group1.group11",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "98@aggregation-aggregation-p2-17/data-17.dt[0]",
+                "scope": "groups.group1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "111@aggregation-aggregation-p2-17/data-17.dt[0]",
+                "scope": "groups.group2.group21",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "124@aggregation-aggregation-p2-17/data-17.dt[0]",
+                "scope": "groups.group2",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            }
+        ]
+    },
+    "period 1": 
+    {
+        "<root>": 
+        {
+            "id": "175@aggregation-aggregation-p2-17/data-17.dt[1]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "192@aggregation-aggregation-p2-17/data-17.dt[1]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "205@aggregation-aggregation-p2-17/data-17.dt[1]",
+                "scope": "groups.group1.group11",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "218@aggregation-aggregation-p2-17/data-17.dt[1]",
+                "scope": "groups.group1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "231@aggregation-aggregation-p2-17/data-17.dt[1]",
+                "scope": "groups.group2.group21",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "244@aggregation-aggregation-p2-17/data-17.dt[1]",
+                "scope": "groups.group2",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "287@aggregation-aggregation-p2-17/data-17.dt[1]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.cpu",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 10,
+                        "std.sum": 40,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1",
+                    "nodeProperties": 
+                    {
+                        "groups": 
+                        ["groups.group1.group11", "groups.group2.group21"],
+                        "groupsMetadata": 
+                        {
+                            "groups.group1.group11": 
+                            {
+                                "metadata": "group11"
+                            },
+                            "groups.group2.group21": 
+                            {
+                                "metadata": "group21"
+                            },
+                            "groups.group1": 
+                            {
+                                "metadata": "group1"
+                            },
+                            "groups.group2": 
+                            {
+                                "metadata": "group2"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "id": "300@aggregation-aggregation-p2-17/data-17.dt[1]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.mem",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 40,
+                        "std.max": 60,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    },
+    "period 2": 
+    {
+        "<root>": 
+        {
+            "id": "321@aggregation-aggregation-p2-17/data-17.dt[2]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "338@aggregation-aggregation-p2-17/data-17.dt[2]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "351@aggregation-aggregation-p2-17/data-17.dt[2]",
+                "scope": "groups.group1.group11",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "364@aggregation-aggregation-p2-17/data-17.dt[2]",
+                "scope": "groups.group1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "377@aggregation-aggregation-p2-17/data-17.dt[2]",
+                "scope": "groups.group2.group21",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "390@aggregation-aggregation-p2-17/data-17.dt[2]",
+                "scope": "groups.group2",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            }
+        ]
+    },
+    "period 3": 
+    {
+        "<root>": 
+        {
+            "id": "435@aggregation-aggregation-p2-17/data-17.dt[3]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "452@aggregation-aggregation-p2-17/data-17.dt[3]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1500000000,
+                        "std.min": 500000000,
+                        "std.max": 1000000000,
+                        "std.avg": 750000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 500000000,
+                        "std.min": 500000000,
+                        "std.max": 500000000,
+                        "std.avg": 500000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "465@aggregation-aggregation-p2-17/data-17.dt[3]",
+                "scope": "groups.group1.group11",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1500000000,
+                        "std.min": 500000000,
+                        "std.max": 1000000000,
+                        "std.avg": 750000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 500000000,
+                        "std.min": 500000000,
+                        "std.max": 500000000,
+                        "std.avg": 500000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "478@aggregation-aggregation-p2-17/data-17.dt[3]",
+                "scope": "groups.group1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1500000000,
+                        "std.min": 500000000,
+                        "std.max": 1000000000,
+                        "std.avg": 750000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 500000000,
+                        "std.min": 500000000,
+                        "std.max": 500000000,
+                        "std.avg": 500000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "491@aggregation-aggregation-p2-17/data-17.dt[3]",
+                "scope": "groups.group2.group21",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1500000000,
+                        "std.min": 500000000,
+                        "std.max": 1000000000,
+                        "std.avg": 750000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 500000000,
+                        "std.min": 500000000,
+                        "std.max": 500000000,
+                        "std.avg": 500000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "512@aggregation-aggregation-p2-17/data-17.dt[3]",
+                "scope": "groups.group2",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1500000000,
+                        "std.min": 500000000,
+                        "std.max": 1000000000,
+                        "std.avg": 750000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 500000000,
+                        "std.min": 500000000,
+                        "std.max": 500000000,
+                        "std.avg": 500000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "555@aggregation-aggregation-p2-17/data-17.dt[3]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.cpu",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 10,
+                        "std.sum": 40,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1",
+                    "nodeProperties": 
+                    {
+                        "groups": 
+                        ["groups.group1.group11", "groups.group2.group21"],
+                        "groupsMetadata": 
+                        {
+                            "groups.group1.group11": 
+                            {
+                                "metadata": "group11"
+                            },
+                            "groups.group2.group21": 
+                            {
+                                "metadata": "group21"
+                            },
+                            "groups.group1": 
+                            {
+                                "metadata": "group1"
+                            },
+                            "groups.group2": 
+                            {
+                                "metadata": "group2"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "id": "568@aggregation-aggregation-p2-17/data-17.dt[3]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.mem",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 40,
+                        "std.max": 60,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    },
+    "period 4": 
+    {
+        "<root>": 
+        {
+            "id": "589@aggregation-aggregation-p2-17/data-17.dt[4]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "606@aggregation-aggregation-p2-17/data-17.dt[4]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 6,
+                        "std.sum": 4500000000,
+                        "std.min": 0,
+                        "std.max": 2000000000,
+                        "std.avg": 750000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 1499000000,
+                        "std.min": 0,
+                        "std.max": 1000000000,
+                        "std.avg": 499666666.667
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3001000000,
+                        "std.min": 1000000,
+                        "std.max": 2000000000,
+                        "std.avg": 1000333333.333
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1001000000,
+                        "std.min": 1000000,
+                        "std.max": 1000000000,
+                        "std.avg": 500500000
+                    },
+                    "maintenanceCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 2000000000,
+                        "std.min": 2000000000,
+                        "std.max": 2000000000,
+                        "std.avg": 2000000000
+                    }
+                }
+            },
+            {
+                "id": "619@aggregation-aggregation-p2-17/data-17.dt[4]",
+                "scope": "groups.group1.group11",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 6,
+                        "std.sum": 4500000000,
+                        "std.min": 0,
+                        "std.max": 2000000000,
+                        "std.avg": 750000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 1499000000,
+                        "std.min": 0,
+                        "std.max": 1000000000,
+                        "std.avg": 499666666.667
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3001000000,
+                        "std.min": 1000000,
+                        "std.max": 2000000000,
+                        "std.avg": 1000333333.333
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1001000000,
+                        "std.min": 1000000,
+                        "std.max": 1000000000,
+                        "std.avg": 500500000
+                    },
+                    "maintenanceCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 2000000000,
+                        "std.min": 2000000000,
+                        "std.max": 2000000000,
+                        "std.avg": 2000000000
+                    }
+                }
+            },
+            {
+                "id": "632@aggregation-aggregation-p2-17/data-17.dt[4]",
+                "scope": "groups.group1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 7,
+                        "std.sum": 4500000000,
+                        "std.min": 0,
+                        "std.max": 2000000000,
+                        "std.avg": 642857142.857
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 4,
+                        "std.sum": 1499000000,
+                        "std.min": 0,
+                        "std.max": 1000000000,
+                        "std.avg": 374750000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3001000000,
+                        "std.min": 1000000,
+                        "std.max": 2000000000,
+                        "std.avg": 1000333333.333
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1001000000,
+                        "std.min": 1000000,
+                        "std.max": 1000000000,
+                        "std.avg": 500500000
+                    },
+                    "maintenanceCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 2000000000,
+                        "std.min": 2000000000,
+                        "std.max": 2000000000,
+                        "std.avg": 2000000000
+                    }
+                }
+            },
+            {
+                "id": "645@aggregation-aggregation-p2-17/data-17.dt[4]",
+                "scope": "groups.group2.group21",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 5,
+                        "std.sum": 4500000000,
+                        "std.min": 0,
+                        "std.max": 2499000000,
+                        "std.avg": 900000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3499000000,
+                        "std.min": 0,
+                        "std.max": 2499000000,
+                        "std.avg": 1166333333.333
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1001000000,
+                        "std.min": 1000000,
+                        "std.max": 1000000000,
+                        "std.avg": 500500000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1001000000,
+                        "std.min": 1000000,
+                        "std.max": 1000000000,
+                        "std.avg": 500500000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "658@aggregation-aggregation-p2-17/data-17.dt[4]",
+                "scope": "groups.group2",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 5,
+                        "std.sum": 4500000000,
+                        "std.min": 0,
+                        "std.max": 2499000000,
+                        "std.avg": 900000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3499000000,
+                        "std.min": 0,
+                        "std.max": 2499000000,
+                        "std.avg": 1166333333.333
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1001000000,
+                        "std.min": 1000000,
+                        "std.max": 1000000000,
+                        "std.avg": 500500000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1001000000,
+                        "std.min": 1000000,
+                        "std.max": 1000000000,
+                        "std.avg": 500500000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "701@aggregation-aggregation-p2-17/data-17.dt[4]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.cpu",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 10,
+                        "std.sum": 40,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1",
+                    "nodeProperties": 
+                    {
+                        "groups": 
+                        ["groups.group1.group11", "groups.group2.group21"],
+                        "groupsMetadata": 
+                        {
+                            "groups.group1.group11": 
+                            {
+                                "metadata": "group11"
+                            },
+                            "groups.group2.group21": 
+                            {
+                                "metadata": "group21"
+                            },
+                            "groups.group1": 
+                            {
+                                "metadata": "group1"
+                            },
+                            "groups.group2": 
+                            {
+                                "metadata": "group2"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "id": "714@aggregation-aggregation-p2-17/data-17.dt[4]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.mem",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 40,
+                        "std.max": 60,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    }
+}

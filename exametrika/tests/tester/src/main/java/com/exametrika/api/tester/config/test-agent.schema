@@ -1,0 +1,82 @@
+{
+	name = "com.exametrika.tester.agent-1.0"
+	description = "Test agent schema."
+	
+	types:
+	{
+		TestAgentChannel:
+		{
+			instanceOf = "object"
+			description = "Test agent channel configuration."
+			final = true
+			properties:
+			{
+				port:
+				{
+					description = "Test agent port."
+					required = true
+					default = 17181
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 65535
+					}
+				}
+					
+				bindAddress:
+				{
+					description = "Address of the local network interface this channel bound to."
+					required = false
+					type = "string"
+				}
+					
+				secured:
+				{
+					description = "Is channel secured by SSL/TLS?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				keyStorePath:
+				{
+					description = "Path to key store of secured channel."
+					required = false
+					type = "string"
+				}
+					
+				keyStorePassword:
+				{
+					description = "Password for accessing key store of secured channel."
+					required = false
+					type = "string"
+				}
+			}
+		}
+	
+		TestAgent:
+		{
+			instanceOf = "object"
+			description = "Test agent configuration."
+			final = true
+			properties:
+			{
+				name:
+				{
+					description = "Name of the test agent."
+					required = true
+					default = "test-agent"
+					type = "string"
+				}
+				
+				channel:
+				{
+					description = "Test agent channel properties."
+					required = true
+					type = "TestAgentChannel"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,276 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-39/data-39.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-39/data-39.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-39/data-39.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]"
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:hosts.host1 (component-component-39/data-39.dt)"],
+        "healthComponents": 
+        ["scope:hosts.host1 (component-component-39/data-39.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-39/data-39.dt",
+                "key": 1,
+                "scope": "hosts.host1",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, unavailable]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "unavailable"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, maintenance]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "maintenance",
+                        "maintenanceMessage": "Test maintenance."
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, unavailable]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "unavailable"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, unavailable]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "unavailable"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, unavailable]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "unavailable"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "key": "value-1.1"
+                        },
+                        "state": "normal"
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "on",
+                            "message": "Component hosts.host1 is unhealthy."
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "off",
+                            "message": "Component hosts.host1 is healthy."
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "on",
+                            "message": "Component hosts.host1 is unhealthy."
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "time": 8000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "off",
+                            "message": "Component hosts.host1 is healthy."
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "time": 8500,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "on",
+                            "message": "Component hosts.host1 is unhealthy."
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "time": 8500,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "off",
+                            "message": "Component hosts.host1 is healthy."
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "enableMaintenanceMode",
+                        "parameters": 
+                        {
+                            "message": "Test maintenance."
+                        }
+                    },
+                    {
+                        "id": 8,
+                        "time": 11000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "on",
+                            "message": "Component hosts.host1 is unhealthy."
+                        }
+                    },
+                    {
+                        "id": 9,
+                        "time": 11000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "disableMaintenanceMode"
+                    },
+                    {
+                        "id": 10,
+                        "time": 12000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "off",
+                            "message": "Component hosts.host1 is healthy."
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

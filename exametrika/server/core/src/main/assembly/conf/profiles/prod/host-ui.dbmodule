@@ -1,0 +1,560 @@
+{
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		ui:
+        {
+            models:
+            {
+                allHostsWithServer: {instanceOf: "StructuredModel", selector: "allHosts", cacheable = true},    
+		        allHosts: {instanceOf: "DerivedModel", baseModels: ["allHostsWithServer"], filter: {instanceOf: "NonSystemComponentFilter"}},
+                allHostTags: {instanceOf: "DerivedModel", baseModels: ["allHosts"], filter: {instanceOf: "ComponentTagFilter", type: "host"}},
+                hostOverview: {instanceOf: "DerivedModel", baseModels: ["allHostsWithServer", "allJvmNodesWithServer"], filter: {instanceOf: "HostFilter"}},
+                hostTimeline: {instanceOf: "TimedModel", selector: "host", args: {type: "timeline"}, outerBoundary: true, cycleBased: true},
+                hostKpi: {instanceOf: "TimedModel", selector: "host", args: {type: "kpi"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostProperties: {instanceOf: "StructuredModel", selector: "host", args: {type: "properties"}},
+                hostHealthIndicators: {instanceOf: "TimedModel", selector: "host", args: {type: "healthIndicators"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostAvailabilityTimes: {instanceOf: "TimedModel", selector: "host", args: {type: "availabilityTimes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostIncidents: {instanceOf: "DerivedModel", baseModels: ["allIncidents"], filter: {instanceOf: "ComponentIncidentsFilter"}},
+                hostHealth: {instanceOf: "StructuredModel", selector: "host", args: {type: "health"}}
+                hostState: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hostTimeline", "hostHealthIndicators"], filter: {instanceOf: "ComponentStateFilter"}},
+                hostCpus: {instanceOf: "StructuredModel", selector: "host", args:{type: "cpus"}},
+                hostCpuProperties: {instanceOf: "StructuredModel", selector: "host", args:{type: "cpuProperties"}},
+                hostCpu: {instanceOf: "TimedModel", selector: "host", args:{type: "cpu"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostSwap: {instanceOf: "TimedModel", selector: "host", args:{type: "swap"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostDisks: {instanceOf: "StructuredModel", selector: "host", args:{type: "disks"}},
+                hostDiskProperties: {instanceOf: "StructuredModel", selector: "host", args:{type: "diskProperties"}},
+                hostDiskUsage: {instanceOf: "TimedModel", selector: "host", args:{type: "diskUsage"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostDiskRates: {instanceOf: "TimedModel", selector: "host", args:{type: "diskRates"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostDiskFiles: {instanceOf: "TimedModel", selector: "host", args:{type: "diskFiles"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostNetworks: {instanceOf: "StructuredModel", selector: "host", args:{type: "networks"}},
+                hostNetworkProperties: {instanceOf: "StructuredModel", selector: "host", args:{type: "netProperties"}},
+                hostNetworkInterfaceProperties: {instanceOf: "StructuredModel", selector: "host", args:{type: "netInterfaceProperties"}},
+                hostNetRates: {instanceOf: "TimedModel", selector: "host", args:{type: "netRates"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostNetErrors: {instanceOf: "TimedModel", selector: "host", args:{type: "netErrors"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostNetStatistics: {instanceOf: "TimedModel", selector: "host", args:{type: "netStatistics"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostProcesses: {instanceOf: "StructuredModel", selector: "host", args:{type: "processes"}},
+                hostProcessesStatistics: {instanceOf: "TimedModel", selector: "host", args:{type: "processesStatistics"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostThreads: {instanceOf: "TimedModel", selector: "host", args:{type: "threads"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostProcessState: {instanceOf: "TimedModel", selector: "host", args:{type: "processState"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostProcessCpu: {instanceOf: "TimedModel", selector: "host", args:{type: "processCpu"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostProcessMemory: {instanceOf: "TimedModel", selector: "host", args:{type: "processMemory"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostProcessThreads: {instanceOf: "TimedModel", selector: "host", args:{type: "processThreads"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostProcessFileDescriptors: {instanceOf: "TimedModel", selector: "host", args:{type: "processFileDescriptors"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostProcessPageFaults: {instanceOf: "TimedModel", selector: "host", args:{type: "processPageFaults"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hostProcessShortProperties: {instanceOf: "StructuredModel", selector: "host", args:{type: "processShortProperties"}},
+                hostProcessProperties: {instanceOf: "StructuredModel", selector: "host", args:{type: "processProperties"}},
+                hostGroupComponents: {instanceOf: "DerivedModel", baseModels: ["allHosts"], filter: {instanceOf: "GroupComponentIdsFilter"}},
+            }
+            navBar:
+            {
+                children:
+                [
+                    { 
+                        instanceOf: "NavBarPage", name: "hosts", title: "Hosts", icon: "host", children:
+                        [
+                            { 
+                                instanceOf: "NavBarLink", name: "allHosts", title: "All hosts", icon: "host", link: "#views/all-hosts", 
+                                badge: { color: "green"}, model: "allHosts", filter: {instanceOf: "TableLeafCountFilter"}
+                            },
+                            { 
+                                instanceOf: "NavBarLink", name: "allFailedHosts", title: "All failed hosts", icon: "hostFailedIconGreyed", link: "#views/all-failed-hosts", 
+                                badge: { color: "red"}, model: "allHosts", filter: {instanceOf: "FailedLeafCountFilter"}
+                            },
+                            { 
+                                instanceOf: "NavBarLink", name: "allMaintenanceHosts", title: "All hosts in maintenance mode", icon: "hostMaintenanceIconGreyed", link: "#views/all-maintenance-hosts", 
+                                badge: { color: "blue"}, model: "allHosts", filter: {instanceOf: "MaintenanceLeafCountFilter"}
+                            },
+                            { 
+                                instanceOf: "NavBarTreeView", name: "hostGroups", title: "Host groups", icon: "hostGroupIcon", child: 
+                                {
+                                    instanceOf: "TreeView",
+                                    filterPanel: true, 
+                                    formatter: {instanceOf: "ComponentFormatter", navBar: true},
+                                    comparator: {instanceOf:"TitleComparator"},
+                                    contextMenu: {instanceOf:"ComponentContextMenu", component: "host", group: "hostgroup"},
+                                    model: "allHosts"
+                                }                       
+                            },
+                            {
+                                instanceOf: "NavBarTreeView", name: "hostTags", title: "Host tags", icon: "hostTagIcon", child: 
+                                {
+                                    instanceOf: "TreeView",
+                                    filterPanel: true, 
+                                    formatter: {instanceOf: "ComponentFormatter", navBar: true}, 
+                                    comparator: {instanceOf:"TitleComparator"},
+                                    contextMenu: {instanceOf:"ComponentContextMenu", component: "host", group: "hostgroup"},
+                                    model: "allHostTags"
+                                }                       
+                            }
+                        ]
+                    }
+                ]
+            }
+        
+            views:
+            {
+                "all-hosts": 
+                {
+                    instanceOf: "AllHostsView"
+                },
+                "all-failed-hosts": 
+                {
+                    instanceOf: "AllFailedHostsView"
+                }
+                "all-maintenance-hosts": 
+                {
+                    instanceOf: "AllMaintenanceHostsView"
+                }
+            }
+        }
+		components:
+		{
+			Host:
+			{
+				instanceOf = "host"
+				selectors:
+			    {
+				    host = {instanceOf = "HostSelector"}
+			    }
+				views:
+				{
+				    default: 
+				    {
+                        instanceOf: "ComponentTab",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "overview",
+                                title: "Overview",
+                                icon: "home",
+                                active: true,
+                                child: {instanceOf: "HostOverviewPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "health",
+                                title: "Health",
+                                icon: "heartbeat",
+                                child: {instanceOf: "HostHealthPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "cpu",
+                                title: "CPU",
+                                icon: "cpuIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "HostCpuPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "memory",
+                                title: "Memory",
+                                icon: "memoryIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "HostMemoryPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "disk",
+                                title: "Disk",
+                                icon: "diskIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "HostDiskPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "network",
+                                title: "Network",
+                                icon: "networkIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "HostNetworkPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "process",
+                                title: "Processes",
+                                icon: "processIcon",
+                                periods: ["p2", "p3", "p4", "p5"],
+                                child: {instanceOf: "HostProcessPage"}
+                            }
+                        ]
+				    },
+				    "kpi":
+				    {
+                        instanceOf: "ComponentTab",
+                        alias: "Host KPI",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hostKpi",
+                                title: "Host KPI",
+                                icon: "hostIcon",
+                                active: true,
+                                child: {instanceOf: "HostKpiPage"}
+                            },
+                        ]
+                    },
+                    "health":
+                    {
+                        instanceOf: "ComponentTab",
+                        
+                        alias: "Health indicators",
+                        group: "Health",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "health",
+                                title: "Health indicators",
+                                icon: "heartbeat",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostHealthIndicatorsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "availability":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Availability times",
+                        group: "Health",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "availability",
+                                title: "Availability times",
+                                icon: "heartbeat",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostAvailabilityTimesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "cpu-load":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "CPU load",
+                        group: "CPU",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "cpu",
+                                title: "CPU load",
+                                icon: "cpuIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostCpuLoadListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "cpu-metrics":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "CPU metrics",
+                        group: "CPU",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "cpuMetrics",
+                                title: "CPU metrics",
+                                icon: "cpuIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostCpuMetricsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "memory":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Memory usage",
+                        group: "Memory",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "memory",
+                                title: "Memory usage",
+                                icon: "memoryIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostMemoryListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "swap":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Swap usage",
+                        group: "Memory",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "swap",
+                                title: "Swap usage",
+                                icon: "memoryIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostSwapListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "swap-pages":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Swap pages",
+                        group: "Memory",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "swapPages",
+                                title: "Swap pages",
+                                icon: "memoryIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostSwapPagesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "disk":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Disk usage",
+                        group: "Disk",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "disk",
+                                title: "Disk usage",
+                                icon: "diskIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostDiskUsageListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "disk-rates":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Disk rates",
+                        group: "Disk",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "diskRates",
+                                title: "Disk rates",
+                                icon: "diskIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostDiskRatesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "disk-files":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Disk files",
+                        group: "Disk",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "diskFiles",
+                                title: "Disk files",
+                                icon: "diskIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostDiskFilesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "network":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Network rates",
+                        group: "Network",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "network",
+                                title: "Network rates",
+                                icon: "networkIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostNetworkRatesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "network-errors":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Network errors",
+                        group: "Network",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "networkErrors",
+                                title: "Network errors",
+                                icon: "networkIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostNetworkErrorsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "network-statistics":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Network statistics",
+                        group: "Network",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "networkStatistics",
+                                title: "Network statistics",
+                                icon: "networkIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostNetworkStatisticsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "processes":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Processes",
+                        group: "Processes",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "processes",
+                                title: "Processes",
+                                icon: "processIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostProcessesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "threads":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Threads",
+                        group: "Processes",
+                        listView: "all-hosts",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "threads",
+                                title: "Threads",
+                                icon: "processIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "HostThreadsListPage"
+                                }
+                            },
+                        ]
+                    },
+		        }
+			}
+		
+		    HostGroup:
+            {
+                instanceOf = "group"
+                selectors:
+                {
+                    host = {instanceOf = "HostSelector"}
+                }
+                views:
+                {
+                    default: {instanceOf = "ViewReference" component: "Host" view: "default"}
+                    "kpi": {instanceOf:"ViewReference", component: "Host", view: "kpi"},
+                    "health": {instanceOf:"ViewReference", component: "Host", view: "health"},
+                    "availability": {instanceOf:"ViewReference", component: "Host", view: "availability"},
+                    "cpu-load": {instanceOf:"ViewReference", component: "Host", view: "cpu-load"},
+                    "cpu-metrics": {instanceOf:"ViewReference", component: "Host", view: "cpu-metrics"},
+                    "memory": {instanceOf:"ViewReference", component: "Host", view: "memory"},
+                    "swap": {instanceOf:"ViewReference", component: "Host", view: "swap"},
+                    "swap-pages": {instanceOf:"ViewReference", component: "Host", view: "swap-pages"},
+                    "disk": {instanceOf:"ViewReference", component: "Host", view: "disk"},
+                    "disk-rates": {instanceOf:"ViewReference", component: "Host", view: "disk-rates"},
+                    "disk-files": {instanceOf:"ViewReference", component: "Host", view: "disk-files"},
+                    "network": {instanceOf:"ViewReference", component: "Host", view: "network"},
+                    "network-errors": {instanceOf:"ViewReference", component: "Host", view: "network-errors"},
+                    "network-statistics": {instanceOf:"ViewReference", component: "Host", view: "network-statistics"},
+                    "processes": {instanceOf:"ViewReference", component: "Host", view: "processes"},
+                    "threads": {instanceOf:"ViewReference", component: "Host", view: "threads"},
+                }
+            }
+			
+			RootGroup:
+            {
+                instanceOf = "group"
+                selectors:
+                {
+                    allHosts = {instanceOf = "AllHostsSelector"}
+                }
+            }
+		}
+	}}}}
+}

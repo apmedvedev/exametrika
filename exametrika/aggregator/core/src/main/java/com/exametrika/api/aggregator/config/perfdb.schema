@@ -1,0 +1,18 @@
+{
+	name = "com.exametrika.exadb.perfdb-1.0"
+	description = "Exa database PerfDB schema."
+	
+	types:
+	{
+		PeriodDatabaseExtension:
+		{
+			instanceOf = "object"
+			description = "Configuration of period database extension."
+			base = "DatabaseExtension"
+			final = true
+			properties:
+			{
+			}
+		}
+	}
+}

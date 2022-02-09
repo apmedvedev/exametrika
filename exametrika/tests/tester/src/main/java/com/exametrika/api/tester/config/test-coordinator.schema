@@ -1,0 +1,197 @@
+{
+	name = "com.exametrika.tester.coordinator-1.0"
+	description = "Test coordinator schema."
+	
+	types:
+	{
+        TestCaseFilter:
+        {
+            instanceOf = "object"
+            description = "Test case filter."
+            final = true
+            properties:
+            {
+                name:
+                {
+                    description = "Name filter."
+                    required = false
+                    type = "CompoundNameFilterExpression"
+                }
+
+                tag:
+                {
+                    description = "Tag filter."
+                    required = false
+                    type = "CompoundNameFilterExpression"
+                }
+            }
+        }
+
+	    CompoundTestCaseFilter:
+        {
+            instanceOf = "compound"
+            types = ["NameFilterExpression", "TestCaseFilter"]
+        }
+        
+	    TestAgentDiscoveryStrategy:
+        {
+            instanceOf = "object"
+            description = "Test agent discovery strategy."
+            abstract = true
+        }
+	    
+        DirectTestAgentDiscoveryStrategy:
+        {
+            instanceOf = "object"
+            description = "Direct test agent discovery strategy."
+            base = "TestAgentDiscoveryStrategy"
+            properties:
+            {
+                agents:
+                {
+                    description = "Test agents."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "TestAgentConnection"
+                    }
+                }
+            }
+        }
+        
+        TestAgentConnection:
+        {
+            instanceOf = "object"
+            description = "Test agent connection configuration."
+            properties:
+            {
+                name:
+                {
+                    description = "Name of the test agent used in test cases."
+                    required = true
+                    type = "string"
+                }
+            
+                host:
+                {
+                    description = "Test agent host."
+                    required = true
+                    type = "string"
+                }
+            
+                port:
+                {
+                    description = "Test agent port."
+                    required = true
+                    default = 17181
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        max = 65535
+                    }
+                }
+                    
+                properties:
+                {
+                    description = "Test agent properties."
+                    required = true
+                    default = {}
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "string"
+                    }
+                }
+            }
+        }
+        
+		TestCoordinatorChannel:
+        {
+            instanceOf = "object"
+            description = "Test coordinator channel configuration."
+            properties:
+            {
+                discoveryStrategy:
+                {
+                    description = "Test agent discovery strategy."
+                    required = true
+                    type = "TestAgentDiscoveryStrategy"
+                }
+            
+                bindAddress:
+                {
+                    description = "Address of the local network interface this channel bound to."
+                    required = false
+                    type = "string"
+                }
+                    
+                secured:
+                {
+                    description = "Is channel secured by SSL/TLS?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                keyStorePath:
+                {
+                    description = "Path to key store of secured channel."
+                    required = false
+                    type = "string"
+                }
+                    
+                keyStorePassword:
+                {
+                    description = "Password for accessing key store of secured channel."
+                    required = false
+                    type = "string"
+                }
+            }
+        }
+        
+        TestCoordinator:
+        {
+            instanceOf = "object"
+            description = "Test coordinator configuration."
+            final = true
+            properties:
+            {
+                name:
+                {
+                    description = "Name of the test coordinator."
+                    required = true
+                    default = "test-coordinator"
+                    type = "string"
+                }
+            
+                testConfigurationPath:
+                {
+                    description = "Test configuration path."
+                    required = true
+                    type = "string"
+                }
+                    
+                channel:
+                {
+                    description = "Test coordinator channel configuration."
+                    required = true
+                    type = "TestCoordinatorChannel"
+                }
+                    
+                execute:
+                {
+                    description = "List of test case filters to execute."
+                    required = true
+                    default = ["*"]
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "CompoundTestCaseFilter"
+                    }
+                }
+            }
+        }
+	}
+}

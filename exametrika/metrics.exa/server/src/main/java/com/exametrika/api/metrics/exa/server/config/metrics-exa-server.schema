@@ -1,0 +1,23 @@
+{
+	name = "com.exametrika.metrics.exa.server-1.0"
+	description = "Exa server metrics schema."
+
+	types:
+	{
+	    ExaServerMonitor:
+        {
+            instanceOf = "object"
+            description = "Exa server monitor."
+            final = true
+            base = "Monitor"
+        }
+
+		ExaAggregatorProbe:
+		{
+			instanceOf = "object"
+			description = "Exa aggregator probe."
+			base = "Probe"
+			final = true
+		}
+	}
+}

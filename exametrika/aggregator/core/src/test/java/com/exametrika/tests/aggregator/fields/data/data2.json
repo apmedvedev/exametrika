@@ -1,0 +1,70 @@
+{
+    "std.count": 10,
+    "std.sum": 1000,
+    "std.min": 1,
+    "std.max": 100,
+    "std.avg": 100,
+    "stat.stddev": 44.721,
+    "stat.vc": 0.447,
+    "histo.bins": 
+    [1, 3, 1],
+    "histo.min-oob": 2,
+    "histo.max-oob": 3,
+    "histo.bins%": 
+    [10, 30, 10],
+    "histo.min-oob%": 20,
+    "histo.max-oob%": 30,
+    "histo.bins+%": 
+    [30, 60, 70],
+    "histo.min-oob+%": 20,
+    "histo.max-oob+%": 100,
+    "histo.percentiles": 
+    {
+        "%": 
+        ["10", "25", "50", "75", "90"],
+        "values": 
+        [10, 40, 70, 100, 100],
+        "errors": 
+        [9, 30, 30, 0, 0]
+    },
+    "histo.scale": 
+    [10, 40, 70, 100],
+    "instance": 
+    [
+        {
+            "id": 
+            {
+                "scope": "scope",
+                "location": "metric",
+                "type": "metricType"
+            },
+            "context": 
+            {
+                "key": "value"
+            },
+            "time": 123,
+            "value": 100
+        },
+        {
+            "id": 
+            {
+                "scope": "scope",
+                "location": "metric",
+                "type": "metricType"
+            },
+            "context": 
+            {
+                "key": "value"
+            },
+            "time": 123,
+            "value": 10
+        }
+    ],
+    "period(std.avg).delta": -50,
+    "period(std.avg).delta%": -33.333,
+    "myPeriod.delta": 
+    [-1, -3, -1],
+    "myPeriod.delta%": 
+    [-50, -50, -50],
+    "%test(std.count)": 50
+}

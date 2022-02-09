@@ -1,0 +1,108 @@
+{
+	name = "com.exametrika.server-1.0"
+	description = "Server schema."
+	
+	types:
+	{
+		ServerChannel:
+		{
+			instanceOf = "object"
+			description = "Server channel configuration."
+			base = "Transport"
+			validators = ["serverChannel"]
+			properties:
+			{
+				port:
+				{
+					description = "Server port this channel bound to."
+					required = true
+					default = 17171
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 65535
+					}
+				}
+			
+				bindAddress:
+				{
+					description = "Address of the local network interface this channel bound to."
+					required = false
+					type = "string"
+				}
+					
+				secured:
+				{
+					description = "Is channel secured by SSL/TLS?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				keyStorePath:
+				{
+					description = "Path to key store of secured channel."
+					required = false
+					type = "string"
+				}
+					
+				keyStorePassword:
+				{
+					description = "Password for accessing key store of secured channel."
+					required = false
+					type = "string"
+				}
+					
+				maxTotalRate:
+				{
+					description = "Maximal total rate in bytes per second of sending or receiving data by the channel."
+					required = false
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+			}
+		}
+		
+		Server:
+		{
+			instanceOf = "object"
+			description = "Server configuration."
+			final = true
+			properties:
+			{
+				name:
+				{
+					description = "Name of the server."
+					required = false
+					type = "string"
+				}
+			
+				channel:
+				{
+					description = "Server channel configuration."
+					required = true
+					default:{}
+					type = "ServerChannel"
+				}
+					
+				database:
+				{
+					description = "Performance database configuration."
+					required = true
+					default:
+					{
+						paths = ["${com.exametrika.workPath}/db"]
+						initialSchemaPath = "${com.exametrika.home}/conf/profiles/prod/schema.dbmodule"
+					    flushPeriod = 30000
+					}
+					type = "Database"
+				}	
+			}
+		}
+	}
+}

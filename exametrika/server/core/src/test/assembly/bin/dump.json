@@ -1,0 +1,16 @@
+{
+	//queries:{<queryName>:{
+	//spaces = ["aggregation", "component"]
+	//periodTypes = ["p2"]
+	//cycles = "current/all/last-<N>"
+	//periods = "current/cycle/all/last-<N>"
+	//componentTypes = ["exa.aggregator", "exa.messaging", "exa.aggregator.nameCache", "exa.exadb.nodeCache", "exa.rawdb.pageType", "exa.rawdb.pageCache", "exa.rawdb", "jvm.kpi.server", "host.kpi.server", "jvm.buffer", "jvm.gc", "jvm.pool" ]
+	//componentTypes = ["exa.aggregator", "exa.messaging", "exa.rawdb", "jvm.kpi.server", "host.kpi.server"]
+	//scopes = ["host"]
+	//scopeFilters = ["h?st*"]
+	//metrics = ["test"]
+	//metricFilters = ["t?st*"]
+	//dumpLogs = true/false
+	//keys = ["key1", "k?ys*"]
+	//}}
+}

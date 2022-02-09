@@ -1,0 +1,87 @@
+{
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		ui:
+        {
+            models:
+            {
+                allExaAgents: {instanceOf: "StructuredModel", selector: "allExaAgents"},
+                exaAgentProperties: {instanceOf: "StructuredModel", selector: "exaAgent", args: {type: "properties"}},
+                exaAgentSendBytes: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "sendBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaAgentSendBytesHistogram: {instanceOf: "StructuredModel", selector: "exaAgent", args: {type: "sendBytesHistogram"}},
+                exaAgentReceiveBytes: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "receiveBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaAgentReceiveBytesHistogram: {instanceOf: "StructuredModel", selector: "exaAgent", args: {type: "receiveBytesHistogram"}},
+                exaAgentMessagingErrorCount: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "messagingErrorCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaAgentLogErrorCount: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "logErrorCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaAgentLogErrors: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "logErrors"}},
+                exaAgentInstrumentTime: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "instrumentTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaAgentInstrumentTimeHistogram: {instanceOf: "StructuredModel", selector: "exaAgent", args: {type: "instrumentTimeHistogram"}},
+                exaAgentBeforeInstrumentBytes: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "beforeInstrumentBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaAgentBeforeInstrumentBytesHistogram: {instanceOf: "StructuredModel", selector: "exaAgent", args: {type: "beforeInstrumentBytesHistogram"}},
+                exaAgentAfterInstrumentBytes: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "afterInstrumentBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaAgentAfterInstrumentBytesHistogram: {instanceOf: "StructuredModel", selector: "exaAgent", args: {type: "afterInstrumentBytesHistogram"}},
+                exaAgentInstrumentSkipped: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "instrumentSkipped"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaAgentInstrumentJoinPoints: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "instrumentJoinPoints"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaAgentInstrumentErrorsCount: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "instrumentErrorsCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaAgentInstrumentErrors: {instanceOf: "TimedModel", selector: "exaAgent", args: {type: "instrumentErrors"}},
+            }
+            navBar:
+            {
+            }
+        
+            views:
+            {
+                "all-exaagents": 
+                {
+                    instanceOf: "AllExaAgentsView"
+                },
+            }
+        }
+		components:
+		{
+			ExaAgent:
+			{
+				instanceOf = "exaAgent"
+				selectors:
+			    {
+				    exaAgent = {instanceOf = "ExaAgentSelector"}
+			    }
+				views:
+				{
+				    default:
+                    {
+                        instanceOf: "ComponentTab",
+                        listView: "all-exaagents",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "overview",
+                                title: "Overview",
+                                icon: "exaAgentIcon",
+                                active: true,
+                                child: {instanceOf: "ExaAgentOverviewPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "instrument",
+                                title: "Instrumentation",
+                                icon: "configure",
+                                child: {instanceOf: "ExaAgentInstrumentPage"}
+                            },
+                        ]
+                    }
+		        }
+			}
+            RootGroup:
+            {
+                instanceOf = "group"
+                selectors:
+                {
+                    allExaAgents = {instanceOf = "AllExaAgentsSelector"}
+                }
+            }
+		}
+	}}}}
+}

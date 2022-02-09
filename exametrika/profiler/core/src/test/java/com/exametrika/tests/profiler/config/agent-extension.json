@@ -1,0 +1,36 @@
+{
+	name = "test.agent"
+	
+	types:
+	{
+		TestFields:
+		{
+			instanceOf = "object"
+			base = "Fields"
+			final = true
+		}
+			
+		TestMonitor:
+		{
+			instanceOf = "object"
+			base = "Monitor"
+			final = true
+			properties:
+			{
+				meter:
+				{
+					description = "Monitor's meter."
+					required = true
+					type = "Meter"
+				}
+			}
+		}
+			
+		TestMeasurementStrategy:
+		{
+			instanceOf = "object"
+			base = "MeasurementStrategy"
+			final = true
+		}
+	}
+}

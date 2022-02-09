@@ -1,0 +1,204 @@
+{	
+	initialSchema:{modules:{module2:{version = "1.0.0",schema:
+    {
+		instanceOf = "Database"
+		predefinedJobs:
+		{
+			backup:
+			{
+				instanceOf = "RecurrentJob"
+				description = "Backup job."
+				group = "dbOperations"
+				operation:
+				{
+					instanceOf = "BackupOperation"
+					archiveStore:
+					{
+						instanceOf = "FileArchiveStore"
+						path = "backups"
+					}
+				}
+				schedule:
+				{
+					instanceOf = "StandardSchedule"
+					expression = "time(00:00..04:00)"
+					dateFormat = "dd.MM.yyyy"
+					timeFormat = "HH:mm"
+				}
+				period:
+				{
+					instanceOf = "StandardSchedulePeriod"
+					type = "day"
+					kind = "absolute"
+					amount = 1
+				}
+			}
+			
+			archive1:
+			{
+				instanceOf = "RecurrentJob"
+				description = "Archiving job."
+				group = "dbOperations"
+				operation:
+				{
+					instanceOf = "ArchiveOperation"
+					periods = ["p1", "p2"]
+					archivePolicy:
+					{
+						instanceOf = "SimpleArchivePolicy"
+						maxFileSize = "10Gb"
+					}
+					archiveStore:
+					{
+						instanceOf = "NullArchiveStore"
+					}
+				}
+				schedule:
+				{
+					instanceOf = "StandardSchedule"
+					expression = "time(00:00..23:59)"
+					dateFormat = "dd.MM.yyyy"
+					timeFormat = "HH:mm"
+				}
+				period:
+				{
+					instanceOf = "StandardSchedulePeriod"
+					type = "hour"
+					kind = "absolute"
+					amount = 1
+				}
+			}
+			
+			archive2:
+            {
+                instanceOf = "RecurrentJob"
+                description = "Archiving job."
+                group = "dbOperations"
+                operation:
+                {
+                    instanceOf = "ArchiveOperation"
+                    periods = ["p3", "p4", "p5", "p6", "p7", "p8"]
+                    archivePolicy:
+                    {
+                        instanceOf = "SimpleArchivePolicy"
+                        maxFileSize = "10Gb"
+                    }
+                    archiveStore:
+                    {
+                        instanceOf = "FileArchiveStore"
+                        path = "archives"
+                    }
+                }
+                schedule:
+                {
+                    instanceOf = "StandardSchedule"
+                    expression = "time(00:00..04:00)"
+                    dateFormat = "dd.MM.yyyy"
+                    timeFormat = "HH:mm"
+                }
+                period:
+                {
+                    instanceOf = "StandardSchedulePeriod"
+                    type = "day"
+                    kind = "absolute"
+                    amount = 1
+                }
+            }
+			
+			truncate1:
+			{
+				instanceOf = "RecurrentJob"
+				description = "Truncation job."
+				group = "dbOperations"	
+				operation:
+				{
+					instanceOf = "TruncationOperation"
+				    periods = ["p1", "p2"]
+					truncationPolicy:
+					{
+						instanceOf = "SimpleTruncationPolicy"
+				        maxRetentionPeriod = "7d"
+						minFreeSpace = "10Gb"
+					}
+				}
+				schedule:
+				{
+					instanceOf = "StandardSchedule"
+					expression = "time(00:00..23:59)"
+					dateFormat = "dd.MM.yyyy"
+					timeFormat = "HH:mm"
+				}
+				period:
+				{
+					instanceOf = "StandardSchedulePeriod"
+					type = "hour"
+					kind = "absolute"
+					amount = 1
+				}
+			}
+            
+            truncate2:
+            {
+                instanceOf = "RecurrentJob"
+                description = "Truncation job."
+                group = "dbOperations"  
+                operation:
+                {
+                    instanceOf = "TruncationOperation"
+                    periods = ["p3", "p4"]
+                    truncationPolicy:
+                    {
+                        instanceOf = "SimpleTruncationPolicy"
+                        maxRetentionPeriod = "60d"
+                        minFreeSpace = "10Gb"
+                    }
+                }
+                schedule:
+                {
+                    instanceOf = "StandardSchedule"
+                    expression = "time(00:00..04:00)"
+                    dateFormat = "dd.MM.yyyy"
+                    timeFormat = "HH:mm"
+                }
+                period:
+                {
+                    instanceOf = "StandardSchedulePeriod"
+                    type = "day"
+                    kind = "absolute"
+                    amount = 1
+                }
+            }
+			
+			truncate3:
+            {
+                instanceOf = "RecurrentJob"
+                description = "Truncation job."
+                group = "dbOperations"  
+                operation:
+                {
+                    instanceOf = "TruncationOperation"
+                    periods = ["p5", "p6", "p7", "p8"]
+                    truncationPolicy:
+                    {
+                        instanceOf = "SimpleTruncationPolicy"
+                        minFreeSpace = "10Gb"
+                    }
+                }
+                schedule:
+                {
+                    instanceOf = "StandardSchedule"
+                    expression = "time(00:00..04:00)"
+                    dateFormat = "dd.MM.yyyy"
+                    timeFormat = "HH:mm"
+                }
+                period:
+                {
+                    instanceOf = "StandardSchedulePeriod"
+                    type = "day"
+                    kind = "absolute"
+                    amount = 1
+                }
+            }
+		}
+	}}}}}
+}

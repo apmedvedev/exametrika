@@ -1,0 +1,738 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-39/data-39.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-39/data-39.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-39/data-39.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:group1 (component-component-39/data-39.dt)", "scope:group2 (component-component-39/data-39.dt)"]
+                },
+                {
+                    "space": "component-component-39/data-39.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]"
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:hosts.host1 (component-component-39/data-39.dt)"],
+        "healthComponents": 
+        ["scope:hosts.host1 (component-component-39/data-39.dt)"],
+        "incidents": 
+        ["complex1 - 18 (1000@component-component-39/data-39.dt)", "alert4 - 19 (601@component-component-39/data-39.dt)", "alert10 - 21 (970@component-component-39/data-39.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-39/data-39.dt",
+                "key": 3,
+                "scope": "group2",
+                "component": "AggregationGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "group2",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "group2",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly]",
+                        "components": 
+                        ["scope:hosts.host1 (component-component-39/data-39.dt)"]
+                    }
+                ],
+                "groupAlerts": 
+                ["test"]
+            },
+            {
+                "space": "component-component-39/data-39.dt",
+                "key": 2,
+                "scope": "group1",
+                "component": "AggregationGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "group1",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly]"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "group1",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly]",
+                        "components": 
+                        ["scope:hosts.host1 (component-component-39/data-39.dt)"]
+                    }
+                ],
+                "groupRules": 
+                ["rule5"],
+                "groupAlerts": 
+                ["alert6", "test", "check2", "alert9"]
+            },
+            {
+                "space": "component-component-39/data-39.dt",
+                "key": 1,
+                "scope": "hosts.host1",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic, maintenance]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "state": "maintenance",
+                        "maintenanceMessage": "test"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "groups": 
+                        ["scope:group2 (component-component-39/data-39.dt)"],
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "groups": 
+                        ["scope:group1 (component-component-39/data-39.dt)", "scope:group2 (component-component-39/data-39.dt)"],
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "state": "normal"
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "complex1",
+                            "state": "on",
+                            "message": "Complex alert complex1 is on."
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "alert1",
+                            "state": "on",
+                            "message": "Alert alert1 is on."
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "test",
+                            "state": "on",
+                            "message": "Alert test is on."
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 8,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 9,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "alert6",
+                            "state": "on",
+                            "message": "Alert alert6 is on."
+                        }
+                    },
+                    {
+                        "id": 10,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "alert4",
+                            "state": "on",
+                            "message": "Alert alert4 is on."
+                        }
+                    },
+                    {
+                        "id": 11,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 12,
+                        "time": 3000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "alert9",
+                            "state": "on",
+                            "message": "Alert alert9 is on."
+                        }
+                    },
+                    {
+                        "id": 13,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 14,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 15,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "alert1",
+                            "state": "off",
+                            "message": ""
+                        }
+                    },
+                    {
+                        "id": 16,
+                        "time": 4000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 17,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 18,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 19,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "alert6",
+                            "state": "off",
+                            "message": ""
+                        }
+                    },
+                    {
+                        "id": 20,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "alert9",
+                            "state": "off",
+                            "message": ""
+                        }
+                    },
+                    {
+                        "id": 21,
+                        "time": 5000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 22,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 23,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 24,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "test",
+                            "state": "off",
+                            "message": ""
+                        }
+                    },
+                    {
+                        "id": 25,
+                        "time": 6000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 26,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 27,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 28,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "enableMaintenanceMode",
+                        "parameters": 
+                        {
+                            "message": "test"
+                        }
+                    },
+                    {
+                        "id": 29,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "complex1",
+                            "state": "off",
+                            "message": "Complex alert complex1 is off."
+                        }
+                    },
+                    {
+                        "id": 30,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "alert4",
+                            "state": "off",
+                            "message": "Alert alert4 is on."
+                        }
+                    },
+                    {
+                        "id": 31,
+                        "time": 7000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 32,
+                        "time": 8000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "disableMaintenanceMode"
+                    },
+                    {
+                        "id": 33,
+                        "time": 8000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 34,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 35,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 36,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "complex1",
+                            "state": "on",
+                            "message": "Complex alert complex1 is on."
+                        }
+                    },
+                    {
+                        "id": 37,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "alert4",
+                            "state": "on",
+                            "message": "Alert alert4 is on."
+                        }
+                    },
+                    {
+                        "id": 38,
+                        "time": 9000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 39,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 40,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    },
+                    {
+                        "id": 41,
+                        "time": 10000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "alert10",
+                            "state": "on",
+                            "message": "Alert alert10 is on."
+                        }
+                    }
+                ],
+                "rules": 
+                ["rule2", "rule3"],
+                "alerts": 
+                ["alert4", "check1", "alert10"],
+                "incidents": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "key": 18,
+                        "incidentId": 18,
+                        "name": "complex1",
+                        "refCount": 0
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "key": 19,
+                        "incidentId": 19,
+                        "name": "alert4",
+                        "refCount": 0
+                    },
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "key": 21,
+                        "incidentId": 21,
+                        "name": "alert10",
+                        "refCount": 0
+                    }
+                ]
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

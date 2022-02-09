@@ -1,0 +1,681 @@
+{
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		
+		components:
+		{
+			Transaction:
+			{
+				instanceOf = "transaction"
+			    healthComponentType = "HealthComponentType"
+                actions:
+                {
+                    log = {instanceOf = "LogAction"}
+                }
+                groupDiscoveryStrategies:
+                [
+                     {instanceOf = "TransactionGroupDiscoveryStrategy" component = "TransactionGroup"}
+                ]
+				aggregationSchema:
+				{
+				    p1:
+                    {
+				        app.stack.root:
+                        {
+                            instanceOf = "BackgroundRootComponentType"
+                            metricTypes:
+                            {
+                                app.cpu.time:
+                                {
+                                    instanceOf = "StackCounter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                        }
+                
+                        app.exceptions:
+                        {
+                            instanceOf = "StackLogComponentType"
+                            metricTypes:
+                            {
+                                app.exceptions.count:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                        }
+                         
+                        app.exceptions.log:
+                        {
+                            instanceOf = "StackErrorLogComponentType"
+                        }
+                            
+                        app.log:
+                        {
+                            instanceOf = "StackLogComponentType"
+                            metricTypes:
+                            {
+                                app.log.count:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            
+                                app.log.errorCount:
+                                {
+                                    @reference = "[app.log.count]"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        app.log.log:
+                        {
+                            instanceOf = "StackLogComponentType"
+                            hasLog = true
+                            metricTypes:
+                            {
+                                log:
+                                {
+                                    instanceOf = "Log"
+                                }
+                            }
+                        }
+                            
+                        app.log.errors:
+                        {
+                            instanceOf = "StackErrorLogComponentType"
+                        }
+                            
+                        app.stack:
+                        {
+                            instanceOf = "StackComponentType"
+                            metricTypes:
+                            {
+                                app.cpu.time:
+                                {
+                                    instanceOf = "StackCounter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%cpu" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                                stack.io.time:
+                                {
+                                    @reference = "[app.cpu.time]"
+                                }
+                                stack.db.time:
+                                {
+                                    @reference = "[app.cpu.time]"
+                                }
+                                stack.alloc.bytes:
+                                {
+                                    instanceOf = "StackCounter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                stack.errors.count:
+                                {
+                                    @reference = "[stack.alloc.bytes]"
+                                }
+                                app.concurrency:
+                                {
+                                    instanceOf = "Gauge"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                            }
+                        }
+                            
+                        app.file:
+                        {
+                            instanceOf = "ExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.concurrency = "@remove"
+                                app.file.read.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                                app.file.read.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                app.file.write.time:
+                                {
+                                    @reference = "[app.file.read.time]"
+                                }
+                                app.file.write.bytes:
+                                {
+                                    @reference = "[app.file.read.bytes]"
+                                }
+                            }
+                            hasLog = true
+                        }
+                        app.tcp:
+                        {
+                            instanceOf = "ExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.concurrency = "@remove"
+                                app.tcp.connect.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                                app.tcp.receive.time:
+                                {
+                                    @reference = "[app.tcp.connect.time]"
+                                }
+                                app.tcp.receive.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                app.tcp.send.time:
+                                {
+                                    @reference = "[app.tcp.connect.time]"
+                                }
+                                app.tcp.send.bytes:
+                                {
+                                    @reference = "[app.tcp.receive.bytes]"
+                                }
+                            }
+                            hasLog = true
+                        }
+                        app.udp:
+                        {
+                            instanceOf = "ExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.concurrency = "@remove"
+                                app.udp.receive.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                                app.udp.receive.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                                app.udp.send.time:
+                                {
+                                    @reference = "[app.udp.receive.time]"
+                                }
+                                app.udp.send.bytes:
+                                {
+                                    @reference = "[app.udp.receive.bytes]"
+                                }
+                            }
+                            hasLog = true
+                        }
+                        app.jdbcConnection:
+                        {
+                            instanceOf = "ExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.concurrency = "@remove"
+                                app.db.connect.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                        }
+                        app.jdbc:
+                        {
+                            instanceOf = "ExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.concurrency = "@remove"
+                                app.db.query.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.count"}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                        }
+
+                        app.threadExit:
+                        {
+                            instanceOf = "IntermediateExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.concurrency = "@remove"
+                            }
+                            hasLog = true
+                        }
+                            
+                        app.jmsProducer:
+                        {
+                            instanceOf = "IntermediateExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.concurrency = "@remove"
+                                app.jms.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                        }
+                            
+                        primary.app.entryPoint:
+                        {
+                            instanceOf = "PrimaryEntryPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.concurrency = "@remove"
+                                stackIds:
+                                {
+                                    instanceOf = "StackIdsMetric"
+                                }
+                                app.entryPoint.stalls.count:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                        {instanceOf = "PercentageRepresentation" name = "%stalls" navigationType = "current" currentField = "std.sum" baseField = "app.request.time.std.count"}
+                                    ]}}
+                                }
+                                app.transaction.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.count"}
+                                    ]}}
+                                }
+                                app.request.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.count"}
+                                    ]}}
+                                }
+                                app.receive.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                app.send.bytes:
+                                {
+                                    @reference = "[app.receive.bytes]"
+                                }
+                                app.entryPoint.errors.count:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                        {instanceOf = "PercentageRepresentation" name = "%errors" navigationType = "current" currentField = "std.sum" baseField = "app.request.time.std.count"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                        }
+                            
+                        secondary.app.entryPoint:
+                        {
+                            instanceOf = "SecondaryEntryPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[primary.app.entryPoint][metricTypes]"
+                            }
+                            hasLog = true
+                        }
+                            
+                        app.entryPoint.stalls:
+                        {
+                            instanceOf = "StackErrorLogComponentType"
+                        }
+                            
+                        app.entryPoint.errors:
+                        {
+                            instanceOf = "StackErrorLogComponentType"
+                        }
+                            
+                        app.httpConnection:
+                        {
+                            instanceOf = "IntermediateExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.concurrency = "@remove"
+                                app.http.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.count"}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                                app.http.receive.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                app.http.send.bytes:
+                                {
+                                    @reference = "[app.http.receive.bytes]"
+                                }
+                                app.httpConnection.errors.count:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            }
+                            hasLog = true
+                        }
+                        app.httpConnection.errors:
+                        {
+                            instanceOf = "StackErrorLogComponentType"
+                        }
+                        app.methodExit:
+                        {
+                            instanceOf = "ExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.concurrency = "@remove"
+                            }
+                            hasLog = true
+                        }
+                    }
+                    p2:
+                    {
+                        primary.app.entryPoint:
+                        {
+                            @reference = "../[p1][primary.app.entryPoint]"
+                            componentDiscoveryStrategies = [{ instanceOf = "TransactionDiscoveryStrategy" component = "Transaction" }]
+                            componentDeletionStrategy = { instanceOf = "TransactionDeletionStrategy"}
+                        }
+                    }
+				}
+			}
+		
+            TransactionGroup:
+            {
+                instanceOf = "group"
+                componentTypes = ["Transaction"]
+                groupTypes = ["TransactionGroup"]
+                aggregationGroup = true
+                actions:
+                {
+                    log = {instanceOf = "LogAction"}
+                }
+                groupDiscoveryStrategies:
+                [
+                    {
+                        instanceOf = "TransactionGroupDiscoveryStrategy"
+                        component = "TransactionGroup"
+                    }
+                ]
+            }
+            
+            TransactionsGroup:
+            {
+                instanceOf = "group"
+                componentTypes = ["Transaction"]
+                groupTypes = ["TransactionGroup"]
+                aggregationGroup = false
+            }
+		}
+		
+		groups:
+        {
+            transactions:
+            {
+                groupType = "TransactionsGroup"
+            }
+        }
+	}}}}
+}

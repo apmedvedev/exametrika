@@ -1,0 +1,1998 @@
+{
+	name = "com.exametrika.component.ui-1.0"
+	description = "Component UI model schema."
+	
+	types:
+	{
+	    ViewModel:
+        {
+            instanceOf = "object"
+            description = "View model."
+            abstract = true
+            properties:
+            {
+                cacheable:
+                {
+                    description = "Is model cacheable?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            }
+        }
+	
+	    StructuredModel:
+        {
+            instanceOf = "object"
+            description = "Structured view model."
+            base = "ViewModel"
+            final = true
+            properties:
+            {
+                selector:
+                {
+                    description = "Model selector name."
+                    required = true
+                    type = "string"
+                }
+                    
+                args:
+                {
+                    description = "Model selector arguments."
+                    required = false
+                    type = "any"
+                }
+
+                incrementalUpdate:
+                {
+                    description = "Does model support incremental updates?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            }
+        }
+        
+        TimedModel:
+        {
+            instanceOf = "object"
+            description = "Time-based view model."
+            base = "ViewModel"
+            final = true
+            properties:
+            {
+                selector:
+                {
+                    description = "Model selector name."
+                    required = true
+                    type = "string"
+                }
+                    
+                args:
+                {
+                    description = "Model selector arguments."
+                    required = false
+                    type = "any"
+                }
+
+                incrementalUpdate:
+                {
+                    description = "Does model support incremental updates?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+
+                cycleBased:
+                {
+                    description = "Is model timescale cycle or selection based?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                outerBoundary:
+                {
+                    description = "Does model include nearest values out of the model boundaries?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            }
+        }
+        
+        DerivedModel:
+        {
+            instanceOf = "object"
+            description = "Derived view model."
+            base = "ViewModel"
+            final = true
+            properties:
+            {
+                baseModels:
+                {
+                    description = "Base models for derived model."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "string"
+                    }
+                }
+            
+                filter:
+                {
+                    description = "Derived model filter. Filter is required if more than one base model is defined."
+                    required = false
+                    type = "any"
+                }
+                    
+                multiComponent:
+                {
+                    description = "Is derived model bound to base model which represents multiple components and does not have some specific scope identifier?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+            }
+        }
+	
+	    View:
+        {
+            instanceOf = "object"
+            description = "Base dashboard view."
+            base = "SchemaObject"
+            abstract = true
+            properties:
+            {
+                icon:
+                {
+                    description = "View title icon."
+                    required = false
+                    type = "string"
+                }
+            
+                title:
+                {
+                    description = "View title."
+                    required = false
+                    type = "string"
+                }
+                    
+                group:
+                {
+                    description = "View group used in context menus, group defines hierarchy separated by /."
+                    required = false
+                    type = "string"
+                }
+            }
+        }
+        
+        ViewReference:
+        {
+            instanceOf = "object"
+            description = "View reference."
+            base = "SchemaObject"
+            final = true
+            properties:
+            {
+                component:
+                {
+                    description = "Name of referenced component."
+                    required = true
+                    type = "string"
+                }
+            
+                view:
+                {
+                    description = "Name of referenced view."
+                    required = true
+                    type = "string"
+                }
+            }
+        }
+	
+        CompositeWidget:
+        {
+            instanceOf = "object"
+            description = "Composite widget view."
+            base = "View"
+            final = true
+            properties:
+            {
+                name:
+                {
+                    description = "View name."
+                    required = true
+                    type = "string"
+                }
+            
+                child:
+                {
+                    description = "View child."
+                    required = true
+                    type = "View"
+                }
+            }
+        }
+        
+        Composite:
+        {
+            instanceOf = "object"
+            description = "Composite dashboard view."
+            base = "View"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = false
+                    type = "string"
+                }
+            
+                height:
+                {
+                    description = "View height in pixels."
+                    required = false
+                    type = "long"
+                }
+                    
+                childrenFormatters:
+                {
+                    description = "Children formatters."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "any"
+                    }
+                }
+                    
+                children:
+                {
+                    description = "Children views."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "CompositeWidget"
+                    }
+                }
+                 
+                formatter:
+                {
+                    description = "View region formatter."
+                    required = true
+                    type = "any"
+                }
+                
+                behavior:
+                {
+                    description = "View behavior provider."
+                    required = false
+                    type = "any"
+                }
+            }
+        }
+        
+        AccordionWidget:
+        {
+            instanceOf = "object"
+            description = "Accordion widget view."
+            base = "View"
+            final = true
+            properties:
+            {
+                name:
+                {
+                    description = "View name."
+                    required = true
+                    type = "string"
+                }
+            
+                active:
+                {
+                    description = "Is view active (opened)?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+            
+                child:
+                {
+                    description = "View child."
+                    required = true
+                    type = "View"
+                }
+            }
+        }
+        
+	    Accordion:
+        {
+	        instanceOf = "object"
+            description = "Accordion dashboard view."
+            base = "View"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = false
+                    type = "string"
+                }
+            
+                children:
+                {
+                    description = "Children views."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "AccordionWidget"
+                    }
+                }
+            }
+        }
+           
+        TabWidget:
+        {
+            instanceOf = "object"
+            description = "Tab widget view."
+            base = "View"
+            properties:
+            {
+                name:
+                {
+                    description = "View name."
+                    required = true
+                    type = "string"
+                }
+            
+                active:
+                {
+                    description = "Is view active (opened)? At most one tab must be active at the given moment of time."
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            
+                child:
+                {
+                    description = "View child."
+                    required = true
+                    type = "View"
+                }
+            }
+        }
+        
+        Tab:
+        {
+            instanceOf = "object"
+            description = "Tab dashboard view."
+            base = "View"
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = false
+                    type = "string"
+                }
+            
+                children:
+                {
+                    description = "Children views."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "TabWidget"
+                    }
+                }
+                    
+                pointing:
+                {
+                    description = "Is tab pointing?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                
+                toolBar:
+                {
+                    description = "Tab toolbar."
+                    required = false
+                    type = "any"
+                }
+                    
+                behavior:
+                {
+                    description = "View behavior provider."
+                    required = false
+                    type = "any"
+                }
+            }
+        }
+	     
+        ListWidget:
+        {
+            instanceOf = "object"
+            description = "List widget view."
+            base = "View"
+            final = true
+            properties:
+            {
+                name:
+                {
+                    description = "View name."
+                    required = true
+                    type = "string"
+                }
+            
+                child:
+                {
+                    description = "View child."
+                    required = true
+                    type = "View"
+                }
+                    
+                resizable:
+                {
+                    description = "Is view resizable?"
+                    required = false
+                    default = true
+                    type = "boolean"
+                }
+                
+                visible:
+                {
+                    description = "Is view visible?"
+                    required = false
+                    default = true
+                    type = "boolean"
+                }
+                    
+                maximized:
+                {
+                    description = "Is view maximized?"
+                    required = false
+                    default = false
+                    type = "boolean"
+                }
+                    
+                minSize:
+                {
+                    description = "Minimum size of view in pixels."
+                    required = true
+                    default = 100
+                    type = "double"
+                }
+                    
+                maxSize:
+                {
+                    description = "Maximum size of view in pixels in vertical list."
+                    required = false
+                    type = "double"
+                }
+                    
+                size:
+                {
+                    description = "Relative size (percentage) of view in horizontal list, size of view in pixels in vertical list."
+                    required = false
+                    type = "double"
+                }
+            }
+        }
+        
+        List:
+        {
+            instanceOf = "object"
+            description = "List dashboard view."
+            base = "View"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = false
+                    type = "string"
+                }
+            
+                children:
+                {
+                    description = "Children views."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "ListWidget"
+                    }
+                }
+                    
+                horizontal:
+                {
+                    description = "Is view horizontal or vertical?"
+                    required = false
+                    default = true
+                    type = "boolean"
+                }
+                
+                type:
+                {
+                    description = "Type of list in two level list."
+                    required = false
+                    type:
+                    { 
+                        instanceOf = "string"
+                        enumeration = ["parent", "child", "simple", "dynamic"]
+                    }
+                }
+                    
+                height:
+                {
+                    description = "View height (used in single-level or parent-level horizontal view only)."
+                    required = false
+                    type = "long"
+                }
+                
+                maxCount:
+                {
+                    description = "Maximum number of elements in dynamic list."
+                    required = true
+                    default = 10
+                    type = "long"
+                }
+            }
+        }
+        
+        GridWidgetCoords:
+        {
+            instanceOf = "object"
+            description = "Grid widget coordinates."
+            final = true
+            properties:
+            {
+                col:
+                {
+                    description = "Column index."
+                    required = true
+                    type = "long"
+                }
+            
+                row:
+                {
+                    description = "Row index."
+                    required = true
+                    type = "long"
+                }
+                    
+                size_x:
+                {
+                    description = "Width in grid elements."
+                    required = true
+                    type = "long"
+                }
+                    
+                size_y:
+                {
+                    description = "Height in grid elements."
+                    required = true
+                    type = "long"
+                }
+            }
+        }
+        
+        GridWidgetSize:
+        {
+            instanceOf = "object"
+            description = "Grid widget size."
+            final = true
+            properties:
+            {
+                size_x:
+                {
+                    description = "Width in grid elements."
+                    required = true
+                    type = "long"
+                }
+                    
+                size_y:
+                {
+                    description = "Height in grid elements."
+                    required = true
+                    type = "long"
+                }
+            }
+        }
+        
+        GridWidget:
+        {
+            instanceOf = "object"
+            description = "Grid widget view."
+            base = "View"
+            final = true
+            properties:
+            {
+                name:
+                {
+                    description = "View name."
+                    required = true
+                    type = "string"
+                }
+            
+                coords:
+                {
+                    description = "View grid coordinates in grid elements."
+                    required = true
+                    type = "GridWidgetCoords"
+                }
+            
+                expanded:
+                {
+                    description = "Is view expanded?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                 
+                expandedCoords:
+                {
+                    description = "View grid expanded coordinates in grid elements."
+                    required = false
+                    type = "GridWidgetCoords"
+                }
+                 
+                minSize:
+                {
+                    description = "View minimal size."
+                    required = true
+                    default = {size_x: 1, size_y: 1}
+                    type = "GridWidgetSize"
+                }
+                    
+                maxSize:
+                {
+                    description = "View maximal size."
+                    required = true
+                    default = {size_x: 6, size_y: 6}
+                    type = "GridWidgetSize"
+                }
+                    
+                child:
+                {
+                    description = "View child."
+                    required = true
+                    type = "View"
+                }
+            }
+        }
+        
+        Grid:
+        {
+            instanceOf = "object"
+            description = "Grid dashboard view."
+            base = "View"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = false
+                    type = "string"
+                }
+            
+                children:
+                {
+                    description = "Children views."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "GridWidget"
+                    }
+                }
+            }
+        }
+        
+        TableColumn:
+        {
+            instanceOf = "object"
+            description = "Table column."
+            final = true
+            properties:
+            {
+                id:
+                {
+                    description = "Unique identifier of table column."
+                    required = true
+                    type = "string"
+                }
+            
+                name:
+                {
+                    description = "Column name."
+                    required = true
+                    type = "string"
+                }
+                    
+                visible:
+                {
+                    description = "Is column visible?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+                    
+                sortable:
+                {
+                    description = "Is column sortable?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+                    
+                filterable:
+                {
+                    description = "Is column filterable?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+                    
+                resizable:
+                {
+                    description = "Is column resizable?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+                    
+                rerenderOnResize:
+                {
+                    description = "Is table rerendered on column resize?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                numeric:
+                {
+                    description = "Is column numeric?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                defaultSortAsc:
+                {
+                    description = "Is default column order ascending or descending?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+                    
+                formatter:
+                {
+                    description = "Column formatter."
+                    required = false
+                    type = "any"
+                }
+                    
+                parser:
+                {
+                    description = "Column parser used in inline column filter."
+                    required = false
+                    type = "any"
+                }
+                    
+                accessor:
+                {
+                    description = "Accessor to column value from table row."
+                    required = false
+                    type = "any"
+                }
+                    
+                comparator:
+                {
+                    description = "Column value comparator."
+                    required = false
+                    type = "any"
+                }
+                    
+                minWidth:
+                {
+                    description = "Minimum column width in pixels."
+                    required = true
+                    default = 40
+                    type = "long"
+                }
+                    
+                width:
+                {
+                    description = "Column width in pixels."
+                    required = false
+                    type = "long"
+                }
+                    
+                maxWidth:
+                {
+                    description = "Maximum column width in pixels."
+                    required = false
+                    type = "long"
+                }
+            }
+        }
+        
+        TableSortColumn:
+        {
+            instanceOf = "object"
+            description = "Table sort column."
+            final = true
+            properties:
+            {
+                columnId:
+                {
+                    description = "Identifier of table column."
+                    required = true
+                    type = "string"
+                }
+            
+                sortAsc:
+                {
+                    description = "Is column sorted in ascending or descending order?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+            }
+        }
+        
+        Table:
+        {
+            instanceOf = "object"
+            description = "Table dashboard view."
+            base = "View"
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = true
+                    type = "string"
+                }
+            
+                filter:
+                {
+                    description = "Table row filter."
+                    required = false
+                    type = "any"
+                }
+                    
+                treeView:
+                {
+                    description = "Is table a tree view?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                hierarchyColumn:
+                {
+                    description = "Identifier of table column which defines table hierarchy."
+                    required = false
+                    type = "string"
+                }
+                   
+                height:
+                {
+                    description = "Table height in pixels."
+                    required = false
+                    type = "long"
+                }
+                    
+                fullHeight:
+                {
+                    description = "Is table a full height?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                syncScrolling:
+                {
+                    description = "Does table use synchronous or asynchronous scrolling?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                expanded:
+                {
+                    description = "Are hierarchical table rows are always expanded?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                multiSelect:
+                {
+                    description = "Does table support multiple or single selection of rows?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                columns:
+                {
+                    description = "Table columns"
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "TableColumn"
+                    }
+                }
+                    
+                sortColumns:
+                {
+                    description = "Table columns which defines table sort order."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "TableSortColumn"
+                    }
+                }
+                
+                columnsPanel:
+                {
+                    description = "Is panel with column headers visible?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+                
+                filterPanel:
+                {
+                    description = "Is panel with column inline filters visible?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                contextMenu:
+                {
+                    description = "Table context menu provider."
+                    required = false
+                    type = "any"
+                }
+                    
+                toolBar:
+                {
+                    description = "Table toolbar provider."
+                    required = false
+                    type = "any"
+                }
+                    
+                behavior:
+                {
+                    description = "Table behavior provider."
+                    required = false
+                    type = "any"
+                }
+            }
+        }
+        
+        TreeView:
+        {
+            instanceOf = "object"
+            description = "Dashboard treeview."
+            base = "View"
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = true
+                    type = "string"
+                }
+            
+                filter:
+                {
+                    description = "Treeview row filter."
+                    required = false
+                    type = "any"
+                }
+                    
+                height:
+                {
+                    description = "Treeview height in pixels."
+                    required = false
+                    type = "long"
+                }
+                    
+                expanded:
+                {
+                    description = "Are treeview rows are always expanded?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                filterPanel:
+                {
+                    description = "Is panel with column inline filters visible?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                formatter:
+                {
+                    description = "Treeview value formatter."
+                    required = false
+                    type = "any"
+                }
+                    
+                parser:
+                {
+                    description = "Treeview parser used in inline column filter."
+                    required = false
+                    type = "any"
+                }
+                    
+                comparator:
+                {
+                    description = "Treeview value comparator."
+                    required = false
+                    type = "any"
+                }
+                    
+                contextMenu:
+                {
+                    description = "Treeview context menu provider."
+                    required = false
+                    type = "any"
+                }
+                    
+                behavior:
+                {
+                    description = "Treeview behavior provider."
+                    required = false
+                    type = "any"
+                }
+            }
+        }
+        
+        MasterDetailTable:
+        {
+            instanceOf = "object"
+            description = "Master-detail table dashboard view."
+            base = "Table"
+            final = true
+            properties:
+            {
+                masterMinHeight:
+                {
+                    description = "Master part minimum height in pixels."
+                    required = false
+                    type = "long"
+                }
+            
+                masterHeight:
+                {
+                    description = "Master part height in pixels."
+                    required = false
+                    type = "long"
+                }
+                    
+                placeholderHeight:
+                {
+                    description = "Placeholder height in pixels."
+                    required = true
+                    default = 600
+                    type = "long"
+                }
+            }
+        }
+        
+        Card:
+        {
+            instanceOf = "object"
+            description = "Card view."
+            base = "View"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = false
+                    type = "string"
+                }
+            
+                formatter:
+                {
+                    description = "Card formatter."
+                    required = false
+                    type = "any"
+                }
+                 
+                template:
+                {
+                    description = "Card template."
+                    required = false
+                    type = "string"
+                }
+                    
+                height:
+                {
+                    description = "Card height in pixels."
+                    required = false
+                    type = "long"
+                }
+                
+                behavior:
+                {
+                    description = "View behavior provider."
+                    required = false
+                    type = "any"
+                }
+            }
+        }
+            
+        BarChart:
+        {
+            instanceOf = "object"
+            description = "Horizontal bar chart dashboard view."
+            base = "View"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = true
+                    type = "string"
+                }
+            
+                dataOnly:
+                {
+                    description = "Are chart decoration elements (axes, titles, toolbars...) hidden?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            
+                height:
+                {
+                    description = "Chart height in pixels."
+                    required = false
+                    type = "long"
+                }
+                    
+                chartTitle:
+                {
+                    description = "Chart title."
+                    required = false
+                    type = "string"
+                }
+                    
+                axisTitle:
+                {
+                    description = "Value axis title."
+                    required = false
+                    type = "string"
+                }
+                    
+                formatter:
+                {
+                    description = "Value formatter."
+                    required = false
+                    type = "any"
+                }
+                    
+                colorOffset:
+                {
+                    description = "Color offset."
+                    required = true
+                    default = 0
+                    type = "long"
+                }
+            }
+        }
+            
+        ColumnChart:
+        {
+            instanceOf = "object"
+            description = "Vertical column chart dashboard view."
+            base = "View"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = true
+                    type = "string"
+                }
+            
+                dataOnly:
+                {
+                    description = "Are chart decoration elements (axes, titles, toolbars...) hidden?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            
+                height:
+                {
+                    description = "Chart height in pixels."
+                    required = false
+                    type = "long"
+                }
+                    
+                chartTitle:
+                {
+                    description = "Chart title."
+                    required = false
+                    type = "string"
+                }
+                    
+                axisTitle:
+                {
+                    description = "Value axis title."
+                    required = false
+                    type = "string"
+                }
+                    
+                formatter:
+                {
+                    description = "Value formatter."
+                    required = false
+                    type = "any"
+                }
+                    
+                colorOffset:
+                {
+                    description = "Color offset."
+                    required = true
+                    default = 0
+                    type = "long"
+                }
+            }
+        }
+        
+        HistogramChart:
+        {
+            instanceOf = "object"
+            description = "Histogram chart dashboard view."
+            base = "View"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = true
+                    type = "string"
+                }
+            
+                dataOnly:
+                {
+                    description = "Are chart decoration elements (axes, titles, toolbars...) hidden?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            
+                height:
+                {
+                    description = "Chart height in pixels."
+                    required = false
+                    type = "long"
+                }
+                    
+                chartTitle:
+                {
+                    description = "Chart title."
+                    required = false
+                    type = "string"
+                }
+                    
+                formatter:
+                {
+                    description = "Value formatter."
+                    required = false
+                    type = "any"
+                }
+            }
+        }
+        
+        TimeLineChartSeries:
+        {
+            instanceOf = "object"
+            description = "Timeline chart series."
+            final = true
+            properties:
+            {
+                name:
+                {
+                    description = "Series unique name used to get data from chart model."
+                    required = true
+                    type = "string"
+                }
+            
+                title:
+                {
+                    description = "Series title."
+                    required = true
+                    type = "string"
+                }
+            }
+        }
+        
+        TimeLineChartState:
+        {
+            instanceOf = "object"
+            description = "Timeline chart state."
+            final = true
+            properties:
+            {
+                name:
+                {
+                    description = "Series unique state name identifying state in chart model."
+                    required = true
+                    type = "string"
+                }
+            
+                color:
+                {
+                    description = "State color in CSS format (i.e. #0000)."
+                    required = true
+                    type = "string"
+                }
+            }
+        }
+        
+        TimeLineChart:
+        {
+            instanceOf = "object"
+            description = "Timeline chart dashboard view."
+            base = "View"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = true
+                    type = "string"
+                }
+            
+                dataOnly:
+                {
+                    description = "Are chart decoration elements (axes, titles, toolbars...) hidden?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            
+                navigatorVisible:
+                {
+                    description = "Is chart navigator visible?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                contentHeight:
+                {
+                    description = "Is chart resized by its content or its parent container?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+                    
+                initialZoom:
+                {
+                    description = "Initial zoom factor."
+                    required = true
+                    default = 1
+                    type = "long"
+                }
+                    
+                series:
+                {
+                    description = "Chart time series."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "TimeLineChartSeries"
+                    }
+                }
+                    
+                states:
+                {
+                    description = "Chart states."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "TimeLineChartState"
+                    }
+                }
+                
+                seriesHeight:
+                {
+                    description = "Height of single series in pixels."
+                    required = false
+                    type = "long"
+                }
+                
+                detectOmissions:
+                {
+                    description = "Are data ommisions detected by chart?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+            }
+        }
+        
+        TimeSeriesChartType:
+        {
+            instanceOf = "string"
+            description = "Time series chart type."
+            enumeration = ["line", "area", "range"]
+        }
+        
+        TimeSeriesChartSeries:
+        {
+            instanceOf = "object"
+            description = "Time series chart series."
+            properties:
+            {
+                id:
+                {
+                    description = "Series unique identifier."
+                    required = true
+                    type = "string"
+                }
+            
+                name:
+                {
+                    description = "Series unique name used to get data from chart model."
+                    required = true
+                    type = "string"
+                }
+            
+                title:
+                {
+                    description = "Series title."
+                    required = true
+                    type = "string"
+                }
+                 
+                color:
+                {
+                    description = "Series CSS color."
+                    required = false
+                    type = "string"
+                }
+                    
+                cssClass:
+                {
+                    description = "Series CSS class name."
+                    required = false
+                    type = "string"
+                }
+                    
+                customStyle:
+                {
+                    description = "Is series use custom style?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                maxValue:
+                {
+                    description = "Maximum value of chart data."
+                    required = false
+                    type = "double"
+                }
+            }
+        }
+            
+        TimeSeriesChart:
+        {
+            instanceOf = "object"
+            description = "Time series chart dashboard view."
+            base = "View"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = true
+                    type = "string"
+                }
+            
+                height:
+                {
+                    description = "Chart height in pixels."
+                    required = false
+                    type = "long"
+                }
+                    
+                chartTitle:
+                {
+                    description = "Chart title."
+                    required = false
+                    type = "string"
+                }
+                    
+                type:
+                {
+                    description = "Chart type."
+                    required = true
+                    default = "line"
+                    type = "TimeSeriesChartType"
+                }
+            
+                dataOnly:
+                {
+                    description = "Are chart decoration elements (axes, titles, toolbars...) hidden?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            
+                axisTitle:
+                {
+                    description = "Value axis title."
+                    required = false
+                    type = "string"
+                }
+                    
+                navigatorVisible:
+                {
+                    description = "Is chart navigator visible?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                 
+                scaleToData:
+                {
+                    description = "Is chart scaled to data only, excluding annotations?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                    
+                initialZoom:
+                {
+                    description = "Initial zoom factor."
+                    required = true
+                    default = 1
+                    type = "long"
+                }
+                 
+                formatter:
+                {
+                    description = "Value formatter."
+                    required = false
+                    type = "any"
+                }
+                 
+                legendFormatter:
+                {
+                    description = "Legend formatter."
+                    required = false
+                    type = "any"
+                }
+                    
+                annotationFilter:
+                {
+                    description = "Annotation filter."
+                    required = false
+                    type = "any"
+                }
+                    
+                colorOffset:
+                {
+                    description = "Color offset."
+                    required = true
+                    default = 0
+                    type = "long"
+                }
+                    
+                series:
+                {
+                    description = "Chart time series."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "TimeSeriesChartSeries"
+                    }
+                }
+            }
+        }
+        
+        TimeSeriesMultiChartType:
+        {
+            instanceOf = "string"
+            description = "Time series multi chart type."
+            enumeration = ["line", "area"]
+        }
+        
+        TimeSeriesMultiChartSeries:
+        {
+            instanceOf = "object"
+            description = "Time series multi chart series."
+            base = "TimeSeriesChartSeries"
+            final = true
+            properties:
+            {
+                linkId:
+                {
+                    description = "Identifier of series link."
+                    required = false
+                    type = "string"
+                }
+            
+                type:
+                {
+                    description = "Series type."
+                    required = true
+                    default = "line"
+                    type = "TimeSeriesMultiChartType"
+                }
+            
+                formatter:
+                {
+                    description = "Value formatter."
+                    required = false
+                    type = "any"
+                }
+            }
+        }
+        
+        TimeSeriesMultiChart:
+        {
+            instanceOf = "object"
+            description = "Time series multi chart dashboard view."
+            base = "View"
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = true
+                    type = "string"
+                }
+            
+                height:
+                {
+                    description = "Chart height in pixels."
+                    required = false
+                    type = "long"
+                }
+                    
+                dataOnly:
+                {
+                    description = "Are chart decoration elements (axes, titles, toolbars...) hidden?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            
+                colorOffset:
+                {
+                    description = "Color offset."
+                    required = true
+                    default = 0
+                    type = "long"
+                }
+                    
+                series:
+                {
+                    description = "Chart time series."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "TimeSeriesMultiChartSeries"
+                    }
+                }
+                    
+                active:
+                {
+                    description = "Index of active band."
+                    required = false
+                    type = "long"
+                }
+                
+                behavior:
+                {
+                    description = "Chart behavior."
+                    required = false
+                    type = "any"
+                }
+                    
+                annotationFilter:
+                {
+                    description = "Annotation filter."
+                    required = false
+                    type = "any"
+                }
+            }
+        }
+        
+        MasterDetailChart:
+        {
+            instanceOf = "object"
+            description = "Master-detail chart dashboard view."
+            base = "TimeSeriesMultiChart"
+            final = true
+        }
+        
+        NavBarLinkBadge:
+        {
+            instanceOf = "object"
+            description = "NavBar link badge."
+            final = true
+            properties:
+            {
+                color:
+                {
+                    description = "Badge color in CSS format (i.e. #0000)."
+                    required = true
+                    type = "string"
+                }
+            }
+        }
+        
+        NavBarElement:
+        {
+            instanceOf = "object"
+            description = "NavBar element view."
+            base = "View"
+            abstract = true
+            properties:
+            {
+                name:
+                {
+                    description = "View name."
+                    required = true
+                    type = "string"
+                }
+            }
+        }
+        
+        NavBarLink:
+        {
+            instanceOf = "object"
+            description = "NavBar link view."
+            base = "NavBarElement"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = false
+                    type = "string"
+                }
+            
+                filter:
+                {
+                    description = "Model filter."
+                    required = false
+                    type = "any"
+                }
+                    
+                link:
+                {
+                    description = "Link URL."
+                    required = true
+                    type = "string"
+                }
+                    
+                badge:
+                {
+                    description = "Link badge (requires model)."
+                    required = false
+                    type = "NavBarLinkBadge"
+                }
+            }
+        }
+        
+        NavBarPage:
+        {
+            instanceOf = "object"
+            description = "NavBar page view."
+            base = "NavBarElement"
+            final = true
+            properties:
+            {
+                children:
+                {
+                    description = "Children views."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "NavBarElement"
+                    }
+                }
+            }
+        }
+        
+        NavBarTreeView:
+        {
+            instanceOf = "object"
+            description = "NavBar treeview."
+            base = "NavBarElement"
+            final = true
+            properties:
+            {
+                child:
+                {
+                    description = "Tree view."
+                    required = true
+                    type = "TreeView"
+                }
+            }
+        }
+        
+        NavBar:
+        {
+            instanceOf = "object"
+            description = "NavBar view."
+            base = "SchemaObject"
+            final = true
+            properties:
+            {
+                children:
+                {
+                    description = "Children views."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "NavBarElement"
+                    }
+                }
+            }
+        }
+        
+        Notification:
+        {
+            instanceOf = "object"
+            description = "Notification view."
+            base = "SchemaObject"
+            final = true
+            properties:
+            {
+                model:
+                {
+                    description = "View model."
+                    required = true
+                    type = "string"
+                }
+            
+                formatter:
+                {
+                    description = "Notification formatter."
+                    required = false
+                    type = "any"
+                }
+                    
+                type:
+                {
+                    description = "Notification type."
+                    required = true
+                    type = "string"
+                }
+                    
+                multiType:
+                {
+                    description = "Notification multitype used when several notifications are received at once."
+                    required = true
+                    type = "string"
+                }
+            }
+        }
+        
+        ComponentTab:
+        {
+            instanceOf = "object"
+            description = "Component tab view."
+            base = "Tab"
+            final = true
+            properties:
+            {
+                listView:
+                {
+                    description = "Component list view name."
+                    required = false
+                    type = "string"
+                }
+            
+                linkWithListView:
+                {
+                    description = "Is component view linked with list view?"
+                    required = true
+                    default: false
+                    type = "boolean"
+                }
+                    
+                children:
+                {
+                    description = "Children views."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "ComponentTabWidget"
+                    }
+                }
+            }
+        }
+        
+        ComponentTabWidget:
+        {
+            instanceOf = "object"
+            description = "Component tab widget."
+            base = "TabWidget"
+            final = true
+            properties:
+            {
+                periods:
+                {
+                    description = "Names of periods this view is shown in. If not set view is shown in all periods."
+                    required = false
+                    type:
+                    {
+                        instanceOf = "array"
+                        minCount = 1
+                        elementType = "string"
+                    }
+                }
+            }
+        }
+        
+        IncidentsView:
+        {
+            instanceOf = "object"
+            description = "Incidents view."
+            base = "View"
+            final = true
+        }
+	}
+}

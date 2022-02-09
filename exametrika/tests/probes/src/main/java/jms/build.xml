@@ -1,0 +1,31 @@
+<project name="test" basedir="." default="jms1">
+
+    <include file="../base.xml" />
+    <property name="build.dir" value="../.." />
+    <property name="lib.dir" location="../../../../src-extern/tests.probes/lib" />
+    <property name="work.dir" location="work" />
+    
+    <target name="jms1">
+		<java classname="jms.TestJmsClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}/tomcat-embed-core-7.0.35.jar"/>
+		    <classpath location="${lib.dir}/tomcat-embed-logging-juli.jar"/>
+		    <classpath>
+		        <fileset dir="${lib.dir}/MessageQueue5.0/mq/lib">
+                	<include name="**/*.jar"/>
+              	</fileset>
+		    </classpath>
+		    <classpath location="${agent.dir}/lib/common.jar"/>
+		    <arg value = "${work.dir}"/>
+		    <arg value = "${lib.dir}/MessageQueue5.0/mq"/>
+	        <arg value = "${lib.dir}/MessageQueue5.0/var"/>
+		    <jvmarg line="-Djava.library.path=${build.dir}/lib/;${lib.dir}/" />
+		    <!--<jvmarg line="-Dcom.exametrika.profiler.checkStack=true" />-->
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+</project>

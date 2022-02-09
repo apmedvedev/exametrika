@@ -1,0 +1,335 @@
+{
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		ui:
+        {
+            models:
+            {
+                exaServerProperties: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "properties"}},
+                exaServerAggregateTime: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "aggregateTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerAggregateTimeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "aggregateTimeHistogram"}},
+                exaServerAggregateCount: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "aggregateCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerAggregateCountHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "aggregateCountHistogram"}},
+                exaServerClosePeriodTime: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "closePeriodTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerClosePeriodTimeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "closePeriodTimeHistogram"}},
+                exaServerSelectTime: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "selectTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerSelectTimeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "selectTimeHistogram"}},
+                exaServerSelectSize: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "selectSize"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerSelectSizeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "selectSizeHistogram"}},
+                exaServerSendBytes: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "sendBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerSendBytesHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "sendBytesHistogram"}},
+                exaServerReceiveBytes: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "receiveBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerReceiveBytesHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "receiveBytesHistogram"}},
+                exaServerMessagingErrorCount: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "messagingErrorCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerFullText: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "fullText"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerLogErrorCount: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "logErrorCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerLogErrors: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "logErrors"}},
+                
+                exaServerPagePool: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "pagePool"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerPagePoolHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "pagePoolHistogram"}},
+                exaServerFileReadTime: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "fileReadTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerFileReadTimeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "fileReadTimeHistogram"}},
+                exaServerFileReadBytes: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "fileReadBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerFileReadBytesHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "fileReadBytesHistogram"}},
+                exaServerFileWriteTime: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "fileWriteTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerFileWriteTimeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "fileWriteTimeHistogram"}},
+                exaServerFileWriteBytes: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "fileWriteBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerFileWriteBytesHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "fileWriteBytesHistogram"}},
+                exaServerFileCurrentLoaded: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "fileCurrentLoaded"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerFileCurrentLoadedHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "fileCurrentLoadedHistogram"}},
+                exaServerFileLoaded: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "fileLoaded"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerFileUnloaded: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "fileUnloaded"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerTransactionLogFlushTime: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "transactionLogFlushTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerTransactionLogFlushTimeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "transactionLogFlushTimeHistogram"}},
+                exaServerTransactionLogFlushBytes: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "transactionLogFlushBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerTransactionLogFlushBytesHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "transactionLogFlushBytesHistogram"}},
+                exaServerTransactionQueueSize: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "transactionQueueSize"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerTransactionQueueSizeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "transactionQueueSizeHistogram"}},
+                exaServerTransactionTime: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "transactionTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerTransactionTimeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "transactionTimeHistogram"}},
+                exaServerTransactionErrorsCount: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "transactionErrorsCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerTransactionLogErrors: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "transactionLogErrors"}},
+    
+                exaServerPageCacheSize: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "pageCacheSize"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerPageCacheSizeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "pageCacheSizeHistogram"}},
+                exaServerPageCacheQuota: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "pageCacheQuota"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerPageCacheQuotaHistogram: {instanceOf: "StructuredModel",  selector: "exaServer", args: {type: "pageCacheQuotaHistogram"}},
+                exaServerPageLoaded: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "pageLoaded"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerPageUnloaded: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "pageUnloaded"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerPageUnloadedByOverflow: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "pageUnloadedByOverflow"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerPageUnloadedByTimer: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "pageUnloadedByTimer"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                    
+                exaServerNodeCacheSize: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nodeCacheSize"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerNodeCacheSizeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "nodeCacheSizeHistogram"}},
+                exaServerNodeCacheQuota: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nodeCacheQuota"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerNodeCacheQuotaHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "nodeCacheQuotaHistogram"}},
+                exaServerNodeLoaded: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nodeLoaded"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerNodeUnloaded: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nodeUnloaded"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerNodeUnloadedByOverflow: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nodeUnloadedByOverflow"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerNodeUnloadedByTimer: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nodeUnloadedByTimer"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                    
+                exaServerNameCacheSize: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nameCacheSize"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerNameCacheSizeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "nameCacheSizeHistogram"}},
+                exaServerNameCacheQuota: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nameCacheQuota"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerNameCacheQuotaHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "nameCacheQuotaHistogram"}},
+                exaServerNameLoaded: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nameLoaded"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerNameUnloaded: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nameUnloaded"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerNameUnloadedByOverflow: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nameUnloadedByOverflow"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerNameUnloadedByTimer: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "nameUnloadedByTimer"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                    
+                exaServerRegions: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "regions"}},
+                exaServerRegionCount: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "regionCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerRegionsCountHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "regionsCountHistogram"}},
+                exaServerRegionSize: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "regionSize"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerRegionsSizeHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "regionsSizeHistogram"}},
+                exaServerRegionAllocated: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "regionAllocated"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerRegionsAllocatedHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "regionsAllocatedHistogram"}},
+                exaServerRegionFreed: {instanceOf: "TimedModel", selector: "exaServer", args: {type: "regionFreed"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                exaServerRegionsFreedHistogram: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "regionsFreedHistogram"}},
+                exaServerMemoryManager: {instanceOf: "StructuredModel", selector: "exaServer", args: {type: "memoryManager"}},
+            }
+            navBar:
+            {
+                children:
+                [
+                    { 
+                        instanceOf: "NavBarPage", name: "system", title: "System", icon: "systemIcon", children:
+                        [ 
+                            { 
+                                instanceOf: "NavBarLink", name: "serverHost", title: "Server host", icon: "exaHostIcon", link: "#components/exaserver/host/server"
+                            },
+                            { 
+                                instanceOf: "NavBarLink", name: "serverNode", title: "Server node", icon: "exaNodeIcon", link: "#components/exaserver/node/server"
+                            },
+                            { 
+                                instanceOf: "NavBarLink", name: "server", title: "Server", icon: "exaServerIcon", link: "#components/exaserver/server/server"
+                            },
+                            { 
+                                instanceOf: "NavBarLink", name: "allAgents", title: "All agents", icon: "exaAgentIcon", link: "#views/all-exaagents", 
+                                badge: { color: "green"}, model: "allExaAgents", 
+                                filter: {instanceOf: "TableLeafCountFilter"}
+                            },
+                            { 
+                                instanceOf: "NavBarTreeView", name: "exaAgentGroups", title: "Agent groups", icon: "exaAgentIcon", child: 
+                                {
+                                    instanceOf: "TreeView",
+                                    filterPanel: true, 
+                                    formatter: {instanceOf: "ComponentFormatter", navBar: true},
+                                    comparator: {instanceOf:"TitleComparator"},
+                                    model: "allExaAgents"
+                                }                       
+                            },
+                        ]
+                    }
+                ]
+            }
+        
+            views:
+            {
+            }
+        }
+		components:
+		{
+			ExaServer:
+			{
+				instanceOf = "exaServer"
+				selectors:
+			    {
+				    host = {instanceOf = "HostSelector"}
+				    jvmNode = {instanceOf = "JvmNodeSelector"}
+				    exaServer = {instanceOf = "ExaServerSelector"}
+			    }
+				views:
+				{
+				    host: 
+				    {
+                        instanceOf: "ComponentTab",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "overview",
+                                title: "Overview",
+                                icon: "home",
+                                active: true,
+                                child: {instanceOf: "HostOverviewPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "health",
+                                title: "Health",
+                                icon: "heartbeat",
+                                child: {instanceOf: "HostHealthPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "cpu",
+                                title: "CPU",
+                                icon: "cpuIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "HostCpuPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "memory",
+                                title: "Memory",
+                                icon: "memoryIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "HostMemoryPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "disk",
+                                title: "Disk",
+                                icon: "diskIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "HostDiskPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "network",
+                                title: "Network",
+                                icon: "networkIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "HostNetworkPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "process",
+                                title: "Processes",
+                                icon: "processIcon",
+                                periods: ["p2", "p3", "p4", "p5"],
+                                child: {instanceOf: "HostProcessPage"}
+                            }
+                        ]
+				    },
+				    node: 
+                    {
+                        instanceOf: "ComponentTab",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "overview",
+                                title: "Overview",
+                                icon: "home",
+                                active: true,
+                                child: {instanceOf: "JvmNodeOverviewPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "health",
+                                title: "Health",
+                                icon: "heartbeat",
+                                child: {instanceOf: "JvmNodeHealthPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "process",
+                                title: "Process",
+                                icon: "processIcon",
+                                child: {instanceOf: "JvmNodeProcessPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "heap",
+                                title: "Heap",
+                                icon: "poolIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],                            
+                                child: {instanceOf: "JvmNodeHeapPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "gc",
+                                title: "GC",
+                                icon: "gcIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "JvmNodeGcPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "buffer",
+                                title: "Buffers",
+                                icon: "bufferIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "JvmNodeBufferPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "thread",
+                                title: "Threads",
+                                icon: "threadIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "JvmNodeThreadPage"}
+                            }
+                        ]
+                    },
+                    server:
+                    {
+                        instanceOf: "ComponentTab",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "overview",
+                                title: "Overview",
+                                icon: "home",
+                                active: true,
+                                child: {instanceOf: "ExaServerOverviewPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "database",
+                                title: "Database",
+                                icon: "database",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "ExaServerDatabasePage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "files",
+                                title: "Files",
+                                icon: "folder open",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "ExaServerFilePage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "pages",
+                                title: "Pages",
+                                icon: "file text",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "ExaServerPagePage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "nodes",
+                                title: "Nodes",
+                                icon: "share alternate",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "ExaServerNodePage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "names",
+                                title: "Names",
+                                icon: "browser",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "ExaServerNamePage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "regions",
+                                title: "Regions",
+                                icon: "bufferIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "ExaServerRegionPage"}
+                            },
+                        ]
+                    },
+		        }
+			}
+		}
+	}}}}
+}

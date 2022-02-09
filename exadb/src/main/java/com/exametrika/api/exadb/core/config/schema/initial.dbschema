@@ -1,0 +1,61 @@
+{
+	name = "com.exametrika.exadb.initial-1.0"
+	description = "Exa database initial schema."
+	
+	types:
+	{
+		InitialSchema:
+		{
+			instanceOf = "object"
+			description = "Initial database schema."
+			final = true
+			properties:
+			{
+				name:
+				{
+					description = "Database name."
+					required = true
+					default = "exadb"
+					type = "string"
+				}
+			
+				alias:
+				{
+					description = "Database alias."
+					required = true
+					default = "exadb"
+					type = "string"
+				}
+					
+				description:
+				{
+					description = "Database description."
+					required = false
+					type = "string"
+				}
+			
+				locale:
+				{
+					description = "Database locale."
+					required = false
+					type = "string"
+				}
+				
+				timeZone:
+				{
+					description = "Database time zone."
+					required = false
+					type = "string"
+				}
+					
+				modules:
+				{
+					description = "Database modules."
+					required = true
+					default:{}
+					type = "Modules"
+				}
+			}
+		}
+	}
+}

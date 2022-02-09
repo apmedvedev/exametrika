@@ -1,0 +1,26 @@
+<project name="test" basedir="." default="allocation1">
+
+    <include file="../base.xml" />
+    <property name="build.dir" value="../.." />
+    
+    <target name="allocation1">
+		<java classname="allocation.TestAllocationClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+    <target name="allocation2">
+		<java classname="allocation.TestAllocationClass2" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+</project>

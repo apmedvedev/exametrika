@@ -1,0 +1,47 @@
+<project name="test" basedir=".">
+
+    <include file="../base.xml" />
+    <property name="build.dir" value="../.." />
+    <property name="lib.dir" location="../../../../src-extern/tests.probes/lib" />
+    
+    <target name="logback">
+		<java classname="log.TestLogClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}/slf4j-api-1.7.6.jar"/>
+		    <classpath location="${lib.dir}/logback-core-1.1.1.jar"/>
+		    <classpath location="${lib.dir}/logback-classic-1.1.1.jar"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+    <target name="log4j">
+		<java classname="log.TestLogClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}"/>
+		    <classpath location="${lib.dir}/slf4j-api-1.7.6.jar"/>
+		    <classpath location="${lib.dir}/slf4j-log4j12-1.7.6.jar"/>
+	        <classpath location="${lib.dir}/log4j-1.2.17.jar"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+    <target name="jul">
+		<java classname="log.TestLogClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}"/>
+		    <classpath location="${lib.dir}/slf4j-api-1.7.6.jar"/>
+	        <classpath location="${lib.dir}/slf4j-jdk14-1.7.6.jar"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+</project>

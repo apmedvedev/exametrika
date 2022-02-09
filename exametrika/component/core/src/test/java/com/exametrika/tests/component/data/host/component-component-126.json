@@ -1,0 +1,405 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-126/data-126.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-126/data-126.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-126/data-126.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:hosts (component-component-126/data-126.dt)"]
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:host (component-component-126/data-126.dt)"],
+        "healthComponents": 
+        ["scope:host (component-component-126/data-126.dt)", "scope:hosts.group1.group11 (component-component-126/data-126.dt)", "scope:hosts.group1 (component-component-126/data-126.dt)", "scope:hosts.group1.group12 (component-component-126/data-126.dt)", "scope:hosts.group2 (component-component-126/data-126.dt)"],
+        "incidents": 
+        ["health - 1 (848@component-component-126/data-126.dt)", "health - 2 (883@component-component-126/data-126.dt)", "health - 3 (918@component-component-126/data-126.dt)", "health - 4 (953@component-component-126/data-126.dt)", "health - 5 (988@component-component-126/data-126.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-126/data-126.dt",
+                "key": 27,
+                "scope": "hosts.group2",
+                "component": "HostGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "hosts.group2",
+                        "component": "HostGroup",
+                        "flags": "[readonly, unavailable]",
+                        "state": "unavailable",
+                        "components": 
+                        ["scope:host (component-component-126/data-126.dt)"]
+                    },
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "hosts.group2",
+                        "component": "HostGroup",
+                        "flags": "[readonly]",
+                        "state": "normal",
+                        "components": 
+                        ["scope:host (component-component-126/data-126.dt)"]
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 3000,
+                        "component": "hosts.group2",
+                        "type": "HostGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "on",
+                            "message": "Component hosts.group2 has become unhealthy."
+                        }
+                    }
+                ],
+                "incidents": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "key": 5,
+                        "incidentId": 5,
+                        "name": "health",
+                        "refCount": 0
+                    }
+                ]
+            },
+            {
+                "space": "component-component-126/data-126.dt",
+                "key": 25,
+                "scope": "hosts.group1.group12",
+                "component": "HostGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "hosts.group1.group12",
+                        "component": "HostGroup",
+                        "flags": "[readonly, unavailable]",
+                        "state": "unavailable",
+                        "components": 
+                        ["scope:host (component-component-126/data-126.dt)"]
+                    },
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "hosts.group1.group12",
+                        "component": "HostGroup",
+                        "flags": "[readonly]",
+                        "state": "normal",
+                        "components": 
+                        ["scope:host (component-component-126/data-126.dt)"]
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 3000,
+                        "component": "hosts.group1.group12",
+                        "type": "HostGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "on",
+                            "message": "Component hosts.group1.group12 has become unhealthy."
+                        }
+                    }
+                ],
+                "incidents": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "key": 3,
+                        "incidentId": 3,
+                        "name": "health",
+                        "refCount": 0
+                    }
+                ]
+            },
+            {
+                "space": "component-component-126/data-126.dt",
+                "key": 24,
+                "scope": "hosts.group1",
+                "component": "HostGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "hosts.group1",
+                        "component": "HostGroup",
+                        "flags": "[readonly, unavailable]",
+                        "state": "unavailable",
+                        "children": 
+                        ["scope:hosts.group1.group11 (component-component-126/data-126.dt)", "scope:hosts.group1.group12 (component-component-126/data-126.dt)"]
+                    },
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "hosts.group1",
+                        "component": "HostGroup",
+                        "flags": "[readonly]",
+                        "state": "normal",
+                        "children": 
+                        ["scope:hosts.group1.group11 (component-component-126/data-126.dt)", "scope:hosts.group1.group12 (component-component-126/data-126.dt)"]
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 3000,
+                        "component": "hosts.group1",
+                        "type": "HostGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "on",
+                            "message": "Component hosts.group1 has become unhealthy."
+                        }
+                    }
+                ],
+                "incidents": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "key": 4,
+                        "incidentId": 4,
+                        "name": "health",
+                        "refCount": 0
+                    }
+                ]
+            },
+            {
+                "space": "component-component-126/data-126.dt",
+                "key": 22,
+                "scope": "hosts.group1.group11",
+                "component": "HostGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "hosts.group1.group11",
+                        "component": "HostGroup",
+                        "flags": "[readonly, unavailable]",
+                        "properties": 
+                        {
+                            "hierarchyType": "default",
+                            "tags": 
+                            ["group11Tag1", "group11Tag2"]
+                        },
+                        "state": "unavailable",
+                        "components": 
+                        ["scope:host (component-component-126/data-126.dt)"]
+                    },
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "hosts.group1.group11",
+                        "component": "HostGroup",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "hierarchyType": "default",
+                            "tags": 
+                            ["group11Tag1", "group11Tag2"]
+                        },
+                        "state": "normal",
+                        "components": 
+                        ["scope:host (component-component-126/data-126.dt)"]
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 3000,
+                        "component": "hosts.group1.group11",
+                        "type": "HostGroup",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "on",
+                            "message": "Component hosts.group1.group11 has become unhealthy."
+                        }
+                    }
+                ],
+                "incidents": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "key": 2,
+                        "incidentId": 2,
+                        "name": "health",
+                        "refCount": 0
+                    }
+                ],
+                "tags": 
+                ["group11Tag1", "group11Tag2"]
+            },
+            {
+                "space": "component-component-126/data-126.dt",
+                "key": 12,
+                "scope": "host",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "host",
+                        "component": "Host",
+                        "flags": "[readonly, unavailable]",
+                        "properties": 
+                        {
+                            "node": "host",
+                            "name": "Linux",
+                            "version": "3.13.0-53-generic",
+                            "arch": "x86_64",
+                            "machine": "x86_64",
+                            "description": "Ubuntu 14.04",
+                            "patchLevel": "unknown",
+                            "vendor": "Ubuntu",
+                            "vendorVersion": "14.04",
+                            "vendorName": "Linux",
+                            "vendorCode": "trusty",
+                            "dataModel": "64",
+                            "cpuEndian": "little",
+                            "nodeProperties": 
+                            {
+                                "tags": 
+                                ["hostTag1", "hostTag2"],
+                                "groups": 
+                                ["hosts.group1.group11", "hosts.group1.group12", "hosts.group2"],
+                                "groupsMetadata": 
+                                {
+                                    "hosts.group1.group11": 
+                                    {
+                                        "hierarchyType": "default",
+                                        "tags": 
+                                        ["group11Tag1", "group11Tag2"]
+                                    }
+                                }
+                            }
+                        },
+                        "groups": 
+                        ["scope:hosts.group1.group11 (component-component-126/data-126.dt)", "scope:hosts.group1.group12 (component-component-126/data-126.dt)", "scope:hosts.group2 (component-component-126/data-126.dt)"],
+                        "state": "unavailable"
+                    },
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "host",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "properties": 
+                        {
+                            "node": "host",
+                            "name": "Linux",
+                            "version": "3.13.0-53-generic",
+                            "arch": "x86_64",
+                            "machine": "x86_64",
+                            "description": "Ubuntu 14.04",
+                            "patchLevel": "unknown",
+                            "vendor": "Ubuntu",
+                            "vendorVersion": "14.04",
+                            "vendorName": "Linux",
+                            "vendorCode": "trusty",
+                            "dataModel": "64",
+                            "cpuEndian": "little",
+                            "nodeProperties": 
+                            {
+                                "tags": 
+                                ["hostTag1", "hostTag2"],
+                                "groups": 
+                                ["hosts.group1.group11", "hosts.group1.group12", "hosts.group2"],
+                                "groupsMetadata": 
+                                {
+                                    "hosts.group1.group11": 
+                                    {
+                                        "hierarchyType": "default",
+                                        "tags": 
+                                        ["group11Tag1", "group11Tag2"]
+                                    }
+                                }
+                            }
+                        },
+                        "groups": 
+                        ["scope:hosts.group1.group11 (component-component-126/data-126.dt)", "scope:hosts.group1.group12 (component-component-126/data-126.dt)", "scope:hosts.group2 (component-component-126/data-126.dt)"],
+                        "state": "normal"
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 3000,
+                        "component": "host",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "health",
+                            "state": "on",
+                            "message": "Component host has become unhealthy."
+                        }
+                    }
+                ],
+                "incidents": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "key": 1,
+                        "incidentId": 1,
+                        "name": "health",
+                        "refCount": 0
+                    }
+                ],
+                "tags": 
+                ["hostTag1", "hostTag2"]
+            },
+            {
+                "space": "component-component-126/data-126.dt",
+                "key": 1,
+                "scope": "hosts",
+                "component": "HostsGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "hosts",
+                        "component": "HostsGroup",
+                        "flags": "[readonly, predefined]",
+                        "children": 
+                        ["scope:hosts.group1 (component-component-126/data-126.dt)", "scope:hosts.group2 (component-component-126/data-126.dt)"]
+                    },
+                    {
+                        "space": "component-component-126/data-126.dt",
+                        "scope": "hosts",
+                        "component": "HostsGroup",
+                        "flags": "[readonly, predefined]"
+                    }
+                ],
+                "tags": 
+                []
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

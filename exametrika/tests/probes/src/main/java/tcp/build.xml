@@ -1,0 +1,26 @@
+<project name="test" basedir=".">
+
+    <include file="../base.xml" />
+    <property name="build.dir" value="../.." />
+    <property name="lib.dir" location="../../../../src-extern/tests.probes/lib" />
+    
+    <target name="tcp1">
+		<java classname="tcp.TestTcpClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y" />-->
+	    </java>
+    </target>
+    
+    <target name="tcp2">
+		<java classname="tcp.TestTcpClass2" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y" />-->
+	    </java>
+    </target>
+</project>

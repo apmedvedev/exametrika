@@ -1,0 +1,206 @@
+{
+	name = "com.exametrika.transport-1.0"
+	description = "Transport schema."
+	
+	types:
+	{
+		Transport:
+		{
+			instanceOf = "object"
+			description = "Low level channel transport parameters configuration."
+			properties:
+			{
+				debug:
+				{
+					description = "Disables all timeouts and failure detection mechanism for debugging purposes."
+					required = true
+					default = false;
+					type = "boolean"
+				}
+			
+				selectionPeriod:
+				{
+					description = "Period in milliseconds of NIO selector timeout."
+					required = true
+					default = 100
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			
+				cleanupPeriod:
+				{
+					description = "Period in milliseconds between two subsequent protocol cleanups."
+					required = true
+					default = 1000
+					type:
+					{
+						instanceOf = "long"
+						min = 100
+						converter = "periods"
+					}
+				}
+					
+				compressionLevel:
+				{
+					description = "Compression level for compressed messages."
+					required = true
+					default = 5
+					type:
+					{ 
+						instanceOf = "long"
+						min = 0
+						max = 10
+					}
+				}
+					
+				streamingMaxFragmentSize:
+				{
+					description = "Maximal fragment size in bytes of streaming protocol."
+					required = true
+					default = 10000
+					type:
+					{ 
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+					
+				heartbeatTrackPeriod:
+				{
+					description = "Period in milliseconds of tracking server by heartbeat protocol."
+					required = true
+					default = 500
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				heartbeatStartPeriod:
+				{
+					description = "Period in milliseconds since last server response after which heartbeat protocol begins to send heartbeats\
+						to the server."
+					required = true
+					default = 500
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				heartbeatPeriod:
+				{
+					description = "Period in milliseconds between subsequent heartbeat requests."
+					required = true
+					default = 1000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				heartbeatFailureDetectionPeriod:
+				{
+					description = "Period in milliseconds after which server failure is reported."
+					required = true
+					default = 60000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				transportChannelTimeout:
+				{
+					description = "Period in milliseconds after which not fully connected connection is closed with failure."
+					required = true
+					default = 60000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				transportChannelIdlePeriod:
+				{
+					description = "Period in milliseconds after which idle channel is disconnected."
+					required = true
+					default = 600000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				transportMaxUnlockSendQueueCapacity:
+				{
+					description = "Maximum capacity in bytes of send message queue which unlocks sending of messages."
+					required = true
+					default = 7000000
+					type:
+					{ 
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+					
+				transportMinLockSendQueueCapacity:
+				{
+					description = "Minimum capacity in bytes of send message queue which locks sending of messages."
+					required = true
+					default = 10000000
+					type:
+					{ 
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+					
+				transportMaxPacketSize:
+				{
+					description = "Maximum size of packet in bytes."
+					required = true
+					default = 100000000
+					type:
+					{ 
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+					
+				transportMinReconnectPeriod:
+				{
+					description = "Minimum period in milliseconds between subsequent reconnects to server."
+					required = true
+					default = 10000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			}
+		}
+	}
+}

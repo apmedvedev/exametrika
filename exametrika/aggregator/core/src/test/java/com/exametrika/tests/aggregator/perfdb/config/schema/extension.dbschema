@@ -1,0 +1,39 @@
+{
+	name = "test.exadb"
+	
+	types:
+	{
+		TestDomainService:
+		{
+			instanceOf = "object"
+			base = "DomainService"
+		}
+		
+		TestNode:
+		{
+			instanceOf = "object"
+			base = "Node"
+		}
+			
+		TestRecordIndexer:
+		{
+			instanceOf = "object"
+			base = "RecordIndexer"
+		}
+			
+		TestPeriodNode:
+		{
+			instanceOf = "object"
+			base = "Node"
+			properties:
+			{
+				primaryField:
+				{
+					required = true
+					default:{}
+					type = "IndexedLocationField"
+				}
+			}
+		}
+	}
+}

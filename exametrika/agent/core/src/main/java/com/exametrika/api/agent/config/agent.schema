@@ -1,0 +1,121 @@
+{
+	name = "com.exametrika.agent-1.0"
+	description = "Agent schema."
+	
+	types:
+	{
+		AgentChannel:
+		{
+			instanceOf = "object"
+			description = "Agent channel configuration."
+			base = "Transport"
+			final = true
+			validators = ["agentChannel"]
+			properties:
+			{
+				serverHost:
+				{
+					description = "Host name of the server."
+					required = true
+					type = "string"
+				}
+			
+				serverPort:
+				{
+					description = "Port of the server."
+					required = true
+					default = 17171
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 65535
+					}
+				}
+					
+				bindAddress:
+				{
+					description = "Address of the local network interface this channel bound to."
+					required = false
+					type = "string"
+				}
+					
+				secured:
+				{
+					description = "Is channel secured by SSL/TLS?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				keyStorePath:
+				{
+					description = "Path to key store of secured channel."
+					required = false
+					type = "string"
+				}
+					
+				keyStorePassword:
+				{
+					description = "Password for accessing key store of secured channel."
+					required = false
+					type = "string"
+				}
+					
+				maxRate:
+				{
+					description = "Maximal rate in bytes per second of sending or receiving data by the channel."
+					required = false
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+			}
+		}
+	
+		Agent:
+		{
+			instanceOf = "object"
+			description = "Agent configuration."
+			final = true
+			properties:
+			{
+				name:
+				{
+					description = "Name of the agent."
+					required = false
+					type = "string"
+				}
+			
+				component:
+				{
+					description = "Component type of the agent."
+					required = true
+					type = "string"
+				}
+					
+				properties:
+				{
+					description = "Custom agent properties."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "any"
+					}
+				}
+				
+				channel:
+				{
+					description = "Agent channel properties."
+					required = true
+					type = "AgentChannel"
+				}
+			}
+		}
+	}
+}

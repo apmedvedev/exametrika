@@ -1,0 +1,47 @@
+<project name="server-profiler" default="run">
+    <description>
+        Run server profiler script
+    </description>
+
+    <property name="home.dir" location=".." />
+    <property name="lib.dir" location="../lib" />
+        
+    <condition property="agent.lib" value="exaa-x64.dll">
+        <os family="windows" arch="amd64"/>
+    </condition>
+    
+    <condition property="agent.lib" value="exaa.dll">
+        <and>
+        	<os family="windows"/> 
+            <not>
+                <os arch="amd64"/>
+            </not>
+        </and>
+    </condition>
+    
+    <condition property="agent.lib" value="libexaa-x64.so">
+        <os family="unix" arch="amd64"/>
+    </condition>
+    
+    <condition property="agent.lib" value="libexaa.so">
+        <and>
+        	<os family="unix"/> 
+            <not>
+                <os arch="amd64"/>
+            </not>
+        </and>
+    </condition>
+    
+    <target name="run">
+		<java jar="${lib.dir}/boot.core.jar" fork="true" failonerror="true">
+		    <jvmarg line="-Xmx4g" />
+        	<jvmarg line="-Dcom.exametrika.home=${home.dir}" />
+		    <jvmarg line="-agentpath:${lib.dir}/${agent.lib}" />
+		    <jvmarg line="-javaagent:${lib.dir}/boot.core.jar=${home.dir}/conf/exametrika-server-profiler.conf" />
+	        <arg line ="${home.dir}/conf/exametrika-server-profiler.conf" />
+        	<arg line ="server" />
+			<env key="EXA_BOOT_CONFIG" value="${home.dir}/conf/server-profiler.conf"/>
+	    </java>
+    </target>
+        
+</project>

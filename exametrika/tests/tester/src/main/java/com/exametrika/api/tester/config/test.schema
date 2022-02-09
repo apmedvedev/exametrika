@@ -1,0 +1,367 @@
+{
+	name = "com.exametrika.tester.test-1.0"
+	description = "Test schema."
+	
+	types:
+	{
+	    TestResultAnalyzer:
+        {
+            instanceOf = "object"
+            description = "Test result analyzer."
+            abstract = true
+        }
+	
+	    TestReporter:
+        {
+            instanceOf = "object"
+            description = "Test reporter."
+            abstract = true
+        }
+	
+	    TestCaseBuilder:
+        {
+            instanceOf = "object"
+            description = "Test case builder."
+            abstract = true
+        }
+            
+        PlatformTestCaseBuilder:
+        {
+            instanceOf = "object"
+            description = "Platform test case builder."
+            base = "TestCaseBuilder"
+            properties:
+            {
+                format:
+                {
+                    description = "Format of parameterized configuration files."
+                    required = true
+                    default = "json"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["plain", "json"]
+                    }
+                }
+            }
+        }
+            
+        SimpleTestCaseBuilder:
+        {
+            instanceOf = "object"
+            description = "Simple test case builder."
+            base = "TestCaseBuilder"
+        }
+	
+	    TestCase:
+        {
+            instanceOf = "object"
+            description = "Test case."
+            properties:
+            {
+                nodes:
+                {
+                    description = "Test nodes."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "TestNode"
+                    }
+                }
+                startSteps:
+                {
+                    description = "Start steps executed sequentially."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "TestStartStep"
+                    }
+                }
+                duration:
+                {
+                    description = "Test case duration in milliseconds."
+                    required = true
+                    default = 600000
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+                tags:
+                {
+                    description = "Test case tags."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "string"
+                    }
+                }
+            }
+        }
+	
+        TestNode:
+        {
+            instanceOf = "object"
+            description = "Test node."
+            abstract = true
+        }
+        
+    	GenericTestNode:
+        {
+            instanceOf = "object"
+            description = "Test node."
+            base = "TestNode"
+            properties:
+            {
+                agent:
+                {
+                    description = "Test agent where test node must be executed."
+                    required = true
+                    type = "string"
+                }
+            
+                builder:
+                {
+                    description = "Test case builder."
+                    required = true
+                    type = "TestCaseBuilder"
+                }
+
+                properties:
+                {
+                    description = "Test node properties."
+                    required = true
+                    default = {}
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "any"
+                    }
+                }
+            
+                role:
+                {
+                    description = "Test role."
+                    required = false
+                    type = "string"
+                }
+                    
+                executorName:
+                {
+                    description = "Test case executor name."
+                    required = true
+                    type = "string"
+                }
+            
+                executorParameters:
+                {
+                    description = "Test case executor parameters."
+                    required = true
+                    default = {}
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "any"
+                    }
+                }
+                    
+                actions:
+                {
+                    description = "Test node actions."
+                    required = true
+                    default = {}
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "TestAction"
+                    }
+                }
+                
+                analyzers:
+                {
+                    description = "Test result analyzers."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "TestResultAnalyzer"
+                    }
+                }
+            }
+        }
+	
+        TestStartStep:
+        {
+            instanceOf = "object"
+            description = "Single step in test nodes start sequence."
+            final = true
+            properties:
+            {
+                nodes:
+                {
+                    description = "Test nodes started concurrently in this step."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "string"
+                    }
+                }
+                
+                period:
+                {
+                    description = "Period in milliseconds between current step and next step."
+                    required = true
+                    default = 10000
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+            }
+        }
+        
+        TestAction:
+        {
+            instanceOf = "object"
+            description = "Action performed during test."
+            abstract = true
+        }
+        
+        SimpleTestAction:
+        {
+            instanceOf = "object"
+            description = "Action performed during test."
+            base = "TestAction"
+            final = true
+            properties:
+            {
+                startDelay:
+                {
+                    description = "Initial start delay in milliseconds from test case start."
+                    required = true
+                    default = 0
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+            
+                type:
+                {
+                    description = "Action type."
+                    required = true
+                    default = "recurrent"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["oneTime", "recurrent"]
+                    }
+                }
+                
+                period:
+                {
+                    description = "Period in milliseconds between subsequent runs of recurrent action."
+                    required = true
+                    default = 0
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+                
+                random:
+                {
+                    description = "Is action period random?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+                
+                parameters:
+                {
+                    description = "Test action parameters."
+                    required = true
+                    default = {}
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "any"
+                    }
+                }
+            }
+        }
+        
+        Test:
+        {
+            instanceOf = "object"
+            description = "Test."
+            final = true
+            properties:
+            {
+                installationPath:
+                {
+                    description = "Path to test installation directory."
+                    required = true
+                    default = "${com.exametrika.home}/tester"
+                    type = "string"
+                }
+            
+                roles:
+                {
+                    description = "List of used test node roles in installation directory."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "string"
+                    }
+                }
+                    
+                resultsPath:
+                {
+                    description = "Path to test results directory."
+                    required = true
+                    default = "${com.exametrika.workPath}/tester/results"
+                    type = "string"
+                }
+                    
+                testCases:
+                {
+                    description = "Test cases."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "TestCase"
+                    }
+                }
+                    
+                reporters:
+                {
+                    description = "Test reporters."
+                    required = true
+                    default = {}
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "TestReporter"
+                    }
+                }
+            }
+        }
+	}
+}

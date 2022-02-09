@@ -1,0 +1,3456 @@
+{
+    "cyclePeriod ": 
+    {
+        "<root>": 
+        {
+            "id": "3@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "21@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "",
+                "componentType": "stackRoot",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "26@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "metric1⟶metric2⟶exit",
+                "componentType": "stackExit",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.4",
+                    "parent": "stack"
+                }
+            },
+            {
+                "id": "31@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "",
+                "componentType": "stackLog",
+                "measurements": 
+                [
+                    {
+                        "stackLog": "testLog1"
+                    },
+                    {
+                        "stackLog": "testLog2"
+                    },
+                    {
+                        "stackLog": "testLog3"
+                    },
+                    {
+                        "stackLog": "testLog1"
+                    },
+                    {
+                        "stackLog": "testLog2"
+                    },
+                    {
+                        "stackLog": "testLog3"
+                    },
+                    {
+                        "stackLog": "testLog1"
+                    },
+                    {
+                        "stackLog": "testLog2"
+                    },
+                    {
+                        "stackLog": "testLog3"
+                    },
+                    {
+                        "stackLog": "testLog1"
+                    },
+                    {
+                        "stackLog": "testLog2"
+                    },
+                    {
+                        "stackLog": "testLog3"
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.6"
+                }
+            },
+            {
+                "id": "36@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "",
+                "componentType": "stackError",
+                "measurements": 
+                [
+                    {
+                        "stackError": 
+                        {
+                            "exception": 
+                            {
+                                "class": "TestException1",
+                                "stackTrace": 
+                                [
+                                    {
+                                        "class": "class1",
+                                        "method": "method1"
+                                    },
+                                    {
+                                        "class": "class2",
+                                        "method": "method2"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "stackTrace": 
+                            [
+                                {
+                                    "class": "testClass1",
+                                    "method": "testMethod1"
+                                },
+                                {
+                                    "class": "testClass2",
+                                    "method": "testMethod2"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "exception": 
+                            {
+                                "class": "TestException1",
+                                "stackTrace": 
+                                [
+                                    {
+                                        "class": "class1",
+                                        "method": "method1"
+                                    },
+                                    {
+                                        "class": "class2",
+                                        "method": "method2"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "stackTrace": 
+                            [
+                                {
+                                    "class": "testClass1",
+                                    "method": "testMethod1"
+                                },
+                                {
+                                    "class": "testClass2",
+                                    "method": "testMethod2"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "exception": 
+                            {
+                                "class": "TestException1",
+                                "stackTrace": 
+                                [
+                                    {
+                                        "class": "class1",
+                                        "method": "method1"
+                                    },
+                                    {
+                                        "class": "class2",
+                                        "method": "method2"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "stackTrace": 
+                            [
+                                {
+                                    "class": "testClass1",
+                                    "method": "testMethod1"
+                                },
+                                {
+                                    "class": "testClass2",
+                                    "method": "testMethod2"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "exception": 
+                            {
+                                "class": "TestException1",
+                                "stackTrace": 
+                                [
+                                    {
+                                        "class": "class1",
+                                        "method": "method1"
+                                    },
+                                    {
+                                        "class": "class2",
+                                        "method": "method2"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "stackTrace": 
+                            [
+                                {
+                                    "class": "testClass1",
+                                    "method": "testMethod1"
+                                },
+                                {
+                                    "class": "testClass2",
+                                    "method": "testMethod2"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.7"
+                }
+            },
+            {
+                "id": "41@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "stackError.TestException1&.unknown",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "main": "stackRoot"
+                }
+            },
+            {
+                "id": "46@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "stackError&.testClass1.testMethod1",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "main": "stackRoot"
+                }
+            },
+            {
+                "id": "51@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "stackError",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "56@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "stackError.TestException1&",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "61@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "stackError.TestException1&.unknown",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "66@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "stackError",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "71@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "stackError.TestException1&",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "76@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "stackError&",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "81@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "stackError&.testClass1",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "86@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "stackError&.testClass1.testMethod1",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "91@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "stackError&",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "96@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "stackError&.testClass1",
+                "componentType": "stackErrorName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "101@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "",
+                "componentType": "stackRoot",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "106@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "metric1⟶metric2⟶exit",
+                "componentType": "stackExit",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.4",
+                    "parent": "stack"
+                }
+            },
+            {
+                "id": "111@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "",
+                "componentType": "stackLog",
+                "measurements": 
+                [
+                    {
+                        "stackLog": "testLog1"
+                    },
+                    {
+                        "stackLog": "testLog2"
+                    },
+                    {
+                        "stackLog": "testLog3"
+                    },
+                    {
+                        "stackLog": "testLog1"
+                    },
+                    {
+                        "stackLog": "testLog2"
+                    },
+                    {
+                        "stackLog": "testLog3"
+                    },
+                    {
+                        "stackLog": "testLog1"
+                    },
+                    {
+                        "stackLog": "testLog2"
+                    },
+                    {
+                        "stackLog": "testLog3"
+                    },
+                    {
+                        "stackLog": "testLog1"
+                    },
+                    {
+                        "stackLog": "testLog2"
+                    },
+                    {
+                        "stackLog": "testLog3"
+                    }
+                ]
+            },
+            {
+                "id": "116@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "",
+                "componentType": "stackError",
+                "measurements": 
+                [
+                    {
+                        "stackError": 
+                        {
+                            "exception": 
+                            {
+                                "class": "TestException1",
+                                "stackTrace": 
+                                [
+                                    {
+                                        "class": "class1",
+                                        "method": "method1"
+                                    },
+                                    {
+                                        "class": "class2",
+                                        "method": "method2"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "stackTrace": 
+                            [
+                                {
+                                    "class": "testClass1",
+                                    "method": "testMethod1"
+                                },
+                                {
+                                    "class": "testClass2",
+                                    "method": "testMethod2"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "exception": 
+                            {
+                                "class": "TestException1",
+                                "stackTrace": 
+                                [
+                                    {
+                                        "class": "class1",
+                                        "method": "method1"
+                                    },
+                                    {
+                                        "class": "class2",
+                                        "method": "method2"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "stackTrace": 
+                            [
+                                {
+                                    "class": "testClass1",
+                                    "method": "testMethod1"
+                                },
+                                {
+                                    "class": "testClass2",
+                                    "method": "testMethod2"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "exception": 
+                            {
+                                "class": "TestException1",
+                                "stackTrace": 
+                                [
+                                    {
+                                        "class": "class1",
+                                        "method": "method1"
+                                    },
+                                    {
+                                        "class": "class2",
+                                        "method": "method2"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "stackTrace": 
+                            [
+                                {
+                                    "class": "testClass1",
+                                    "method": "testMethod1"
+                                },
+                                {
+                                    "class": "testClass2",
+                                    "method": "testMethod2"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "exception": 
+                            {
+                                "class": "TestException1",
+                                "stackTrace": 
+                                [
+                                    {
+                                        "class": "class1",
+                                        "method": "method1"
+                                    },
+                                    {
+                                        "class": "class2",
+                                        "method": "method2"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "stackError": 
+                        {
+                            "stackTrace": 
+                            [
+                                {
+                                    "class": "testClass1",
+                                    "method": "testMethod1"
+                                },
+                                {
+                                    "class": "testClass2",
+                                    "method": "testMethod2"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "121@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "",
+                "componentType": "stackName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "126@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "",
+                "componentType": "stackName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "131@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "metric1",
+                "componentType": "stackName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 240,
+                                "std.sum": 500,
+                                "std.min": 1,
+                                "std.max": 30,
+                                "std.avg": 2.083
+                            },
+                            "total": 
+                            {
+                                "std.count": 40,
+                                "std.sum": 1000,
+                                "std.min": 10,
+                                "std.max": 20,
+                                "std.avg": 25
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 240,
+                                "std.sum": 500,
+                                "std.min": 1,
+                                "std.max": 30,
+                                "std.avg": 2.083
+                            },
+                            "total": 
+                            {
+                                "std.count": 40,
+                                "std.sum": 1000,
+                                "std.min": 10,
+                                "std.max": 20,
+                                "std.avg": 25
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.5",
+                    "parent": "stack"
+                }
+            },
+            {
+                "id": "136@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "metric1",
+                "componentType": "stackName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 240,
+                                "std.sum": 500,
+                                "std.min": 1,
+                                "std.max": 30,
+                                "std.avg": 2.083
+                            },
+                            "total": 
+                            {
+                                "std.count": 40,
+                                "std.sum": 1000,
+                                "std.min": 10,
+                                "std.max": 20,
+                                "std.avg": 25
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 240,
+                                "std.sum": 500,
+                                "std.min": 1,
+                                "std.max": 30,
+                                "std.avg": 2.083
+                            },
+                            "total": 
+                            {
+                                "std.count": 40,
+                                "std.sum": 1000,
+                                "std.min": 10,
+                                "std.max": 20,
+                                "std.avg": 25
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.5",
+                    "parent": "stack"
+                }
+            },
+            {
+                "id": "141@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "metric2",
+                "componentType": "stackName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 120,
+                                "std.min": 2,
+                                "std.max": 40,
+                                "std.avg": 2
+                            },
+                            "total": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 500,
+                                "std.min": 5,
+                                "std.max": 25,
+                                "std.avg": 8.333
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 120,
+                                "std.min": 2,
+                                "std.max": 40,
+                                "std.avg": 2
+                            },
+                            "total": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 500,
+                                "std.min": 5,
+                                "std.max": 25,
+                                "std.avg": 8.333
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.3",
+                    "parent": "stack"
+                }
+            },
+            {
+                "id": "146@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "metric2",
+                "componentType": "stackName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 120,
+                                "std.min": 2,
+                                "std.max": 40,
+                                "std.avg": 2
+                            },
+                            "total": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 500,
+                                "std.min": 5,
+                                "std.max": 25,
+                                "std.avg": 8.333
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 120,
+                                "std.min": 2,
+                                "std.max": 40,
+                                "std.avg": 2
+                            },
+                            "total": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 500,
+                                "std.min": 5,
+                                "std.max": 25,
+                                "std.avg": 8.333
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.3",
+                    "parent": "stack"
+                }
+            },
+            {
+                "id": "151@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "exit",
+                "componentType": "stackName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.4",
+                    "parent": "stack"
+                }
+            },
+            {
+                "id": "156@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "exit",
+                "componentType": "stackName",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            }
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            }
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.4",
+                    "parent": "stack"
+                }
+            }
+        ]
+    },
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "6@aggregation-aggregation-p3-42/data-42.dt[0]",
+            "scope": "",
+            "metric": "",
+            "nodes": 
+            [
+                {
+                    "id": "166@aggregation-aggregation-p3-42/data-42.dt[0]",
+                    "scope": "scopes",
+                    "metric": "stackError",
+                    "componentType": "stackErrorName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "182@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes",
+                            "metric": "stackError.TestException1&",
+                            "componentType": "stackErrorName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 2,
+                                    "std.sum": 2,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "198@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes",
+                                    "metric": "stackError.TestException1&.unknown",
+                                    "componentType": "stackErrorName",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 2,
+                                            "std.sum": 2,
+                                            "std.min": 1,
+                                            "std.max": 1,
+                                            "std.avg": 1
+                                        }
+                                    },
+                                    "scopeChildren": 
+                                    ["scope:scopes.scope1, location:stackError.TestException1&.unknown (134@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            ["scope:scopes.scope1, location:stackError.TestException1& (230@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "214@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes.scope1",
+                            "metric": "stackError",
+                            "componentType": "stackErrorName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 2,
+                                    "std.sum": 2,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "230@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "stackError.TestException1&",
+                                    "componentType": "stackErrorName",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 2,
+                                            "std.sum": 2,
+                                            "std.min": 1,
+                                            "std.max": 1,
+                                            "std.avg": 1
+                                        }
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "134@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                            "scope": "scopes.scope1",
+                                            "metric": "stackError.TestException1&.unknown",
+                                            "componentType": "stackErrorName",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "std.count": 2,
+                                                    "std.sum": 2,
+                                                    "std.min": 1,
+                                                    "std.max": 1,
+                                                    "std.avg": 1
+                                                }
+                                            },
+                                            "metadata": 
+                                            {
+                                                "main": "stackRoot"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "246@aggregation-aggregation-p3-42/data-42.dt[0]",
+                    "scope": "scopes",
+                    "metric": "stackError&",
+                    "componentType": "stackErrorName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "262@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes",
+                            "metric": "stackError&.testClass1",
+                            "componentType": "stackErrorName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 2,
+                                    "std.sum": 2,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "278@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes",
+                                    "metric": "stackError&.testClass1.testMethod1",
+                                    "componentType": "stackErrorName",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 2,
+                                            "std.sum": 2,
+                                            "std.min": 1,
+                                            "std.max": 1,
+                                            "std.avg": 1
+                                        }
+                                    },
+                                    "scopeChildren": 
+                                    ["scope:scopes.scope1, location:stackError&.testClass1.testMethod1 (150@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            ["scope:scopes.scope1, location:stackError&.testClass1 (310@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "294@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes.scope1",
+                            "metric": "stackError&",
+                            "componentType": "stackErrorName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 2,
+                                    "std.sum": 2,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "310@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "stackError&.testClass1",
+                                    "componentType": "stackErrorName",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 2,
+                                            "std.sum": 2,
+                                            "std.min": 1,
+                                            "std.max": 1,
+                                            "std.avg": 1
+                                        }
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "150@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                            "scope": "scopes.scope1",
+                                            "metric": "stackError&.testClass1.testMethod1",
+                                            "componentType": "stackErrorName",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "std.count": 2,
+                                                    "std.sum": 2,
+                                                    "std.min": 1,
+                                                    "std.max": 1,
+                                                    "std.avg": 1
+                                                }
+                                            },
+                                            "metadata": 
+                                            {
+                                                "main": "stackRoot"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "326@aggregation-aggregation-p3-42/data-42.dt[0]",
+                    "scope": "scopes",
+                    "metric": "",
+                    "componentType": "stackRoot",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    },
+                    "metadata": 
+                    {
+                        "key": "value-1.1"
+                    },
+                    "children": 
+                    [
+                        {
+                            "id": "348@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes",
+                            "metric": "metric1",
+                            "componentType": "stack",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 40,
+                                        "std.sum": 100,
+                                        "std.min": 1,
+                                        "std.max": 30,
+                                        "std.avg": 2.5
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 40,
+                                        "std.sum": 1000,
+                                        "std.min": 10,
+                                        "std.max": 20,
+                                        "std.avg": 25
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.2",
+                                "parent": "stackRoot"
+                            },
+                            "children": 
+                            [
+                                {
+                                    "id": "361@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes",
+                                    "metric": "metric1⟶metric2",
+                                    "componentType": "stack",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "inherent": 
+                                            {
+                                                "std.count": 60,
+                                                "std.sum": 120,
+                                                "std.min": 2,
+                                                "std.max": 40,
+                                                "std.avg": 2
+                                            },
+                                            "total": 
+                                            {
+                                                "std.count": 60,
+                                                "std.sum": 500,
+                                                "std.min": 5,
+                                                "std.max": 25,
+                                                "std.avg": 8.333
+                                            }
+                                        }
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-1.3",
+                                        "parent": "stack"
+                                    },
+                                    "children": 
+                                    [
+                                        {
+                                            "id": "374@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                            "scope": "scopes",
+                                            "metric": "metric1⟶metric2⟶exit",
+                                            "componentType": "stackExit",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "inherent": 
+                                                    {
+                                                        "std.count": 20,
+                                                        "std.sum": 20,
+                                                        "std.min": 1,
+                                                        "std.max": 10,
+                                                        "std.avg": 1
+                                                    },
+                                                    "total": 
+                                                    {
+                                                        "std.count": 20,
+                                                        "std.sum": 20,
+                                                        "std.min": 1,
+                                                        "std.max": 10,
+                                                        "std.avg": 1
+                                                    }
+                                                }
+                                            },
+                                            "metadata": 
+                                            {
+                                                "key": "value-1.4",
+                                                "parent": "stack"
+                                            }
+                                        },
+                                        {
+                                            "id": "387@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                            "scope": "scopes",
+                                            "metric": "metric1⟶metric2⟶metric1",
+                                            "componentType": "stack",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "inherent": 
+                                                    {
+                                                        "std.count": 200,
+                                                        "std.sum": 400,
+                                                        "std.min": 1,
+                                                        "std.max": 20,
+                                                        "std.avg": 2
+                                                    },
+                                                    "total": 
+                                                    {
+                                                        "std.count": 200,
+                                                        "std.sum": 400,
+                                                        "std.min": 1,
+                                                        "std.max": 20,
+                                                        "std.avg": 2
+                                                    }
+                                                }
+                                            },
+                                            "metadata": 
+                                            {
+                                                "key": "value-1.5",
+                                                "parent": "stack"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "logs": 
+                    [
+                        {
+                            "id": "400@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes",
+                            "metric": "",
+                            "componentType": "stackLog",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "stackLog": ""
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.6"
+                            }
+                        },
+                        {
+                            "id": "408@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes",
+                            "metric": "",
+                            "componentType": "stackError",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "stackError": ""
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.7"
+                            }
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "23@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes.scope1",
+                            "metric": "",
+                            "componentType": "stackRoot",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 80,
+                                        "std.min": 1,
+                                        "std.max": 20,
+                                        "std.avg": 4
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 2000,
+                                        "std.min": 20,
+                                        "std.max": 30,
+                                        "std.avg": 100
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.1"
+                            },
+                            "dependents": 
+                            ["aggregation.aggregation.p3.stackName@432[inherent,total]"],
+                            "children": 
+                            [
+                                {
+                                    "id": "45@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "metric1",
+                                    "componentType": "stack",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "inherent": 
+                                            {
+                                                "std.count": 40,
+                                                "std.sum": 100,
+                                                "std.min": 1,
+                                                "std.max": 30,
+                                                "std.avg": 2.5
+                                            },
+                                            "total": 
+                                            {
+                                                "std.count": 40,
+                                                "std.sum": 1000,
+                                                "std.min": 10,
+                                                "std.max": 20,
+                                                "std.avg": 25
+                                            }
+                                        }
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-1.2",
+                                        "parent": "stackRoot"
+                                    },
+                                    "dependents": 
+                                    ["aggregation.aggregation.p3.stackName@464[inherent,total]"],
+                                    "children": 
+                                    [
+                                        {
+                                            "id": "58@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                            "scope": "scopes.scope1",
+                                            "metric": "metric1⟶metric2",
+                                            "componentType": "stack",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "inherent": 
+                                                    {
+                                                        "std.count": 60,
+                                                        "std.sum": 120,
+                                                        "std.min": 2,
+                                                        "std.max": 40,
+                                                        "std.avg": 2
+                                                    },
+                                                    "total": 
+                                                    {
+                                                        "std.count": 60,
+                                                        "std.sum": 500,
+                                                        "std.min": 5,
+                                                        "std.max": 25,
+                                                        "std.avg": 8.333
+                                                    }
+                                                }
+                                            },
+                                            "metadata": 
+                                            {
+                                                "key": "value-1.3",
+                                                "parent": "stack"
+                                            },
+                                            "dependents": 
+                                            ["aggregation.aggregation.p3.stackName@496[inherent,total]"],
+                                            "children": 
+                                            [
+                                                {
+                                                    "id": "71@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                                    "scope": "scopes.scope1",
+                                                    "metric": "metric1⟶metric2⟶exit",
+                                                    "componentType": "stackExit",
+                                                    "measurements": 
+                                                    {
+                                                        "metricType1": 
+                                                        {
+                                                            "inherent": 
+                                                            {
+                                                                "std.count": 20,
+                                                                "std.sum": 20,
+                                                                "std.min": 1,
+                                                                "std.max": 10,
+                                                                "std.avg": 1
+                                                            },
+                                                            "total": 
+                                                            {
+                                                                "std.count": 20,
+                                                                "std.sum": 20,
+                                                                "std.min": 1,
+                                                                "std.max": 10,
+                                                                "std.avg": 1
+                                                            }
+                                                        }
+                                                    },
+                                                    "metadata": 
+                                                    {
+                                                        "key": "value-1.4",
+                                                        "parent": "stack"
+                                                    },
+                                                    "dependents": 
+                                                    ["aggregation.aggregation.p3.stackName@528[inherent,total]"]
+                                                },
+                                                {
+                                                    "id": "84@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                                    "scope": "scopes.scope1",
+                                                    "metric": "metric1⟶metric2⟶metric1",
+                                                    "componentType": "stack",
+                                                    "measurements": 
+                                                    {
+                                                        "metricType1": 
+                                                        {
+                                                            "inherent": 
+                                                            {
+                                                                "std.count": 200,
+                                                                "std.sum": 400,
+                                                                "std.min": 1,
+                                                                "std.max": 20,
+                                                                "std.avg": 2
+                                                            },
+                                                            "total": 
+                                                            {
+                                                                "std.count": 200,
+                                                                "std.sum": 400,
+                                                                "std.min": 1,
+                                                                "std.max": 20,
+                                                                "std.avg": 2
+                                                            }
+                                                        }
+                                                    },
+                                                    "metadata": 
+                                                    {
+                                                        "key": "value-1.5",
+                                                        "parent": "stack"
+                                                    },
+                                                    "dependents": 
+                                                    ["aggregation.aggregation.p3.stackName@464[inherent]"]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "logs": 
+                            [
+                                {
+                                    "id": "97@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "",
+                                    "componentType": "stackLog",
+                                    "measurements": 
+                                    {
+                                        "stackLog": "testLog3"
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-1.6"
+                                    }
+                                },
+                                {
+                                    "id": "105@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "",
+                                    "componentType": "stackError",
+                                    "measurements": 
+                                    {
+                                        "stackError": 
+                                        {
+                                            "stackTrace": 
+                                            [
+                                                {
+                                                    "class": "testClass1",
+                                                    "method": "testMethod1"
+                                                },
+                                                {
+                                                    "class": "testClass2",
+                                                    "method": "testMethod2"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-1.7"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "416@aggregation-aggregation-p3-42/data-42.dt[0]",
+                    "scope": "scopes",
+                    "metric": "",
+                    "componentType": "stackName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    },
+                    "metadata": 
+                    {
+                        "key": "value-1.1"
+                    },
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "432@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes.scope1",
+                            "metric": "",
+                            "componentType": "stackName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 80,
+                                        "std.min": 1,
+                                        "std.max": 20,
+                                        "std.avg": 4
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 2000,
+                                        "std.min": 20,
+                                        "std.max": 30,
+                                        "std.avg": 100
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.1"
+                            },
+                            "dependencies": 
+                            ["aggregation.aggregation.p3.stackRoot@23[inherent,total]"]
+                        }
+                    ]
+                },
+                {
+                    "id": "448@aggregation-aggregation-p3-42/data-42.dt[0]",
+                    "scope": "scopes",
+                    "metric": "metric1",
+                    "componentType": "stackName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 240,
+                                "std.sum": 500,
+                                "std.min": 1,
+                                "std.max": 30,
+                                "std.avg": 2.083
+                            },
+                            "total": 
+                            {
+                                "std.count": 40,
+                                "std.sum": 1000,
+                                "std.min": 10,
+                                "std.max": 20,
+                                "std.avg": 25
+                            }
+                        }
+                    },
+                    "metadata": 
+                    {
+                        "key": "value-1.5",
+                        "parent": "stack"
+                    },
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "464@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes.scope1",
+                            "metric": "metric1",
+                            "componentType": "stackName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 240,
+                                        "std.sum": 500,
+                                        "std.min": 1,
+                                        "std.max": 30,
+                                        "std.avg": 2.083
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 40,
+                                        "std.sum": 1000,
+                                        "std.min": 10,
+                                        "std.max": 20,
+                                        "std.avg": 25
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.5",
+                                "parent": "stack"
+                            },
+                            "dependencies": 
+                            ["aggregation.aggregation.p3.stack@45[inherent,total]", "aggregation.aggregation.p3.stack@84[inherent]"]
+                        }
+                    ]
+                },
+                {
+                    "id": "480@aggregation-aggregation-p3-42/data-42.dt[0]",
+                    "scope": "scopes",
+                    "metric": "metric2",
+                    "componentType": "stackName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 120,
+                                "std.min": 2,
+                                "std.max": 40,
+                                "std.avg": 2
+                            },
+                            "total": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 500,
+                                "std.min": 5,
+                                "std.max": 25,
+                                "std.avg": 8.333
+                            }
+                        }
+                    },
+                    "metadata": 
+                    {
+                        "key": "value-1.3",
+                        "parent": "stack"
+                    },
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "496@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes.scope1",
+                            "metric": "metric2",
+                            "componentType": "stackName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 60,
+                                        "std.sum": 120,
+                                        "std.min": 2,
+                                        "std.max": 40,
+                                        "std.avg": 2
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 60,
+                                        "std.sum": 500,
+                                        "std.min": 5,
+                                        "std.max": 25,
+                                        "std.avg": 8.333
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.3",
+                                "parent": "stack"
+                            },
+                            "dependencies": 
+                            ["aggregation.aggregation.p3.stack@58[inherent,total]"]
+                        }
+                    ]
+                },
+                {
+                    "id": "512@aggregation-aggregation-p3-42/data-42.dt[0]",
+                    "scope": "scopes",
+                    "metric": "exit",
+                    "componentType": "stackName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            }
+                        }
+                    },
+                    "metadata": 
+                    {
+                        "key": "value-1.4",
+                        "parent": "stack"
+                    },
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "528@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes.scope1",
+                            "metric": "exit",
+                            "componentType": "stackName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 20,
+                                        "std.min": 1,
+                                        "std.max": 10,
+                                        "std.avg": 1
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 20,
+                                        "std.min": 1,
+                                        "std.max": 10,
+                                        "std.avg": 1
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.4",
+                                "parent": "stack"
+                            },
+                            "dependencies": 
+                            ["aggregation.aggregation.p3.stackExit@71[inherent,total]"]
+                        }
+                    ]
+                }
+            ]
+        },
+        "<orphaned>": 
+        []
+    },
+    "period 1": 
+    {
+        "<root>": 
+        {
+            "id": "588@aggregation-aggregation-p3-42/data-42.dt[1]",
+            "scope": "",
+            "metric": "",
+            "nodes": 
+            [
+                {
+                    "id": "748@aggregation-aggregation-p3-42/data-42.dt[1]",
+                    "scope": "scopes",
+                    "metric": "stackError",
+                    "componentType": "stackErrorName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "764@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes",
+                            "metric": "stackError.TestException1&",
+                            "componentType": "stackErrorName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 2,
+                                    "std.sum": 2,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "780@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes",
+                                    "metric": "stackError.TestException1&.unknown",
+                                    "componentType": "stackErrorName",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 2,
+                                            "std.sum": 2,
+                                            "std.min": 1,
+                                            "std.max": 1,
+                                            "std.avg": 1
+                                        }
+                                    },
+                                    "scopeChildren": 
+                                    ["scope:scopes.scope1, location:stackError.TestException1&.unknown (716@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            ["scope:scopes.scope1, location:stackError.TestException1& (812@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "796@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes.scope1",
+                            "metric": "stackError",
+                            "componentType": "stackErrorName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 2,
+                                    "std.sum": 2,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "812@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "stackError.TestException1&",
+                                    "componentType": "stackErrorName",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 2,
+                                            "std.sum": 2,
+                                            "std.min": 1,
+                                            "std.max": 1,
+                                            "std.avg": 1
+                                        }
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "716@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                            "scope": "scopes.scope1",
+                                            "metric": "stackError.TestException1&.unknown",
+                                            "componentType": "stackErrorName",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "std.count": 2,
+                                                    "std.sum": 2,
+                                                    "std.min": 1,
+                                                    "std.max": 1,
+                                                    "std.avg": 1
+                                                }
+                                            },
+                                            "metadata": 
+                                            {
+                                                "main": "stackRoot"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "828@aggregation-aggregation-p3-42/data-42.dt[1]",
+                    "scope": "scopes",
+                    "metric": "stackError&",
+                    "componentType": "stackErrorName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 2,
+                            "std.sum": 2,
+                            "std.min": 1,
+                            "std.max": 1,
+                            "std.avg": 1
+                        }
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "844@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes",
+                            "metric": "stackError&.testClass1",
+                            "componentType": "stackErrorName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 2,
+                                    "std.sum": 2,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "860@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes",
+                                    "metric": "stackError&.testClass1.testMethod1",
+                                    "componentType": "stackErrorName",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 2,
+                                            "std.sum": 2,
+                                            "std.min": 1,
+                                            "std.max": 1,
+                                            "std.avg": 1
+                                        }
+                                    },
+                                    "scopeChildren": 
+                                    ["scope:scopes.scope1, location:stackError&.testClass1.testMethod1 (732@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                                }
+                            ],
+                            "scopeChildren": 
+                            ["scope:scopes.scope1, location:stackError&.testClass1 (892@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "876@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes.scope1",
+                            "metric": "stackError&",
+                            "componentType": "stackErrorName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 2,
+                                    "std.sum": 2,
+                                    "std.min": 1,
+                                    "std.max": 1,
+                                    "std.avg": 1
+                                }
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "892@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "stackError&.testClass1",
+                                    "componentType": "stackErrorName",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 2,
+                                            "std.sum": 2,
+                                            "std.min": 1,
+                                            "std.max": 1,
+                                            "std.avg": 1
+                                        }
+                                    },
+                                    "metricChildren": 
+                                    [
+                                        {
+                                            "id": "732@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                            "scope": "scopes.scope1",
+                                            "metric": "stackError&.testClass1.testMethod1",
+                                            "componentType": "stackErrorName",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "std.count": 2,
+                                                    "std.sum": 2,
+                                                    "std.min": 1,
+                                                    "std.max": 1,
+                                                    "std.avg": 1
+                                                }
+                                            },
+                                            "metadata": 
+                                            {
+                                                "main": "stackRoot"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "908@aggregation-aggregation-p3-42/data-42.dt[1]",
+                    "scope": "scopes",
+                    "metric": "",
+                    "componentType": "stackRoot",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    },
+                    "metadata": 
+                    {
+                        "key": "value-1.1"
+                    },
+                    "children": 
+                    [
+                        {
+                            "id": "930@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes",
+                            "metric": "metric1",
+                            "componentType": "stack",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 40,
+                                        "std.sum": 100,
+                                        "std.min": 1,
+                                        "std.max": 30,
+                                        "std.avg": 2.5
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 40,
+                                        "std.sum": 1000,
+                                        "std.min": 10,
+                                        "std.max": 20,
+                                        "std.avg": 25
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.2",
+                                "parent": "stackRoot"
+                            },
+                            "children": 
+                            [
+                                {
+                                    "id": "943@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes",
+                                    "metric": "metric1⟶metric2",
+                                    "componentType": "stack",
+                                    "flags": "[derived]",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "inherent": 
+                                            {
+                                                "std.count": 60,
+                                                "std.sum": 120,
+                                                "std.min": 2,
+                                                "std.max": 40,
+                                                "std.avg": 2
+                                            },
+                                            "total": 
+                                            {
+                                                "std.count": 60,
+                                                "std.sum": 500,
+                                                "std.min": 5,
+                                                "std.max": 25,
+                                                "std.avg": 8.333
+                                            }
+                                        }
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-1.3",
+                                        "parent": "stack"
+                                    },
+                                    "children": 
+                                    [
+                                        {
+                                            "id": "956@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                            "scope": "scopes",
+                                            "metric": "metric1⟶metric2⟶exit",
+                                            "componentType": "stackExit",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "inherent": 
+                                                    {
+                                                        "std.count": 20,
+                                                        "std.sum": 20,
+                                                        "std.min": 1,
+                                                        "std.max": 10,
+                                                        "std.avg": 1
+                                                    },
+                                                    "total": 
+                                                    {
+                                                        "std.count": 20,
+                                                        "std.sum": 20,
+                                                        "std.min": 1,
+                                                        "std.max": 10,
+                                                        "std.avg": 1
+                                                    }
+                                                }
+                                            },
+                                            "metadata": 
+                                            {
+                                                "key": "value-1.4",
+                                                "parent": "stack"
+                                            }
+                                        },
+                                        {
+                                            "id": "969@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                            "scope": "scopes",
+                                            "metric": "metric1⟶metric2⟶metric1",
+                                            "componentType": "stack",
+                                            "flags": "[derived]",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "inherent": 
+                                                    {
+                                                        "std.count": 200,
+                                                        "std.sum": 400,
+                                                        "std.min": 1,
+                                                        "std.max": 20,
+                                                        "std.avg": 2
+                                                    },
+                                                    "total": 
+                                                    {
+                                                        "std.count": 200,
+                                                        "std.sum": 400,
+                                                        "std.min": 1,
+                                                        "std.max": 20,
+                                                        "std.avg": 2
+                                                    }
+                                                }
+                                            },
+                                            "metadata": 
+                                            {
+                                                "key": "value-1.5",
+                                                "parent": "stack"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "logs": 
+                    [
+                        {
+                            "id": "982@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes",
+                            "metric": "",
+                            "componentType": "stackLog",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "stackLog": ""
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.6"
+                            }
+                        },
+                        {
+                            "id": "990@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes",
+                            "metric": "",
+                            "componentType": "stackError",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "stackError": ""
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.7"
+                            }
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "605@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes.scope1",
+                            "metric": "",
+                            "componentType": "stackRoot",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 80,
+                                        "std.min": 1,
+                                        "std.max": 20,
+                                        "std.avg": 4
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 2000,
+                                        "std.min": 20,
+                                        "std.max": 30,
+                                        "std.avg": 100
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.1"
+                            },
+                            "dependents": 
+                            ["aggregation.aggregation.p3.stackName@1024[inherent,total]"],
+                            "children": 
+                            [
+                                {
+                                    "id": "627@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "metric1",
+                                    "componentType": "stack",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "inherent": 
+                                            {
+                                                "std.count": 40,
+                                                "std.sum": 100,
+                                                "std.min": 1,
+                                                "std.max": 30,
+                                                "std.avg": 2.5
+                                            },
+                                            "total": 
+                                            {
+                                                "std.count": 40,
+                                                "std.sum": 1000,
+                                                "std.min": 10,
+                                                "std.max": 20,
+                                                "std.avg": 25
+                                            }
+                                        }
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-1.2",
+                                        "parent": "stackRoot"
+                                    },
+                                    "dependents": 
+                                    ["aggregation.aggregation.p3.stackName@1056[inherent,total]"],
+                                    "children": 
+                                    [
+                                        {
+                                            "id": "640@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                            "scope": "scopes.scope1",
+                                            "metric": "metric1⟶metric2",
+                                            "componentType": "stack",
+                                            "measurements": 
+                                            {
+                                                "metricType1": 
+                                                {
+                                                    "inherent": 
+                                                    {
+                                                        "std.count": 60,
+                                                        "std.sum": 120,
+                                                        "std.min": 2,
+                                                        "std.max": 40,
+                                                        "std.avg": 2
+                                                    },
+                                                    "total": 
+                                                    {
+                                                        "std.count": 60,
+                                                        "std.sum": 500,
+                                                        "std.min": 5,
+                                                        "std.max": 25,
+                                                        "std.avg": 8.333
+                                                    }
+                                                }
+                                            },
+                                            "metadata": 
+                                            {
+                                                "key": "value-1.3",
+                                                "parent": "stack"
+                                            },
+                                            "dependents": 
+                                            ["aggregation.aggregation.p3.stackName@1088[inherent,total]"],
+                                            "children": 
+                                            [
+                                                {
+                                                    "id": "653@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                                    "scope": "scopes.scope1",
+                                                    "metric": "metric1⟶metric2⟶exit",
+                                                    "componentType": "stackExit",
+                                                    "measurements": 
+                                                    {
+                                                        "metricType1": 
+                                                        {
+                                                            "inherent": 
+                                                            {
+                                                                "std.count": 20,
+                                                                "std.sum": 20,
+                                                                "std.min": 1,
+                                                                "std.max": 10,
+                                                                "std.avg": 1
+                                                            },
+                                                            "total": 
+                                                            {
+                                                                "std.count": 20,
+                                                                "std.sum": 20,
+                                                                "std.min": 1,
+                                                                "std.max": 10,
+                                                                "std.avg": 1
+                                                            }
+                                                        }
+                                                    },
+                                                    "metadata": 
+                                                    {
+                                                        "key": "value-1.4",
+                                                        "parent": "stack"
+                                                    },
+                                                    "dependents": 
+                                                    ["aggregation.aggregation.p3.stackName@1120[inherent,total]"]
+                                                },
+                                                {
+                                                    "id": "666@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                                    "scope": "scopes.scope1",
+                                                    "metric": "metric1⟶metric2⟶metric1",
+                                                    "componentType": "stack",
+                                                    "measurements": 
+                                                    {
+                                                        "metricType1": 
+                                                        {
+                                                            "inherent": 
+                                                            {
+                                                                "std.count": 200,
+                                                                "std.sum": 400,
+                                                                "std.min": 1,
+                                                                "std.max": 20,
+                                                                "std.avg": 2
+                                                            },
+                                                            "total": 
+                                                            {
+                                                                "std.count": 200,
+                                                                "std.sum": 400,
+                                                                "std.min": 1,
+                                                                "std.max": 20,
+                                                                "std.avg": 2
+                                                            }
+                                                        }
+                                                    },
+                                                    "metadata": 
+                                                    {
+                                                        "key": "value-1.5",
+                                                        "parent": "stack"
+                                                    },
+                                                    "dependents": 
+                                                    ["aggregation.aggregation.p3.stackName@1056[inherent]"]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "logs": 
+                            [
+                                {
+                                    "id": "679@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "",
+                                    "componentType": "stackLog",
+                                    "measurements": 
+                                    {
+                                        "stackLog": "testLog3"
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-1.6"
+                                    }
+                                },
+                                {
+                                    "id": "687@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "",
+                                    "componentType": "stackError",
+                                    "measurements": 
+                                    {
+                                        "stackError": 
+                                        {
+                                            "stackTrace": 
+                                            [
+                                                {
+                                                    "class": "testClass1",
+                                                    "method": "testMethod1"
+                                                },
+                                                {
+                                                    "class": "testClass2",
+                                                    "method": "testMethod2"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-1.7"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "998@aggregation-aggregation-p3-42/data-42.dt[1]",
+                    "scope": "scopes",
+                    "metric": "",
+                    "componentType": "stackName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 80,
+                                "std.min": 1,
+                                "std.max": 20,
+                                "std.avg": 4
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 2000,
+                                "std.min": 20,
+                                "std.max": 30,
+                                "std.avg": 100
+                            }
+                        }
+                    },
+                    "metadata": 
+                    {
+                        "key": "value-1.1"
+                    },
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "1024@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes.scope1",
+                            "metric": "",
+                            "componentType": "stackName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 80,
+                                        "std.min": 1,
+                                        "std.max": 20,
+                                        "std.avg": 4
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 2000,
+                                        "std.min": 20,
+                                        "std.max": 30,
+                                        "std.avg": 100
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.1"
+                            },
+                            "dependencies": 
+                            ["aggregation.aggregation.p3.stackRoot@605[inherent,total]"]
+                        }
+                    ]
+                },
+                {
+                    "id": "1040@aggregation-aggregation-p3-42/data-42.dt[1]",
+                    "scope": "scopes",
+                    "metric": "metric1",
+                    "componentType": "stackName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 240,
+                                "std.sum": 500,
+                                "std.min": 1,
+                                "std.max": 30,
+                                "std.avg": 2.083
+                            },
+                            "total": 
+                            {
+                                "std.count": 40,
+                                "std.sum": 1000,
+                                "std.min": 10,
+                                "std.max": 20,
+                                "std.avg": 25
+                            }
+                        }
+                    },
+                    "metadata": 
+                    {
+                        "key": "value-1.5",
+                        "parent": "stack"
+                    },
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "1056@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes.scope1",
+                            "metric": "metric1",
+                            "componentType": "stackName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 240,
+                                        "std.sum": 500,
+                                        "std.min": 1,
+                                        "std.max": 30,
+                                        "std.avg": 2.083
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 40,
+                                        "std.sum": 1000,
+                                        "std.min": 10,
+                                        "std.max": 20,
+                                        "std.avg": 25
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.5",
+                                "parent": "stack"
+                            },
+                            "dependencies": 
+                            ["aggregation.aggregation.p3.stack@627[inherent,total]", "aggregation.aggregation.p3.stack@666[inherent]"]
+                        }
+                    ]
+                },
+                {
+                    "id": "1072@aggregation-aggregation-p3-42/data-42.dt[1]",
+                    "scope": "scopes",
+                    "metric": "metric2",
+                    "componentType": "stackName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 120,
+                                "std.min": 2,
+                                "std.max": 40,
+                                "std.avg": 2
+                            },
+                            "total": 
+                            {
+                                "std.count": 60,
+                                "std.sum": 500,
+                                "std.min": 5,
+                                "std.max": 25,
+                                "std.avg": 8.333
+                            }
+                        }
+                    },
+                    "metadata": 
+                    {
+                        "key": "value-1.3",
+                        "parent": "stack"
+                    },
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "1088@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes.scope1",
+                            "metric": "metric2",
+                            "componentType": "stackName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 60,
+                                        "std.sum": 120,
+                                        "std.min": 2,
+                                        "std.max": 40,
+                                        "std.avg": 2
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 60,
+                                        "std.sum": 500,
+                                        "std.min": 5,
+                                        "std.max": 25,
+                                        "std.avg": 8.333
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.3",
+                                "parent": "stack"
+                            },
+                            "dependencies": 
+                            ["aggregation.aggregation.p3.stack@640[inherent,total]"]
+                        }
+                    ]
+                },
+                {
+                    "id": "1104@aggregation-aggregation-p3-42/data-42.dt[1]",
+                    "scope": "scopes",
+                    "metric": "exit",
+                    "componentType": "stackName",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "inherent": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            },
+                            "total": 
+                            {
+                                "std.count": 20,
+                                "std.sum": 20,
+                                "std.min": 1,
+                                "std.max": 10,
+                                "std.avg": 1
+                            }
+                        }
+                    },
+                    "metadata": 
+                    {
+                        "key": "value-1.4",
+                        "parent": "stack"
+                    },
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "1120@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes.scope1",
+                            "metric": "exit",
+                            "componentType": "stackName",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "inherent": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 20,
+                                        "std.min": 1,
+                                        "std.max": 10,
+                                        "std.avg": 1
+                                    },
+                                    "total": 
+                                    {
+                                        "std.count": 20,
+                                        "std.sum": 20,
+                                        "std.min": 1,
+                                        "std.max": 10,
+                                        "std.avg": 1
+                                    }
+                                }
+                            },
+                            "metadata": 
+                            {
+                                "key": "value-1.4",
+                                "parent": "stack"
+                            },
+                            "dependencies": 
+                            ["aggregation.aggregation.p3.stackExit@653[inherent,total]"]
+                        }
+                    ]
+                }
+            ]
+        },
+        "<orphaned>": 
+        []
+    }
+}

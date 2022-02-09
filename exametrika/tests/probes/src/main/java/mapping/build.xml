@@ -1,0 +1,21 @@
+<project name="test" basedir="." default="map1">
+
+    <include file="../base.xml" />
+    <property name="build.dir" value="../.." />
+    <property name="lib.dir" location="../../../../src-extern/tests.probes/lib" />
+    <property name="work.dir" location="work" />
+    
+    <target name="map1">
+		<java classname="mapping.TestHttpClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}/tomcat-embed-core-7.0.35.jar"/>
+		    <classpath location="${lib.dir}/tomcat-embed-logging-juli.jar"/>
+		    <arg value = "${work.dir}"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n" />
+	    </java>
+    </target>
+		    
+</project>

@@ -1,0 +1,669 @@
+{
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		
+		components:
+		{
+			Transaction:
+			{
+				instanceOf = "transaction"
+			    healthComponentType = "HealthComponentType"
+                actions:
+                {
+                    enableMaintenanceMode = {instanceOf = "EnableMaintenanceModeAction"}
+                    disableMaintenanceMode = {instanceOf = "DisableMaintenanceModeAction"}
+                    log = {instanceOf = "LogAction"}
+                    measurementStrategy = {instanceOf = "MeasurementStrategyAction"}
+                }
+                alerts:
+                {
+                    health:
+                    {
+                        instanceOf = "HealthAlert"
+                        description = "The health alert."
+                        channels:
+                        [
+                            {
+                                instanceOf = "MailAlertChannel"
+                                name = "mail"
+                                onTemplate = "Component <%component.title%> has become failed, component state: <%state%>."
+                                offTemplate = "<%# if (resolved){ %>Health of component <%component.title%> has been restored.\
+                                    <%# } else { %>Incident <%name%> of component <%component.title%> has been deleted.<%# } %>"
+                                statusTemplate = "Component <%component.title%> remains failed, component state: <%state%>."
+                                schedule:
+                                {
+                                    instanceOf = "StandardSchedule"
+                                    expression = "time(08:00..20:00)"
+                                    timeFormat = "HH:mm"
+                                }
+                                    
+                                period:
+                                {
+                                    instanceOf = "StandardSchedulePeriod"
+                                    type = "day"
+                                    kind = "absolute"
+                                    amount = 1
+                                }
+                                
+                                recipients:
+                                [
+                                    {
+                                        type = "role"
+                                        name = "operator"
+                                    }
+                                ]
+                                    
+                                onSubject = "Health incident notification."
+                                offSubject = "Health incident off notification."
+                                statusSubject = "Health incident status notification."
+                                formatted = false
+                            }
+                        ]
+                    }
+                }
+                groupDiscoveryStrategies:
+                [
+                     {instanceOf = "TransactionGroupDiscoveryStrategy" component = "TransactionGroup"}
+                ]
+				aggregationSchema:
+				{
+				    p3:
+                    {
+                        app.exceptions:
+                        {
+                            instanceOf = "StackLogComponentType"
+                            metricTypes:
+                            {
+                                app.exceptions.count:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            }
+                        }
+                         
+                        app.exceptions.log:
+                        {
+                            instanceOf = "StackErrorLogComponentType"
+                        }
+                            
+                        app.log:
+                        {
+                            instanceOf = "StackLogComponentType"
+                            metricTypes:
+                            {
+                                app.log.count:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            
+                                app.log.errorCount:
+                                {
+                                    @reference = "[app.log.count]"
+                                }
+                            }
+                        }
+                            
+                        app.log.log:
+                        {
+                            instanceOf = "StackLogComponentType"
+                            hasLog = true
+                            metricTypes:
+                            {
+                                log:
+                                {
+                                    instanceOf = "Log"
+                                }
+                            }
+                        }
+                            
+                        app.log.errors:
+                        {
+                            instanceOf = "StackErrorLogComponentType"
+                        }
+                           
+                        app.stack.root:
+                        {
+                            instanceOf = "StackComponentType"
+                            metricTypes:
+                            {
+                                app.cpu.time:
+                                {
+                                    instanceOf = "StackCounter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                            }
+                        }
+                            
+                        app.stack:
+                        {
+                            instanceOf = "StackComponentType"
+                            metricTypes:
+                            {
+                                app.cpu.time:
+                                {
+                                    instanceOf = "StackCounter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%cpu" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                            }
+                        }
+                            
+                        app.jdbcConnection:
+                        {
+                            instanceOf = "ExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.db.connect.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                            }
+                        }
+                        app.jdbc:
+                        {
+                            instanceOf = "ExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.db.query.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.count"}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                            }
+                        }
+                            
+                        app.threadExit:
+                        {
+                            instanceOf = "IntermediateExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                            }
+                        }
+                            
+                        app.jmsProducer:
+                        {
+                            instanceOf = "IntermediateExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.jms.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                            }
+                        }
+                            
+                        primary.app.entryPoint:
+                        {
+                            instanceOf = "PrimaryEntryPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                stackIds:
+                                {
+                                    instanceOf = "StackIdsMetric"
+                                }
+                                app.entryPoint.stalls.count:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                        {instanceOf = "PercentageRepresentation" name = "%stalls" navigationType = "current" currentField = "std.sum" baseField = "app.request.time.std.count"}
+                                    ]}}
+                                }
+                                app.transaction.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.count"}
+                                    ]}}
+                                }
+                                app.request.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceFields"}
+                                        {instanceOf = "ForecastFields" name = "forecast(rate)" baseField = "rate"}
+                                        {instanceOf = "ForecastFields" name = "forecast(median)" baseField = "histo.percentile(50).value"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.count"}
+                                        {instanceOf = "ForecastRepresentation" name = "forecast(rate)"}
+                                        {instanceOf = "ForecastRepresentation" name = "forecast(median)"}
+                                    ]}}
+                                }
+                                app.receive.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                app.send.bytes:
+                                {
+                                    @reference = "[app.receive.bytes]"
+                                }
+                                app.entryPoint.errors.count:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "ForecastFields" name = "forecast(rate)" baseField = "rate"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                        {instanceOf = "ForecastRepresentation" name = "forecast(rate)"}
+                                        {instanceOf = "PercentageRepresentation" name = "%errors" navigationType = "current" currentField = "std.sum" baseField = "app.request.time.std.count"}
+                                    ]}}
+                                }
+                                app.latency.workload: 
+                                {
+                                    instanceOf = "AppWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "AppWorkloadRepresentation" type = "app.latency.workload"
+                                        warningThreshold = 2000000000 errorThreshold = 5000000000
+                                    }}
+                                }
+                                app.throughput.workload: 
+                                {
+                                    instanceOf = "AppWorkloadMetric"
+                                    representations: { default: {
+                                        instanceOf = "AppWorkloadRepresentation" type = "app.throughput.workload"
+                                        warningThreshold = 0 errorThreshold = 0
+                                    }}
+                                }
+                                app.request.errors: 
+                                {
+                                    instanceOf = "AppErrorsMetric"
+                                    representations: { default: {
+                                        instanceOf = "AppErrorsRepresentation" type = "app.request.errors"
+                                        warningThreshold = 1 errorThreshold = 10
+                                    }}
+                                }
+                                app.stalls.errors: 
+                                {
+                                    instanceOf = "AppErrorsMetric"
+                                    representations: { default: {
+                                        instanceOf = "AppErrorsRepresentation" type = "app.stalls.errors"
+                                        warningThreshold = 0.003 errorThreshold = 0.01
+                                    }}
+                                }
+                                anomalyIndex = { instanceOf = "AnomalyIndex" minAnomalyMetricCount = 1 }
+                                workloadIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "WorkloadIndexRepresentation"
+                                    }}
+                                }
+                                errorsIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "ErrorsIndexRepresentation"
+                                    }}
+                                }
+                                healthIndex: 
+                                {
+                                    instanceOf = "ComputedMetric"
+                                    representations: { default: {
+                                        instanceOf = "HealthIndexRepresentation"
+                                    }}
+                                }
+                            }
+                            componentDiscoveryStrategies = [{ instanceOf = "TransactionDiscoveryStrategy" component = "Transaction" }]
+                            componentDeletionStrategy = { instanceOf = "TransactionDeletionStrategy"}
+                        }
+                            
+                        secondary.app.entryPoint:
+                        {
+                            instanceOf = "SecondaryEntryPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[primary.app.entryPoint][metricTypes]"
+                                app.request.errors = "@remove"
+                                app.stalls.errors = "@remove"
+                                app.latency.workload = "@remove"
+                                app.throughput.workload = "@remove"
+                                workloadIndex = "@remove"
+                                anomalyIndex = "@remove"
+                                errorsIndex = "@remove"
+                                healthIndex = "@remove"
+                            }
+                        }
+                            
+                        app.entryPoint.stalls:
+                        {
+                            instanceOf = "StackErrorLogComponentType"
+                        }
+                            
+                        app.entryPoint.errors:
+                        {
+                            instanceOf = "StackErrorLogComponentType"
+                        }
+
+                        app.httpConnection:
+                        {
+                            instanceOf = "IntermediateExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                                app.http.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.count"}
+                                        {instanceOf = "PercentageRepresentation" name = "%time" navigationType = "transactionSegmentRoot" currentField = "std.sum" baseField = "app.cpu.time.total.std.sum"}
+                                    ]}}
+                                }
+                                app.http.receive.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "StatisticsFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                        {instanceOf = "InstanceFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "StatisticsRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                        {instanceOf = "InstanceRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate(bytes)" baseField = "std.sum"}
+                                        {instanceOf = "RateRepresentation" name = "rate(ops)" baseField = "std.count"}
+                                    ]}}
+                                }
+                                app.http.send.bytes:
+                                {
+                                    @reference = "[app.http.receive.bytes]"
+                                }
+                                app.httpConnection.errors.count:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                    ]}}
+                                }
+                            }
+                        }
+                        app.httpConnection.errors:
+                        {
+                            instanceOf = "StackErrorLogComponentType"
+                        }
+                        
+                        app.methodExit:
+                        {
+                            instanceOf = "ExitPointComponentType"
+                            metricTypes:
+                            {
+                                @reference = "../[app.stack][metricTypes]"
+                            }
+                        }
+                    }
+
+                    p4:
+                    {
+                        @reference = "p3"
+                            
+                        primary.app.entryPoint:
+                        {
+                            componentBindingStrategies = [{ instanceOf = "SimpleComponentBindingStrategy" }]
+                            componentDiscoveryStrategies = "@remove"
+                            componentDeletionStrategy = "@remove"
+                        }
+                    }
+					
+                    p5:
+                    {
+                        app.stack.root:
+                        {
+                            @reference = "../[p3][app.stack.root]"
+                            filter:
+                            {
+                                instanceOf = "SimpleMeasurementFilter"
+                                scopeFilter:
+                                {
+                                    exclude = ["node*"]
+                                }
+                            }
+                        }
+                        
+                        app.stack:
+                        {
+                            @reference = "../[p3][app.stack]"
+                            filter:
+                            {
+                                instanceOf = "SimpleMeasurementFilter"
+                                scopeFilter:
+                                {
+                                    exclude = ["node*"]
+                                }
+                            }
+                        }
+                        
+                        app.methodExit:
+                        {
+                            @reference = "../[p3][app.methodExit]"
+                            filter:
+                            {
+                                instanceOf = "SimpleMeasurementFilter"
+                                scopeFilter:
+                                {
+                                    exclude = ["node*"]
+                                }
+                            }
+                        }
+                    }
+                        
+                    p6:
+                    {
+                        @reference = "p5"
+                    }
+                        
+                    p7:
+                    {
+                        @reference = "p6"
+                    }
+                        
+                    p8:
+                    {
+                        @reference = "p6"
+                    }
+				}
+			}
+		
+            TransactionGroup:
+            {
+                instanceOf = "group"
+                componentTypes = ["Transaction"]
+                groupTypes = ["TransactionGroup"]
+                aggregationGroup = true
+                actions:
+                {
+                    enableMaintenanceMode = {instanceOf = "EnableMaintenanceModeAction"}
+                    disableMaintenanceMode = {instanceOf = "DisableMaintenanceModeAction"}
+                    log = {instanceOf = "LogAction"}
+                }
+                healthComponentType = "HealthComponentType"
+                availabilityCondition:
+                {
+                    instanceOf = "ExpressionGroupAvailabilityCondition"
+                    expression = "available > 0"
+                }
+                alerts:
+                {
+                    @reference = "../Transaction.alerts"
+                }
+                groupDiscoveryStrategies:
+                [
+                    {
+                        instanceOf = "TransactionGroupDiscoveryStrategy"
+                        component = "TransactionGroup"
+                    }
+                ]
+            }
+            
+            TransactionsGroup:
+            {
+                instanceOf = "group"
+                componentTypes = ["Transaction"]
+                groupTypes = ["TransactionGroup"]
+                aggregationGroup = false
+            }
+		}
+		
+		groups:
+        {
+            transactions:
+            {
+                groupType = "TransactionsGroup"
+            }
+        }
+	}}}}
+}

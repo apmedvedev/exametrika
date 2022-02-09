@@ -1,0 +1,26 @@
+{
+    "metrics": 
+    {
+        "name": 
+        {
+            "rate(std.sum)": 100,
+            "myRate": 
+            [0.1, 0.3, 0.1],
+            "period(std.avg).delta": -50,
+            "period(std.avg).delta%": -33.333,
+            "myPeriod.delta": 
+            [-1, -3, -1],
+            "myPeriod.delta%": 
+            [-50, -50, -50],
+            "%test(std.count)": 50,
+            "%test(rate(std.sum))": 33.333,
+            "%test(myRate)": 
+            [50, 50, 50],
+            "myPercentage": 50
+        }
+    },
+    "metadata": 
+    {
+        "key": "value"
+    }
+}

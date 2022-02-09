@@ -1,0 +1,136 @@
+{
+	name = "com.exametrika.metrics.exa.server-1.0"
+	description = "Exa server metrics schema."
+
+	types:
+	{
+	    ExaAgentDiscoveryStrategy:
+        {
+            instanceOf = "object"
+            description = "ExaAgent component discovery strategy."
+            final = true
+            base = "BaseComponentDiscoveryStrategy"
+        }
+        
+        ExaServerDiscoveryStrategy:
+        {
+            instanceOf = "object"
+            description = "ExaServer component discovery strategy."
+            final = true
+            base = "BaseComponentDiscoveryStrategy"
+        }
+            
+	    exaServer:
+        {
+            instanceOf = "object"
+            description = "ExaServer component."
+            base = "healthComponent"
+        }
+	
+	    exaAgent:
+        {
+            instanceOf = "object"
+            description = "ExaAgent component."
+            base = "healthComponent"
+        }
+	
+        ExaServerSelector:
+        {
+            instanceOf = "object"
+            description = "ExaServer selector."
+            base = "Selector"
+            final = true
+        }
+			
+		ExaServerOverviewPage:
+        {
+            instanceOf = "object"
+            description = "ExaServer overview page."
+            base = "View"
+            final = true
+        }
+            
+        ExaServerDatabasePage:
+        {
+            instanceOf = "object"
+            description = "ExaServer database page."
+            base = "View"
+            final = true
+        }
+        ExaServerFilePage:
+        {
+            instanceOf = "object"
+            description = "ExaServer files page."
+            base = "View"
+            final = true
+        }
+        ExaServerPagePage:
+        {
+            instanceOf = "object"
+            description = "ExaServer pages page."
+            base = "View"
+            final = true
+        }
+        ExaServerNodePage:
+        {
+            instanceOf = "object"
+            description = "ExaServer nodes page."
+            base = "View"
+            final = true
+        }
+        ExaServerNamePage:
+        {
+            instanceOf = "object"
+            description = "ExaServer names page."
+            base = "View"
+            final = true
+        }
+        ExaServerRegionPage:
+        {
+            instanceOf = "object"
+            description = "ExaServer regions page."
+            base = "View"
+            final = true
+        }
+         
+        AllExaAgentsSelector:
+        {
+            instanceOf = "object"
+            description = "All ExaAgents selector."
+            base = "Selector"
+            final = true
+        }
+            
+        ExaAgentSelector:
+        {
+            instanceOf = "object"
+            description = "ExaAgent selector."
+            base = "Selector"
+            final = true
+        }
+            
+        AllExaAgentsView:
+        {
+            instanceOf = "object"
+            description = "All ExaAgents view."
+            base = "View"
+            final = true
+        }
+            
+        ExaAgentOverviewPage:
+        {
+            instanceOf = "object"
+            description = "ExaAgent overview page."
+            base = "View"
+            final = true
+        }
+            
+        ExaAgentInstrumentPage:
+        {
+            instanceOf = "object"
+            description = "ExaAgent instrument page."
+            base = "View"
+            final = true
+        }
+	}
+}

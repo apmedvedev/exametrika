@@ -1,0 +1,1028 @@
+{
+	name = "com.exametrika.metrics.jvm.server-1.0"
+	description = "Server jvm metrics schema."
+	
+	types:
+	{
+		JvmWorkloadRepresentation:
+        {
+            instanceOf = "object"
+            description = "Jvm workload metric representation."
+            base = "MetricRepresentation"
+            properties:
+            {
+                type:
+                {
+                    description = "Type of representation."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["jvm.cpu.workload", "jvm.memory.workload"]
+                    }
+                }
+            
+                warningThreshold:
+                {
+                    description = "Warning percentage threshold."
+                    required = true
+                    default = 90
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                        max = 100
+                    }
+                }
+                
+                errorThreshold:
+                {
+                    description = "Error percentage threshold."
+                    required = true
+                    default = 95
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                        max = 100
+                    }
+                }
+            }
+        }
+		
+        JvmWorkloadMetric:
+        {
+            instanceOf = "object"
+            description = "Jvm workload metric type."
+            base = "MetricType"
+            final = true
+            properties:
+            {
+                baseRepresentation:
+                {
+                    description = "Name of base representation to compute metrics from."
+                    required = true
+                    default = "default"
+                    type = "string"
+                }
+            
+                representations:
+                {
+                    description = "Metric type representations."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "JvmWorkloadRepresentation"
+                    }
+                }
+            }
+        }
+        
+        JvmErrorsRepresentation:
+        {
+            instanceOf = "object"
+            description = "Jvm errors metric representation."
+            base = "MetricRepresentation"
+            properties:
+            {
+                type:
+                {
+                    description = "Type of representation."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["jvm.gc.errors", "jvm.swap.errors"]
+                    }
+                }
+            
+                warningThreshold:
+                {
+                    description = "Warning level threshold."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                    }
+                }
+                
+                errorThreshold:
+                {
+                    description = "Error level threshold."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                    }
+                }
+            }
+        }
+        
+        JvmErrorsMetric:
+        {
+            instanceOf = "object"
+            description = "Jvm errors metric type."
+            base = "MetricType"
+            final = true
+            properties:
+            {
+                baseRepresentation:
+                {
+                    description = "Name of base representation to compute metrics from."
+                    required = true
+                    default = "default"
+                    type = "string"
+                }
+            
+                representations:
+                {
+                    description = "Metric type representations."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "JvmErrorsRepresentation"
+                    }
+                }
+            }
+        }
+        
+        AppWorkloadRepresentation:
+        {
+            instanceOf = "object"
+            description = "Application workload metric representation."
+            base = "MetricRepresentation"
+            properties:
+            {
+                type:
+                {
+                    description = "Type of representation."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["app.latency.workload", "app.throughput.workload"]
+                    }
+                }
+            
+                warningThreshold:
+                {
+                    description = "Warning threshold."
+                    required = true
+                    type = "double"
+                }
+                
+                errorThreshold:
+                {
+                    description = "Error threshold."
+                    required = true
+                    type = "double"
+                }
+            }
+        }
+        
+        AppWorkloadMetric:
+        {
+            instanceOf = "object"
+            description = "Application workload metric type."
+            base = "MetricType"
+            final = true
+            properties:
+            {
+                baseRepresentation:
+                {
+                    description = "Name of base representation to compute metrics from."
+                    required = true
+                    default = "default"
+                    type = "string"
+                }
+            
+                representations:
+                {
+                    description = "Metric type representations."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "AppWorkloadRepresentation"
+                    }
+                }
+            }
+        }
+        
+        AppErrorsRepresentation:
+        {
+            instanceOf = "object"
+            description = "Application errors metric representation."
+            base = "MetricRepresentation"
+            properties:
+            {
+                type:
+                {
+                    description = "Type of representation."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["app.request.errors", "app.stalls.errors"]
+                    }
+                }
+            
+                warningThreshold:
+                {
+                    description = "Warning level threshold."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                    }
+                }
+                
+                errorThreshold:
+                {
+                    description = "Error level threshold."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                    }
+                }
+            }
+        }
+        
+        AppErrorsMetric:
+        {
+            instanceOf = "object"
+            description = "Application errors metric type."
+            base = "MetricType"
+            final = true
+            properties:
+            {
+                baseRepresentation:
+                {
+                    description = "Name of base representation to compute metrics from."
+                    required = true
+                    default = "default"
+                    type = "string"
+                }
+            
+                representations:
+                {
+                    description = "Metric type representations."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "AppErrorsRepresentation"
+                    }
+                }
+            }
+        }
+        
+        AllJvmNodesSelector:
+        {
+            instanceOf = "object"
+            description = "All jvm nodes selector."
+            base = "Selector"
+            final = true
+        }
+        
+        JvmNodeSelector:
+        {
+            instanceOf = "object"
+            description = "Jvm node selector."
+            base = "Selector"
+            final = true
+        }
+        
+        AllJvmNodesView:
+        {
+            instanceOf = "object"
+            description = "All jvm nodes view."
+            base = "View"
+            final = true
+        }
+            
+        AllFailedJvmNodesView:
+        {
+            instanceOf = "object"
+            description = "All jvm failed nodes view."
+            base = "View"
+            final = true
+        }
+            
+        AllMaintenanceJvmNodesView:
+        {
+            instanceOf = "object"
+            description = "All jvm maintenance nodes view."
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeOverviewPage:
+        {
+            instanceOf = "object"
+            description = "Jvm node overview page."
+            base = "View"
+            final = true
+        }
+        
+        JvmNodeHealthPage:
+        {
+            instanceOf = "object"
+            description = "Jvm node health page."
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeProcessPage:
+        {
+            instanceOf = "object"
+            description = "Jvm node process page."
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeHeapPage:
+        {
+            instanceOf = "object"
+            description = "Jvm node heap page."
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeGcPage:
+        {
+            instanceOf = "object"
+            description = "Jvm node gc page."
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeBufferPage:
+        {
+            instanceOf = "object"
+            description = "Jvm node buffer page."
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeThreadPage:
+        {
+            instanceOf = "object"
+            description = "Jvm node thread page."
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeKpiPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeHealthIndicatorsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeAvailabilityTimesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        JvmNodeCpuListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        JvmNodeMemoryListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        JvmNodeProcessThreadsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeProcessPageFaultsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeProcessFileDescriptorsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeHeapListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeNonHeapListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeGcTimeListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeGcBytesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeGcStopsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeCodeClassesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeCodeCompilationTimeListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeBuffersListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeBuffersCountListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeThreadCpuListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeThreadCountListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeThreadAllocatedListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+                
+        AllTransactionsSelector:
+        {
+            instanceOf = "object"
+            description = "All transactions selector."
+            base = "Selector"
+            final = true
+        }
+        
+        TransactionSelector:
+        {
+            instanceOf = "object"
+            description = "Transaction selector."
+            base = "Selector"
+            final = true
+        }
+            
+        AllHotspotsSelector:
+        {
+            instanceOf = "object"
+            description = "All hotspots selector."
+            base = "Selector"
+            final = true
+        }
+        
+        AllTransactionsView:
+        {
+            instanceOf = "object"
+            description = "All transactions view."
+            base = "View"
+            final = true
+        }
+            
+        AllFailedTransactionsView:
+        {
+            instanceOf = "object"
+            description = "All failed transactions view."
+            base = "View"
+            final = true
+        }
+            
+        AllMaintenanceTransactionsView:
+        {
+            instanceOf = "object"
+            description = "All maintenance transactions view."
+            base = "View"
+            final = true
+        }
+            
+        TransactionOverviewPage:
+        {
+            instanceOf = "object"
+            description = "Transaction overview page."
+            base = "View"
+            final = true
+        }
+        
+        TransactionHealthPage:
+        {
+            instanceOf = "object"
+            description = "Transaction health page."
+            base = "View"
+            final = true
+        }
+        AllMethodsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        AllErrorsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        AllFailuresView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        AllJdbcQueriesView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        AllJdbcConnectionsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        AllHttpServletsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        AllHttpConnectionsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        AllJmsConsumersView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        AllJmsProducersView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        AllTcpsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        AllUdpsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        AllFilesView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionHotspotPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionCallStackPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionErrorPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionLogPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionKpiPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionHealthIndicatorsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionAvailabilityTimesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionThroughputListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionLatencyListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionErrorsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionStallsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionReceiveBytesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        TransactionSendBytesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotMethodPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotErrorPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotFailurePage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotJdbcQueryPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotJdbcConnectionPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotHttpServletPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotHttpConnectionPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotJmsConsumerPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotJmsProducerPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotTcpPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotUdpPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+         
+        HotspotFilePage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        AllBackgroundActivitiesView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllFailedBackgroundActivitiesView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllMaintenanceBackgroundActivitiesView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllBackgroundMethodsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllBackgroundErrorsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllBackgroundJdbcQueriesView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllBackgroundJdbcConnectionsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllBackgroundHttpConnectionsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllBackgroundJmsProducersView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllBackgroundTcpsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllBackgroundUdpsView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        AllBackgroundFilesView:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        BackgroundActivityHotspotPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        BackgroundActivityCallStackPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        BackgroundActivityErrorPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        BackgroundActivityLogPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        HotspotBackgroundMethodPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        HotspotBackgroundErrorPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        HotspotBackgroundJdbcQueryPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        HotspotBackgroundJdbcConnectionPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        HotspotBackgroundHttpConnectionPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        HotspotBackgroundJmsProducerPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        HotspotBackgroundTcpPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        HotspotBackgroundUdpPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+        
+        HotspotBackgroundFilePage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        JvmNodeTransactionPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+	}
+}

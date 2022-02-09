@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.exametrika</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../parent.xml</relativePath>
+    </parent>
+
+    <artifactId>platform.parent</artifactId>
+    <packaging>pom</packaging>
+
+    <properties>
+        <rootExametrikaDir>${project.basedir}/../..</rootExametrikaDir>
+        <rootDir>${rootExametrikaDir}/..</rootDir>
+        <assemblyBaseDir>${rootExametrikaDir}/assembly</assemblyBaseDir>
+        <assemblyReleaseDir>${assemblyBaseDir}/release/target</assemblyReleaseDir>
+        <assemblyTestDir>${assemblyBaseDir}/test/target</assemblyTestDir>
+        <commonDir>${rootDir}/common</commonDir>
+        <exadbDir>${rootDir}/exadb</exadbDir>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.hyperic</groupId>
+            <artifactId>sigar</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hyperic</groupId>
+            <artifactId>sigar-amd64-winnt</artifactId>
+            <version>1.6.4</version>
+            <type>dll</type>
+        </dependency>
+        <dependency>
+            <groupId>org.hyperic</groupId>
+            <artifactId>libsigar-amd64-linux</artifactId>
+            <version>1.6.4</version>
+            <type>so</type>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>Central</id>
+            <name>Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>Liferay</id>
+            <name>Liferay</name>
+            <url>https://repository.liferay.com/nexus/content/repositories/public/</url>
+        </repository>
+        <repository>
+            <id>Typesafe</id>
+            <name>Typesafe</name>
+            <url>http://repo.typesafe.com/typesafe/maven-releases/</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${assemblyReleaseDir}/dependencies</outputDirectory>
+                            <includeScope>compile</includeScope>
+                            <includeScope>runtime</includeScope>
+                            <stripVersion>true</stripVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-test-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${assemblyTestDir}/dependencies</outputDirectory>
+                            <stripVersion>true</stripVersion>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>copy-schemas</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <target>
+                                <copy todir="${assemblyReleaseDir}/schemas" flatten="true" failonerror="false">
+                                    <fileset dir="${commonDir}/src/main">
+                                        <include name="**/*.schema"/>
+                                        <include name="**/*.dbschema"/>
+                                    </fileset>
+                                    <fileset dir="${exadbDir}/src/main">
+                                        <include name="**/*.schema"/>
+                                        <include name="**/*.dbschema"/>
+                                    </fileset>
+                                    <fileset dir="${project.basedir}/src/main">
+                                        <include name="**/*.schema"/>
+                                        <include name="**/*.dbschema"/>
+                                    </fileset>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-test-schemas</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <target>
+                                <copy todir="${assemblyTestDir}/schemas" flatten="true" failonerror="false">
+                                    <fileset dir="${commonDir}/src">
+                                        <include name="**/*.schema"/>
+                                        <include name="**/*.dbschema"/>
+                                    </fileset>
+                                    <fileset dir="${exadbDir}/src">
+                                        <include name="**/*.schema"/>
+                                        <include name="**/*.dbschema"/>
+                                    </fileset>
+                                    <fileset dir="${project.basedir}/src">
+                                        <include name="**/*.schema"/>
+                                        <include name="**/*.dbschema"/>
+                                    </fileset>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${assemblyReleaseDir}/resources</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/assembly</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-test-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${assemblyTestDir}/resources</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/assembly</directory>
+                                </resource>
+                                <resource>
+                                    <directory>${project.basedir}/src/test/assembly</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-jars</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${assemblyReleaseDir}/dependencies</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>*.jar</include>
+                                        <include>*.war</include>
+                                    </includes>
+                                    <excludes>
+                                        <exclude>*-tests.jar</exclude>
+                                        <exclude>*-test-sources.jar</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-test-jars</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${assemblyTestDir}/dependencies</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>*.jar</include>
+                                        <include>*.war</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

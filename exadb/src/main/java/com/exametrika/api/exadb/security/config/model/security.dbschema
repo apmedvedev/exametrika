@@ -1,0 +1,103 @@
+{
+	name = "com.exametrika.exadb.security-1.0"
+	description = "Security schema."
+
+	types:
+	{
+		RoleMappingStrategy:
+		{
+			instanceOf = "object"
+			description = "Role mapping strategy."
+			abstract = true
+		}
+	
+		ScheduleRoleMappingStrategy:
+		{
+			instanceOf = "object"
+			description = "Schedule role mapping strategy."
+			base = "RoleMappingStrategy"
+		}
+			
+		CheckPermissionStrategy:
+		{
+			instanceOf = "object"
+			description = "Check permission strategy."
+			abstract = true
+		}
+			
+		Role:
+		{
+			instanceOf = "object"
+			description = "Role."
+			properties:
+			{
+				administrator:
+				{
+					description = "Is role administrator?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				permissionPatterns:
+				{
+					description = "List of role permission patterns of form:\
+						<permission_pattern> ::= <level_pattern> ':' <level_pattern> ...\
+						<level_pattern> ::= <single_pattern> ',' <single_pattern> ...\
+						<single_pattern> ::= '#'<reg_exp_pattern> | <glob_pattern>\
+						<reg_exp_pattern> - any valid regular expression pattern\
+						<glob_pattern> - pattern containing * and ?"
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+			}
+		}
+		
+		Security:
+		{
+			instanceOf = "object"
+			description = "Security model schema."
+			base = "SchemaObject"
+			properties:
+			{
+				roles:
+				{
+					description = "List of roles."
+					required = true
+					default = { administrator: { administrator = true } }
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Role"
+					}
+				}
+			
+				checkPermissionStrategy:
+				{
+					description = "Check permission strategy."
+					required = false
+					type = "CheckPermissionStrategy"
+				}
+				
+				roleMappingStrategy:
+				{
+					description = "Role mapping strategy."
+					required = false
+					type = "RoleMappingStrategy"
+				}
+					
+				auditEnabled:
+				{
+					description = "Is audit enabled?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+	}
+}

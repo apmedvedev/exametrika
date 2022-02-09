@@ -1,0 +1,231 @@
+{
+    "time": "1970.01.01 03:00:00.100",
+    "schemaVersion": 1,
+    "measurements": 
+    [
+        {
+            "id": 
+            {
+                "scope": "scopes.scope1",
+                "location": "metrics.metric1",
+                "componentType": "Host"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 10,
+                                "sum": 40,
+                                "min": 20,
+                                "max": 30
+                            }
+                            
+                            {
+                                "instanceOf": "histo",
+                                "bins": [1, 2, 0, 2, 0, 1, 0, 1, 0, 1],
+                                "min-oob": 1,
+                                "max-oob": 1
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-1.1"
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "scopes.scope2",
+                "location": "metrics.metric2",
+                "componentType": "Host"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 20,
+                                "sum": 100,
+                                "min": 30,
+                                "max": 40
+                            }
+                            
+                            {
+                                "instanceOf": "histo",
+                                "bins": [2, 4, 0, 4, 0, 2, 0, 2, 0, 2],
+                                "min-oob": 2,
+                                "max-oob": 2
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-2.1"
+        		}
+            },
+            "period": 10
+        },
+        
+        {
+            "id": 
+            {
+                "scope": "scopes.scope3",
+                "location": "metrics.metric3",
+                "componentType": "Host"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 30,
+                                "sum": 200,
+                                "min": 40,
+                                "max": 50
+                            }
+                            
+                            {
+                                "instanceOf": "histo",
+                                "bins": [3, 6, 0, 6, 0, 3, 0, 3, 0, 3],
+                                "min-oob": 3,
+                                "max-oob": 3
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-3.1"
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "scopes.scope1",
+                "location": "metrics.metric1",
+                "componentType": "Host"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 10,
+                                "sum": 40,
+                                "min": 20,
+                                "max": 30
+                            }
+                            
+                            {
+                                "instanceOf": "histo",
+                                "bins": [1, 2, 0, 2, 0, 1, 0, 1, 0, 1],
+                                "min-oob": 1,
+                                "max-oob": 1
+                            }
+                        ]
+                    }
+                ]
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "scopes.scope2",
+                "location": "metrics.metric2",
+                "componentType": "Host"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 20,
+                                "sum": 100,
+                                "min": 30,
+                                "max": 40
+                            }
+                            
+                            {
+                                "instanceOf": "histo",
+                                "bins": [2, 4, 0, 4, 0, 2, 0, 2, 0, 2],
+                                "min-oob": 2,
+                                "max-oob": 2
+                            }
+                        ]
+                    }
+                ]
+            },
+            "period": 10
+        },
+        
+        {
+            "id": 
+            {
+                "scope": "scopes.scope3",
+                "location": "metrics.metric3",
+                "componentType": "Host"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 30,
+                                "sum": 200,
+                                "min": 40,
+                                "max": 50
+                            }
+                            
+                            {
+                                "instanceOf": "histo",
+                                "bins": [3, 6, 0, 6, 0, 3, 0, 3, 0, 3],
+                                "min-oob": 3,
+                                "max-oob": 3
+                            }
+                        ]
+                    }
+                ]
+            },
+            "period": 10
+        }
+   ]
+}

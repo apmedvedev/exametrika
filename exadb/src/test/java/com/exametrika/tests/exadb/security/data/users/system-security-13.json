@@ -1,0 +1,76 @@
+{
+    "<root>": 
+    {
+        "space": "system-security-13/data-13.dt",
+        "rootGroup": 
+        {
+            "space": "system-security-13/data-13.dt",
+            "key": "",
+            "children": 
+            {
+                "group1": 
+                {
+                    "space": "system-security-13/data-13.dt",
+                    "key": "group1",
+                    "description": "Group1",
+                    "metadata": 
+                    {
+                        "key1": "value1"
+                    },
+                    "labels": 
+                    ["label1", "label2"],
+                    "children": 
+                    {
+                        "group11": 
+                        {
+                            "space": "system-security-13/data-13.dt",
+                            "key": "group1.group11",
+                            "users": 
+                            ["user1"]
+                        }
+                    },
+                    "users": 
+                    ["user1"]
+                }
+            }
+        },
+        "users": 
+        {
+            "user1": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "user1",
+                "description": "User1",
+                "metadata": 
+                {
+                    "key1": "value1"
+                },
+                "labels": 
+                ["label1", "label2"],
+                "roles": 
+                {
+                    "role2": 
+                    {
+                        "space": "system-security-13/data-13.dt"
+                    }
+                },
+                "groups": 
+                ["group1", "group11"]
+            },
+            "Admin": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "Admin",
+                "roles": 
+                {
+                    "administrator": 
+                    {
+                        "space": "system-security-13/data-13.dt"
+                    }
+                }
+            }
+        }
+    },
+    "<orphaned>": 
+    []
+}

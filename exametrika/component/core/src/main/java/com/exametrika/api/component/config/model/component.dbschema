@@ -1,0 +1,1371 @@
+{
+	name = "com.exametrika.component-1.0"
+	description = "Component model schema."
+	
+	types:
+	{
+		ComponentPrefixCheckPermissionStrategy:
+		{
+			instanceOf = "object"
+			description = "Prefix check permission strategy."
+			base = "CheckPermissionStrategy"
+		}
+	
+		ComponentPatternCheckPermissionStrategy:
+		{
+			instanceOf = "object"
+			description = "Pattern check permission strategy."
+			base = "CheckPermissionStrategy"
+		}
+	
+		BaseComponentDiscoveryStrategy:
+		{
+			instanceOf = "object"
+			description = "Base component discovery strategy."
+			base = "ComponentDiscoveryStrategy"
+			properties:
+			{
+				component:
+				{
+					description = "Discovered component type in component model."
+					required = true
+					type = "string"
+				}
+			}
+		}
+	
+		NodeDiscoveryStrategy:
+        {
+            instanceOf = "object"
+            description = "Node component discovery strategy."
+            final = true
+            base = "BaseComponentDiscoveryStrategy"
+        }
+		
+		HostDiscoveryStrategy:
+		{
+			instanceOf = "object"
+			description = "Host component discovery strategy."
+			final = true
+			base = "BaseComponentDiscoveryStrategy"
+		}
+			
+		TransactionDiscoveryStrategy:
+		{
+			instanceOf = "object"
+			description = "Transaction component discovery strategy."
+			final = true
+			base = "BaseComponentDiscoveryStrategy"
+		}
+			
+		NodeDeletionStrategy:
+		{
+			instanceOf = "object"
+			description = "Node component deletion strategy."
+			final = true
+			base = "ComponentDeletionStrategy"
+		}
+	
+		HostDeletionStrategy:
+		{
+			instanceOf = "object"
+			description = "Host component deletion strategy."
+			final = true
+			base = "ComponentDeletionStrategy"
+		}
+	
+		TransactionDeletionStrategy:
+        {
+            instanceOf = "object"
+            description = "Transaction component deletion strategy."
+            final = true
+            base = "ComponentDeletionStrategy"
+            properties:
+            {
+                retentionPeriodCount:
+                {
+                    description = "Minimum number of subsequent periods without transaction measurements, when transaction is guaranteed to be retained."
+                    required = true
+                    default = 5
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 1
+                    }
+                }
+            }
+        }
+			
+		GroupScopeAggregationStrategy:
+        {
+            instanceOf = "object"
+            description = "Scope aggregation strategy that uses component groups to define aggregation hierarchies."
+            final = true
+            base = "ScopeAggregationStrategy"
+            properties:
+            {
+                hierarchyType:
+                {
+                    description = "Type of hierarchy defined by one of component's aggregation groups."
+                    required = true
+                    default = "default"
+                    type = "string"
+                }
+            
+                hasSubScope:
+                {
+                    description = "Does aggregation node have subscope of main component scope?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            }
+        }
+			
+		NodeGroupScopeAggregationStrategy:
+        {
+            instanceOf = "object"
+            description = "Scope aggregation strategy that uses node groups to define aggregation hierarchies."
+            final = true
+            base = "ScopeAggregationStrategy"
+            properties:
+            {
+                hierarchyType:
+                {
+                    description = "Type of hierarchy defined by one of node's aggregation groups."
+                    required = true
+                    default = "default"
+                    type = "string"
+                }
+            }
+        }
+        
+		Action:
+		{
+			instanceOf = "object"
+			description = "Component action."
+			abstract = true
+		}
+			
+		EnableMaintenanceModeAction:
+		{
+			instanceOf = "object"
+			description = "Enable maintenance mode action. Can be applied to health components. Parameters: <message : string>"
+			base = "Action"
+			final = true
+		}
+			
+		DisableMaintenanceModeAction:
+		{
+			instanceOf = "object"
+			description = "Disable maintenance mode action. Can be applied to health components."
+			base = "Action"
+			final = true
+		}
+			
+		LogAction:
+		{
+			instanceOf = "object"
+			description = "Log action. Parameters: <action : string>"
+			base = "Action"
+			final = true
+		}
+		
+		MeasurementStrategyAction:
+		{
+			instanceOf = "object"
+			description = "Remote action that controls measurement strategies connected with agent probes and monitors.\
+				Parameters: <measurementStrategyName : string, allowed:boolean>"
+			base = "Action"
+			final = true
+		}
+			
+		Rule:
+		{
+			instanceOf = "object"
+			description = "Component rule."
+			abstract = true
+			properties:
+			{
+				enabled:
+				{
+					description = "Is rule enabled?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+			
+		ExpressionSimpleRule:
+		{
+			instanceOf = "object"
+			description = "Expression simple rule."
+			base = "Rule"
+			final = true
+			properties:
+			{
+				expression:
+				{
+					description = "Rule expression."
+					required = true
+					type = "string"
+				}
+			}
+		}
+			
+		ExpressionComplexRule:
+		{
+			instanceOf = "object"
+			description = "Expression complex rule."
+			base = "Rule"
+			final = true
+			properties:
+			{
+				expression:
+				{
+					description = "Rule expression."
+					required = true
+					type = "string"
+				}
+			}
+		}
+			
+		ExpressionHealthCheck:
+		{
+			instanceOf = "object"
+			description = "Expression health check."
+			base = "Rule"
+			final = true
+			properties:
+			{
+				expression:
+				{
+					description = "Rule expression."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		ComponentJobOperation:
+		{
+			instanceOf = "object"
+			description = "Component job operation."
+			base = "JobOperation"
+			abstract = true
+		}
+		
+		ExpressionComponentJobOperation:
+		{
+			instanceOf = "object"
+			description = "Expression component job operation."
+			base = "ComponentJobOperation"
+			properties:
+			{
+				expression:
+				{
+					description = "Job expression."
+					required = true
+					type = "string"
+				}
+			}
+		}
+			
+		Selector:
+		{
+			instanceOf = "object"
+			description = "Component selector."
+			abstract = true
+		}
+		
+        AllIncidentsSelector:
+        {
+            instanceOf = "object"
+            description = "All incidents selector."
+            base = "Selector"
+            final = true
+        }
+
+		AlertRecipientType:
+		{
+			instanceOf = "string"
+			enumeration = ["role", "userGroup", "user", "address"]
+		}
+			
+		AlertRecipient:
+		{
+			instanceOf = "object"
+			description = "Alert recipient."
+			properties:
+			{
+				type:
+				{
+					description = "Recipient type."
+					required = true
+					type = "AlertRecipientType"
+				}
+			
+				name:
+				{
+					description = "Recipient name."
+					required = true
+					type = "string"
+				}
+					
+				address:
+				{
+					description = "Recipient address (for address recipients only)."
+					required = false
+					type = "string"
+				}	
+			}
+		}
+			
+		AlertChannel:
+		{
+			instanceOf = "object"
+			description = "Alert channel."
+			abstract = true
+			properties:
+			{
+				name:
+				{
+					description = "Channel name."
+					required = true
+					type = "string"
+				}
+			
+				onTemplate:
+				{
+					description = "Template for message sent when alert is on."
+					required = true
+					type = "string"
+				}
+					
+				offTemplate:
+				{
+					description = "Template for message sent when alert is off."
+					required = false
+					type = "string"
+				}
+					
+				statusTemplate:
+				{
+					description = "Template for alert status message."
+					required = false
+					type = "string"
+				}
+					
+				schedule:
+				{
+					description = "Schedule for sending alert status message."
+					required = false
+					type = "StandardSchedule"
+				}
+					
+				period:
+				{
+					description = "Period of sending alert status message."
+					required = false
+					type = "StandardSchedulePeriod"
+				}
+					
+				recipients:
+				{
+					description = "Alert recipients."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						elementType = "AlertRecipient"
+						minCount = 1
+					}
+				}
+			}
+		}
+		
+		MailAlertChannel:
+		{
+			instanceOf = "object"
+			description = "Mail alert channel."
+			base = "AlertChannel"
+			properties:
+			{
+				onSubject:
+				{
+					description = "Subject for message sent when alert is on."
+					required = true
+					type = "string"
+				}
+					
+				offSubject:
+				{
+					description = "Subject for message sent when alert is off. If it is not set onSubject is used."
+					required = false
+					type = "string"
+				}
+					
+				statusSubject:
+				{
+					description = "Subject for alert status message. If it is not set onSubject is used."
+					required = false
+					type = "string"
+				}
+					
+				formatted:
+				{
+					description = "Is message HTML formatted or plain?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				senderName:
+				{
+					description = "Name of mail sender."
+					required = false
+					type = "string"
+				}
+					
+				senderAddress:
+				{
+					description = "Address of mail sender."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		Alert:
+		{
+			instanceOf = "object"
+			description = "Component alert."
+			abstract = true
+			properties:
+			{
+			    description:
+                {
+                    description = "Alert description."
+                    required = false
+                    type = "string"
+                }
+			
+				channels:
+				{
+					description = "Alert channels."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						elementType = "AlertChannel"
+						minCount = 1
+					}
+				}
+			
+				tags:
+				{
+					description = "Alert tags."
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+				
+				enabled:
+				{
+					description = "Is alert enabled?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+		
+		HealthAlert:
+		{
+			instanceOf = "object"
+			description = "Health alert."
+			base = "Alert"
+			final = true
+			properties:
+            {
+                stateThreshold:
+                {
+                    description = "State threshold."
+                    required = true
+                    default = "healthError"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["healthWarning", "healthError", "unavailable"]
+                    }
+                }
+            }
+		}
+		
+		ExpressionSimpleAlert:
+		{
+			instanceOf = "object"
+			description = "Expression simple alert."
+			base = "Alert"
+			final = true
+			properties:
+			{
+				onCondition:
+				{
+					description = "Condition expression for checking that alert is on."
+					required = true
+					type = "string"
+				}
+			
+				offCondition:
+				{
+					description = "Condition expression for checking that alert is off. If it is not set negation of onCondition is used."
+					required = false
+					type = "string"
+				}
+			}
+		}
+			
+		ExpressionComplexAlert:
+		{
+			instanceOf = "object"
+			description = "Expression complex alert."
+			base = "Alert"
+			final = true
+			properties:
+			{
+				onCondition:
+				{
+					description = "Condition expression for checking that alert is on."
+					required = true
+					type = "string"
+				}
+			
+				offCondition:
+				{
+					description = "Condition expression for checking that alert is off. If it is not set negation of onCondition is used."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		TagIncidentGroup:
+		{
+			instanceOf = "object"
+			description = "Tag based incident group."
+			base = "Alert"
+			final = true
+			properties:
+			{
+				pattern:
+				{
+					description = "Glob/regexp pattern to match incident tags forming a group."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		ExpressionIncidentGroup:
+		{
+			instanceOf = "object"
+			description = "Expression based incident group."
+			base = "Alert"
+			final = true
+			properties:
+			{
+				expression:
+				{
+					description = "Condition expression to match incidents forming a group."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		GroupDiscoveryStrategy:
+		{
+			instanceOf = "object"
+			description = "Group discovery strategy."
+			abstract = true
+		}
+		
+		SimpleGroupDiscoveryStrategy:
+        {
+            instanceOf = "object"
+            description = "Simple group discovery strategy."
+            base = "GroupDiscoveryStrategy"
+            properties:
+            {
+                group:
+                {
+                    description = "Name of group."
+                    required = true
+                    type = "string"
+                }
+            }
+        }
+			
+		PatternGroupDiscoveryStrategy:
+		{
+			instanceOf = "object"
+			description = "Pattern group discovery strategy."
+			base = "GroupDiscoveryStrategy"
+			properties:
+			{
+			    group:
+                {
+                    description = "Name of default group."
+                    required = false
+                    type = "string"
+                }
+			
+				component:
+				{
+					description = "Name of group component type."
+					required = true
+					type = "string"
+				}
+			
+				pattern:
+				{
+					description = "Glob/regexp pattern to match group scope name."
+					required = true
+					type = "string"
+				}
+			}
+		}
+        
+        TransactionGroupDiscoveryStrategy:
+        {
+            instanceOf = "object"
+            description = "Transaction group discovery strategy."
+            base = "GroupDiscoveryStrategy"
+            properties:
+            {
+                group:
+                {
+                    description = "Name of default group."
+                    required = false
+                    default = "transactions"
+                    type = "string"
+                }
+            
+                component:
+                {
+                    description = "Name of group component type."
+                    required = true
+                    type = "string"
+                }
+            }
+        }
+		
+		component:
+		{
+			instanceOf = "object"
+			description = "Component."
+			properties:
+			{
+				actions:
+				{
+					description = "Component actions."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Action"
+					}
+				}
+			
+				rules:
+				{
+					description = "Component rules."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Rule"
+					}
+				}
+				
+				jobs:
+				{
+					description = "Component jobs."
+					required = true
+					default = {}
+					type = "Jobs"
+				}
+				
+				selectors:
+				{
+					description = "Component selectors."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Selector"
+					}
+				}
+					
+				alerts:
+				{
+					description = "Component alerts."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Alert"
+					}
+				}
+				
+				groupDiscoveryStrategies:
+				{
+					description = "Group discovery strategies."
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "GroupDiscoveryStrategy"
+					}
+				}
+				
+				views:
+                {
+                    description = "Component views."
+                    required = true
+                    default = {}
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType:
+                        {
+                            instanceOf = "compound"
+                            types = ["View", "ViewReference"]
+                        }
+                    }
+                }
+				
+				defaultView:
+                {
+                    description = "Name of default component view."
+                    required = false
+                    type = "string"
+                }
+			}
+		}
+		
+		aggregationComponent:
+		{
+			instanceOf = "object"
+			description = "Aggregation component."
+			base = "component"
+			properties:
+			{
+				aggregationSchema:
+				{
+					description = "Component aggregation schema."
+					required = true
+					type:
+					{
+						instanceOf = "map"
+						keyType:
+						{
+							description = "Name of period."
+							instanceOf = "string"
+						}
+						valueType = "PeriodTypeAggregationSchema"
+					}
+				}
+			}
+		}
+		
+		healthComponent:
+		{
+			instanceOf = "object"
+			description = "Health component."
+			base = "aggregationComponent"
+			properties:
+			{
+				healthComponentType:
+				{
+					description = "Aggregation component type for health measurements."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		agent:
+		{
+			instanceOf = "object"
+			description = "Agent component."
+			base = "healthComponent"
+			properties:
+			{
+				profilerConfigurationName:
+				{
+					description = "Resource name of profiler configuration."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		host:
+		{
+			instanceOf = "object"
+			description = "Host component."
+			base = "agent"
+		}
+		
+		node:
+		{
+			instanceOf = "object"
+			description = "Node component."
+			base = "agent"
+		}
+			
+		transaction:
+		{
+			instanceOf = "object"
+			description = "Transaction component."
+			base = "healthComponent"
+		}
+		
+		GroupAvailabilityCondition:
+		{
+			instanceOf = "object"
+			description = "Group availability condition."
+			abstract = true
+		}
+			
+		ExpressionGroupAvailabilityCondition:
+		{
+			instanceOf = "object"
+			description = "Expression group availability condition."
+			base = "GroupAvailabilityCondition"
+			properties:
+			{
+				expression:
+				{
+					description = "Condition expression."
+					required = true
+					type = "string"
+				}
+			}
+		}
+			
+		group:
+		{
+			instanceOf = "object"
+			description = "Group component."
+			base = "component"
+			properties:
+			{
+				allowComponents:
+				{
+					description = "Are components allowed in group?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			
+				allowGroups:
+				{
+					description = "Are subgroups allowed in group?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				componentTypes:
+				{
+					description = "Allowed component types."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+					
+				groupTypes:
+				{
+					description = "Allowed group types."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+				
+				aggregationGroup:
+				{
+					description = "Is group a part of aggregation hierarchy?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				availabilityCondition:
+				{
+					description = "Availability condition."
+					required = false
+					type = "GroupAvailabilityCondition"
+				}
+					
+				healthComponentType:
+				{
+					description = "Aggregation component type for health measurements."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		PredefinedGroup:
+		{
+			instanceOf = "object"
+			description = "Predefined group instance."
+			properties:
+			{
+				groupType:
+				{
+					description = "Group type."
+					required = true
+					type = "string"
+				}
+			
+				groups:
+				{
+					description = "Subgroups."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "PredefinedGroup"
+					}
+				}
+				
+				options:
+				{
+					description = "Group options."
+					required = false
+					type:
+					{
+						instanceOf = "map"
+						valueType = "any"
+					}
+				}
+				
+				properties:
+				{
+					description = "Group properties."
+					required = false
+					type:
+					{
+						instanceOf = "map"
+						valueType = "any"
+					}
+				}
+				
+				tags:
+				{
+					description = "Group tags."
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+					
+				rules:
+				{
+					description = "Group instance rules."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Rule"
+					}
+				}
+				
+				alerts:
+				{
+					description = "Group instance alerts."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Alert"
+					}
+				}
+				
+				groupRules:
+				{
+					description = "Group components rules."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Rule"
+					}
+				}
+				
+				groupAlerts:
+				{
+					description = "Group components alerts."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Alert"
+					}
+				}
+				
+				jobs:
+				{
+					description = "Group instance jobs."
+					required = true
+					default = {}
+					type = "Jobs"
+				}
+			}
+		}
+		
+		ComponentPeriod:
+		{
+			instanceOf = "object"
+			description = "Component period."
+			final = true
+			properties:
+			{
+				period:
+				{
+					description = "Period."
+					required = true
+					type = "StandardSchedulePeriod"
+				}
+			
+				cyclePeriodCount:
+				{
+					description = "Number of periods in cycle."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+				
+				nonAggregating:
+				{
+					description = "Is period type non aggregating?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				parentDomain:
+				{
+					description = "Name of parent domain. If parent domain is set, measurements of current period will be transferred to this domain."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		Health:
+		{
+			instanceOf = "object"
+			description = "Health service schema."
+			final = true
+			properties:
+			{
+				firstAggregationPeriod:
+				{
+					description = "First aggregation period of health metrics."
+					required = true
+					type = "string"
+				}
+			
+			    totalCounter:
+                {
+                    description = "Total time counter."
+                    required = true
+                    default:
+                    {
+                        fields:
+                        {
+                            standard:
+                            {
+                                instanceOf = "meters.StandardFields"
+                            }
+                        }
+                    }
+                    type = "meters.Counter"
+                }
+					
+				upCounter:
+				{
+					description = "Up (healthy) time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "meters.StandardFields"
+							}
+						}
+					}
+					type = "meters.Counter"
+				}
+			
+				downCounter:
+				{
+					description = "Down (failed or in maintenance mode) time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "meters.StandardFields"
+							}
+						}
+					}
+					type = "meters.Counter"
+				}
+					
+				failureCounter:
+				{
+					description = "Failure (unhealthy or unavailable) time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "meters.StandardFields"
+							}
+						}
+					}
+					type = "meters.Counter"
+				}
+				
+				maintenanceCounter:
+				{
+					description = "Maintenance time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "meters.StandardFields"
+							}
+						}
+					}
+					type = "meters.Counter"
+				}
+			}
+		}
+
+	    UserInterface:
+        {
+	        instanceOf = "object"
+            description = "Component model user interface schema."
+            base = "SchemaObject"
+            final = true
+            properties:
+            {
+                models:
+                {
+                    description = "View models."
+                    required = true
+                    default = {}
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "ViewModel"
+                    }
+                }
+	        
+                navBar:
+                {
+                    description = "NavBar schema."
+                    required = true
+                    type = "NavBar"
+                }
+	        
+	            notifications:
+                {
+                    description = "Notification schemas."
+                    required = true
+                    default = []
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "Notification"
+                    }
+                }
+                    
+                views:
+                {
+                    description = "Common views."
+                    required = true
+                    default = {}
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "View"
+                    }
+                }
+            }
+        }
+		
+		ComponentModel:
+		{
+			instanceOf = "object"
+			description = "Component model schema."
+			base = "SchemaObject"
+			final = true
+			properties:
+			{
+				periods:
+				{
+					description = "Periods."
+					required = true
+					type:
+					{
+						instanceOf = "map"
+						minCount = 1
+						valueType = "ComponentPeriod"
+					}
+				}
+			
+				components:
+				{
+					description = "Components."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "component"
+					}
+				}
+			
+				groups:
+				{
+					description = "Predefined groups."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "PredefinedGroup"
+					}
+				}
+
+				health:
+				{
+					description = "Health schema."
+					required = false
+					type = "Health"
+				}
+				
+				version:
+				{
+					description = "Schema version."
+					required = true
+					type = "long"
+				}
+					
+				combineType:
+                {
+                    description = "Combine type defines how measurements of secondary entry point are combined - \
+                        by calling stack, by calling transaction type, by calling node or\
+                        secondary entry point combining all measurements."
+                    required = true
+                    default = "stack"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["stack", "transaction", "node", "all"]
+                    }
+                }
+					
+				security:
+				{
+					description = "Security schema."
+					required = true
+					default: 
+					{
+						roles:
+						{
+							administrator:
+							{ 
+								administrator = true 
+							}
+					
+							operator:
+							{ 
+								permissionPatterns = [ "component", "behaviorType", "componentService", "incident" ]
+							}
+								
+							user:
+							{ 
+								permissionPatterns = [ "component:view" ]
+							}
+						}
+					
+						checkPermissionStrategy:
+						{
+							instanceOf = "ComponentPrefixCheckPermissionStrategy"
+						}
+					
+						roleMappingStrategy:
+						{
+							instanceOf = "ScheduleRoleMappingStrategy"
+						}
+							
+						auditEnabled = false
+					}
+					type = "Security"
+				}
+					
+				ui:
+                {
+                    description = "User interface schema."
+                    required = false
+                    type = "UserInterface"
+                }
+			}
+		}
+	}
+}

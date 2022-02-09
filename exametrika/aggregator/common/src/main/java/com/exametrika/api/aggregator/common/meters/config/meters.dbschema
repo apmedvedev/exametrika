@@ -1,0 +1,406 @@
+{
+	name = "com.exametrika.meters-1.0"
+	description = "Meters model schema."
+	
+	types:
+	{
+
+		${meters.prefix}Fields:
+		{
+			instanceOf = "object"
+			description = "Abstract measurement fields."
+			abstract = true
+		}
+	
+		${meters.prefix}StandardFields:
+		{
+			instanceOf = "object"
+			description = "Standard fields (min, max, count, sum)."
+			final = true
+			base = "${meters.prefix}Fields"
+		}
+	
+		${meters.prefix}StatisticsFields:
+		{
+			instanceOf = "object"
+			description = "Statistics fields (stddev, vc)."
+			final = true
+			base = "${meters.prefix}Fields"
+		}
+			
+		${meters.prefix}HistogramFields:
+		{
+			instanceOf = "object"
+			description = "Histogram fields."
+			abstract = true
+			base = "${meters.prefix}Fields"
+		}
+			
+		${meters.prefix}UniformHistogramFields:
+		{
+			instanceOf = "object"
+			description = "Uniform histogram fields."
+			final = true
+			base = "${meters.prefix}HistogramFields"
+			properties:
+			{
+				minBound:
+				{
+					description = "Minimum histogram bound."
+					required = true
+					default = 0
+					type = "long"
+				}
+			
+				maxBound:
+				{
+					description = "Maximum histogram bound."
+					required = true
+					type = "long"
+				}
+					
+				binCount:
+				{
+					description = "Number of histogram bins."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+			}
+		}
+		
+		${meters.prefix}LogarithmicHistogramFields:
+		{
+			instanceOf = "object"
+			description = "Logarithmic (log2) histogram fields."
+			final = true
+			base = "${meters.prefix}HistogramFields"
+			properties:
+			{
+				minBound:
+				{
+					description = "Minimum histogram bound."
+					required = true
+					default = 0
+					type = "long"
+				}
+			
+				binCount:
+				{
+					description = "Number of histogram bins."
+					required = true
+					default = 40
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+			}
+		}
+		
+		${meters.prefix}CustomHistogramFields:
+		{
+			instanceOf = "object"
+			description = "Custom-bounded histogram fields."
+			final = true
+			base = "${meters.prefix}HistogramFields"
+			properties:
+			{
+				bounds:
+				{
+					description = "Histogram bounds in ascending order. At least minimum and maximum bounds must be set."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						elementType = "long"
+						minCount = 2
+					}
+				}
+			}
+		}
+		
+		${meters.prefix}InstanceFields:
+		{
+			instanceOf = "object"
+			description = "Instance fields representing a partial history with maximum or minimum measurement values."
+			final = true
+			base = "${meters.prefix}Fields"
+			properties:
+			{
+				instanceCount:
+				{
+					description = "Number of minimum or maximum instances in partial history."
+					required = true
+					default = 10
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+			
+				max:
+				{
+					description = "Are instances with maximum or minimum values collected?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+		
+		${meters.prefix}Meter:
+		{
+			instanceOf = "object"
+			description = "Abstract meter - measuring instrument."
+			abstract = true
+			properties:
+			{
+				enabled:
+				{
+					description = "Is meter enabled?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+		
+		${meters.prefix}FieldMeter:
+		{
+			instanceOf = "object"
+			description = "Meter with measurement fields."
+			abstract = true
+			base = "${meters.prefix}Meter"
+			properties:
+			{
+				fields:
+				{
+					description = "Meter's fields."
+					required = true
+					default:
+					{
+						standard:
+						{
+							instanceOf="${meters.prefix}StandardFields"
+						}
+					}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "${meters.prefix}Fields"
+						minCount = 1
+					}
+				}
+			}
+		}
+		
+		${meters.prefix}Gauge:
+		{
+			instanceOf = "object"
+			description = "Gauge meter measuring current level of resource."
+			base = "${meters.prefix}FieldMeter"
+		}
+		
+		${meters.prefix}Counter:
+		{
+			instanceOf = "object"
+			description = "Counter meter measuring consumption of resource."
+			base = "${meters.prefix}FieldMeter"
+			properties:
+			{
+				useDeltas:
+				{
+					description = "Does measured value represent a delta since previous measurement."
+					required = true
+					default = false
+					type = "boolean"
+				}
+			
+			    smoothingSize:
+                {
+                    description = "Size of moving average window, used to smooth counter values. If 0 smoothing is not used."
+                    required = true
+                    default = 0
+                    type = "long"
+                }
+			}
+		}
+			
+		${meters.prefix}Info:
+		{
+			instanceOf = "object"
+			description = "Info meter measuring informational metrics of resource."
+			base = "${meters.prefix}Meter"
+		}
+
+		${meters.prefix}LogFilter:
+		{
+			instanceOf = "object"
+			description = "Log event filter."
+			abstract = true
+		}
+		
+		${meters.prefix}LogProvider:
+		{
+			instanceOf = "object"
+			description = "Log meter provider."
+			abstract = true
+		}
+		
+		${meters.prefix}CompoundLogFilter:
+		{
+			instanceOf = "compound"
+			description = "Custom or log event filter."
+			types:["string", "${meters.prefix}LogFilter"]
+		}
+			
+		${meters.prefix}CompoundLogProvider:
+		{
+			instanceOf = "compound"
+			description = "Custom or log meter provider."
+			types:["string", "${meters.prefix}LogProvider"]
+		}
+		
+		${meters.prefix}CountLogProvider:
+		{
+			instanceOf = "object"
+			description = "Log meter provider that is used for counting log events."
+			base = "${meters.prefix}LogProvider"
+			final = true
+		}
+			
+		${meters.prefix}ErrorCountLogProvider:
+		{
+			instanceOf = "object"
+			description = "Log meter provider that is used for counting log error events."
+			base = "${meters.prefix}LogProvider"
+			final = true
+		}
+		
+		${meters.prefix}ErrorLogProvider:
+		{
+			instanceOf = "object"
+			description = "Log meter provider that is used for building derived error log."
+			base = "${meters.prefix}LogProvider"
+			final = true
+		}
+			
+		${meters.prefix}LogMeter:
+		{
+			instanceOf = "object"
+			description = "Log meter."
+			final = true
+			properties:
+			{
+				meter:
+				{
+					description = "Meter."
+					required = true
+					type = "${meters.prefix}Meter"
+				}
+			
+				filter:
+				{
+					description = "Log filter applied to stream of log events before meter is fired."
+					required = false
+					type = "${meters.prefix}CompoundLogFilter"
+				}
+					
+				provider:
+				{
+					description = "Meter measurement provider based on log event. If it is not set entire log event is used as meter value."
+					required = false
+					type = "${meters.prefix}CompoundLogProvider"
+				}
+			}
+		}
+			
+		${meters.prefix}Log:
+		{
+			instanceOf = "object"
+			description = "Log meter measuring log of changes of resource."
+			base = "${meters.prefix}Meter"
+			properties:
+			{
+				filter:
+				{
+					description = "Log filter applied to entire stream of log events."
+					required = false
+					type = "${meters.prefix}CompoundLogFilter"
+				}
+			
+				meters:
+				{
+					description = "Log meters."
+					required = true
+					default:{}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "${meters.prefix}LogMeter"
+					}
+				}
+					
+				postFilter:
+				{
+					description = "Post log filter applied to filtered stream of log events after log meters are fired."
+					required = false
+					type = "${meters.prefix}CompoundLogFilter"
+				}
+			
+				transformer:
+				{
+					description = "Log event transformer applied after post filter."
+					required = false
+					type = "${meters.prefix}CompoundLogProvider"
+				}
+			
+				maxRate:
+				{
+					description = "Maximum number of log events per second."
+					required = true
+					default = 100
+					type = "long"
+				}
+					
+				maxStackTraceRate:
+				{
+					description = "Maximum number of log events with stack trace per second."
+					required = true
+					default = 10
+					type = "long"
+				}
+					
+				maxStackTraceDepth:
+				{
+					description = "Maximum depth of stack trace of log event."
+					required = true
+					default = 50
+					type = "long"
+				}
+					
+				maxMessageSize:
+				{
+					description = "Maximum size of log event message."
+					required = true
+					default = 512
+					type = "long"
+				}
+					
+				maxBundleSize:
+				{
+					description = "Maximum number of log events in single log measurement."
+					required = true
+					default = 100
+					type = "long"
+				}
+			}
+		}
+	}
+}

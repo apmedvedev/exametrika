@@ -1,0 +1,79 @@
+<project name="test" basedir=".">
+
+    <include file="../base.xml" />
+    <property name="build.dir" value="../.." />
+    <property name="lib.dir" location="../../../../src-extern/tests.probes/lib" />
+    <property name="work.dir" location="work" />
+    
+    <target name="http1">
+		<java classname="http.TestHttpClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}/tomcat-embed-core.jar"/>
+		    <classpath location="${lib.dir}/tomcat-embed-logging-juli.jar"/>
+		    <arg value = "${work.dir}"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+    <target name="http2">
+		<java classname="http.TestHttpClass2" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}/tomcat-embed-core.jar"/>
+		    <classpath location="${lib.dir}/tomcat-embed-logging-juli.jar"/>
+		    <arg value = "${work.dir}"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+
+    <target name="http3">
+		<java classname="http.TestHttpClass3" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}/tomcat-embed-core.jar"/>
+		    <classpath location="${lib.dir}/tomcat-embed-logging-juli.jar"/>
+		    <classpath location="${agent.dir}/lib/common.jar"/>
+		    <arg value = "${work.dir}"/>
+		    <jvmarg line="-Djava.library.path=${build.dir}/lib/" />
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+    <target name="http4">
+		<java classname="http.TestHttpClass4" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}/tomcat-embed-core.jar"/>
+		    <classpath location="${lib.dir}/tomcat-embed-logging-juli.jar"/>
+		    <classpath location="${agent.dir}/lib/common.jar"/>
+		    <arg value = "${work.dir}"/>
+		    <jvmarg line="-Djava.library.path=${build.dir}/lib/" />
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n" />-->
+	    </java>
+    </target>
+    
+    <target name="http5">
+		<java classname="http.TestHttpClass5" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}/tomcat-embed-core.jar"/>
+		    <classpath location="${lib.dir}/tomcat-embed-logging-juli.jar"/>
+		    <classpath location="${agent.dir}/lib/common.jar"/>
+		    <arg value = "${work.dir}"/>
+		    <jvmarg line="-Djava.library.path=${build.dir}/lib/" />
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n" />-->
+	    </java>
+    </target>
+		    
+</project>

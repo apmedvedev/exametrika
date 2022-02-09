@@ -1,0 +1,1267 @@
+{
+	name = "com.exametrika.exadb.objectdb-1.0"
+	description = "Exa database ObjectDB schema."
+	
+	types:
+	{
+		CompactionOperation:
+		{
+			instanceOf = "object"
+			description = "Configuration of database compaction operation."
+			final = true
+			base = "JobOperation" 
+		}
+	
+		Field:
+		{
+			instanceOf = "object"
+			description = "Base field schema."
+			base = "SchemaObject"
+			abstract = true
+		}
+	
+		ComplexField:
+		{
+			instanceOf = "object"
+			description = "Base complex field schema."
+			base = "Field"
+			abstract = true
+		}
+			
+		SimpleField:
+		{
+			instanceOf = "object"
+			description = "Base simple field schema."
+			base = "Field"
+			abstract = true
+		}
+	
+		Node:
+		{
+			instanceOf = "object"
+			description = "Base node schema."
+			base = "SchemaObject"
+			abstract = true
+			properties:
+			{
+				fields:
+				{
+					description = "Node's fields."
+					required = true
+					default:{}
+					type:
+					{ 
+						instanceOf = "map"
+						valueType = "Field"
+					}
+				}
+			}
+		}
+	
+		NodeSpace:
+		{
+			instanceOf = "object"
+			description = "Node space schema."
+			base = "Space"
+			abstract = true
+			properties:
+			{
+				nodes:
+				{
+					description = "Space's nodes."
+					required = true
+					default:{}
+					type:
+					{ 
+						instanceOf = "map"
+						valueType = "Node"
+					}
+				}
+			
+				rootNode:
+				{
+					description = "Space's root node schema name."
+					required = false
+					type = "string"
+				}
+			}
+		}
+	
+		ObjectSpace:
+		{
+			instanceOf = "object"
+			description = "Object space schema."
+			base = "NodeSpace"
+			final = true
+			properties:
+			{
+				pathIndex:
+				{
+					description = "Main space datafile path index."
+					required = true
+					default = 0
+					type = "long"
+				}
+			
+				fullTextPathIndex:
+				{
+					description = "Full-text search datafile path index."
+					required = true
+					default = 0
+					type = "long"
+				}
+			}
+		}
+		
+		BodyField:
+		{
+			instanceOf = "object"
+			description = "Node body field schema."
+			base = "ComplexField"
+			properties:
+			{
+				compressed:
+				{
+					description = "Is body stored in compressed form."
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+		
+		ComputedField:
+		{
+			instanceOf = "object"
+			description = "Computed field schema."
+			base = "SimpleField"
+			properties:
+			{
+				expression:
+				{
+					description = "Expression."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		FileField.PageType:
+		{
+			instanceOf = "string"
+			enumeration : ["small" "normal" "smallMedium" "medium" "largeMedium" "large" "extraLarge"]
+		}
+		
+		FileField:
+		{
+			instanceOf = "object"
+			description = "File field schema."
+			base = "SimpleField"
+			properties:
+			{
+				pathIndex:
+				{
+					description = "File path index."
+					required = true
+					default = 0
+					type = "long"
+				}
+			
+				maxFileSize:
+				{
+					description = "Maximum file size."
+					required = true
+					default = 0x7fffffffffffffff
+					type = "long"
+				}
+					
+				directory:
+				{
+					description = "File's sub-directory of database file path."
+					required = false
+					type = "string"
+				}	
+				
+				pageType:
+				{
+					description = "Type of file pages."
+					required = true
+					default = "normal"
+					type = "FileField.PageType"
+				}
+				
+				preload:
+				{
+					description = "Are pages of file preloaded?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				properties:
+				{
+					description = "Additional page classification properties."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "string"
+					}
+				}
+			}
+		}
+			
+		BlobStoreField:
+		{
+			instanceOf = "object"
+			description = "Blob store field schema."
+			base = "FileField"
+		}
+		
+		IndexField:
+		{
+			instanceOf = "object"
+			description = "Dynamic index field schema."
+			base = "SimpleField"
+			properties:
+			{
+				index:
+				{
+					description = "Dynamic index schema."
+					required = true
+					type = "Index"
+				}
+			}
+		}
+
+		JsonValidator:
+		{
+			instanceOf = "object"
+			description = "Json validator schema."
+			abstract = true
+		}
+		
+		JsonConverter:
+		{
+			instanceOf = "object"
+			description = "Json converter schema."
+			abstract = true
+		}
+			
+		JsonField:
+		{
+			instanceOf = "object"
+			description = "Json field schema."
+			base = "ComplexField"
+			properties:
+			{
+				schema:
+				{
+					description = "Json schema."
+					required = false
+					type = "string"
+				}
+			
+				typeName:
+				{
+					description = "Name of Json type in schema."
+					required = false
+					type = "string"
+				}
+					
+				validators:
+				{
+					description = "Json validators."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "JsonValidator"
+					}
+				}
+					
+				converters:
+				{
+					description = "Json converters."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "JsonConverter"
+					}
+				}
+				
+				required:
+				{
+					description = "Is field value required?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				compressed:
+				{
+					description = "Is field value stored in compressed form?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+
+		SerializableField:
+		{
+			instanceOf = "object"
+			description = "Serializable field schema."
+			base = "ComplexField"
+			properties:
+			{
+				required:
+				{
+					description = "Is field value required?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				compressed:
+				{
+					description = "Is field value stored in compressed form?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				allowedClasses:
+				{
+					description = "Classes allowed to be stored in field."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+			}
+		}
+		
+		StringField:
+		{
+			instanceOf = "object"
+			description = "String field schema."
+			base = "ComplexField"
+			properties:
+			{
+				required:
+				{
+					description = "Is field value required?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				compressed:
+				{
+					description = "Is field value stored in compressed form?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				minSize:
+				{
+					description = "Minimum size of string."
+					required = true
+					default = 0
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 16384
+					}
+				}
+					
+				maxSize:
+				{
+					description = "Maximum size of string."
+					required = true
+					default = 128
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 16384
+					}
+				}
+				
+				pattern:
+				{
+					description = "Value glob/regexp pattern."
+					required = false
+					type = "string"
+				}
+				
+				enumeration:
+				{
+					description = "Enumeration of field values."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+					
+				sequenceField:
+				{
+					description = "String sequence field."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		PrimitiveField.DataType:
+		{
+			instanceOf = "string"
+			enumeration : ["byte" "char" "short" "int" "long" "boolean" "float" "double"]
+		}
+		
+		PrimitiveField:
+		{
+			instanceOf = "object"
+			description = "Primitive field schema."
+			base = "SimpleField"
+			properties:
+			{
+				dataType:
+				{
+					description = "Data type."
+					required = true
+					default = "int"
+					type = "PrimitiveField.DataType"
+				}
+			}
+		}
+			
+		NumericType:
+		{
+			instanceOf = "compound"
+			types:["long", "double"]
+		}
+		
+		NumericField:
+		{
+			instanceOf = "object"
+			description = "Numeric field schema."
+			base = "PrimitiveField"
+			properties:
+			{
+				min:
+				{
+					description = "Minimum value."
+					required = false
+					type = "NumericType"
+				}
+			
+				max:
+				{
+					description = "Maximum value."
+					required = false
+					type = "NumericType"
+				}
+					
+				enumeration:
+				{
+					description = "Enumeration of field values."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "NumericType"
+					}
+				}
+					
+				sequenceField:
+				{
+					description = "Sequence field."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		NumericSequenceField:
+		{
+			instanceOf = "object"
+			description = "Numeric sequence field schema."
+			base = "SimpleField"
+			properties:
+			{
+				initialValue:
+				{
+					description = "Sequence initial value."
+					required = true
+					default = 1
+					type = "long"
+				}
+			
+				step:
+				{
+					description = "Sequence incrementation step."
+					required = true
+					default = 1
+					type = "long"
+				}
+					
+				period:
+				{
+					description = "Sequence reset period."
+					required = false
+					type = "SchedulePeriod"
+				}
+			}
+		}
+		
+		StringSequenceField:
+		{
+			instanceOf = "object"
+			description = "String sequence field schema."
+			base = "NumericSequenceField"
+			properties:
+			{
+				prefix:
+				{
+					description = "Sequence value prefix."
+					required = false
+					type = "string"
+				}
+			
+				suffix:
+				{
+					description = "Sequence value suffix."
+					required = false
+					type = "string"
+				}
+					
+				numberFormat:
+				{
+					description = "Sequence number format."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		VersionField:
+		{
+			instanceOf = "object"
+			description = "Version field schema."
+			base = "SimpleField"
+		}
+		
+		UuidField:
+		{
+			instanceOf = "object"
+			description = "UUID field schema."
+			base = "SimpleField"
+			properties:
+			{
+				required:
+				{
+					description = "Is field value required?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+			
+		SingleReferenceField:
+		{
+			instanceOf = "object"
+			description = "Single reference field schema."
+			base = "SimpleField"
+			properties:
+			{
+				fieldReference:
+				{
+					description = "Bidirectional field reference."
+					required = false
+					type = "string"
+				}
+			
+				required:
+				{
+					description = "Is field value required?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				owning:
+				{
+					description = "Does field own referenced node?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				bidirectional:
+				{
+					description = "Is field bidirectional?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				nodeReferences:
+				{
+					description = "Node references if field is unidirectional."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+					
+				externalSpaceName:
+				{
+					description = "Fully qualified external space name."
+					required = false
+					type = "string"
+				}
+			}
+		}
+			
+		ReferenceField:
+		{
+			instanceOf = "object"
+			description = "Reference field schema."
+			base = "ComplexField"
+			properties:
+			{
+				fieldReference:
+				{
+					description = "Bidirectional field reference."
+					required = false
+					type = "string"
+				}
+			
+				required:
+				{
+					description = "Is field value required?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				owning:
+				{
+					description = "Does field own referenced node?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				bidirectional:
+				{
+					description = "Is field bidirectional?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				nodeReferences:
+				{
+					description = "Node references if field is unidirectional."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+										
+				externalSpaceName:
+				{
+					description = "Fully qualified external space name."
+					required = false
+					type = "string"
+				}
+				
+				stableOrder:
+                {
+                    description = "Is field element order stable?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+			}
+		}
+		
+		BlobField:
+		{
+			instanceOf = "object"
+			description = "Blob field schema."
+			base = "SimpleField"
+			abstract = true
+			properties:
+			{
+				required:
+				{
+					description = "Is field value required?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			
+				compressed:
+				{
+					description = "Is field value stored in compressed form."
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				blobStoreNode:
+				{
+					description = "Blob store node. If not set root node is used."
+					required = false
+					type = "string"
+				}
+					
+				blobStoreField:
+				{
+					description = "Blob store field."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		BinaryField:
+		{
+			instanceOf = "object"
+			description = "Binary field schema."
+			base = "BlobField"
+		}
+		
+		TextField:
+		{
+			instanceOf = "object"
+			description = "Text field schema."
+			base = "BlobField"
+		}
+		
+		IndexType:
+		{
+			instanceOf = "string"
+			enumeration = ["btree", "hash", "tree"]
+		}
+		
+		IndexedNumericField:
+		{
+			instanceOf = "object"
+			description = "Indexed numeric field schema."
+			base = "NumericField"
+			properties:
+			{
+				pathIndex:
+				{
+					description = "Database path index of index datafile."
+					required = true
+					default = 0
+					type = "long"
+				}	
+			
+				indexType:
+				{
+					description = "Index type."
+					required = false
+					default = "btree"
+					type = "IndexType"
+				}
+					
+				primary:
+				{
+					description = "Is field primary?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				unique:
+				{
+					description = "Are field values unique?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				sorted:
+				{
+					description = "Are field values sorted?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				ascending:
+				{
+					description = "Are field values sorted in ascending or descending order?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				cached:
+				{
+					description = "Are field values cached?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				fullText:
+				{
+					description = "Are field values indexed by fulltext search?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				indexName:
+				{
+					description = "Name of index shared between several fields of different nodes."
+					required = false
+					type = "string"
+				}
+					
+				fullTextFieldName:
+				{
+					description = "Name of field to be used in fulltext index."
+					required = false
+					type = "string"
+				}
+			}
+		}
+			
+		IndexedUuidField:
+		{
+			instanceOf = "object"
+			description = "Indexed UUID field schema."
+			base = "UuidField"
+			properties:
+			{
+				pathIndex:
+				{
+					description = "Database path index of index datafile."
+					required = true
+					default = 0
+					type = "long"
+				}	
+			
+				indexType:
+				{
+					description = "Index type."
+					required = true
+					default = "btree"
+					type = "IndexType"
+				}
+					
+				primary:
+				{
+					description = "Is field primary?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				unique:
+				{
+					description = "Are field values unique?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				cached:
+				{
+					description = "Are field values cached?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				indexName:
+				{
+					description = "Name of index shared between several fields of different nodes."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		Collator.Strength:
+		{
+			instanceOf = "string"
+			enumeration = ["primary", "secondary", "tertiary", "quaternary", "identical"]
+		}
+		
+		Collator:
+		{
+			instanceOf = "object"
+			description = "Collator schema."
+			final = true
+			properties:
+			{
+				locale:
+				{
+					description = "Collator locale."
+					required = true
+					type = "string"
+				}
+			
+				strength:
+				{
+					description = "Collator strength."
+					required = true
+					default = "secondary"
+					type = "Collator.Strength"
+				}
+			}
+		}
+		
+		IndexedStringField:
+		{
+			instanceOf = "object"
+			description = "Indexed string field schema."
+			base = "StringField"
+			properties:
+			{
+				pathIndex:
+				{
+					description = "Database path index of index datafile."
+					required = true
+					default = 0
+					type = "long"
+				}	
+			
+				indexType:
+				{
+					description = "Index type."
+					required = false
+					default = "btree"
+					type = "IndexType"
+				}
+					
+				primary:
+				{
+					description = "Is field primary?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				unique:
+				{
+					description = "Are field values unique?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				sorted:
+				{
+					description = "Are field values sorted?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				ascending:
+				{
+					description = "Are field values sorted in ascending or descending order?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				cached:
+				{
+					description = "Are field values cached?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				fullText:
+				{
+					description = "Are field values indexed by fulltext search?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				tokenized:
+				{
+					description = "Are field values indexed by fulltext search tokenized or used as term values?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				collator:
+				{
+					description = "Sort collator."
+					required = false
+					type = "Collator"
+				}
+					
+				indexName:
+				{
+					description = "Name of index shared between several fields of different nodes."
+					required = false
+					type = "string"
+				}
+					
+				fullTextFieldName:
+				{
+					description = "Name of field to be used in fulltext index."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		RecordIndexer:
+		{
+			instanceOf = "object"
+			description = "Blob record indexer."
+			abstract = true
+		}
+		
+		StructuredBlobIndex:
+		{
+			instanceOf = "object"
+			description = "Structured blob index schema."
+			base = "SchemaObject"
+			final = true
+			properties:
+			{
+				indexType:
+				{
+					description = "Index type."
+					required = true
+					default = "btree"
+					type = "IndexType"
+				}
+			
+				pathIndex:
+				{
+					description = "Index datafile path index."
+					required = true
+					default = 0
+					type = "long"
+				}
+			
+				fixedKey:
+				{
+					description = "Is index key fixed?"
+					required = true
+					type = "boolean"
+				}
+			
+				maxKeySize:
+				{
+					description = "Maximum size of index key."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 1024
+					}
+				}
+					
+				keyNormalizer:
+				{
+					description = "Index key normalizer."
+					required = true
+					type = "KeyNormalizer"
+				}
+				
+				unique:
+				{
+					description = "Are index keys unique?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				sorted:
+				{
+					description = "Are field values sorted?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				indexName:
+                {
+                    description = "Name of index shared between several fields of different nodes."
+                    required = false
+                    type = "string"
+                }
+			}
+		}
+			
+		StructuredBlobField:
+		{
+			instanceOf = "object"
+			description = "Structured blob field schema."
+			base = "BlobField"
+			properties:
+			{
+				allowedClasses:
+				{
+					description = "Classes allowed to be stored in field."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+			
+				fixedRecord:
+				{
+					description = "Does records have fixed size?"
+					required = true
+					type = "boolean"
+					default = false
+				}
+				
+				fixedRecordSize:
+				{
+					description = "Record size in bytes, if record is fixed."
+					required = true
+					type = "long"
+					default = 0
+				}
+				
+				indexes:
+				{
+					description = "Blob record indexes."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "StructuredBlobIndex"
+					}
+				}
+				
+				fullTextIndex:
+				{
+					description = "Is field indexed by full text index."
+					required = false
+					type = "boolean"
+				}
+				
+				recordIndexer:
+				{
+					description = "Indexer of blob records."
+					required = false
+					type = "RecordIndexer"
+				}
+			}
+		}
+		
+		VariableStructuredBlobField:
+		{
+			instanceOf = "object"
+			description = "Variable-length structured blob field schema."
+			base = "BlobField"
+			properties:
+			{
+				allowedClasses:
+				{
+					description = "Classes allowed to be stored in field."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+				
+				fixedRecord:
+				{
+					description = "Does records have fixed size?"
+					required = true
+					type = "boolean"
+					default = false
+				}
+				
+				fixedRecordSize:
+				{
+					description = "Record size in bytes, if record is fixed."
+					required = true
+					type = "long"
+					default = 0
+				}
+			}
+		}
+		
+		TagField:
+		{
+			instanceOf = "object"
+			description = "Tag field schema."
+			base = "ComplexField"
+			properties:
+			{
+				maxSize:
+				{
+					description = "Maximum size of tags string."
+					required = true
+					default = 128
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 256
+					}
+				}
+			
+				pathIndex:
+				{
+					description = "Database path index of index datafile."
+					required = true
+					default = 0
+					type = "long"
+				}	
+			
+				indexType:
+				{
+					description = "Index type."
+					required = false
+					default = "btree"
+					type = "IndexType"
+				}
+					
+				indexName:
+				{
+					description = "Name of index shared between several fields of different nodes."
+					required = false
+					type = "string"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,239 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-28/data-28.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:group1 (component-component-28/data-28.dt)"]
+                },
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]"
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:host1 (component-component-28/data-28.dt)", "scope:host2 (component-component-28/data-28.dt)"],
+        "nodes": 
+        ["scope:node1 (component-component-28/data-28.dt)", "scope:node2 (component-component-28/data-28.dt)"],
+        "healthComponents": 
+        ["scope:host1 (component-component-28/data-28.dt)", "scope:host2 (component-component-28/data-28.dt)", "scope:node1 (component-component-28/data-28.dt)", "scope:node2 (component-component-28/data-28.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 9,
+                "scope": "aggregationGroup2",
+                "component": "AggregationGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "aggregationGroup2",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly]",
+                        "components": 
+                        ["scope:host1 (component-component-28/data-28.dt)", "scope:node1 (component-component-28/data-28.dt)", "scope:node2 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 7,
+                "scope": "aggregationGroup1",
+                "component": "AggregationGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "aggregationGroup1",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly]",
+                        "components": 
+                        ["scope:host1 (component-component-28/data-28.dt)", "scope:host2 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 6,
+                "scope": "group2",
+                "component": "Group",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group2",
+                        "component": "Group",
+                        "flags": "[readonly]",
+                        "children": 
+                        ["scope:aggregationGroup1 (component-component-28/data-28.dt)", "scope:aggregationGroup2 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 5,
+                "scope": "group1",
+                "component": "Group",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1",
+                        "component": "Group",
+                        "flags": "[readonly]",
+                        "children": 
+                        ["scope:group2 (component-component-28/data-28.dt)"],
+                        "components": 
+                        ["scope:host1 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 4,
+                "scope": "node2",
+                "component": "Node",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "node2",
+                        "component": "Node",
+                        "flags": "[readonly]",
+                        "groups": 
+                        ["scope:aggregationGroup2 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 3,
+                "scope": "node1",
+                "component": "Node",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "node1",
+                        "component": "Node",
+                        "flags": "[readonly]",
+                        "groups": 
+                        ["scope:aggregationGroup2 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 2,
+                "scope": "host2",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "host2",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "groups": 
+                        ["scope:aggregationGroup1 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 1,
+                "scope": "host1",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "options": 
+                        {
+                            "key1": "value1"
+                        },
+                        "properties": 
+                        {
+                            "key2": "value2"
+                        },
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "host1",
+                        "component": "Host",
+                        "flags": "[readonly, deleted]",
+                        "state": "deleted"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "options": 
+                        {
+                            "key1": "value1"
+                        },
+                        "properties": 
+                        {
+                            "key2": "value2"
+                        },
+                        "groups": 
+                        ["scope:aggregationGroup1 (component-component-28/data-28.dt)", "scope:aggregationGroup2 (component-component-28/data-28.dt)", "scope:group1 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "options": 
+                        {
+                            "key1": "value1"
+                        },
+                        "properties": 
+                        {
+                            "key2": "value2"
+                        },
+                        "groups": 
+                        ["scope:aggregationGroup1 (component-component-28/data-28.dt)", "scope:aggregationGroup2 (component-component-28/data-28.dt)", "scope:group1 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "groups": 
+                        ["scope:aggregationGroup1 (component-component-28/data-28.dt)", "scope:aggregationGroup2 (component-component-28/data-28.dt)", "scope:group1 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    }
+                ]
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

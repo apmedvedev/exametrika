@@ -1,0 +1,880 @@
+{
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		ui:
+        {
+            models:
+            {
+                allJvmNodesWithServer: {instanceOf: "StructuredModel", selector: "allJvmNodes", cacheable: true},
+                allJvmNodes: {instanceOf: "DerivedModel", baseModels: ["allJvmNodesWithServer"], filter: {instanceOf: "NonSystemComponentFilter"}},
+                allJvmNodeTags: {instanceOf: "DerivedModel", baseModels: ["allJvmNodes"], filter: {instanceOf: "ComponentTagFilter", type: "jvmnode"}},
+                jvmNodeOverview: {instanceOf: "DerivedModel", baseModels: ["allJvmNodesWithServer"], filter: {instanceOf: "JvmNodeFilter"}},
+                jvmNodeKpi: {instanceOf: "TimedModel", selector: "jvmNode", args: {type: "kpi"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeTimeline: {instanceOf: "TimedModel", selector: "jvmNode", args: {type: "timeline"}, outerBoundary: true, cycleBased: true},
+                jvmNodeProperties: {instanceOf: "StructuredModel", selector: "jvmNode", args: {type: "properties"}},
+                jvmNodeHealthIndicators: {instanceOf: "TimedModel", selector: "jvmNode", args: {type: "healthIndicators"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeAvailabilityTimes: {instanceOf: "TimedModel", selector: "jvmNode", args: {type: "availabilityTimes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeIncidents: {instanceOf: "DerivedModel", baseModels: ["allIncidents"], filter: {instanceOf: "ComponentIncidentsFilter"}},
+                jvmNodeHealth: {instanceOf: "StructuredModel", selector: "jvmNode", args: {type: "health"}}
+                jvmNodeState: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["jvmNodeTimeline", "jvmNodeHealthIndicators"], filter: {instanceOf: "ComponentStateFilter"}},
+                jvmNodeProcessState: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "processState"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeProcessMemory: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "processMemory"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeProcessThreads: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "processThreads"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeProcessFileDescriptors: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "processFileDescriptors"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeProcessPageFaults: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "processPageFaults"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeProcessShortProperties: {instanceOf: "StructuredModel", selector: "jvmNode", args:{type: "processShortProperties"}},
+                jvmNodeHeaps: {instanceOf: "StructuredModel", selector: "jvmNode", args:{type: "heaps"}},
+                jvmNodeHeapUsage: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "heapUsage"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeHeapGcTime: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "heapGcTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeHeapGcBytes: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "heapGcBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeHeapGcStops: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "heapGcStops"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeHeapGcTimeHistogram: {instanceOf: "StructuredModel", selector: "jvmNode", args:{type:"heapGcTimeHistogram"}},
+                jvmNodeHeapGcBytesHistogram: {instanceOf: "StructuredModel", selector: "jvmNode", args:{type:"heapGcBytesHistogram"}},
+                jvmNodeCodeClasses: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "classes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeCodeCompilationTime: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "compilationTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeGcs: {instanceOf: "StructuredModel", selector: "jvmNode", args:{type: "gcs"}},
+                jvmNodeGcGcTime: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "gcGcTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeGcGcBytes: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "gcGcBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeGcGcStops: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "gcGcStops"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeGcGcTimeHistogram: {instanceOf: "StructuredModel", selector: "jvmNode", args:{type:"gcGcTimeHistogram"}},
+                jvmNodeGcGcBytesHistogram: {instanceOf: "StructuredModel", selector: "jvmNode", args:{type:"gcGcBytesHistogram"}},
+                jvmNodeBuffers: {instanceOf: "StructuredModel", selector: "jvmNode", args:{type: "buffers"}},
+                jvmNodeBufferUsage: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "bufferUsage"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeBufferCount: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "bufferCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeThreads: {instanceOf: "StructuredModel", selector: "jvmNode", args:{type: "threads"}},
+                jvmNodeThreadState: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "threadState"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeThreadCpu: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "threadCpu"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeThreadCount: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "threadCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeThreadAllocated: {instanceOf: "TimedModel", selector: "jvmNode", args:{type: "threadAllocated"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                jvmNodeGroupComponents: {instanceOf: "DerivedModel", baseModels: ["allJvmNodes"], filter: {instanceOf: "GroupComponentIdsFilter"}},
+                jvmNodeTransactions: {instanceOf: "DerivedModel", baseModels: ["allTransactions"], filter: {instanceOf: "ComponentTransactionsFilter"}},
+            }
+		    navBar:
+		    { 
+		        children:
+                [
+                    {
+                        instanceOf: "NavBarPage", name: "nodes", title: "Nodes", icon: "nodeIcon", children:
+                        [ 
+                            { 
+                                instanceOf: "NavBarPage", name: "jvmNodes", title: "JVM Nodes", icon: "jvmNodeIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allJvmNodes", title: "All nodes", icon: "jvmnode", link: "#views/all-jvmnodes", 
+                                        badge: { color: "green"}, model: "allJvmNodes", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allFailedJvmNodes", title: "All failed nodes", icon: "jvmNodeFailedIconGreyed", link: "#views/all-failed-jvmnodes", 
+                                        badge: { color: "red"}, model: "allJvmNodes", 
+                                        filter: {instanceOf: "FailedLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allMaintenanceJvmNodes", title: "All nodes in maintenance mode", icon: "jvmNodeMaintenanceIconGreyed", link: "#views/all-maintenance-jvmnodes", 
+                                        badge: { color: "blue"}, model: "allJvmNodes", 
+                                        filter: {instanceOf: "MaintenanceLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "jvmNodeGroups", title: "Node groups", icon: "jvmNodeGroupIcon", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "jvmnode", group: "jvmnodegroup"},
+                                            model: "allJvmNodes"
+                                        }                       
+                                    },
+                                    {
+                                        instanceOf: "NavBarTreeView", name: "jvmNodeTags", title: "Node tags", icon: "jvmNodeTagIcon", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true}, 
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "jvmnode", group: "jvmnodegroup"},
+                                            model: "allJvmNodeTags"
+                                        }                       
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        instanceOf: "NavBarPage", name: "backgroundActivities", title: "Background Activities", icon: "backgroundActivity", children:
+                        [
+                            { 
+                                instanceOf: "NavBarLink", name: "allActivities", title: "All activities", icon: "backgroundActivity", link: "#views/all-activities", 
+                                badge: { color: "green"}, model: "allJvmNodes", 
+                                filter: {instanceOf: "TableLeafCountFilter"}
+                            },
+                            { 
+                                instanceOf: "NavBarLink", name: "allFailedActivities", title: "All failed activities", icon: "backgroundActivityFailedIconGreyed", link: "#views/all-failed-activities", 
+                                badge: { color: "red"}, model: "allJvmNodes", 
+                                filter: {instanceOf: "FailedLeafCountFilter"}
+                            },
+                            { 
+                                instanceOf: "NavBarLink", name: "allMaintenanceActivities", title: "All activities in maintenance mode", icon: "backgroundActivityMaintenanceIconGreyed", link: "#views/all-maintenance-activities", 
+                                badge: { color: "blue"}, model: "allJvmNodes", 
+                                filter: {instanceOf: "MaintenanceLeafCountFilter"}
+                            },
+                            { 
+                                instanceOf: "NavBarTreeView", name: "activityGroups", title: "Activity groups", icon: "backgroundActivityGroupIcon", child: 
+                                {
+                                    instanceOf: "TreeView",
+                                    filterPanel: true, 
+                                    formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "backgroundactivity"},
+                                    comparator: {instanceOf:"TitleComparator"},
+                                    contextMenu: {instanceOf:"ComponentContextMenu", component: "backgroundactivity", group: "backgroundactivitygroup"},
+                                    model: "allJvmNodes"
+                                }                       
+                            },
+                            {
+                                instanceOf: "NavBarTreeView", name: "activityTags", title: "Activity tags", icon: "backgroundActivityTagIcon", child: 
+                                {
+                                    instanceOf: "TreeView",
+                                    filterPanel: true, 
+                                    formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "backgroundactivity"}, 
+                                    comparator: {instanceOf:"TitleComparator"},
+                                    contextMenu: {instanceOf:"ComponentContextMenu", component: "backgroundactivity", group: "backgroundactivitygroup"},
+                                    model: "allJvmNodeTags"
+                                }                       
+                            }
+                        ]
+                    },
+                    {
+                        instanceOf: "NavBarPage", name: "backgroundHotspots", title: "Background Hotspots", icon: "backgroundHotspotIcon", children:
+                        [
+                            {
+                                instanceOf: "NavBarPage", name: "methods", title: "Methods", icon: "method", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allMethods", title: "All nodes", icon: "method", link: "#views/all-bkmethods", 
+                                        badge: { color: "green"}, model: "allBackgroundMethods", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "methodGroups", title: "Node groups", icon: "methodGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "bkmethod"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "bkmethod", group: "bkmethodgroup"},
+                                            model: "allBackgroundMethods"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "errors", title: "Errors", icon: "errorIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allErrors", title: "All nodes", icon: "errorIcon", link: "#views/all-bkerrors", 
+                                        badge: { color: "green"}, model: "allBackgroundErrors", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "errorGroups", title: "Node groups", icon: "errorIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "bkerror"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "bkerror", group: "bkerrorgroup"},
+                                            model: "allBackgroundErrors"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "db", title: "Database Queries", icon: "jdbcExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allJdbcQueries", title: "All nodes", icon: "jdbcExitIcon", link: "#views/all-bkjdbc", 
+                                        badge: { color: "green"}, model: "allBackgroundJdbcQueries", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "jdbcQueryGroups", title: "Node groups", icon: "jdbcExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "bkjdbcquery"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "bkjdbcquery", group: "bkjdbcquerygroup"},
+                                            model: "allBackgroundJdbcQueries"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "httpConnection", title: "HTTP Connections", icon: "httpExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allHttpConnections", title: "All nodes", icon: "httpExitIcon", link: "#views/all-bkhttpconnections", 
+                                        badge: { color: "green"}, model: "allBackgroundHttpConnections", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "httpConnectionGroups", title: "Node groups", icon: "httpExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "bkhttpconnection"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "bkhttpconnection", group: "bkhttpconnectiongroup"},
+                                            model: "allBackgroundHttpConnections"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "jmsProducer", title: "JMS Producers", icon: "jmsExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allJmsProducers", title: "All nodes", icon: "jmsExitIcon", link: "#views/all-bkjmsproducers", 
+                                        badge: { color: "green"}, model: "allBackgroundJmsProducers", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "jmsProducerGroups", title: "Node groups", icon: "jmsExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "bkjmsproducer"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "bkjmsproducer", group: "bkjmsproducergroup"},
+                                            model: "allBackgroundJmsProducers"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "tcp", title: "TCP Requests", icon: "tcpExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allTcps", title: "All nodes", icon: "tcpExitIcon", link: "#views/all-bktcps", 
+                                        badge: { color: "green"}, model: "allBackgroundTcps", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "tcpGroups", title: "Node groups", icon: "tcpExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "bktcp"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "bktcp", group: "bktcpgroup"},
+                                            model: "allBackgroundTcps"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "udp", title: "UDP Requests", icon: "udpExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allUdps", title: "All nodes", icon: "udpExitIcon", link: "#views/all-bkudps", 
+                                        badge: { color: "green"}, model: "allBackgroundUdps", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "udpGroups", title: "Node groups", icon: "udpExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "bkudp"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "bkudp", group: "bkudpgroup"},
+                                            model: "allBackgroundUdps"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "file", title: "File Requests", icon: "fileExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allFiles", title: "All node", icon: "fileExitIcon", link: "#views/all-bkfiles", 
+                                        badge: { color: "green"}, model: "allBackgroundFiles", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "fileGroups", title: "Node groups", icon: "fileExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "bkfile"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "bkfile", group: "bkfilegroup"},
+                                            model: "allBackgroundFiles"
+                                        }                       
+                                    },
+                                ]
+                            }
+                        ]
+                    }
+    		    ]
+		    }
+            views:
+            {
+                "all-jvmnodes": 
+                {
+                    instanceOf: "AllJvmNodesView"
+                },
+                "all-failed-jvmnodes": 
+                {
+                    instanceOf: "AllFailedJvmNodesView"
+                },
+                "all-maintenance-jvmnodes": 
+                {
+                    instanceOf: "AllMaintenanceJvmNodesView"
+                }
+            }
+        }
+		components:
+		{
+		    JvmNode:
+            {
+                instanceOf = "node"
+                selectors:
+                {
+                    jvmNode = {instanceOf = "JvmNodeSelector"}
+                    transaction = {instanceOf = "JvmNodeSelector"}
+                }
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "overview",
+                                title: "Overview",
+                                icon: "home",
+                                active: true,
+                                child: {instanceOf: "JvmNodeOverviewPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "health",
+                                title: "Health",
+                                icon: "heartbeat",
+                                child: {instanceOf: "JvmNodeHealthPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "process",
+                                title: "Process",
+                                icon: "processIcon",
+                                child: {instanceOf: "JvmNodeProcessPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "heap",
+                                title: "Heap",
+                                icon: "poolIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],                            
+                                child: {instanceOf: "JvmNodeHeapPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "gc",
+                                title: "GC",
+                                icon: "gcIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "JvmNodeGcPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "buffer",
+                                title: "Buffers",
+                                icon: "bufferIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "JvmNodeBufferPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "thread",
+                                title: "Threads",
+                                icon: "threadIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "JvmNodeThreadPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "transactions",
+                                title: "Transactions",
+                                icon: "processIcon",
+                                periods: ["p2", "p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "JvmNodeTransactionPage"}
+                            },
+                        ]
+                    },
+                    "kpi":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Node KPI",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "nodeKpi",
+                                title: "Node KPI",
+                                icon: "nodeIcon",
+                                active: true,
+                                child: {instanceOf: "JvmNodeKpiPage"}
+                            },
+                        ]
+                    },
+                    "health":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Health indicators",
+                        group: "Health",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "health",
+                                title: "Health indicators",
+                                icon: "heartbeat",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeHealthIndicatorsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "availability":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Availability times",
+                        group: "Health",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "availability",
+                                title: "Availability times",
+                                icon: "heartbeat",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeAvailabilityTimesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "cpu":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "CPU load",
+                        group: "Process",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "cpu",
+                                title: "CPU load",
+                                icon: "processIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeCpuListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "memory":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Memory usage",
+                        group: "Process",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "memory",
+                                title: "Memory usage",
+                                icon: "processIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeMemoryListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "pageFaults":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Page faults",
+                        group: "Process",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "pageFaults",
+                                title: "Page faults",
+                                icon: "processIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeProcessPageFaultsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "threads":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Threads",
+                        group: "Process",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "threads",
+                                title: "Threads",
+                                icon: "processIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeProcessThreadsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "fileDescriptors":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "File descriptors",
+                        group: "Process",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "fileDescriptors",
+                                title: "File descriptors",
+                                icon: "processIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeProcessFileDescriptorsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "heap":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Heap usage",
+                        group: "Heap",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "heap",
+                                title: "Heap usage",
+                                icon: "poolIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeHeapListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "nonHeap":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Non-heap usage",
+                        group: "Heap",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "nonHeap",
+                                title: "Non-heap usage",
+                                icon: "poolIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeNonHeapListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "gcTime":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "GC time",
+                        group: "GC",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "gcTime",
+                                title: "GC time",
+                                icon: "gcIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeGcTimeListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "gcBytes":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "GC bytes",
+                        group: "GC",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "gcBytes",
+                                title: "GC bytes",
+                                icon: "gcIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeGcBytesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "gcStops":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "GC pauses",
+                        group: "GC",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "gcStops",
+                                title: "GC pauses",
+                                icon: "gcIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeGcStopsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "classes":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Classes",
+                        group: "Code",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "classes",
+                                title: "Classes",
+                                icon: "poolIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeCodeClassesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "compilationTime":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Compilation time",
+                        group: "Code",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "compilationTime",
+                                title: "Compilation time",
+                                icon: "poolIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeCodeCompilationTimeListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "buffers":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Buffers usage",
+                        group: "Buffers",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "buffers",
+                                title: "Buffers usage",
+                                icon: "bufferIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeBuffersListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "buffersCount":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Buffers count",
+                        group: "Buffers",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "buffersCount",
+                                title: "Buffers count",
+                                icon: "bufferIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeBuffersCountListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "threadCpu":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Threads CPU load",
+                        group: "Threads",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "threadCpu",
+                                title: "Threads CPU load",
+                                icon: "threadIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeThreadCpuListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "threadCount":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Threads count",
+                        group: "Threads",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "threadCount",
+                                title: "Threads count",
+                                icon: "threadIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeThreadCountListPage"
+                                }
+                            },
+                        ]
+                    },
+                    "threadAllocated":
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Allocation rate",
+                        group: "Threads",
+                        listView: "all-jvmnodes",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "threadAllocated",
+                                title: "Allocation rate",
+                                icon: "threadIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "JvmNodeThreadAllocatedListPage"
+                                }
+                            },
+                        ]
+                    },
+                }
+            }
+            JvmNodeGroup:
+            {
+                instanceOf = "group"
+                selectors:
+                {
+                    jvmNode = {instanceOf = "JvmNodeSelector"}
+                    transaction = {instanceOf = "JvmNodeSelector"}
+                }
+                views:
+                {
+                    default: {instanceOf = "ViewReference" component: "JvmNode" view: "default"},
+                    "kpi": {instanceOf:"ViewReference", component: "JvmNode", view: "kpi"},
+                    "health": {instanceOf:"ViewReference", component: "JvmNode", view: "health"},
+                    "availability": {instanceOf:"ViewReference", component: "JvmNode", view: "availability"},
+                    "cpu": {instanceOf:"ViewReference", component: "JvmNode", view: "cpu"},
+                    "memory": {instanceOf:"ViewReference", component: "JvmNode", view: "memory"},
+                    "pageFaults": {instanceOf:"ViewReference", component: "JvmNode", view: "pageFaults"},
+                    "threads": {instanceOf:"ViewReference", component: "JvmNode", view: "threads"},
+                    "fileDescriptors": {instanceOf:"ViewReference", component: "JvmNode", view: "fileDescriptors"},
+                    "heap": {instanceOf:"ViewReference", component: "JvmNode", view: "heap"},
+                    "nonHeap": {instanceOf:"ViewReference", component: "JvmNode", view: "nonHeap"},
+                    "gcTime": {instanceOf:"ViewReference", component: "JvmNode", view: "gcTime"},
+                    "gcBytes": {instanceOf:"ViewReference", component: "JvmNode", view: "gcBytes"},
+                    "gcStops": {instanceOf:"ViewReference", component: "JvmNode", view: "gcStops"},
+                    "classes": {instanceOf:"ViewReference", component: "JvmNode", view: "classes"},
+                    "compilationTime": {instanceOf:"ViewReference", component: "JvmNode", view: "compilationTime"},
+                    "buffers": {instanceOf:"ViewReference", component: "JvmNode", view: "buffers"},
+                    "buffersCount": {instanceOf:"ViewReference", component: "JvmNode", view: "buffersCount"},
+                    "threadCpu": {instanceOf:"ViewReference", component: "JvmNode", view: "threadCpu"},
+                    "threadCount": {instanceOf:"ViewReference", component: "JvmNode", view: "threadCount"},
+                    "threadAllocated": {instanceOf:"ViewReference", component: "JvmNode", view: "threadAllocated"},
+                }
+            }
+			RootGroup:
+            {
+                instanceOf = "group"
+                selectors:
+                {
+                    allJvmNodes = {instanceOf = "AllJvmNodesSelector"}
+                }
+            }
+		}
+	}}}}
+}

@@ -1,0 +1,296 @@
+{
+	name = "com.exametrika.exadb.core-1.0"
+	description = "Exa database core schema."
+	
+	types:
+	{
+		ArchiveStore:
+		{
+			instanceOf = "object"
+			description = "Configuration of archive store."
+			abstract = true
+		}
+	
+		FileArchiveStore:
+		{
+			instanceOf = "object"
+			description = "Configuration of file archive store."
+			final = true
+			base = "ArchiveStore" 
+			properties:
+			{
+				path:
+				{
+					description = "Path to archive directory."
+					required = true
+					type = "string"
+				}
+			}
+		}
+			
+		NullArchiveStore:
+		{
+			instanceOf = "object"
+			description = "Configuration of null archive store."
+			final = true
+			base = "ArchiveStore"
+		}
+			
+		BackupOperation:
+		{
+			instanceOf = "object"
+			description = "Configuration of database backup operation."
+			final = true
+			base = "JobOperation" 
+			properties:
+			{
+				archiveStore:
+				{
+					description = "Archive store."
+					required = true
+					type = "ArchiveStore"
+				}
+			}
+		}
+
+		SchemaObject:
+		{
+			instanceOf = "object"
+			description = "Base schema object."
+			abstract = true
+			properties:
+			{
+				alias:
+				{
+					description = "Schema object alias."
+					required = false
+					type = "string"
+				}
+			
+				description:
+				{
+					description = "Schema object description."
+					required = false
+					type = "string"
+				}
+			}
+		}
+	
+		DatabaseExtension:
+		{
+			instanceOf = "object"
+			description = "Database extension schema."
+			base = "SchemaObject"
+			abstract = true
+		}
+		
+		Space:
+		{
+			instanceOf = "object"
+			description = "Space schema."
+			base = "SchemaObject"
+			abstract = true
+		}
+			
+		DomainService:
+		{
+			instanceOf = "object"
+			description = "Domain service schema."
+			base = "SchemaObject"
+			abstract = true
+		}
+		
+		Domain:
+		{
+			instanceOf = "object"
+			description = "Domain schema."
+			base = "SchemaObject"
+			final = true
+			properties:
+			{
+				spaces:
+				{
+					description = "Spaces."
+					required = true
+					default:{}
+					type:
+					{ 
+						instanceOf = "map"
+						valueType = "Space"
+					}
+				}
+			
+				domainServices:
+				{
+					description = "Domain services."
+					required = true
+					default:[]
+					type:
+					{ 
+						instanceOf = "array"
+						elementType = "DomainService"
+					}
+				}
+			}
+		}
+			
+		Database:
+		{
+			instanceOf = "object"
+			description = "Database schema."
+			base = "SchemaObject"
+			final = true
+			properties:
+			{
+				domains:
+				{
+					description = "Database domains schemas."
+					required = true
+					default:{}
+					type:
+					{ 
+						instanceOf = "map"
+						valueType = "Domain"
+					}
+				}
+				
+				extensions:
+				{
+					description = "Database extensions schemas."
+					required = true
+					default:[]
+					type:
+					{ 
+						instanceOf = "array"
+						elementType = "DatabaseExtension"
+					}
+				}
+				
+				${exa.extendedProperties;literal}
+			}
+		}
+		
+		Version:
+		{
+			instanceOf = "object"
+			description = "Module version in format of http://semver.org."
+			final = true
+			properties:
+			{
+				major:
+				{
+					description = "Major version."
+					required = true
+					type:
+					{ 
+						instanceOf = "long"
+						min = 0
+					}
+				}
+			
+				minor:
+				{
+					description = "Minor version."
+					required = true
+					default = 0
+					type:
+					{ 
+						instanceOf = "long"
+						min = 0
+					}
+				}
+				
+				patch:
+				{
+					description = "Patch version."
+					required = true
+					default = 0
+					type:
+					{ 
+						instanceOf = "long"
+						min = 0
+					}
+				}
+				
+				preRelease:
+				{
+					description = "Pre-release version."
+					required = false
+					type = "string"
+				}
+				
+				buildMetadata:
+				{
+					description = "Build metadata."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		CompoundVersion:
+		{
+			instanceOf = "compound"
+			types = ["string", "Version"]
+		}
+		
+		ModuleDependency:
+		{
+			instanceOf = "object"
+			description = "Module dependency."
+			final = true
+			properties:
+			{
+				version:
+				{
+					description = "Required version."
+					required = true
+					type = "CompoundVersion"
+				}
+			}
+		}
+		
+		Module:
+		{
+			instanceOf = "object"
+			description = "Module."
+			base = "SchemaObject"
+			final = true
+			properties:
+			{
+				version:
+				{
+					description = "Module version."
+					required = true
+					type = "CompoundVersion"
+				}
+			
+				schema:
+				{
+					description = "Module database schema."
+					required = true
+					type = "SchemaObject"
+				}
+					
+				dependencies:
+				{
+					description = "Module's dependencies."
+					required = true
+					default:{}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "ModuleDependency"
+					}
+				}
+			}
+		}
+		
+		Modules:
+		{
+			instanceOf = "map"
+			description = "List of modules."
+			valueType = "Module"
+		}
+	}
+}

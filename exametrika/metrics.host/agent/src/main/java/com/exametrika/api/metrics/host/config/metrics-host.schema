@@ -1,0 +1,193 @@
+{
+	name = "com.exametrika.metrics.host-1.0"
+	description = "Host metrics schema."
+
+	types:
+	{
+		ProcessNamingStrategy:
+		{
+			instanceOf = "object"
+			description = "Naming strategy for scopes of measurements of processes of host."
+			abstract = true
+		}
+	
+		ExpressionProcessNamingStrategy:
+		{
+			instanceOf = "object"
+			description = "Expression process naming strategy."
+			final = true
+			base = "ProcessNamingStrategy"
+			properties:
+			{
+				expression:
+				{
+					description = "Expression with context of host process."
+					required = true
+					type = "string"
+				}
+			}
+		}
+	
+		HostCpuMonitor:
+		{
+			instanceOf = "object"
+			description = "Host CPU monitor."
+			final = true
+			base = "Monitor"
+		}
+		
+		HostFileSystemMonitor:
+		{
+			instanceOf = "object"
+			description = "Host file systems monitor."
+			final = true
+			base = "Monitor"
+			properties:
+			{
+				filter:
+				{
+					description = "File system glob/regex filter pattern."
+					required = false
+					type = "string"
+				}
+			}
+		}
+			
+		HostMemoryMonitor:
+		{
+			instanceOf = "object"
+			description = "Host memory monitor."
+			final = true
+			base = "Monitor"
+		}
+			
+		HostNetworkMonitor:
+		{
+			instanceOf = "object"
+			description = "Host network monitor."
+			final = true
+			base = "Monitor"
+			properties:
+			{
+				filter:
+				{
+					description = "Network interface glob/regex filter pattern."
+					required = false
+					type = "string"
+				}
+			
+				extendedStatistics:
+				{
+					description = "Extended statistics for network interfaces."
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				tcpStatistics:
+				{
+					description = "TCP statistics for host."
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+                networkInterfaceSpeed:
+                {
+                    description = "Network interfaces speed in byte/s."
+                    required = false
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType:
+                        {
+                            instanceOf = "long"
+                            min = 0
+                            converter = "bytes"
+                        }
+                    }
+                }
+			}
+		}
+			
+		HostProcessMonitor:
+		{
+			instanceOf = "object"
+			description = "Host processes monitor."
+			final = true
+			base = "Monitor"
+			properties:
+			{
+				filters:
+				{
+					description = "Process filter expression with context of host process."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						minCount = 1
+						elementType = "string"
+					}
+				}
+			
+				namingStrategy:
+				{
+					description = "Naming strategy for scopes of measurements of host processes."
+					required = false
+					type:
+					{
+						instanceOf = "compound"
+						types = ["string", "ProcessNamingStrategy"]
+					}
+				}
+			}
+		}
+		
+		HostCurrentProcessMonitor:
+		{
+			instanceOf = "object"
+			description = "Monitor of current process of host."
+			final = true
+			base = "Monitor"
+		}
+			
+		HostSwapMonitor:
+		{
+			instanceOf = "object"
+			description = "Host swap monitor."
+			base = "Monitor"
+		}
+			
+		HostKpiMonitor:
+		{
+			instanceOf = "object"
+			description = "Host key performance indicators (KPI) monitor."
+			final = true
+			base = "Monitor"
+		    properties:
+	        {
+		        componentType:
+                {
+                    description = "Monitor component type."
+                    required = true
+                    default = "host.kpi"
+                    type = "string"
+                }
+			
+    	        fileSystemFilter:
+                {
+                    description = "File system glob/regex filter pattern."
+                    required = false
+                    type = "string"
+                }
+			
+			    networkInterfaceFilter:
+                {
+                    description = "Network interface glob/regex filter pattern."
+                    required = false
+                    type = "string"
+                }
+	        }
+		}
+	}
+}

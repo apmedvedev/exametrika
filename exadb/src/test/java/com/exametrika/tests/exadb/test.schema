@@ -1,0 +1,27 @@
+{
+	name = "test"
+		
+	types:
+	{
+		type1:
+		{
+			instanceOf = "object"
+			properties:
+			{
+				prop1:
+				{
+					type = "string"
+				}
+			
+				prop2:
+				{
+					type:
+					{
+						instanceOf = "long"
+						validators = ["testValidator"]
+					}
+				}
+			}	
+		}
+	}
+}

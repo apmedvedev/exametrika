@@ -1,0 +1,456 @@
+{
+    "cyclePeriod ": 
+    {
+        "<root>": 
+        {
+            "id": "3@aggregation-aggregation-p2-28/data-29.cy[cycle]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        []
+    },
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "29@aggregation-aggregation-p2-28/data-28.dt[0]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "46@aggregation-aggregation-p2-28/data-28.dt[0]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.cpu",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 10,
+                        "std.sum": 40,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "59@aggregation-aggregation-p2-28/data-28.dt[0]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.mem",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 40,
+                        "std.max": 60,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "72@aggregation-aggregation-p2-28/data-28.dt[0]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 0,
+                        "std.min": 0,
+                        "std.max": 0,
+                        "std.avg": 0
+                    },
+                    "downCounter": 
+                    {
+                    },
+                    "failureCounter": 
+                    {
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            }
+        ]
+    },
+    "period 1": 
+    {
+        "<root>": 
+        {
+            "id": "93@aggregation-aggregation-p2-28/data-28.dt[1]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "110@aggregation-aggregation-p2-28/data-28.dt[1]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "129@aggregation-aggregation-p2-28/data-28.dt[1]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.cpu",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 10,
+                        "std.sum": 40,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "142@aggregation-aggregation-p2-28/data-28.dt[1]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.mem",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 40,
+                        "std.max": 60,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    },
+    "period 2": 
+    {
+        "<root>": 
+        {
+            "id": "157@aggregation-aggregation-p2-28/data-28.dt[2]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "174@aggregation-aggregation-p2-28/data-28.dt[2]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 2000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            }
+        ]
+    },
+    "period 3": 
+    {
+        "<root>": 
+        {
+            "id": "195@aggregation-aggregation-p2-28/data-28.dt[3]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "212@aggregation-aggregation-p2-28/data-28.dt[3]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1500000000,
+                        "std.min": 500000000,
+                        "std.max": 1000000000,
+                        "std.avg": 750000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 500000000,
+                        "std.min": 500000000,
+                        "std.max": 500000000,
+                        "std.avg": 500000000
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 1000000000,
+                        "std.min": 1000000000,
+                        "std.max": 1000000000,
+                        "std.avg": 1000000000
+                    },
+                    "maintenanceCounter": 
+                    {
+                    }
+                }
+            },
+            {
+                "id": "231@aggregation-aggregation-p2-28/data-28.dt[3]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.cpu",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 10,
+                        "std.sum": 40,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "244@aggregation-aggregation-p2-28/data-28.dt[3]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.mem",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 40,
+                        "std.max": 60,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    },
+    "period 4": 
+    {
+        "<root>": 
+        {
+            "id": "259@aggregation-aggregation-p2-28/data-28.dt[4]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "276@aggregation-aggregation-p2-28/data-28.dt[4]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "HealthComponentType",
+                "measurements": 
+                {
+                    "totalCounter": 
+                    {
+                        "std.count": 6,
+                        "std.sum": 4500000000,
+                        "std.min": 0,
+                        "std.max": 2000000000,
+                        "std.avg": 750000000
+                    },
+                    "upCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 1499000000,
+                        "std.min": 0,
+                        "std.max": 1000000000,
+                        "std.avg": 499666666.667
+                    },
+                    "downCounter": 
+                    {
+                        "std.count": 3,
+                        "std.sum": 3001000000,
+                        "std.min": 1000000,
+                        "std.max": 2000000000,
+                        "std.avg": 1000333333.333
+                    },
+                    "failureCounter": 
+                    {
+                        "std.count": 2,
+                        "std.sum": 1001000000,
+                        "std.min": 1000000,
+                        "std.max": 1000000000,
+                        "std.avg": 500500000
+                    },
+                    "maintenanceCounter": 
+                    {
+                        "std.count": 1,
+                        "std.sum": 2000000000,
+                        "std.min": 2000000000,
+                        "std.max": 2000000000,
+                        "std.avg": 2000000000
+                    }
+                }
+            },
+            {
+                "id": "295@aggregation-aggregation-p2-28/data-28.dt[4]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.cpu",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 10,
+                        "std.sum": 40,
+                        "std.min": 20,
+                        "std.max": 30,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "308@aggregation-aggregation-p2-28/data-28.dt[4]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.mem",
+                "measurements": 
+                {
+                    "metricType1": 
+                    {
+                        "std.count": 20,
+                        "std.sum": 80,
+                        "std.min": 40,
+                        "std.max": 60,
+                        "std.avg": 4
+                    }
+                },
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    }
+}

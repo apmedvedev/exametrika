@@ -1,0 +1,527 @@
+{
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "4@aggregation-aggregation-p1-17/data-17.dt[0]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "22@aggregation-aggregation-p1-17/data-17.dt[0]",
+                "scope": "host",
+                "metric": "",
+                "componentType": "host.kpi",
+                "measurements": 
+                [
+                    {
+                        "host.cpu.total": 
+                        {
+                        },
+                        "host.cpu.idle": 
+                        {
+                        },
+                        "host.cpu.used": 
+                        {
+                        },
+                        "host.cpu.io": 
+                        {
+                        },
+                        "host.memory.total": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 8228773888,
+                            "std.min": 8228773888,
+                            "std.max": 8228773888,
+                            "std.avg": 8228773888
+                        },
+                        "host.memory.used": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 4337991680,
+                            "std.min": 4337991680,
+                            "std.max": 4337991680,
+                            "std.avg": 4337991680,
+                            "%used": 52.717
+                        },
+                        "host.memory.free": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 3890782208,
+                            "std.min": 3890782208,
+                            "std.max": 3890782208,
+                            "std.avg": 3890782208,
+                            "%free": 47.283
+                        },
+                        "host.disk.read": 
+                        {
+                        },
+                        "host.disk.write": 
+                        {
+                        },
+                        "host.net.received": 
+                        {
+                        },
+                        "host.net.sent": 
+                        {
+                        },
+                        "host.swap.total": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 19999485952,
+                            "std.min": 19999485952,
+                            "std.max": 19999485952,
+                            "std.avg": 19999485952
+                        },
+                        "host.swap.used": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 75960320,
+                            "std.min": 75960320,
+                            "std.max": 75960320,
+                            "std.avg": 75960320,
+                            "%used": 0.38
+                        },
+                        "host.swap.free": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 19923525632,
+                            "std.min": 19923525632,
+                            "std.max": 19923525632,
+                            "std.avg": 19923525632,
+                            "%free": 99.62
+                        },
+                        "host.swap.pagesIn": 
+                        {
+                        },
+                        "host.cpu.workload": 
+                        {
+                            "value": 0,
+                            "state": "normal"
+                        },
+                        "host.memory.workload": 
+                        {
+                            "value": 52.717,
+                            "state": "normal"
+                        },
+                        "host.swap.workload": 
+                        {
+                            "value": 0.38,
+                            "state": "normal"
+                        },
+                        "host.swap.errors": 
+                        {
+                            "value": 0,
+                            "state": "normal"
+                        },
+                        "workloadIndex": "normal",
+                        "errorsIndex": "normal",
+                        "healthIndex": "normal"
+                    },
+                    {
+                        "host.cpu.total": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 10420,
+                            "std.min": 10420,
+                            "std.max": 10420,
+                            "std.avg": 10420
+                        },
+                        "host.cpu.idle": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 9150,
+                            "std.min": 9150,
+                            "std.max": 9150,
+                            "std.avg": 9150,
+                            "%idle": 87.812
+                        },
+                        "host.cpu.used": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 800,
+                            "std.min": 800,
+                            "std.max": 800,
+                            "std.avg": 800,
+                            "%used": 7.678
+                        },
+                        "host.cpu.io": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 470,
+                            "std.min": 470,
+                            "std.max": 470,
+                            "std.avg": 470,
+                            "%io": 4.511
+                        },
+                        "host.memory.total": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 8228773888,
+                            "std.min": 8228773888,
+                            "std.max": 8228773888,
+                            "std.avg": 8228773888
+                        },
+                        "host.memory.used": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 4349378560,
+                            "std.min": 4349378560,
+                            "std.max": 4349378560,
+                            "std.avg": 4349378560,
+                            "%used": 52.856
+                        },
+                        "host.memory.free": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 3879395328,
+                            "std.min": 3879395328,
+                            "std.max": 3879395328,
+                            "std.avg": 3879395328,
+                            "%free": 47.144
+                        },
+                        "host.disk.read": 
+                        {
+                        },
+                        "host.disk.write": 
+                        {
+                            "std.count": 50,
+                            "std.sum": 540672,
+                            "std.min": 10813,
+                            "std.max": 10813,
+                            "std.avg": 10813.44
+                        },
+                        "host.net.received": 
+                        {
+                        },
+                        "host.net.sent": 
+                        {
+                        },
+                        "host.swap.total": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 19999485952,
+                            "std.min": 19999485952,
+                            "std.max": 19999485952,
+                            "std.avg": 19999485952
+                        },
+                        "host.swap.used": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 75960320,
+                            "std.min": 75960320,
+                            "std.max": 75960320,
+                            "std.avg": 75960320,
+                            "%used": 0.38
+                        },
+                        "host.swap.free": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 19923525632,
+                            "std.min": 19923525632,
+                            "std.max": 19923525632,
+                            "std.avg": 19923525632,
+                            "%free": 99.62
+                        },
+                        "host.swap.pagesIn": 
+                        {
+                        },
+                        "host.cpu.workload": 
+                        {
+                            "value": 7.678,
+                            "state": "normal"
+                        },
+                        "host.memory.workload": 
+                        {
+                            "value": 52.856,
+                            "state": "normal"
+                        },
+                        "host.swap.workload": 
+                        {
+                            "value": 0.38,
+                            "state": "normal"
+                        },
+                        "host.swap.errors": 
+                        {
+                            "value": 0,
+                            "state": "normal"
+                        },
+                        "workloadIndex": "normal",
+                        "errorsIndex": "normal",
+                        "healthIndex": "normal"
+                    },
+                    {
+                        "host.cpu.total": 
+                        {
+                        },
+                        "host.cpu.idle": 
+                        {
+                        },
+                        "host.cpu.used": 
+                        {
+                        },
+                        "host.cpu.io": 
+                        {
+                        },
+                        "host.memory.total": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 8228773888,
+                            "std.min": 8228773888,
+                            "std.max": 8228773888,
+                            "std.avg": 8228773888
+                        },
+                        "host.memory.used": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 4337991680,
+                            "std.min": 4337991680,
+                            "std.max": 4337991680,
+                            "std.avg": 4337991680,
+                            "%used": 52.717
+                        },
+                        "host.memory.free": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 3890782208,
+                            "std.min": 3890782208,
+                            "std.max": 3890782208,
+                            "std.avg": 3890782208,
+                            "%free": 47.283
+                        },
+                        "host.disk.read": 
+                        {
+                        },
+                        "host.disk.write": 
+                        {
+                        },
+                        "host.net.received": 
+                        {
+                        },
+                        "host.net.sent": 
+                        {
+                        },
+                        "host.swap.total": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 19999485952,
+                            "std.min": 19999485952,
+                            "std.max": 19999485952,
+                            "std.avg": 19999485952
+                        },
+                        "host.swap.used": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 75960320,
+                            "std.min": 75960320,
+                            "std.max": 75960320,
+                            "std.avg": 75960320,
+                            "%used": 0.38
+                        },
+                        "host.swap.free": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 19923525632,
+                            "std.min": 19923525632,
+                            "std.max": 19923525632,
+                            "std.avg": 19923525632,
+                            "%free": 99.62
+                        },
+                        "host.swap.pagesIn": 
+                        {
+                        },
+                        "host.cpu.workload": 
+                        {
+                            "value": 0,
+                            "state": "normal"
+                        },
+                        "host.memory.workload": 
+                        {
+                            "value": 52.717,
+                            "state": "normal"
+                        },
+                        "host.swap.workload": 
+                        {
+                            "value": 0.38,
+                            "state": "normal"
+                        },
+                        "host.swap.errors": 
+                        {
+                            "value": 0,
+                            "state": "normal"
+                        },
+                        "workloadIndex": "normal",
+                        "errorsIndex": "normal",
+                        "healthIndex": "normal"
+                    },
+                    {
+                        "host.cpu.total": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 10420,
+                            "std.min": 10420,
+                            "std.max": 10420,
+                            "std.avg": 10420
+                        },
+                        "host.cpu.idle": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 9150,
+                            "std.min": 9150,
+                            "std.max": 9150,
+                            "std.avg": 9150,
+                            "%idle": 87.812
+                        },
+                        "host.cpu.used": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 800,
+                            "std.min": 800,
+                            "std.max": 800,
+                            "std.avg": 800,
+                            "%used": 7.678
+                        },
+                        "host.cpu.io": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 470,
+                            "std.min": 470,
+                            "std.max": 470,
+                            "std.avg": 470,
+                            "%io": 4.511
+                        },
+                        "host.memory.total": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 8228773888,
+                            "std.min": 8228773888,
+                            "std.max": 8228773888,
+                            "std.avg": 8228773888
+                        },
+                        "host.memory.used": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 4349378560,
+                            "std.min": 4349378560,
+                            "std.max": 4349378560,
+                            "std.avg": 4349378560,
+                            "%used": 52.856
+                        },
+                        "host.memory.free": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 3879395328,
+                            "std.min": 3879395328,
+                            "std.max": 3879395328,
+                            "std.avg": 3879395328,
+                            "%free": 47.144
+                        },
+                        "host.disk.read": 
+                        {
+                        },
+                        "host.disk.write": 
+                        {
+                            "std.count": 50,
+                            "std.sum": 540672,
+                            "std.min": 10813,
+                            "std.max": 10813,
+                            "std.avg": 10813.44
+                        },
+                        "host.net.received": 
+                        {
+                        },
+                        "host.net.sent": 
+                        {
+                        },
+                        "host.swap.total": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 19999485952,
+                            "std.min": 19999485952,
+                            "std.max": 19999485952,
+                            "std.avg": 19999485952
+                        },
+                        "host.swap.used": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 75960320,
+                            "std.min": 75960320,
+                            "std.max": 75960320,
+                            "std.avg": 75960320,
+                            "%used": 0.38
+                        },
+                        "host.swap.free": 
+                        {
+                            "std.count": 1,
+                            "std.sum": 19923525632,
+                            "std.min": 19923525632,
+                            "std.max": 19923525632,
+                            "std.avg": 19923525632,
+                            "%free": 99.62
+                        },
+                        "host.swap.pagesIn": 
+                        {
+                        },
+                        "host.cpu.workload": 
+                        {
+                            "value": 7.678,
+                            "state": "normal"
+                        },
+                        "host.memory.workload": 
+                        {
+                            "value": 52.856,
+                            "state": "normal"
+                        },
+                        "host.swap.workload": 
+                        {
+                            "value": 0.38,
+                            "state": "normal"
+                        },
+                        "host.swap.errors": 
+                        {
+                            "value": 0,
+                            "state": "normal"
+                        },
+                        "workloadIndex": "normal",
+                        "errorsIndex": "normal",
+                        "healthIndex": "normal"
+                    }
+                ],
+                "metadata": 
+                {
+                    "node": "host",
+                    "name": "Linux",
+                    "version": "3.13.0-53-generic",
+                    "arch": "x86_64",
+                    "machine": "x86_64",
+                    "description": "Ubuntu 14.04",
+                    "patchLevel": "unknown",
+                    "vendor": "Ubuntu",
+                    "vendorVersion": "14.04",
+                    "vendorName": "Linux",
+                    "vendorCode": "trusty",
+                    "dataModel": "64",
+                    "cpuEndian": "little",
+                    "nodeProperties": 
+                    {
+                        "tags": 
+                        ["hostTag1", "hostTag2"],
+                        "groups": 
+                        ["hosts.group1.group11", "hosts.group1.group12", "hosts.group2"],
+                        "groupsMetadata": 
+                        {
+                            "hosts.group1.group11": 
+                            {
+                                "hierarchyType": "default",
+                                "tags": 
+                                ["group11Tag1", "group11Tag2"]
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

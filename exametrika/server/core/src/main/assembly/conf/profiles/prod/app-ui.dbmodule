@@ -1,0 +1,1483 @@
+{
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		ui:
+        {
+            models:
+            {
+                allTransactions: {instanceOf: "StructuredModel", selector: "allTransactions", cacheable: true},
+                allTransactionTags: {instanceOf: "DerivedModel", baseModels: ["allTransactions"], filter: {instanceOf: "ComponentTagFilter", type: "transaction"}},
+                transactionOverview: {instanceOf: "DerivedModel", baseModels: ["allTransactions"], filter: {instanceOf: "TransactionFilter"}},
+                transactionTimeline: {instanceOf: "TimedModel", selector: "transaction", args: {type: "timeline"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionKpi: {instanceOf: "TimedModel", selector: "transaction", args: {type: "kpi"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionProperties: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "properties"}},
+                transactionHealthIndicators: {instanceOf: "TimedModel", selector: "transaction", args: {type: "healthIndicators"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionAvailabilityTimes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "availabilityTimes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionIncidents: {instanceOf: "DerivedModel", baseModels: ["allIncidents"], filter: {instanceOf: "ComponentIncidentsFilter"}},
+                transactionHealth: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "health"}},
+                transactionState: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["transactionTimeline", "transactionHealthIndicators"], filter: {instanceOf: "ComponentStateFilter"}},
+                transactionGroupComponents: {instanceOf: "DerivedModel", baseModels: ["allTransactions"], filter: {instanceOf: "GroupComponentIdsFilter"}},
+                transactionCallStack: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "callStack"}},
+                transactionLatency: {instanceOf: "TimedModel", selector: "transaction", args: {type: "latency"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionReceiveBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "receiveBytesHistogram"}},
+                transactionSendBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "sendBytesHistogram"}},
+                transactionLogCount: {instanceOf: "TimedModel", selector: "transaction", args: {type: "logCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionLog: {instanceOf: "TimedModel", selector: "transaction", args: {type: "log"}},
+                transactionStackElement: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["transactionCallStack"], filter: {instanceOf: "StackElementFilter"}},
+                transactionFileReadTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "fileReadTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionFileReadTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "fileReadTimeHistogram"}},
+                transactionFileReadBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "fileReadBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionFileReadBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "fileReadBytesHistogram"}},
+                transactionFileWriteTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "fileWriteTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionFileWriteTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "fileWriteTimeHistogram"}},
+                transactionFileWriteBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "fileWriteBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionFileWriteBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "fileWriteBytesHistogram"}},
+                    
+                transactionTcpConnectTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "tcpConnectTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionTcpConnectTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "tcpConnectTimeHistogram"}},
+                transactionTcpReceiveTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "tcpReceiveTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionTcpReceiveTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "tcpReceiveTimeHistogram"}},
+                transactionTcpReceiveBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "tcpReceiveBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionTcpReceiveBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "tcpReceiveBytesHistogram"}},
+                transactionTcpSendTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "tcpSendTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionTcpSendTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "tcpSendTimeHistogram"}},
+                transactionTcpSendBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "tcpSendBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionTcpSendBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "tcpSendBytesHistogram"}},
+                    
+                transactionUdpReceiveTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "udpReceiveTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionUdpReceiveTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "udpReceiveTimeHistogram"}},
+                transactionUdpReceiveBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "udpReceiveBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionUdpReceiveBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "udpReceiveBytesHistogram"}},
+                transactionUdpSendTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "udpSendTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionUdpSendTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "udpSendTimeHistogram"}},
+                transactionUdpSendBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "udpSendBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionUdpSendBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "udpSendBytesHistogram"}},
+                    
+                transactionJdbcConnectionTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "jdbcConnectionTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionJdbcConnectionTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "jdbcConnectionTimeHistogram"}},
+                transactionJdbcQueryTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "jdbcQueryTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionJdbcQueryTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "jdbcQueryTimeHistogram"}},
+                transactionJdbcQueryTimeInstances: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "jdbcQueryTimeInstances"}},
+                
+                transactionEntryRequestTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "entryRequestTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionEntryRequestTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "entryRequestTimeHistogram"}},
+                transactionEntryTransactionTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "entryTransactionTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionEntryTransactionTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "entryTransactionTimeHistogram"}},
+                transactionEntryErrorsCount: {instanceOf: "TimedModel", selector: "transaction", args: {type: "entryErrorsCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionEntryStallsCount: {instanceOf: "TimedModel", selector: "transaction", args: {type: "entryStallsCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionEntryReceiveBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "entryReceiveBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionEntryReceiveBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "entryReceiveBytesHistogram"}},
+                transactionEntrySendBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "entrySendBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionEntrySendBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "entrySendBytesHistogram"}},
+                    
+                transactionHttpRequestTime: {instanceOf: "TimedModel", selector: "transaction", args: {type: "httpRequestTime"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionHttpRequestTimeHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "httpRequestTimeHistogram"}},
+                transactionHttpReceiveBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "httpReceiveBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionHttpReceiveBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "httpReceiveBytesHistogram"}},
+                transactionHttpSendBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "httpSendBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionHttpSendBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "httpSendBytesHistogram"}},
+                transactionJmsSendBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "jmsSendBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionJmsSendBytesHistogram: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "jmsSendBytesHistogram"}},
+                    
+                transactionServletErrors: {instanceOf: "TimedModel", selector: "transaction", args: {type: "servletErrors"}},
+                transactionStalls: {instanceOf: "TimedModel", selector: "transaction", args: {type: "stalls"}},
+                transactionExceptionsCount: {instanceOf: "TimedModel", selector: "transaction", args: {type: "exceptionsCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionExceptions: {instanceOf: "TimedModel", selector: "transaction", args: {type: "exceptions"}},
+                transactionLogErrorsCount: {instanceOf: "TimedModel", selector: "transaction", args: {type: "logErrorsCount"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionLogErrors: {instanceOf: "TimedModel", selector: "transaction", args: {type: "logErrors"}},
+                transactionConnectionErrors: {instanceOf: "TimedModel", selector: "transaction", args: {type: "connectionErrors"}},
+                transactionAnomalies: {instanceOf: "TimedModel", selector: "transaction", args: {type: "anomalies"}},
+                transactionFailures: {instanceOf: "TimedModel", selector: "transaction", args: {type: "failures"}},
+                    
+                allMethods: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allMethods"}},
+                hotspotMethods: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "hotspotMethods"}},
+                hotspotMethod: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hotspotMethods"], filter: {instanceOf: "StackElementFilter"}},
+                    
+                allErrors: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allErrors"}},
+                hotspotErrors: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "hotspotErrors"}},
+                hotspotError: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hotspotErrors"], filter: {instanceOf: "StackElementFilter"}},
+                hotspotErrorLocation: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hotspotErrors"], filter: {instanceOf: "ErrorStackElementFilter"}},
+                    
+                allFailures: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allFailures"}},
+                hotspotFailures: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "hotspotFailures"}},
+                    
+                allJdbcQueries: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allJdbcQueries"}},
+                hotspotJdbcQueries: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "hotspotJdbcQueries"}},
+                hotspotJdbcQuery: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hotspotJdbcQueries"], filter: {instanceOf: "StackElementFilter"}},
+                    
+                allJdbcConnections: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allJdbcConnections"}},
+                hotspotJdbcConnections: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "hotspotJdbcConnections"}},
+                hotspotJdbcConnection: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hotspotJdbcConnections"], filter: {instanceOf: "StackElementFilter"}},
+                    
+                allHttpConnections: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allHttpConnections"}},
+                hotspotHttpConnections: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "hotspotHttpConnections"}},
+                hotspotHttpConnection: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hotspotHttpConnections"], filter: {instanceOf: "StackElementFilter"}},
+                    
+                allJmsProducers: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allJmsProducers"}},
+                hotspotJmsProducers: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "hotspotJmsProducers"}},
+                hotspotJmsProducer: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hotspotJmsProducers"], filter: {instanceOf: "StackElementFilter"}},
+                    
+                allTcps: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allTcps"}},
+                hotspotTcps: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "hotspotTcps"}},
+                hotspotTcp: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hotspotTcps"], filter: {instanceOf: "StackElementFilter"}},
+                    
+                allUdps: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allUdps"}},
+                hotspotUdps: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "hotspotUdps"}},
+                hotspotUdp: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hotspotUdps"], filter: {instanceOf: "StackElementFilter"}},
+                
+                allFiles: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allFiles"}},
+                hotspotFiles: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "hotspotFiles"}},
+                hotspotFile: {instanceOf: "DerivedModel", multiComponent: false, baseModels: ["hotspotFiles"], filter: {instanceOf: "StackElementFilter"}},
+                
+                allBackgroundMethods: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allBackgroundMethods"}},
+                allBackgroundErrors: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allBackgroundErrors"}},
+                allBackgroundJdbcQueries: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allBackgroundJdbcQueries"}},
+                allBackgroundJdbcConnections: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allBackgroundJdbcConnections"}},
+                allBackgroundHttpConnections: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allBackgroundHttpConnections"}},
+                allBackgroundJmsProducers: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allBackgroundJmsProducers"}},
+                allBackgroundTcps: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allBackgroundTcps"}},
+                allBackgroundUdps: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allBackgroundUdps"}},
+                allBackgroundFiles: {instanceOf: "StructuredModel", selector: "allHotspots", args: {type: "allBackgroundFiles"}},
+                
+                hotspotMethodInherentTimes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "hotspotMethodInherentTimes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hotspotMethodTotalTimes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "hotspotMethodTotalTimes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hotspotMethodAllocatedBytes: {instanceOf: "TimedModel", selector: "transaction", args: {type: "hotspotMethodAllocatedBytes"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hotspotMethodErrors: {instanceOf: "TimedModel", selector: "transaction", args: {type: "hotspotMethodErrors"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                hotspotMethodConcurrencyLevel: {instanceOf: "TimedModel", selector: "transaction", args: {type: "hotspotMethodConcurrencyLevel"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                
+                transactionInstances: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "instances"}},
+                
+                backtraceMethods: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "backtraceMethods"}},
+                backtraceJdbcQueries: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "backtraceJdbcQueries"}},
+                backtraceFiles: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "backtraceFiles"}},
+                backtraceTcps: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "backtraceTcps"}},
+                backtraceUdps: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "backtraceUdps"}},
+                backtraceHttpConnections: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "backtraceHttpConnections"}},
+                backtraceJmsProducers: {instanceOf: "StructuredModel", selector: "transaction", args: {type: "backtraceJmsProducers"}},
+                
+                transactionJdbcQueryRate: {instanceOf: "TimedModel", selector: "transaction", args: {type: "jdbcQueryRate"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionHttpRequestRate: {instanceOf: "TimedModel", selector: "transaction", args: {type: "httpRequestRate"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionJmsRequestRate: {instanceOf: "TimedModel", selector: "transaction", args: {type: "jmsRequestRate"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+                transactionEntryRequestRate: {instanceOf: "TimedModel", selector: "transaction", args: {type: "entryRequestRate"}, incrementalUpdate: true, outerBoundary: true, cycleBased: true},
+            }
+		    navBar:
+		    {
+		        children:
+                [
+                    {
+                        instanceOf: "NavBarPage", name: "transactions", title: "Transactions", icon: "transaction", children:
+                        [
+                            { 
+                                instanceOf: "NavBarLink", name: "allTransactions", title: "All transactions", icon: "transaction", link: "#views/all-transactions", 
+                                badge: { color: "green"}, model: "allTransactions", 
+                                filter: {instanceOf: "TableLeafCountFilter"}
+                            },
+                            { 
+                                instanceOf: "NavBarLink", name: "allFailedTransactions", title: "All failed transactions", icon: "transactionFailedIconGreyed", link: "#views/all-failed-transactions", 
+                                badge: { color: "red"}, model: "allTransactions", 
+                                filter: {instanceOf: "FailedLeafCountFilter"}
+                            },
+                            { 
+                                instanceOf: "NavBarLink", name: "allMaintenanceTransactions", title: "All transactions in maintenance mode", icon: "transactionMaintenanceIconGreyed", link: "#views/all-maintenance-transactions", 
+                                badge: { color: "blue"}, model: "allTransactions", 
+                                filter: {instanceOf: "MaintenanceLeafCountFilter"}
+                            },
+                            { 
+                                instanceOf: "NavBarTreeView", name: "transactionGroups", title: "Transaction groups", icon: "transactionGroupIcon", child: 
+                                {
+                                    instanceOf: "TreeView",
+                                    filterPanel: true, 
+                                    formatter: {instanceOf: "ComponentFormatter", navBar: true},
+                                    comparator: {instanceOf:"TitleComparator"},
+                                    contextMenu: {instanceOf:"ComponentContextMenu", component: "transaction", group: "transactiongroup"},
+                                    model: "allTransactions"
+                                }                       
+                            },
+                            {
+                                instanceOf: "NavBarTreeView", name: "transactionTags", title: "Transaction tags", icon: "transactionTagIcon", child: 
+                                {
+                                    instanceOf: "TreeView",
+                                    filterPanel: true, 
+                                    formatter: {instanceOf: "ComponentFormatter", navBar: true}, 
+                                    comparator: {instanceOf:"TitleComparator"},
+                                    contextMenu: {instanceOf:"ComponentContextMenu", component: "transaction", group: "transactiongroup"},
+                                    model: "allTransactionTags"
+                                }                       
+                            }
+                        ]
+                    },
+                    {
+                        instanceOf: "NavBarPage", name: "transactionHotspots", title: "Transaction Hotspots", icon: "hotspotIcon", children:
+                        [
+                            {
+                                instanceOf: "NavBarPage", name: "methods", title: "Methods", icon: "method", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allMethods", title: "All transactions", icon: "method", link: "#views/all-methods", 
+                                        badge: { color: "green"}, model: "allMethods", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "methodGroups", title: "Transaction groups", icon: "methodGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "method"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "method", group: "methodroup"},
+                                            model: "allMethods"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "errors", title: "Errors", icon: "errorIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allErrors", title: "All transactions", icon: "errorIcon", link: "#views/all-errors", 
+                                        badge: { color: "green"}, model: "allErrors", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "errorGroups", title: "Transaction groups", icon: "errorIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "error"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "error", group: "errorgroup"},
+                                            model: "allErrors"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "failures", title: "Failures", icon: "failureIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allFailures", title: "All transactions", icon: "failureIcon", link: "#views/all-failures", 
+                                        badge: { color: "green"}, model: "allFailures", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "failureGroups", title: "Transaction groups", icon: "failureIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "failure"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "failure", group: "failuregroup"},
+                                            model: "allFailures"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "db", title: "Database Queries", icon: "jdbcExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allJdbcQueries", title: "All transactions", icon: "jdbcExitIcon", link: "#views/all-jdbc", 
+                                        badge: { color: "green"}, model: "allJdbcQueries", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "jdbcQueryGroups", title: "Transaction groups", icon: "jdbcExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "jdbcquery"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "jdbcquery", group: "jdbcquerygroup"},
+                                            model: "allJdbcQueries"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "httpConnection", title: "HTTP Connections", icon: "httpExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allHttpConnections", title: "All transactions", icon: "httpExitIcon", link: "#views/all-httpconnections", 
+                                        badge: { color: "green"}, model: "allHttpConnections", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "httpConnectionGroups", title: "Transaction groups", icon: "httpExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "httpconnection"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "httpconnection", group: "httpconnectiongroup"},
+                                            model: "allHttpConnections"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "jmsProducer", title: "JMS Producers", icon: "jmsExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allJmsProducers", title: "All transactions", icon: "jmsExitIcon", link: "#views/all-jmsproducers", 
+                                        badge: { color: "green"}, model: "allJmsProducers", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "jmsProducerGroups", title: "Transaction groups", icon: "jmsExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "jmsproducer"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "jmsproducer", group: "jmsproducergroup"},
+                                            model: "allJmsProducers"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "tcp", title: "TCP Requests", icon: "tcpExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allTcps", title: "All transactions", icon: "tcpExitIcon", link: "#views/all-tcps", 
+                                        badge: { color: "green"}, model: "allTcps", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "tcpGroups", title: "Transaction groups", icon: "tcpExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "tcp"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "tcp", group: "tcpgroup"},
+                                            model: "allTcps"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "udp", title: "UDP Requests", icon: "udpExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allUdps", title: "All transactions", icon: "udpExitIcon", link: "#views/all-udps", 
+                                        badge: { color: "green"}, model: "allUdps", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "udpGroups", title: "Transaction groups", icon: "udpExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "udp"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "udp", group: "udpgroup"},
+                                            model: "allUdps"
+                                        }                       
+                                    },
+                                ]
+                            },
+                            {
+                                instanceOf: "NavBarPage", name: "file", title: "File Requests", icon: "fileExitIcon", children:
+                                [
+                                    { 
+                                        instanceOf: "NavBarLink", name: "allFiles", title: "All transactions", icon: "fileExitIcon", link: "#views/all-files", 
+                                        badge: { color: "green"}, model: "allFiles", 
+                                        filter: {instanceOf: "TableLeafCountFilter"}
+                                    },
+                                    { 
+                                        instanceOf: "NavBarTreeView", name: "fileGroups", title: "Transaction groups", icon: "fileExitIconGroup", child: 
+                                        {
+                                            instanceOf: "TreeView",
+                                            filterPanel: true, 
+                                            formatter: {instanceOf: "ComponentFormatter", navBar: true, component: "file"},
+                                            comparator: {instanceOf:"TitleComparator"},
+                                            contextMenu: {instanceOf:"ComponentContextMenu", component: "file", group: "filegroup"},
+                                            model: "allFiles"
+                                        }                       
+                                    },
+                                ]
+                            }
+                        ]
+                    },
+                ]
+		    }
+            views:
+            {
+                "all-transactions": 
+                {
+                    instanceOf: "AllTransactionsView"
+                },
+                "all-failed-transactions": 
+                {
+                    instanceOf: "AllFailedTransactionsView"
+                },
+                "all-maintenance-transactions": 
+                {
+                    instanceOf: "AllMaintenanceTransactionsView"
+                },
+                "all-methods": 
+                {
+                    instanceOf: "AllMethodsView"
+                },
+                "all-errors": 
+                {
+                    instanceOf: "AllErrorsView"
+                },
+                "all-failures": 
+                {
+                    instanceOf: "AllFailuresView"
+                },
+                "all-jdbc": 
+                {
+                    instanceOf: "AllJdbcQueriesView"
+                },
+                "all-jdbcconnections": 
+                {
+                    instanceOf: "AllJdbcConnectionsView"
+                },
+                "all-httpconnections": 
+                {
+                    instanceOf: "AllHttpConnectionsView"
+                },
+                "all-jmsproducers": 
+                {
+                    instanceOf: "AllJmsProducersView"
+                },
+                "all-tcps": 
+                {
+                    instanceOf: "AllTcpsView"
+                },
+                "all-udps": 
+                {
+                    instanceOf: "AllUdpsView"
+                },
+                "all-files": 
+                {
+                    instanceOf: "AllFilesView"
+                },
+                "all-activities": 
+                {
+                    instanceOf: "AllBackgroundActivitiesView"
+                },
+                "all-failed-activities": 
+                {
+                    instanceOf: "AllFailedBackgroundActivitiesView"
+                },
+                "all-maintenance-activities": 
+                {
+                    instanceOf: "AllMaintenanceBackgroundActivitiesView"
+                },
+                "all-bkmethods": 
+                {
+                    instanceOf: "AllBackgroundMethodsView"
+                },
+                "all-bkerrors": 
+                {
+                    instanceOf: "AllBackgroundErrorsView"
+                },
+                "all-bkjdbc": 
+                {
+                    instanceOf: "AllBackgroundJdbcQueriesView"
+                },
+                "all-bkjdbcconnections": 
+                {
+                    instanceOf: "AllBackgroundJdbcConnectionsView"
+                },
+                "all-bkhttpconnections": 
+                {
+                    instanceOf: "AllBackgroundHttpConnectionsView"
+                },
+                "all-bkjmsproducers": 
+                {
+                    instanceOf: "AllBackgroundJmsProducersView"
+                },
+                "all-bktcps": 
+                {
+                    instanceOf: "AllBackgroundTcpsView"
+                },
+                "all-bkudps": 
+                {
+                    instanceOf: "AllBackgroundUdpsView"
+                },
+                "all-bkfiles": 
+                {
+                    instanceOf: "AllBackgroundFilesView"
+                },
+            }
+        }
+		components:
+		{
+		    Transaction:
+            {
+                instanceOf = "transaction"
+                selectors:
+                {
+                    transaction = {instanceOf = "TransactionSelector"}
+                }
+                views:
+                {
+                    default:
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default Transaction View",
+                        listView: "all-transactions",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "overview",
+                                title: "Overview",
+                                icon: "home",
+                                active: true,
+                                child: {instanceOf: "TransactionOverviewPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "health",
+                                title: "Health",
+                                icon: "heartbeat",
+                                child: {instanceOf: "TransactionHealthPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspots",
+                                title: "Hotspots",
+                                icon: "hotspotIcon",
+                                periods: ["p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "TransactionHotspotPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "stack",
+                                title: "Call stack",
+                                icon: "callStackIcon",
+                                periods: ["p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "TransactionCallStackPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "errors",
+                                title: "Errors",
+                                icon: "errorIcon",
+                                periods: ["p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "TransactionErrorPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "logs",
+                                title: "Logs",
+                                icon: "logIcon",
+                                periods: ["p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "TransactionLogPage"}
+                            },
+                        ]
+                    },
+                    kpi:
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Transaction KPI",
+                        listView: "all-transactions",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "transactionKpi",
+                                title: "Transaction KPI",
+                                icon: "transactionIcon",
+                                active: true,
+                                child: {instanceOf: "TransactionKpiPage"}
+                            },
+                        ]
+                    },
+                    health:
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Health indicators",
+                        group: "Health",
+                        listView: "all-transactions",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "health",
+                                title: "Health indicators",
+                                icon: "heartbeat",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "TransactionHealthIndicatorsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    availability:
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Availability times",
+                        group: "Health",
+                        listView: "all-transactions",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "availability",
+                                title: "Availability times",
+                                icon: "heartbeat",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "TransactionAvailabilityTimesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    throughput:
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Throughput",
+                        group: "KPI",
+                        listView: "all-transactions",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "throughput",
+                                title: "Throughput",
+                                icon: "line chart",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "TransactionThroughputListPage"
+                                }
+                            },
+                        ]
+                    },
+                    latency:
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Latency",
+                        group: "KPI",
+                        listView: "all-transactions",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "latency",
+                                title: "Latency",
+                                icon: "history",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "TransactionLatencyListPage"
+                                }
+                            },
+                        ]
+                    },
+                    errors:
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Errors",
+                        group: "KPI",
+                        listView: "all-transactions",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "errors",
+                                title: "Errors",
+                                icon: "errorIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "TransactionErrorsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    stalls:
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Stalls",
+                        group: "KPI",
+                        listView: "all-transactions",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "stalls",
+                                title: "Stalls",
+                                icon: "stallIcon",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "TransactionStallsListPage"
+                                }
+                            },
+                        ]
+                    },
+                    received:
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Receive rate",
+                        group: "KPI",
+                        listView: "all-transactions",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "received",
+                                title: "Receive rate",
+                                icon: "forward mail",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "TransactionReceiveBytesListPage"
+                                }
+                            },
+                        ]
+                    },
+                    sent:
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Send rate",
+                        group: "KPI",
+                        listView: "all-transactions",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "sent",
+                                title: "Send rate",
+                                icon: "reply",
+                                active: true,
+                                child:
+                                {
+                                    instanceOf: "TransactionSendBytesListPage"
+                                }
+                            },
+                        ]
+                    },
+                }
+            }
+        
+            TransactionGroup:
+            {
+                instanceOf = "group"
+                selectors:
+                {
+                    transaction = {instanceOf = "TransactionSelector"}
+                }
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "Transaction", view: "default"}, 
+                    kpi: {instanceOf:"ViewReference", component: "Transaction", view: "kpi"},
+                    health: {instanceOf:"ViewReference", component: "Transaction", view: "health"},
+                    availability: {instanceOf:"ViewReference", component: "Transaction", view: "availability"},
+                    throughput: {instanceOf:"ViewReference", component: "Transaction", view: "throughput"},
+                    latency: {instanceOf:"ViewReference", component: "Transaction", view: "latency"},
+                    errors: {instanceOf:"ViewReference", component: "Transaction", view: "errors"},
+                    stalls: {instanceOf:"ViewReference", component: "Transaction", view: "stalls"},
+                    received: {instanceOf:"ViewReference", component: "Transaction", view: "received"},
+                    sent: {instanceOf:"ViewReference", component: "Transaction", view: "sent"},
+                }
+            }
+            
+            Method:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default Method View",
+                        listView: "all-methods",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotMethods",
+                                title: "Hotspot methods",
+                                icon: "methodIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotMethodPage"}
+                            },
+                        ]
+                    },
+                }
+            }
+            
+            MethodGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "Method", view: "default"},
+                }
+            }
+            
+            Error:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default Error View",
+                        listView: "all-errors",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotErrors",
+                                title: "Hotspot errors",
+                                icon: "errorIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotErrorPage"}
+                            },
+                        ]
+                    },
+                }
+            }
+            
+            ErrorGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "Error", view: "default"},
+                }
+            }
+            
+            Failure:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default Failure View",
+                        listView: "all-failures",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotFailures",
+                                title: "Hotspot failures",
+                                icon: "failureIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotFailurePage"}
+                            },
+                        ]
+                    },
+                }
+            }
+            
+            FailureGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "Failure", view: "default"},
+                }
+            }
+            
+            JdbcQuery:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default database query View",
+                        listView: "all-jdbc",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotJdbcQueries",
+                                title: "Hotspot queries",
+                                icon: "jdbcExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotJdbcQueryPage"}
+                            },
+                        ]
+                    },
+                }
+            }
+            
+            JdbcQueryGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "JdbcQuery", view: "default"},
+                }
+            }
+            
+            JdbcConnection:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default database connection View",
+                        listView: "all-jdbcconnections",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotJdbcConnections",
+                                title: "Hotspot database connections",
+                                icon: "jdbcExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotJdbcConnectionPage"}
+                            },
+                        ]
+                    },
+                }
+            }
+            
+            JdbcConnectionGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "JdbcConnection", view: "default"},
+                }
+            }
+            
+            HttpConnection:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default HTTP connection View",
+                        listView: "all-httpconnections",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotHttpConnections",
+                                title: "Hotspot HTTP connections",
+                                icon: "httpExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotHttpConnectionPage"}
+                            },
+                        ]
+                    },
+                }
+            }
+            
+            HttpConnectionGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "HttpConnection", view: "default"},
+                }
+            }
+            
+            JmsProducer:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default JMS producer View",
+                        listView: "all-jmsproducers",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotJmsProducers",
+                                title: "Hotspot JMS producers",
+                                icon: "jmsExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotJmsProducerPage"}
+                            },
+                        ]
+                    },
+                }
+            }
+            
+            JmsProducerGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "JmsProducer", view: "default"},
+                }
+            }
+            
+            Tcp:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default TCP request View",
+                        listView: "all-tcps",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotTcps",
+                                title: "Hotspot TCP requests",
+                                icon: "tcpExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotTcpPage"}
+                            },
+                        ]
+                    },
+                }
+            }
+            
+            TcpGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "Tcp", view: "default"},
+                }
+            }
+            
+            Udp:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default UDP request View",
+                        listView: "all-udps",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotUdps",
+                                title: "Hotspot UDP requests",
+                                icon: "udpExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotUdpPage"}
+                            },
+                        ]
+                    },
+                }
+            }
+            
+            UdpGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "Udp", view: "default"},
+                }
+            }
+            
+            File:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default File request View",
+                        listView: "all-files",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotFiles",
+                                title: "Hotspot file requests",
+                                icon: "tcpExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotFilePage"}
+                            },
+                        ]
+                    },
+                }
+            }
+            
+            FileGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default: {instanceOf:"ViewReference", component: "File", view: "default"},
+                }
+            }
+            
+            BackgroundActivity:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default Background activity view",
+                        listView: "all-activities",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspots",
+                                title: "Hotspots",
+                                active: true,
+                                icon: "hotspotIcon",
+                                child: {instanceOf: "BackgroundActivityHotspotPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "stack",
+                                title: "Call stack",
+                                icon: "callStackIcon",
+                                periods: ["p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "BackgroundActivityCallStackPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "errors",
+                                title: "Errors",
+                                icon: "errorIcon",
+                                periods: ["p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "BackgroundActivityErrorPage"}
+                            },
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "logs",
+                                title: "Logs",
+                                icon: "logIcon",
+                                periods: ["p3", "p4", "p5", "p6", "p7", "p8"],
+                                child: {instanceOf: "BackgroundActivityLogPage"}
+                            },
+                        ]
+                    },
+                }
+            },
+            BackgroundActivityGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default:{instanceOf:"ViewReference", component: "BackgroundActivity", view: "default"},
+                }
+            },
+            BkMethod:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default background Method View",
+                        listView: "all-bkmethods",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotMethods",
+                                title: "Hotspot methods",
+                                icon: "methodIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotBackgroundMethodPage"}
+                            },
+                        ]
+                    },
+                }
+            },
+            BkMethodGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default:{instanceOf:"ViewReference", component: "BkMethod", view: "default"},
+                }
+            },
+            BkError:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default background Error View",
+                        listView: "all-bkerrors",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotErrors",
+                                title: "Hotspot errors",
+                                icon: "errorIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotBackgroundErrorPage"}
+                            },
+                        ]
+                    },
+                }
+            },
+            BkErrorGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default:{instanceOf:"ViewReference", component: "BkError", view: "default"},
+                }
+            },
+            BkJdbcQuery:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default background database query View",
+                        listView: "all-bkjdbc",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotJdbcQueries",
+                                title: "Hotspot queries",
+                                icon: "jdbcExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotBackgroundJdbcQueryPage"}
+                            },
+                        ]
+                    },
+                }
+            },
+            BkJdbcQuerygroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default:{instanceOf:"ViewReference", component: "BkJdbcQuery", view: "default"},
+                }
+            },
+            BkJdbcConnection:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default background database connection View",
+                        listView: "all-bkjdbcconnections",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotJdbcConnections",
+                                title: "Hotspot database connections",
+                                icon: "jdbcExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotBackgroundJdbcConnectionPage"}
+                            },
+                        ]
+                    },
+                }
+            },
+            BkJdbcConnectionGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default:{instanceOf:"ViewReference", component: "BkJdbcConnection", view: "default"},
+                }
+            },
+            BkHttpConnection:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default background HTTP connection View",
+                        listView: "all-bkhttpconnections",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotHttpConnections",
+                                title: "Hotspot HTTP connections",
+                                icon: "httpExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotBackgroundHttpConnectionPage"}
+                            },
+                        ]
+                    },
+                }
+            },
+            BkHttpConnectiongroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default:{instanceOf:"ViewReference", component: "BkHttpConnection", view: "default"},
+                }
+            },
+            BkJmsProducer:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default background JMS producer View",
+                        listView: "all-bkjmsproducers",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotJmsProducers",
+                                title: "Hotspot JMS producers",
+                                icon: "jmsExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotBackgroundJmsProducerPage"}
+                            },
+                        ]
+                    },
+                }
+            },
+            BkJmsProducerGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default:{instanceOf:"ViewReference", component: "BkJmsProducer", view: "default"},
+                }
+            },
+            BkTcp:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default background TCP request View",
+                        listView: "all-bktcps",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotTcps",
+                                title: "Hotspot TCP requests",
+                                icon: "tcpExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotBackgroundTcpPage"}
+                            },
+                        ]
+                    },
+                }
+            },
+            BkTcpGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default:{instanceOf:"ViewReference", component: "BkTcp", view: "default"},
+                }
+            },
+            BkUdp:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default background UDP request View",
+                        listView: "all-bkudps",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotUdps",
+                                title: "Hotspot UDP requests",
+                                icon: "udpExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotBackgroundUdpPage"}
+                            },
+                        ]
+                    },
+                }
+            },
+            BkUdpGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default:{instanceOf:"ViewReference", component: "BkUdp", view: "default"},
+                }
+            },
+            BkFile:
+            {
+                instanceOf = "component"
+                views:
+                {
+                    default: 
+                    {
+                        instanceOf: "ComponentTab",
+                        alias: "Default background File request View",
+                        listView: "all-bkfiles",
+                        children:
+                        [
+                            {
+                                instanceOf: "ComponentTabWidget",
+                                name: "hotspotFiles",
+                                title: "Hotspot file requests",
+                                icon: "tcpExitIcon",
+                                active: true,
+                                child: {instanceOf: "HotspotBackgroundFilePage"}
+                            },
+                        ]
+                    },
+                }
+            },
+            BkFileGroup:
+            {
+                instanceOf = "group"
+                views:
+                {
+                    default:{instanceOf:"ViewReference", component: "BkFile", view: "default"},
+                }
+            },
+
+            RootGroup:
+            {
+                instanceOf = "group"
+                selectors:
+                {
+                    allTransactions = {instanceOf = "AllTransactionsSelector"}
+                    allHotspots = {instanceOf = "AllHotspotsSelector"}
+                }
+            }
+		}
+	}}}}
+}

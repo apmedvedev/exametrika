@@ -1,0 +1,1902 @@
+{
+	name = "com.exametrika.profiler-1.0"
+	description = "Profiler schema."
+
+	types:
+	{
+		StackCounter:
+		{
+			instanceOf = "object"
+			description = "Stack counter meter measuring consumption of resource."
+			base = "FieldMeter"
+			abstract = true
+		}
+		
+		AppStackCounterType:
+		{
+			instanceOf = "string"
+			description = "Type of application stack counter."
+			enumeration = 
+			[
+			 	"wallTime", "sysTime", "userTime", "waitTime", "waitCount", "blockTime", "blockCount", "gcCount", "gcTime", 
+			 	"allocationBytes", "allocationCount", "errorsCount",
+			 	"threadsCount", "classesCount", "ioCount", "ioTime", "ioBytes", "fileCount", "fileTime", "fileBytes",
+			 	"fileReadCount", "fileReadTime", "fileReadBytes", "fileWriteCount", "fileWriteTime", "fileWriteBytes",
+			 	"netCount", "netTime", "netBytes", "netConnectCount", "netConnectTime",
+			 	"netReceiveCount", "netReceiveTime", "netReceiveBytes", "netSendCount", "netSendTime", "netSendBytes",
+			 	"dbTime", "dbConnectCount", "dbConnectTime", "dbQueryCount", "dbQueryTime"
+			]
+		}
+		
+		AppStackCounter:
+		{
+			instanceOf = "object"
+			description = "Application stack counter meter measuring consumption of resource."
+			base = "StackCounter"
+			final = true
+			properties:
+			{
+				type:
+				{
+					description = "Type of stack counter."
+					required = true
+					type = "AppStackCounterType"
+				}
+			}
+		}
+			
+		Monitor:
+		{
+			instanceOf = "object"
+			description = "Abstract monitor."
+			abstract = true
+			properties:
+			{
+				scope:
+				{
+					description = "Scope name of monitor (subscope of agent's node name)."
+					required = false
+					type = "string"
+				}
+			
+				measurementStrategy:
+				{
+					description = "Measurement strategy of monitor."
+					required = false
+					type = "MeasurementStrategyReference"
+				}
+			
+				period:
+				{
+					description = "Period in milliseconds between subsequent measurements."
+					required = true
+					default = 1000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			}
+		}
+
+		MonitorSet:
+		{
+			instanceOf = "object"
+			description = "Set of monitors."
+			final = true
+			base = "Monitor"
+			properties:
+			{
+				scope:
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			
+				monitors:
+				{
+					description = "List of monitors."
+					required = true
+					type:
+					{
+						instanceOf = "map"
+						minCount = 1
+						valueType = "Monitor"
+						validators = ["childMonitor"]
+					}
+				}
+			}
+		}
+	
+        MeasurementsGeneratorMonitor:
+        {
+            instanceOf = "object"
+            description = "Measurements generator monitor."
+            base = "Monitor"
+            final = true
+            properties:
+            {
+                nodesCount:
+                {
+                    description = "Agent nodes count."
+                    required = true
+                    default = 10
+                    type = "long"
+                }
+            
+                primaryEntryPointNodesCount:
+                {
+                    description = "Primary entry point agent nodes count."
+                    required = true
+                    default = 10
+                    type = "long"
+                }
+                    
+                transactionsPerNodeCount:
+                {
+                    description = "Transactions per node count."
+                    required = true
+                    default = 20
+                    type = "long"
+                }
+                    
+                transactionSegmentsDepth:
+                {
+                    description = "Depth of transaction segments."
+                    required = true
+                    default = 3
+                    type = "long"
+                }
+                
+                logRecordsCount:
+                {
+                    description = "Log records count."
+                    required = true
+                    default = 100
+                    type = "long"
+                }
+                    
+                stackDepth:
+                {
+                    description = "Stack depth."
+                    required = true
+                    default = 20
+                    type = "long"
+                }
+                    
+                leafStackEntriesCount:
+                {
+                    description = "Leaf stack entries count."
+                    required = true
+                    default = 100
+                    type = "long"
+                }
+                    
+                maxEndExitPointsCount:
+                {
+                    description = "Maximum end exit points count."
+                    required = true
+                    default = 10
+                    type = "long"
+                }
+                    
+                maxIntermediateExitPointsCount:
+                {
+                    description = "Maximum intermediate exit points count."
+                    required = true
+                    default = 30
+                    type = "long"
+                }
+                    
+                exitPointsPerEntryCount:
+                {
+                    description = "Exit points per entry count."
+                    required = true
+                    default = 10
+                    type = "long"
+                }
+                    
+                combineType:
+                {
+                    description = "Combine type."
+                    required = true
+                    default = "stack"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["stack", "transaction", "node", "all"]
+                    }
+                }
+                    
+                measurementProfile:
+                {
+                    description = "Measurement profile."
+                    required = true
+                    default = "prod"
+                    type = "string"
+                }
+                
+                period:
+                {
+                    description = "Period in milliseconds between subsequent measurements."
+                    required = true
+                    default = 300000
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+            }
+        }
+		
+		ReplayMonitor:
+        {
+            instanceOf = "object"
+            description = "Measurements replay monitor."
+            base = "Monitor"
+            final = true
+            properties:
+            {
+                nodesCount:
+                {
+                    description = "Agent nodes count."
+                    required = true
+                    default = 10
+                    type = "long"
+                }
+            
+                fileName:
+                {
+                    description = "Name of file with recorded measurements."
+                    required = true
+                    type = "string"
+                }
+                  
+                startPeriod:
+                {
+                    description = "Period in milliseconds since start of measurements after which measurements actually replayed."
+                    required = true
+                    default = 0
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+                    
+                period:
+                {
+                    description = "Period in milliseconds between subsequent measurements."
+                    required = true
+                    default = 300000
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+            }
+        }
+
+		Probe:
+		{
+			instanceOf = "object"
+			description = "Abstract measurement probe."
+			abstract = true
+			properties:
+			{
+				scopeType:
+				{
+					description = "Type of scope of probe."
+					required = true
+					default = "default"
+					type = "string"
+				}
+			
+				measurementStrategy:
+				{
+					description = "Measurement strategy of probe."
+					required = false
+					type = "MeasurementStrategyReference"
+				}
+					
+				extractionPeriod:
+				{
+					description = "Period in milliseconds between subsequent measurements extractions."
+					required = true
+					default = 10000
+					type:
+					{
+						instanceOf = "long"
+						min = 1000
+						converter = "periods"
+					}
+				}
+					
+				warmupDelay:
+				{
+					description = "Warmup delay in milliseconds between creation of probe and probe start."
+					required = true
+					default = 60000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			}
+		}
+		
+		StackProbe:
+		{
+			instanceOf = "object"
+			description = "Stack probe."
+			base = "Probe"
+			final = true
+			properties:
+			{
+			    stackMeasurementStrategy:
+                {
+                    description = "Measurement strategy of probe."
+                    required = false
+                    type = "MeasurementStrategyReference"
+                }
+			
+				intercepted:
+				{
+					description = "Filter of methods being intercepted."
+					required = true
+					default:
+					{
+						class:
+						{
+							include = ["*"]
+							exclude = ["java.*", "sun.*", "javax.*", "com.sun.*", "jdk.*"] 
+						}
+						method = "*"
+					}
+					type = "QualifiedMethodFilter"
+				}
+
+				fields:
+				{
+					description = "Probe's fields."
+					required = true
+					default:
+					{
+						standard:
+						{
+							instanceOf = "StandardFields"
+						}
+					}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Fields"
+						minCount = 1
+					}
+				}
+				
+				stackCounters:
+				{
+					description = "Probe's additional stack counters."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "StackCounter"
+						minCount = 1
+					}
+				}
+				
+				concurrencyLevel:
+				{
+					description = "Concurrency level gauge of instrumented methods."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+						}
+					    enabled = false
+					}
+					type = "Gauge"
+				}
+				
+				minEstimationPeriod:
+				{
+					description = "Minimum period in milliseconds of hotspot estimation."
+					required = true
+					default = 1000//TODO:5000
+					type:
+					{
+						instanceOf = "long"
+						min = 1000
+						converter = "periods"
+					}
+				}
+					
+				maxEstimationPeriod:
+				{
+					description = "Maximum period in milliseconds of hotspot estimation."
+					required = true
+					default = 20000//TODO:120000
+					type:
+					{
+						instanceOf = "long"
+						min = 10000
+						converter = "periods"
+					}
+				}
+				
+				minHotspotCount:
+				{
+					description = "Minimum number of hotspots."
+					required = true
+					default = 100
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+				
+				maxHotspotCount:
+				{
+					description = "Maximum number of hotspots."
+					required = true
+					default = 500
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+				
+				hotspotStep:
+				{
+					description = "Step of increment|decrement of current number of hotspots."
+					required = true
+					default = 20
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+				
+				hotspotCoverage:
+				{
+					description = "Desired coverage of detected hotspots in percents by scope cpu time. Hotspots are detected trying\
+						to ensure desired hotspot coverage but not exceed maximum number of hotspots. Detection starts\
+						with minimum number of hotspots gradually incrementing/decrementing current number of hotspot by given step."
+					required = true
+					default = 90
+					type:
+					{
+						instanceOf = "double"
+						min = 1
+						max = 100
+					}
+				}
+				
+				tolerableOverhead:
+				{
+					description = "Tolerable overhead percentage of measurement runtime."
+					required = true
+					default = 1
+					type:
+					{
+						instanceOf = "double"
+						min = 0.0001
+					}
+				}
+				
+				ultraFastMethodThreshold:
+				{
+					description = "Maximal duration in nanoseconds of ultra-fast method, which is method that is not measured.\
+						It's guaranteed that all methods with duration above the threshold are always measured."
+					required = true
+					default = 400
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+				
+				idleRetentionCount:
+				{
+					description = "Number of classify periods idle collector is retained in stack before removal."
+					required = true
+					default = 5
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+						max = 127
+					}
+				}
+				
+				extractionDelayCount:
+                {
+                    description = "Number of initial classify periods extraction of collector measurements is delayed on."
+                    required = true
+                    default = 3
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                    }
+                }
+				
+				preaggregationPeriod:
+				{
+					description = "Period in milliseconds of preaggregation of measurements of different threads."
+					required = true
+					default = 60000
+					type:
+					{
+						instanceOf = "long"
+						min = 1000
+						converter = "periods"
+					}
+				}
+                
+                combineType:
+                {
+                    description = "Combine type defines how measurements of secondary entry point are combined - \
+                        by calling stack, by calling transaction type, by calling node or\
+                        secondary entry point combining all measurements."
+                    required = true
+                    default = "stack"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["stack", "transaction", "node", "all"]
+                    }
+                }
+			}
+		}
+		
+		ExceptionProbe:
+		{
+			instanceOf = "object"
+			description = "Exception probe."
+			base = "Probe"
+			final = true
+			properties:
+			{
+				extractionPeriod:
+				{
+					description = "Period in milliseconds between subsequent measurements extractions."
+					required = true
+					default = 10000
+					type:
+					{
+						instanceOf = "long"
+						min = 1000
+						converter = "periods"
+					}
+				}
+			
+				intercepted:
+				{
+					description = "Filter of exception classes being intercepted."
+					required = true
+					default:
+					{
+						include = ["Throwable", "*Exception", "*Error", "*Failure", "*ThreadDeath"]
+					}
+					type = "CompoundClassFilterExpression"
+				}
+			
+				log:
+				{
+					description = "Exceptions or errors log meter."
+					required = true
+					default:
+					{
+						meters:
+						{
+							app.exceptions.count:
+							{
+								meter:
+								{
+									instanceOf = "Counter"
+									useDeltas = true
+								}
+							
+								provider:
+								{
+									instanceOf = "ErrorCountLogProvider"
+								}
+							}
+						}
+					}
+					type = "Log"
+				}
+			}
+		}
+		
+		LogProbe:
+		{
+			instanceOf = "object"
+			description = "Log probe."
+			base = "Probe"
+			abstract = true
+			properties:
+			{
+				extractionPeriod:
+				{
+					description = "Period in milliseconds between subsequent measurements extractions."
+					required = true
+					default = 10000
+					type:
+					{
+						instanceOf = "long"
+						min = 1000
+						converter = "periods"
+					}
+				}
+			
+				log:
+				{
+					description = "Log meter."
+					required = true
+					default:
+					{
+						meters:
+						{
+							app.log.count:
+							{
+								meter:
+								{
+									instanceOf = "Counter"
+									useDeltas = true
+								}
+					
+								provider:
+								{
+									instanceOf = "CountLogProvider"
+								}
+							}
+					
+							app.log.errorCount:
+							{
+								meter:
+								{
+									instanceOf = "Counter"
+									useDeltas = true
+								}
+							
+								provider:
+								{
+									instanceOf = "ErrorCountLogProvider"
+								}
+							}
+							
+							app.log.errors:
+							{
+								meter:
+								{
+									instanceOf = "Log"
+								}
+							
+								provider:
+								{
+									instanceOf = "ErrorLogProvider"
+								}
+							}
+						}
+					}
+					type = "Log"
+				}
+			}
+		}
+
+		AllocationProbe:
+		{
+			instanceOf = "object"
+			description = "Object or array allocation probe."
+			final = true
+			base = "Probe"
+			properties:
+			{
+				intercepted:
+				{
+					description = "Filter of methods being intercepted."
+					required = true
+					default:
+					{
+						class:
+						{
+							include = ["*"]
+							exclude = ["java.*", "sun.*", "javax.*", "com.sun.*", "jdk.*"] 
+						}
+						method = "*"
+					}
+					type = "QualifiedMethodFilter"
+				}
+			
+				allocated:
+				{
+					description = "Filter of objects whose allocation is intercepted."
+					required = true
+					default:
+					{
+						class = "*"
+					}
+					type = "CompoundClassNameFilterExpression"
+				}
+			}
+		}
+		
+		RequestMappingStrategy:
+		{
+			instanceOf = "object"
+			description = "Request mapping strategy."
+			abstract = true
+		}
+		
+		SimpleRequestMappingStrategy:
+		{
+			instanceOf = "object"
+			description = "Simple extression based request mapping strategy."
+			base = "RequestMappingStrategy"
+			properties:
+			{
+				nameExpression:
+				{
+					description = "Expression for computing collector name by request."
+					required = true
+					type = "string"
+				}
+			
+				metadataExpression:
+				{
+					description = "Expression for computing metadata by request."
+					required = true
+					type = "string"
+				}
+					
+				parametersExpression:
+				{
+					description = "Expression for computing parameters of request."
+					required = true
+					type = "string"
+				}
+					
+				requestFilter:
+				{
+					description = "Expression for request filter."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		RequestGroupingStrategy:
+        {
+            instanceOf = "object"
+            description = "Request grouping strategy."
+            abstract = true
+        }
+		
+		HotspotRequestMappingStrategy:
+		{
+			instanceOf = "object"
+			description = "Hotspot detecting request mapping strategy."
+			base = "SimpleRequestMappingStrategy"
+			final = true
+			properties:
+			{
+			    groupingStrategy:
+                {
+                    description = "Request grouping strategy."
+                    required = true
+                    type = "RequestGroupingStrategy"
+                }
+			
+				beginValueExpression:
+				{
+					description = "Expression for begin measurement value of request. If it's not set thread cpu time in\
+						nanoseconds is used as begin measurement value."
+					required = false
+					type = "string"
+				}
+			
+				endValueExpression:
+				{
+					description = "Expression for end measurement value of request. If it's not set thread cpu time in\
+						nanoseconds is used as end measurement value."
+					required = false
+					type = "string"
+				}
+			
+				estimationPeriod:
+				{
+					description = "Period in milliseconds of hotspots estimation."
+					required = true
+					default = 120000//TODO:120000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				measurementPeriod:
+				{
+					description = "Period in milliseconds of hotspots measurement. Hotspots are not detected during measurement period."
+					required = true
+					default = 0
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+				
+				minHotspotCount:
+				{
+					description = "Minimum number of hotspots."
+					required = true
+					default = 5
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+				
+				maxHotspotCount:
+				{
+					description = "Maximum number of hotspots."
+					required = true
+					default = 500//TODO:20
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+				
+				hotspotStep:
+				{
+					description = "Step of increment|decrement of current number of hotspots."
+					required = true
+					default = 10//TODO:2
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+				
+				hotspotCoverage:
+				{
+					description = "Desired coverage of detected hotspots in percents by scope cpu time. Hotspots are detected trying\
+						to ensure desired hotspot coverage but not exceed maximum number of hotspots. Detection starts\
+						with minimum number of hotspots gradually incrementing/decrementing current number of hotspot by given step."
+					required = true
+					default = 95//TODO:90
+					type:
+					{
+						instanceOf = "double"
+						min = 1
+						max = 100
+					}
+				}
+				
+				maxRequestCount:
+				{
+					description = "Maximum number of measured requests."
+					required = true
+					default = 50000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+				
+				perThreadStatistics:
+                {
+                    description = "Is statistics collected on per-thread basis or across all threads."
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+			}
+		}
+		
+		ThresholdRequestMappingStrategy:
+		{
+			instanceOf = "object"
+			description = "Request mapping strategy which detects sizeable requests whose measurement value is above specified threshold.\
+				Requests are identified by name."
+			base = "SimpleRequestMappingStrategy"
+			final = true
+			properties:
+			{
+				beginValueExpression:
+				{
+					description = "Expression for begin measurement value of request. If it's not set thread cpu time in\
+						nanoseconds is used as begin measurement value."
+					required = false
+					type = "string"
+				}
+			
+				endValueExpression:
+				{
+					description = "Expression for end measurement value of request. If it's not set thread cpu time in\
+						nanoseconds is used as end measurement value."
+					required = false
+					type = "string"
+				}
+			
+				threshold:
+				{
+					description = "Threshold value."
+					required = true
+					default = 10000000000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+			
+				estimationPeriod:
+				{
+					description = "Period in milliseconds of sizeable requests estimation."
+					required = true
+					default = 20000//TODO:120000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				measurementPeriod:
+				{
+					description = "Period in milliseconds of sizeable requests measurement. New sizeable requests are not \
+						detected during measurement period."
+					required = true
+					default = 0
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+				
+				maxRequestCount:
+				{
+					description = "Maximum number of detected sizeable requests."
+					required = true
+					default = 50000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+				
+				requestPercentage:
+                {
+                    description = "Percentage of requests above threshold to qualify request type as exceeding threshold."
+                    required = true
+                    default = 50
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                        max = 100
+                    }
+                }
+			}
+		}
+		
+		CompositeRequestMappingStrategy:
+		{
+			instanceOf = "object"
+			description = "Composite request mapping strategy."
+			base = "RequestMappingStrategy"
+			final = true
+			properties:
+			{
+				strategies:
+				{
+					description = "Child request mapping strategies."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						minCount = 1
+						elementType = "RequestMappingStrategy"
+					}
+				}
+			}
+		}
+		
+		EntryPointProbe:
+		{
+			instanceOf = "object"
+			description = "Entry point probe."
+			base = "Probe"
+			abstract = true
+			properties:
+			{
+				extractionPeriod: 
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			
+			    allowPrimary:
+                {
+                    description = "Is primary entry point allowed?"
+                    required = true
+                    default = "yes"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["yes", "no", "always"]
+                    }
+                }
+				
+				allowSecondary:
+                {
+                    description = "Is secondary entry point allowed?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+                   
+				maxDuration:
+				{
+					description = "Maximum duration of handled request in milliseconds."
+					required = true
+					default = 60000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			
+				stackMeasurementStrategy:
+                {
+                    description = "Measurement strategy of probe."
+                    required = false
+                    type = "MeasurementStrategyReference"
+                }
+				
+				requestMappingStrategy:
+				{
+					description = "Request mapping strategy."
+					required = false
+					type = "RequestMappingStrategy"
+				}
+				
+                stalledRequestsLog:
+                {
+                    description = "Log meter of stalled requests."
+                    required = true
+                    default:
+                    {
+                        meters:
+                        {
+                            app.entryPoint.stalls.count:
+                            {
+                                meter:
+                                {
+                                    instanceOf = "Counter"
+                                    useDeltas = true
+                                }
+                            
+                                provider:
+                                {
+                                    instanceOf = "ErrorCountLogProvider"
+                                }
+                            }
+                        }
+                    }
+                    type = "Log"
+                }
+
+				transactionTimeCounter:
+				{
+					description = "Counter of total transaction time (since transaction start till entry point end)."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+					        statistics:
+                            {
+                                instanceOf = "StatisticsFields"
+                            }
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+							    binCount = 15
+							}
+							instance:
+							{
+								instanceOf = "InstanceFields"
+							}
+						}
+					}
+					type = "Counter"
+				}
+                       
+                timeCounter:
+                {
+                    description = "Request time counter."
+                    required = true
+                    default:
+                    {
+                        fields:
+                        {
+                            standard:
+                            {
+                                instanceOf = "StandardFields"
+                            }
+                            statistics:
+                            {
+                                instanceOf = "StatisticsFields"
+                            }
+                            histogram:
+                            {
+                                instanceOf = "LogarithmicHistogramFields"
+                                minBound = 1000000 
+                                binCount = 15
+                            }
+                            instance:
+                            {
+                                instanceOf = "InstanceFields"
+                            }
+                        }
+                    }
+                    type = "Counter"
+                }
+            
+                receiveBytesCounter:
+                {
+                    description = "Receive bytes counter."
+                    required = true
+                    default:
+                    {
+                        fields:
+                        {
+                            standard:
+                            {
+                                instanceOf = "StandardFields"
+                            }
+                            statistics:
+                            {
+                                instanceOf = "StatisticsFields"
+                            }
+                            histogram:
+                            {
+                                instanceOf = "LogarithmicHistogramFields"
+                                binCount = 30
+                            }
+                            instance:
+                            {
+                                instanceOf = "InstanceFields"
+                            }
+                        }
+                    }
+                    type = "Counter"
+                }
+                
+                sendBytesCounter:
+                {
+                    description = "Send bytes counter."
+                    required = true
+                    default:
+                    {
+                        fields:
+                        {
+                            standard:
+                            {
+                                instanceOf = "StandardFields"
+                            }
+                            statistics:
+                            {
+                                instanceOf = "StatisticsFields"
+                            }
+                            histogram:
+                            {
+                                instanceOf = "LogarithmicHistogramFields"
+                                binCount = 30
+                            }
+                            instance:
+                            {
+                                instanceOf = "InstanceFields"
+                            }
+                        }
+                    }
+                    type = "Counter"
+                }
+                
+                errorsLog:
+                {
+                    description = "Errors log."
+                    required = true
+                    default:
+                    {
+                        meters:
+                        {
+                            app.entryPoint.errors.count:
+                            {
+                                meter:
+                                {
+                                    instanceOf = "Counter"
+                                    useDeltas = true
+                                }
+                            
+                                provider:
+                                {
+                                    instanceOf = "ErrorCountLogProvider"
+                                }
+                            }
+                        }
+                    }
+                    type = "Log"
+                }
+			}
+		}
+		
+		ExitPointProbe:
+		{
+			instanceOf = "object"
+			description = "Exit point probe."
+			base = "Probe"
+			abstract = true
+			properties:
+			{
+				extractionPeriod: 
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			
+				requestMappingStrategy:
+				{
+					description = "Request mapping strategy."
+					required = false
+					type = "RequestMappingStrategy"
+				}
+			}
+		}
+		
+		ThreadEntryPointProbe:
+		{
+			instanceOf = "object"
+			description = "Thread entry point probe."
+			base = "EntryPointProbe"
+			final = true
+			properties:
+			{
+				requestMappingStrategy:
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			
+			    allowPrimary:
+                {
+                    required = true
+                    default = "no"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["yes", "no", "always"]
+                    }
+                }
+			}
+		}
+		
+		ThreadExitPointProbe:
+		{
+			instanceOf = "object"
+			description = "Thread exit point probe."
+			base = "ExitPointProbe"
+			final = true
+			properties:
+			{
+				requestMappingStrategy:
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			}
+		}
+		
+		MethodEntryPointProbe:
+        {
+            instanceOf = "object"
+            description = "Method entry point probe."
+            base = "EntryPointProbe"
+            final = true
+            properties:
+            {
+                requestMappingStrategy:
+                {
+                    allowed = false
+                    required = false
+                    type:
+                    {
+                        instanceOf = "any"
+                    }
+                }
+            
+                allowPrimary:
+                {
+                    allowed = false
+                    required = false
+                    type:
+                    {
+                        instanceOf = "any"
+                    }
+                }
+                
+                allowSecondary:
+                {
+                    allowed = false
+                    required = false
+                    type:
+                    {
+                        instanceOf = "any"
+                    }
+                }
+                
+                intercepted:
+                {
+                    description = "Filter of methods being intercepted as entry points."
+                    required = true
+                    default:
+                    {
+                        class:
+                        {
+                            include = ["*"]
+                            exclude = ["java.*", "sun.*", "javax.*", "com.sun.*", "jdk.*"] 
+                        }
+                        method = "*"
+                    }
+                    type = "QualifiedMethodFilter"
+                }
+            }
+        }
+        
+        MethodExitPointProbe:
+        {
+            instanceOf = "object"
+            description = "Method exit point probe."
+            base = "ExitPointProbe"
+            final = true
+            properties:
+            {
+                requestMappingStrategy:
+                {
+                    allowed = false
+                    required = false
+                    type:
+                    {
+                        instanceOf = "any"
+                    }
+                }
+            
+                intercepted:
+                {
+                    description = "Filter of methods being intercepted as exit points."
+                    required = true
+                    default:
+                    {
+                        class:
+                        {
+                            include = ["*"]
+                            exclude = ["java.*", "sun.*", "javax.*", "com.sun.*", "jdk.*"] 
+                        }
+                        method = "*"
+                    }
+                    type = "QualifiedMethodFilter"
+                }
+            }
+        }
+        
+		Scope:
+		{
+			instanceOf = "object"
+			description = "Scope."
+			final = true
+			
+			properties:
+			{
+			    id:
+                {
+                    description = "Scope identifier used for measurement identification. If not set empty identifier is used.\
+                        Full scope name is combined from node name and permanent scope identifier."
+                    required = false
+                    type = "string"
+                }
+			
+				type:
+				{
+					description = "Scope type."
+					required = true
+					default = "default"
+					type = "string"
+				}
+			
+				threadFilter:
+				{
+					description = "Expression filter for threads where permanent scope can be activated."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		MeasurementStrategy:
+		{
+			instanceOf = "object"
+			description = "Measurement strategy."
+			abstract = true
+		}
+			
+		MeasurementStrategyReference:
+		{
+			instanceOf = "string"
+			validators = ["measurementStrategyReference"]
+		}
+			
+		ExternalMeasurementStrategy:
+		{
+			instanceOf = "object"
+			description = "Measurement strategy that is controlled by external process."
+			final = true
+			base = "MeasurementStrategy"
+			properties:
+			{
+				enabled:
+				{
+					description = "Is measurement strategy initially (after warmup delay) enabled?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			
+			    warmupDelay:
+                {
+                    description = "Warmup delay in milliseconds during which probe is always enabled."
+                    required = true
+                    default = 0
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+			}
+		}
+			
+		CompositeMeasurementStrategy:
+        {
+            instanceOf = "object"
+            description = "Composite measurement strategy."
+            final = true
+            base = "MeasurementStrategy"
+            properties:
+            {
+                allowing:
+                {
+                    description = "Is measurement strategy allowing or denying?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+            
+                type:
+                {
+                    description = "Combine type."
+                    required = true
+                    default = "and"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["and", "or"]
+                    }
+                }
+            
+                strategies:
+                {
+                    description = "Composed strategies."
+                    required = true
+                    default = {}
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "MeasurementStrategy"
+                    }
+                }
+            }
+        }
+			
+		HighMemoryMeasurementStrategy:
+        {
+            instanceOf = "object"
+            description = "High-memory measurement strategy."
+            final = true
+            base = "MeasurementStrategy"
+            properties:
+            {
+                estimationPeriod:
+                {
+                    description = "Statistics estimation period."
+                    required = true
+                    default = 300000
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+            
+                threshold:
+                {
+                    description = "Minimum memory usage percentage to allow strategy."
+                    required = true
+                    default = 90
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                        max = 100
+                    }
+                }
+            }
+        }
+        
+        HighCpuMeasurementStrategy:
+        {
+            instanceOf = "object"
+            description = "High-cpu measurement strategy."
+            final = true
+            base = "MeasurementStrategy"
+            properties:
+            {
+                estimationPeriod:
+                {
+                    description = "Statistics estimation period."
+                    required = true
+                    default = 300000
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+            
+                threshold:
+                {
+                    description = "Minimum cpu usage percentage to allow strategy."
+                    required = true
+                    default = 90
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                        max = 100
+                    }
+                }
+            }
+        }
+        
+        CheckPointMeasurementStrategy:
+        {
+            instanceOf = "object"
+            description = "Check-point measurement strategy."
+            final = true
+            base = "MeasurementStrategy"
+            properties:
+            {
+                allowing:
+                {
+                    description = "Is measurement strategy allowing or denying?"
+                    required = true
+                    default = true
+                    type = "boolean"
+                }
+            
+                intercepted:
+                {
+                    description = "Filter of methods being intercepted as check-points."
+                    required = true
+                    default:
+                    {
+                        class:
+                        {
+                            include = ["*"]
+                            exclude = ["java.*", "sun.*", "javax.*", "com.sun.*", "jdk.*"] 
+                        }
+                        method = "*"
+                    }
+                    type = "QualifiedMethodFilter"
+                }
+            }
+        }
+        
+		TimeSource:
+		{
+			instanceOf = "string"
+			description = "Type of time source."
+			enumeration = 
+			[
+			 	"wallTime", "threadCpuTime"
+			]
+		}
+
+		DumpType:
+		{
+			instanceOf = "string"
+			description = "Type of profiler dump."
+			enumeration = ["state", "fullState", "measurements"]
+		}
+			
+		ProfilerRecorder:
+        {
+            instanceOf = "object"
+            description = "Debug profiler file recorder."
+            final = true
+            properties:
+            {
+                fileName:
+                {
+                    description = "Name of file which will contain recorded profiler measurements."
+                    required = true
+                    type = "string"
+                }
+            
+                delayPeriod:
+                {
+                    description = "Period in milliseconds since start of profiler after which recording will start."
+                    required = true
+                    default = 0
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+                    
+                recordPeriod:
+                {
+                    description = "Period in milliseconds since start of recording till end of recording."
+                    required = true
+                    default = 300000
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 0
+                        converter = "periods"
+                    }
+                }
+            }
+        }
+			
+		Profiler:
+		{
+			instanceOf = "object"
+			description = "Profiler configuration."
+			final = true
+			properties:
+			{
+				timeSource:
+				{
+					description = "Profiler time source."
+					required = true
+					default = "wallTime"
+					type = "TimeSource"
+				}
+
+				measurementStrategies:
+				{
+					description = "List of available measurement strategies."
+					required = false
+					type:
+					{
+						instanceOf = "map"
+						valueType = "MeasurementStrategy"
+						minCount = 1
+					}
+				}
+				
+				permanentScopes:
+				{
+					description = "List of permanent scopes."
+					required = false
+					type:
+					{
+						instanceOf = "map"
+						minCount = 1
+						valueType = "Scope"
+					}
+				}
+				
+				monitors:
+				{
+					description = "List of available monitors."
+					required = false
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Monitor"
+						minCount = 1
+					}
+				}
+				
+				probes:
+				{
+					description = "List of available measurement probes."
+					required = false
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Probe"
+						minCount = 1
+					}
+				}
+				
+				schemaVersion:
+				{
+					description = "Version of measurement schema."
+					required = true
+					default = 1
+					type = "long"
+				}
+				
+				monitorThreadPoolSize:
+				{
+					description = "Size of thread pool used by some long running monitors to perform measurements."
+					required = false
+					type = "long"
+				}
+				
+				monitorTimerPeriod:
+				{
+					description = "Period in milliseconds of timer used by some short running monitors to perform measurements."
+					required = true
+					default = 100
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				fullExtractionPeriod:
+				{
+					description = "Period in milliseconds of full (unconditional) extraction of profiler measurements."
+					required = true
+					default = 600000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+				
+				maxScopeIdlePeriod:
+				{
+					description = "Maximum period of scope inactivity in milliseconds after which scope is removed."
+					required = true
+					default = 300000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+				
+				maxInstrumentedMethodsCount:
+				{
+					description = "Maximum number of instrumented methods."
+					required = true
+					default = 1000000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+				
+				dump:
+				{
+					description = "Dump."
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "DumpType"
+					}
+				}
+					
+				dumpPeriod:
+				{
+					description = "Dump period in milliseconds."
+					required = true
+					default = 60000
+					type:
+					{
+						instanceOf = "long"
+						min = 1000
+						converter = "periods"
+					}
+				}
+				
+				recorder:
+                {
+                    description = "Debug profiler measurements recorder."
+                    required = false
+                    type = "ProfilerRecorder"
+                }
+			}
+		}
+	}
+}

@@ -1,0 +1,1 @@
+echo Role1 started.

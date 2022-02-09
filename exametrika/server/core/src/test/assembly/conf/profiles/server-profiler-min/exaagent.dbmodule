@@ -1,0 +1,287 @@
+{
+	initialSchema:{modules:{module1:{version = "1.0.0",schema:
+	{
+		instanceOf = "ComponentModel"
+		
+		components:
+		{
+			ExaAgent:
+			{
+				instanceOf = "exaAgent"
+			    healthComponentType = "HealthComponentType"
+			    actions:
+		        {
+			        log = {instanceOf = "LogAction"}
+			        measurementStrategy = {instanceOf = "MeasurementStrategyAction"}
+		        }
+				aggregationSchema:
+				{
+					p3:
+					{
+					    exa.agent:
+                        {
+                            instanceOf = "NameComponentType"
+                            ruleRepresentation = null
+                            metricTypes:
+                            {
+                                exa.dummy:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                    ]}}
+                                }
+                            }
+                            componentDiscoveryStrategies = [{ instanceOf = "ExaAgentDiscoveryStrategy" component = "ExaAgent"}]
+                        }
+			        
+                        exa.instrument:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.instrument.time:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" minBound = 1000000 binCount = 15}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" minBound = 1000000 binCount = 15}
+                                    ]}}
+                                }
+                            
+                                exa.instrument.beforeBytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 17}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 17}
+                                    ]}}
+                                }
+                                
+                                exa.instrument.afterBytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 17}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 17}
+                                    ]}}
+                                }
+                                
+                                exa.instrument.skipped:
+                                {
+                                    instanceOf = "Counter"
+                                }
+                                
+                                exa.instrument.joinPoints:
+                                {
+                                    instanceOf = "Gauge"
+                                }
+                                    
+                                exa.instrument.errors.count:
+                                {
+                                    instanceOf = "Counter"
+                                }
+                            }
+                        }
+                            
+                        exa.instrument.errors.log:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.instrument.errors.log:
+                                {
+                                    instanceOf = "Log"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        exa.log:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.log.count:
+                                {
+                                    instanceOf = "Counter"
+                                }
+                            
+                                exa.log.errorCount:
+                                {
+                                    instanceOf = "Counter"
+                                }
+                            }
+                            
+                        }
+                            
+                        exa.log.log:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.log.log:
+                                {
+                                    instanceOf = "Log"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        exa.log.errors:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.log.errors:
+                                {
+                                    instanceOf = "Log"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+                            
+                        exa.messaging:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.messaging.send.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                    ]}}
+                                }
+                            
+                                exa.messaging.receive.bytes:
+                                {
+                                    instanceOf = "Counter"
+                                    fields:
+                                    [
+                                        {instanceOf = "StandardFields"}
+                                        {instanceOf = "LogarithmicHistogramFields" binCount = 30}
+                                    ]
+                                    representations: { default: { fields:
+                                    [
+                                        {instanceOf = "StandardRepresentation"}
+                                        {instanceOf = "RateRepresentation" name = "rate" baseField = "std.sum"}
+                                        {instanceOf = "LogarithmicHistogramRepresentation" binCount = 30}
+                                    ]}}
+                                }
+                            
+                                exa.messaging.errors.count:
+                                {
+                                    instanceOf = "Counter"
+                                }
+                            }
+                        }
+                            
+                        exa.messaging.errors.log:
+                        {
+                            instanceOf = "NameComponentType"
+                            metricTypes:
+                            {
+                                exa.messaging.errors.log:
+                                {
+                                    instanceOf = "Log"
+                                }
+                            }
+                            
+                            hasLog = true
+                        }
+					}
+				    
+					p4:
+                    {
+                        @reference = "p3"
+                            
+                        exa.agent:
+                        {
+                            componentDiscoveryStrategies = "@remove"
+                            componentDeletionStrategy = "@remove"
+                        }
+                    }
+				        
+			        p5:
+                    {
+                        @reference = "p4"
+                    }
+					    
+				    p6:
+                    {
+                        @reference = "p4"
+                            
+                        exa.instrument.errors.log = "@remove"
+                        exa.log.log = "@remove"
+                        exa.log.errors = "@remove"
+                        exa.messaging.errors.log = "@remove"
+                    }
+                        
+                    p7:
+                    {
+                        @reference = "p4"
+                    }
+                        
+                    p8:
+                    {
+                        @reference = "p4"
+                    }
+				}
+		        groupDiscoveryStrategies = [{ instanceOf = "SimpleGroupDiscoveryStrategy" group = "agents"}]
+			}
+		
+		    ExaAgentsGroup:
+            {
+                instanceOf = "group"
+                componentTypes = ["ExaAgent"]
+                groupTypes = []
+                aggregationGroup = true
+            }
+		}
+		
+		groups:
+        {
+            agents:
+            {
+                groupType = "ExaAgentsGroup"
+            }
+        }
+	}}}}
+}

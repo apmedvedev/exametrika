@@ -1,0 +1,84 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-39/data-39.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-39/data-39.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-39/data-39.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]"
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:hosts.host1 (component-component-39/data-39.dt)"],
+        "healthComponents": 
+        ["scope:hosts.host1 (component-component-39/data-39.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-39/data-39.dt",
+                "key": 1,
+                "scope": "hosts.host1",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-39/data-39.dt",
+                        "scope": "hosts.host1",
+                        "component": "Host",
+                        "flags": "[readonly, dynamic]",
+                        "properties": 
+                        {
+                            "key": "value-1.1",
+                            "nodeProperties": 
+                            {
+                                "dynamic": true
+                            }
+                        },
+                        "state": "normal"
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 2000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "on",
+                            "message": "Simple alert simple1 is on."
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "time": 14000,
+                        "component": "hosts.host1",
+                        "type": "Host",
+                        "action": "alert",
+                        "parameters": 
+                        {
+                            "name": "simple1",
+                            "state": "off",
+                            "message": "Simple alert simple1 is off."
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

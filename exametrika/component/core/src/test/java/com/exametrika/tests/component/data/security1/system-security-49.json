@@ -1,0 +1,42 @@
+{
+    "<root>": 
+    {
+        "space": "system-security-49/data-49.dt",
+        "rootGroup": 
+        {
+            "space": "system-security-49/data-49.dt",
+            "key": ""
+        },
+        "users": 
+        {
+            "user1": 
+            {
+                "space": "system-security-49/data-49.dt",
+                "key": "user1",
+                "labels": 
+                ["hosts.host1", "groups"],
+                "roles": 
+                {
+                    "role1": 
+                    {
+                        "space": "system-security-49/data-49.dt"
+                    }
+                }
+            },
+            "Admin": 
+            {
+                "space": "system-security-49/data-49.dt",
+                "key": "Admin",
+                "roles": 
+                {
+                    "administrator": 
+                    {
+                        "space": "system-security-49/data-49.dt"
+                    }
+                }
+            }
+        }
+    },
+    "<orphaned>": 
+    []
+}

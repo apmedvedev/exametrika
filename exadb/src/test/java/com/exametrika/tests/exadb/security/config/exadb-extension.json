@@ -1,0 +1,13 @@
+{
+	name = "security.exadb"
+	
+	types:
+	{
+		SecurityDatabase:
+		{
+			instanceOf = "object"
+			base = "Database"
+			final = true
+		}
+	}
+}

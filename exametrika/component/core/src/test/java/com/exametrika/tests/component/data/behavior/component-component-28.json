@@ -1,0 +1,63 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-28/data-28.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]"
+                }
+            ]
+        },
+        "components": 
+        []
+    },
+    "<orphaned>": 
+    [
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 3,
+            "type": "behaviorType",
+            "typeId": 3,
+            "name": "anomaly-01.01.70 3:00",
+            "tags": 
+            []
+        },
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 2,
+            "type": "behaviorType",
+            "typeId": 2,
+            "name": "anomaly-01.01.70 3:00",
+            "tags": 
+            []
+        },
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 1,
+            "type": "behaviorType",
+            "typeId": 1,
+            "name": "anomaly-01.01.70 3:00",
+            "tags": 
+            []
+        },
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 0,
+            "type": "behaviorType",
+            "typeId": 0,
+            "name": "anomaly-01.01.70 3:00",
+            "tags": 
+            []
+        }
+    ]
+}

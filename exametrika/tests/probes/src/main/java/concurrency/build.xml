@@ -1,0 +1,19 @@
+<project name="test" basedir="." default="concurrency">
+
+    <include file="../base.xml" />
+    <property name="build.dir" value="../.." />
+    
+    <target name="concurrency">
+		<java classname="concurrency.TestConcurrencyClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${agent.dir}/lib/common.jar"/>
+		    <jvmarg line="-Djava.library.path=${build.dir}/lib/" />
+		    <!--<jvmarg line="-Dcom.exametrika.profiler.checkStack=true" />-->
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <!--<jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=y" />-->
+	    </java>
+    </target>
+    
+</project>

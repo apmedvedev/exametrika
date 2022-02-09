@@ -1,0 +1,97 @@
+{
+    "time": "1970.01.01 03:00:00.100",
+    "schemaVersion": 1,
+    "measurements": 
+    [
+        {
+            "id": 
+            {
+                "scope": "hosts.host1",
+                "location": "",
+                "componentType": "host.cpu"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 10,
+                                "sum": 40,
+                                "min": 20,
+                                "max": 30
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-1.1"
+    				"nodeProperties":
+					{
+    					"groups": ["groups.group1.group11", "groups.group2.group21"]
+                		"groupsMetadata":
+            			{
+                			"groups.group1.group11":
+            				{
+                				"metadata": "group11"
+            				}
+    					
+    						"groups.group2.group21":
+							{
+    							"metadata": "group21"
+							}
+            				
+            				"groups.group1":
+        					{
+            					"metadata": "group1"
+        					}
+							
+							"groups.group2":
+        					{
+								"metadata": "group2"        					
+        					}
+            			}
+					}
+        		}
+            },
+            "period": 10
+        },
+        {
+            "id": 
+            {
+                "scope": "hosts.host1",
+                "location": "",
+                "componentType": "host.mem"
+            },
+            "value": 
+            {
+                "metrics": 
+                [
+                    {
+                        "instanceOf": "name",
+                        "fields": 
+                        [
+                            {
+                                "instanceOf": "std",
+                                "count": 20,
+                                "sum": 80,
+                                "min": 40,
+                                "max": 60
+                            }
+                        ]
+                    }
+                ]
+            	"metadata":
+        		{
+            		"key" : "value-1.1"
+        		}
+            },
+            "period": 10
+        }
+    ]
+}

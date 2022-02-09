@@ -1,0 +1,496 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-28/data-28.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:group1 (component-component-28/data-28.dt)"]
+                },
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]"
+                }
+            ]
+        },
+        "hosts": 
+        ["scope:host1 (component-component-28/data-28.dt)", "scope:host2 (component-component-28/data-28.dt)"],
+        "nodes": 
+        ["scope:node1 (component-component-28/data-28.dt)", "scope:node2 (component-component-28/data-28.dt)"],
+        "healthComponents": 
+        ["scope:host1 (component-component-28/data-28.dt)", "scope:host2 (component-component-28/data-28.dt)", "scope:node1 (component-component-28/data-28.dt)", "scope:node2 (component-component-28/data-28.dt)"],
+        "components": 
+        [
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 6,
+                "scope": "group2",
+                "component": "Group",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group2",
+                        "component": "Group",
+                        "flags": "[readonly]",
+                        "components": 
+                        ["scope:host1 (component-component-28/data-28.dt)", "scope:host2 (component-component-28/data-28.dt)", "scope:node1 (component-component-28/data-28.dt)", "scope:node2 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 5,
+                "scope": "group1",
+                "component": "AggregationGroup",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1",
+                        "component": "AggregationGroup",
+                        "flags": "[readonly]",
+                        "children": 
+                        ["scope:group2 (component-component-28/data-28.dt)"]
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 4,
+                "scope": "node2",
+                "component": "Node",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "node2",
+                        "component": "Node",
+                        "flags": "[readonly]",
+                        "groups": 
+                        ["scope:group2 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 7000,
+                        "component": "node2",
+                        "type": "Node",
+                        "action": "action4",
+                        "parameters": 
+                        {
+                            "action": "action4"
+                        }
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 3,
+                "scope": "node1",
+                "component": "Node",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "node1",
+                        "component": "Node",
+                        "flags": "[readonly]",
+                        "groups": 
+                        ["scope:group2 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 7000,
+                        "component": "node1",
+                        "type": "Node",
+                        "action": "action4",
+                        "parameters": 
+                        {
+                            "action": "action4"
+                        }
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 2,
+                "scope": "host2",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "host2",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "groups": 
+                        ["scope:group2 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 7000,
+                        "component": "host2",
+                        "type": "Host",
+                        "action": "action4",
+                        "parameters": 
+                        {
+                            "action": "action4"
+                        }
+                    }
+                ]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 1,
+                "scope": "host1",
+                "component": "Host",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "host1",
+                        "component": "Host",
+                        "flags": "[readonly]",
+                        "options": 
+                        {
+                            "option1": "host1-options"
+                        },
+                        "properties": 
+                        {
+                            "property1": "host1-property"
+                        },
+                        "groups": 
+                        ["scope:group2 (component-component-28/data-28.dt)"],
+                        "state": "normal"
+                    }
+                ],
+                "actionLog": 
+                [
+                    {
+                        "id": 1,
+                        "time": 2000,
+                        "component": "host1",
+                        "type": "Host",
+                        "action": "action1",
+                        "parameters": 
+                        {
+                            "action": "action1"
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "time": 2000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "started",
+                        "action": "test",
+                        "parameters": 
+                        {
+                            "param1": "value1"
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "time": 2000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "succeeded",
+                        "action": "test",
+                        "result": "Succeeded"
+                    },
+                    {
+                        "id": 3,
+                        "time": 2000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "started",
+                        "action": "test",
+                        "parameters": 
+                        {
+                            "param2": "value2"
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "time": 2000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "failed",
+                        "action": "test",
+                        "error": "Failed"
+                    },
+                    {
+                        "id": 4,
+                        "time": 3000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "started",
+                        "action": "localHost",
+                        "parameters": 
+                        {
+                            "p1": "host1-options",
+                            "p2": "host1-property",
+                            "p3": "default",
+                            "p4": null
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "time": 3000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "started",
+                        "action": "localHost",
+                        "parameters": 
+                        {
+                            "p1": "p1-action",
+                            "p2": "p2-action",
+                            "p3": "p3-action",
+                            "p4": "p4-action"
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "time": 4000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "started",
+                        "action": "localHost",
+                        "parameters": 
+                        {
+                            "error": "errorMessage",
+                            "p2": "p2-action",
+                            "p1": "host1-options",
+                            "p3": "default",
+                            "p4": null
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "time": 5000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "started",
+                        "action": "localHost",
+                        "parameters": 
+                        {
+                            "p1": "host1-options",
+                            "p2": "host1-property",
+                            "p3": "default",
+                            "p4": null
+                        }
+                    },
+                    {
+                        "id": 8,
+                        "time": 5000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "started",
+                        "action": "remoteHost",
+                        "parameters": 
+                        {
+                            "p1": "p1-action",
+                            "p2": "p2-action",
+                            "p3": "p3-action",
+                            "p4": "p4-action"
+                        }
+                    },
+                    {
+                        "id": 9,
+                        "time": 6000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "started",
+                        "action": "remoteHost",
+                        "parameters": 
+                        {
+                            "error": "errorMessage",
+                            "p2": "p2-action",
+                            "p1": "host1-options",
+                            "p3": "default",
+                            "p4": null
+                        }
+                    },
+                    {
+                        "id": 10,
+                        "time": 7000,
+                        "component": "host1",
+                        "type": "Host",
+                        "action": "action4",
+                        "parameters": 
+                        {
+                            "action": "action4"
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "time": 7000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "succeeded",
+                        "action": "localHost",
+                        "result": "{p1=host1-options, p2=host1-property, p3=default, p4=null}"
+                    },
+                    {
+                        "id": 5,
+                        "time": 7000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "succeeded",
+                        "action": "localHost",
+                        "result": "{p1=p1-action, p2=p2-action, p3=p3-action, p4=p4-action}"
+                    },
+                    {
+                        "id": 6,
+                        "time": 7000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "failed",
+                        "action": "localHost",
+                        "error": 
+                        {
+                            "class": "java.lang.RuntimeException",
+                            "message": "errorMessage",
+                            "stackTrace": 
+                            [
+                                {
+                                    "class": "com.exametrika.tests.component.ComponentTests$TestAction",
+                                    "method": "call",
+                                    "file": "ComponentTests.java",
+                                    "line": 216
+                                },
+                                {
+                                    "class": "com.exametrika.impl.component.services.ActionService$1",
+                                    "method": "run",
+                                    "file": "ActionService.java",
+                                    "line": 72
+                                },
+                                {
+                                    "class": "com.exametrika.common.compartment.impl.CompartmentGroup$CompartmentRunnableTask",
+                                    "method": "execute",
+                                    "file": "CompartmentGroup.java",
+                                    "line": 263
+                                },
+                                {
+                                    "class": "com.exametrika.common.compartment.impl.CompartmentGroup$CompartmentTaskHandler",
+                                    "method": "handle",
+                                    "file": "CompartmentGroup.java",
+                                    "line": 282
+                                },
+                                {
+                                    "class": "com.exametrika.common.compartment.impl.CompartmentGroup$CompartmentTaskHandler",
+                                    "method": "handle",
+                                    "file": "CompartmentGroup.java",
+                                    "line": 1
+                                },
+                                {
+                                    "class": "com.exametrika.common.tasks.impl.TaskExecutor$ExecutorThread",
+                                    "method": "handleTask",
+                                    "file": "TaskExecutor.java",
+                                    "line": 430
+                                },
+                                {
+                                    "class": "com.exametrika.common.tasks.impl.TaskExecutor$ExecutorThread",
+                                    "method": "run",
+                                    "file": "TaskExecutor.java",
+                                    "line": 395
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "time": 7000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "succeeded",
+                        "action": "localHost",
+                        "result": "{p1=host1-options, p2=host1-property, p3=default, p4=null}"
+                    },
+                    {
+                        "id": 8,
+                        "time": 7000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "succeeded",
+                        "action": "remoteHost",
+                        "result": "{p1=p1-action, p2=p2-action, p3=p3-action, p4=p4-action}"
+                    },
+                    {
+                        "id": 9,
+                        "time": 7000,
+                        "component": "host1",
+                        "type": "Host",
+                        "state": "failed",
+                        "action": "remoteHost",
+                        "error": 
+                        {
+                            "class": "java.lang.RuntimeException",
+                            "message": "errorMessage",
+                            "stackTrace": 
+                            [
+                                {
+                                    "class": "com.exametrika.tests.component.ComponentTests$TestAction",
+                                    "method": "call",
+                                    "file": "ComponentTests.java",
+                                    "line": 216
+                                },
+                                {
+                                    "class": "com.exametrika.tests.component.ComponentTests$ActionTaskHandler",
+                                    "method": "handle",
+                                    "file": "ComponentTests.java",
+                                    "line": 172
+                                },
+                                {
+                                    "class": "com.exametrika.tests.component.ComponentTests$ActionTaskHandler",
+                                    "method": "handle",
+                                    "file": "ComponentTests.java",
+                                    "line": 1
+                                },
+                                {
+                                    "class": "com.exametrika.common.tasks.impl.TaskExecutor$ExecutorThread",
+                                    "method": "handleTask",
+                                    "file": "TaskExecutor.java",
+                                    "line": 430
+                                },
+                                {
+                                    "class": "com.exametrika.common.tasks.impl.TaskExecutor$ExecutorThread",
+                                    "method": "run",
+                                    "file": "TaskExecutor.java",
+                                    "line": 395
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

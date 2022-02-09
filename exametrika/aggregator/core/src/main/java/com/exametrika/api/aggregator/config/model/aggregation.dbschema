@@ -1,0 +1,1843 @@
+{
+	name = "com.exametrika.aggregation-1.0"
+	description = "Measurement aggregator schema."
+	
+	types:
+	{
+		Fields:
+		{
+			instanceOf = "object"
+			description = "Base metric type fields."
+			abstract = true
+		}
+		
+		StandardFields:
+		{
+			instanceOf = "object"
+			description = "Standard fields (min, max, count, sum)."
+			final = true
+			base = "Fields"
+		}
+	
+		StatisticsFields:
+		{
+			instanceOf = "object"
+			description = "Statistics fields (stddev, vc)."
+			final = true
+			base = "Fields"
+		}
+			
+		HistogramFields:
+		{
+			instanceOf = "object"
+			description = "Histogram fields."
+			abstract = true
+			base = "Fields"
+		}
+		
+		UniformHistogramFields:
+        {
+            instanceOf = "object"
+            description = "Uniform histogram fields."
+            final = true
+            base = "HistogramFields"
+            properties:
+            {
+                minBound:
+                {
+                    description = "Minimum histogram bound."
+                    required = true
+                    default = 0
+                    type = "long"
+                }
+            
+                maxBound:
+                {
+                    description = "Maximum histogram bound."
+                    required = true
+                    type = "long"
+                }
+                    
+                binCount:
+                {
+                    description = "Number of histogram bins."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 1
+                    }
+                }
+            }
+        }
+        
+        LogarithmicHistogramFields:
+        {
+            instanceOf = "object"
+            description = "Logarithmic (log2) histogram fields."
+            final = true
+            base = "HistogramFields"
+            properties:
+            {
+                minBound:
+                {
+                    description = "Minimum histogram bound."
+                    required = true
+                    default = 0
+                    type = "long"
+                }
+            
+                binCount:
+                {
+                    description = "Number of histogram bins."
+                    required = true
+                    default = 40
+                    type:
+                    {
+                        instanceOf = "long"
+                        min = 1
+                    }
+                }
+            }
+        }
+        
+        CustomHistogramFields:
+        {
+            instanceOf = "object"
+            description = "Custom-bounded histogram fields."
+            final = true
+            base = "HistogramFields"
+            properties:
+            {
+                bounds:
+                {
+                    description = "Histogram bounds in ascending order. At least minimum and maximum bounds must be set."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "array"
+                        elementType = "long"
+                        minCount = 2
+                    }
+                }
+            }
+        }
+
+		InstanceFields:
+		{
+			instanceOf = "object"
+			description = "Instance fields representing a partial history with maximum or minimum measurement values."
+			final = true
+			base = "Fields"
+			properties:
+			{
+				instanceCount:
+				{
+					description = "Number of minimum or maximum instances in partial history."
+					required = true
+					default = 10
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+			
+				max:
+				{
+					description = "Are instances with maximum or minimum values collected?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+		
+		BehaviorTypeLabelStrategy:
+		{
+			instanceOf = "object"
+			description = "Behavior type label strategy."
+			abstract = true
+		}
+		
+		AnomalyFields:
+		{
+			instanceOf = "object"
+			description = "Anomaly fields."
+			base = "Fields"
+			properties:
+			{
+				name:
+				{
+					description = "Fields name."
+					required = true
+					type = "string"
+				}
+			
+				baseRepresentation:
+				{
+					description = "Name of base representation to get base field from."
+					required = true
+					default = "default"
+					type = "string"
+				}
+					
+				baseField:
+				{
+					description = "Name of base field to get source value for anomaly computation."
+					required = true
+					type = "string"
+				}
+					
+				fast:
+				{
+					description = "Is fast anomaly computation required? Fast anomaly computation produces more false positives and\
+						does not support behavior types."
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				sensitivityAutoAdjustment:
+				{
+					description = "Is sensitivity adjusted automatically?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				initialSensitivity:
+				{
+					description = "Initial sensitivity."
+					required = true
+					default = 0.1
+					type:
+					{
+						instanceOf = "double"
+						min = 0
+					}
+				}
+					
+				sensitivityIncrement:
+				{
+					description = "Sensitivity increment."
+					required = true
+					default = 0.01
+					type:
+					{
+						instanceOf = "double"
+						min = 0
+					}
+				}
+					
+				maxSensitivity:
+				{
+					description = "Maximum sensitivity."
+					required = true
+					default = 0.25
+					type:
+					{
+						instanceOf = "double"
+						min = 0
+						max = 1
+					}
+				}
+					
+				initialLearningPeriod:
+				{
+					description = "Initial learning period in number of measurements."
+					required = true
+					default = 200
+					type:
+					{
+						instanceOf = "long"
+						min = 50
+					}
+				}
+					
+				initialAdjustmentLearningPeriod:
+				{
+					description = "Initial sensitivity adjustment learning period in number of measurements."
+					required = true
+					default = 150
+					type:
+					{
+						instanceOf = "long"
+						min = 50
+					}
+				}
+					
+				anomaliesEstimationPeriod:
+				{
+					description = "Anomalies estimation period in number of measurements for sensitivity auto adjustment."
+					required = true
+					default = 100
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+					
+				maxAnomaliesPerEstimationPeriodPercentage:
+				{
+					description = "Maximum percentage of anomalies per estimation period before sensitivity increment."
+					required = true
+					default = 5
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 100
+					}
+				}
+					
+				maxAnomaliesPerType:
+				{
+					description = "Maximum number of anomalies per behavior type. All subsequent similar events are not considered as anomalies."
+					required = true
+					default = 2
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+				
+				anomalyAutoLabeling:
+				{
+					description = "If true anomalies are auto labeled."
+					required = true
+					default = true
+					type = "boolean"
+				}
+				
+				behaviorTypeLabelStrategy:
+				{
+					description = "Behavior type label strategy."
+					required = false
+					type = "BehaviorTypeLabelStrategy"
+				}
+			}
+		}
+		
+		ForecastFields:
+		{
+			instanceOf = "object"
+			description = "Forecast fields."
+			final = true
+			base = "AnomalyFields"
+			properties:
+			{
+				fast:
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			}
+		}
+		
+		FieldRepresentation:
+		{
+			instanceOf = "object"
+			description = "Base field representation."
+			abstract = true
+			properties:
+			{
+				enabled:
+				{
+					description = "Are values of representation included in result?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+		
+		StandardRepresentation:
+		{
+			instanceOf = "object"
+			description = "Standard fields representation."
+			final = true
+			base = "FieldRepresentation"
+		}
+	
+		StatisticsRepresentation:
+		{
+			instanceOf = "object"
+			description = "Statistics fields representation."
+			final = true
+			base = "FieldRepresentation"
+		}
+			
+		HistogramRepresentation:
+		{
+			instanceOf = "object"
+			description = "Histogram fields representation."
+			abstract = true
+			base = "FieldRepresentation"
+			properties:
+			{
+				computeValues:
+				{
+					description = "Are values included in result?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+				
+				computePercentages:
+				{
+					description = "Are percentages included in result?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				computeCumulativePercentages:
+				{
+					description = "Are cumulative percentages included in result?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				computeScale:
+				{
+					description = "Is scale included in result?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				percentiles:
+				{
+					description = "Computed percentiles."
+					required = true
+					default = [10, 25, 50, 75, 90]
+					type:
+					{
+						instanceOf = "array"
+						elementType = "long"
+						minCount = 1
+					}
+				}
+			}
+		}
+			
+		UniformHistogramRepresentation:
+		{
+			instanceOf = "object"
+			description = "Representation of uniform histogram fields."
+			final = true
+			base = "HistogramRepresentation"
+			properties:
+			{
+				minBound:
+				{
+					description = "Minimum histogram bound."
+					required = true
+					default = 0
+					type = "long"
+				}
+			
+				maxBound:
+				{
+					description = "Maximum histogram bound."
+					required = true
+					type = "long"
+				}
+					
+				binCount:
+				{
+					description = "Number of histogram bins."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+			}
+		}
+		
+		LogarithmicHistogramRepresentation:
+		{
+			instanceOf = "object"
+			description = "Representation of logarithmic (log2) histogram fields."
+			final = true
+			base = "HistogramRepresentation"
+			properties:
+			{
+				minBound:
+				{
+					description = "Minimum histogram bound."
+					required = true
+					default = 0
+					type = "long"
+				}
+			
+				binCount:
+				{
+					description = "Number of histogram bins."
+					required = true
+					default = 40
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+			}
+		}
+		
+		CustomHistogramRepresentation:
+		{
+			instanceOf = "object"
+			description = "Representation of custom-bounded histogram fields."
+			final = true
+			base = "HistogramRepresentation"
+			properties:
+			{
+				bounds:
+				{
+					description = "Histogram bounds in ascending order. At least minimum and maximum bounds must be set."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						elementType = "long"
+						minCount = 2
+					}
+				}
+			}
+		}
+
+		InstanceRepresentation:
+		{
+			instanceOf = "object"
+			description = "Instance fields representation."
+			final = true
+			base = "FieldRepresentation"
+		}
+		
+		RateRepresentation:
+		{
+			instanceOf = "object"
+			description = "Rate fields representation."
+			final = true
+			base = "FieldRepresentation"
+			properties:
+			{
+				name:
+				{
+					description = "Rate field name."
+					required = false
+					type = "string"
+				}
+			
+				baseField:
+				{
+					description = "Base field name."
+					required = true
+					type = "string"
+				}
+			}
+		}
+			
+		PeriodRepresentation:
+		{
+			instanceOf = "object"
+			description = "Period fields representation."
+			final = true
+			base = "FieldRepresentation"
+			properties:
+			{
+				name:
+				{
+					description = "Period fields name."
+					required = false
+					type = "string"
+				}
+			
+				navigationType:
+				{
+					description = "Navigation type."
+					required = true
+					default = "period"
+					type = "string"
+				}
+					
+				baseField:
+				{
+					description = "Base field name."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		PercentageRepresentation:
+		{
+			instanceOf = "object"
+			description = "Percentage fields representation."
+			final = true
+			base = "FieldRepresentation"
+			properties:
+			{
+				name:
+				{
+					description = "Percentage fields name."
+					required = false
+					type = "string"
+				}
+			
+				navigationType:
+				{
+					description = "Navigation type."
+					required = true
+					type = "string"
+				}
+					
+				navigationArgs:
+				{
+					description = "Navigation accessor arguments."
+					required = false
+					type = "string"
+				}
+					
+				nodeType:
+				{
+					description = "Node type."
+					required = false
+					type = "string"
+				}
+					
+				currentField:
+				{
+					description = "Current field name."
+					required = false
+					type = "string"
+				}
+					
+				baseField:
+				{
+					description = "Base field name."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		AnomalyRepresentation:
+		{
+			instanceOf = "object"
+			description = "Anomaly fields representation."
+			base = "FieldRepresentation"
+			properties:
+			{
+				name:
+				{
+					description = "Anomaly field name."
+					required = true
+					type = "string"
+				}
+			
+				computeBehaviorTypes:
+				{
+					description = "Are behavior types included in result?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+		
+		ForecastRepresentation:
+		{
+			instanceOf = "object"
+			description = "Forecast fields representation."
+			base = "AnomalyRepresentation"
+			properties:
+			{
+				computePredictions:
+				{
+					description = "Are predictions included in result?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			
+				predictionsStepCount:
+				{
+					description = "Number of steps in prediction result."
+					required = true
+					default = 10
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+			}
+		}
+		
+		MetricRepresentation:
+		{
+			instanceOf = "object"
+			description = "Metric representation."
+			abstract = true
+		}
+		
+		ObjectMetricRepresentation:
+		{
+			instanceOf = "object"
+			description = "Object metric representation."
+			base = "MetricRepresentation"
+		}
+			
+		FieldMetricRepresentation:
+		{
+			instanceOf = "object"
+			description = "Field metric representation."
+			base = "MetricRepresentation"
+			abstract = true
+			properties:
+			{
+				fields:
+				{
+					description = "Field representations."
+					required = true
+					default = [{instanceOf = "StandardRepresentation"}]
+					type:
+					{
+						instanceOf = "array"
+						elementType = "FieldRepresentation"
+					}
+				}
+			}
+		}
+			
+		NameMetricRepresentation:
+		{
+			instanceOf = "object"
+			description = "Name metric representation."
+			base = "FieldMetricRepresentation"
+		}
+		
+		StackMetricRepresentation:
+		{
+			instanceOf = "object"
+			description = "Stack metric representation."
+			base = "FieldMetricRepresentation"
+		}
+			
+		DocumentSchemaFactory:
+		{
+			instanceOf = "object"
+			description = "Full text document schema factory."
+			abstract = true
+		}
+		
+		MetricType:
+		{
+			instanceOf = "object"
+			description = "Base metric type."
+			abstract = true
+		}
+			
+		FieldMetricType:
+		{
+			instanceOf = "object"
+			description = "Base metric type."
+			base = "MetricType"
+			abstract = true
+			properties:
+			{
+				fields:
+				{
+					description = "Metric type fields."
+					required = true
+					default = [{instanceOf = "StandardFields"}]
+					type:
+					{
+						instanceOf = "array"
+						elementType = "Fields"
+					}
+				}
+			}
+		}
+		
+		Gauge:
+		{
+			instanceOf = "object"
+			description = "Gauge metric type."
+			base = "FieldMetricType"
+			final = true
+			properties:
+			{
+				representations:
+				{
+					description = "Metric type representations."
+					required = true
+					default:{"default":{}}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "NameMetricRepresentation"
+					}
+				}
+			
+			    sumByGroup:
+                {
+                    description = "If true derived measurements represents summing of end measurements. Requires allowTransferDerived is set\
+                        on component type in first aggregating period type."
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+			}
+		}
+		
+		Counter:
+		{
+			instanceOf = "object"
+			description = "Counter metric type."
+			base = "FieldMetricType"
+			final = true
+			properties:
+			{
+				representations:
+				{
+					description = "Metric type representations."
+					required = true
+					default:{"default":{}}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "NameMetricRepresentation"
+					}
+				}
+			}
+		}
+		
+		StackCounter:
+		{
+			instanceOf = "object"
+			description = "Stack counter metric type."
+			base = "FieldMetricType"
+			final = true
+			properties:
+			{
+				representations:
+				{
+					description = "Metric type representations."
+					required = true
+					default:{"default":{}}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "StackMetricRepresentation"
+					}
+				}
+			}
+		}
+		
+		Info:
+		{
+			instanceOf = "object"
+			description = "Info metric type."
+			base = "MetricType"
+			final = true
+			properties:
+			{
+				representations:
+				{
+					description = "Metric type representations."
+					required = true
+					default:{"default":{}}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "ObjectMetricRepresentation"
+					}
+				}
+			}
+		}
+		
+		AggregationLogFilter:
+		{
+			instanceOf = "object"
+			description = "Aggregation log filter."
+			abstract = true
+		}
+		
+		AggregationLogTransformer:
+		{
+			instanceOf = "object"
+			description = "Aggregation log transformer."
+			abstract = true
+		}
+			
+		Log:
+		{
+			instanceOf = "object"
+			description = "Log metric type."
+			base = "MetricType"
+			final = true
+			properties:
+			{
+				filter:
+				{
+					description = "Aggregation filter for measurements."
+					required = false
+					type = "AggregationLogFilter"
+				}
+				
+				transformers:
+				{
+					description = "Aggregation transformers for measurements."
+					required = true
+					default = []
+					type:
+					{	
+						instanceOf = "array"
+						elementType = "AggregationLogTransformer"
+					}
+				}
+					
+				fullTextIndex:
+				{
+					description = "Does log have fulltext index?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+
+				documentSchemaFactory:
+				{
+					description = "Factory for full text document schema of log records."
+					required = false
+					type = "DocumentSchemaFactory"
+				}
+					
+				representations:
+				{
+					description = "Metric type representations."
+					required = true
+					default:{"default":{}}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "ObjectMetricRepresentation"
+					}
+				}
+			}
+		}
+		
+		AnomalyIndexRepresentation:
+		{
+			instanceOf = "object"
+			description = "Anomaly index metric representation."
+			base = "MetricRepresentation"
+		}
+		
+		AnomalyIndex:
+		{
+			instanceOf = "object"
+			description = "Anomaly index metric type."
+			base = "MetricType"
+			final = true
+			properties:
+			{
+				baseRepresentation:
+				{
+					description = "Name of base representation to compute anomalies from."
+					required = true
+					default = "default"
+					type = "string"
+				}
+			
+				minAnomalyMetricCount:
+				{
+					description = "Minimum number of anomalous metrics to consider component type anomaly."
+					required = true
+					default = 2
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+			
+				representations:
+				{
+					description = "Metric type representations."
+					required = true
+					default:{"default":{}}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "AnomalyIndexRepresentation"
+					}
+				}
+			}
+		}
+			
+		ExpressionIndexRepresentation:
+		{
+			instanceOf = "object"
+			description = "Expression index metric representation."
+			base = "MetricRepresentation"
+			properties:
+			{
+				expression:
+				{
+					description = "Expression based on fields of other metrics."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		CompoundExpressionIndexRepresentation:
+		{
+			instanceOf = "compound"
+			types = ["ExpressionIndexRepresentation", "string"]
+		}
+		
+		ExpressionIndex:
+		{
+			instanceOf = "object"
+			description = "Expression index metric type."
+			base = "MetricType"
+			final = true
+			properties:
+			{
+				stored:
+				{
+					description = "Is expression index stored in database?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			
+				baseRepresentation:
+				{
+					description = "Name of base representation to compute stored expression index."
+					required = true
+					default = "default"
+					type = "string"
+				}
+			
+				representations:
+				{
+					description = "Metric type representations."
+					required = true
+					type:
+					{
+						instanceOf = "map"
+						valueType = "CompoundExpressionIndexRepresentation"
+					}
+				}
+			}
+		}
+		
+		ComputedMetric:
+        {
+            instanceOf = "object"
+            description = "Computed metric type."
+            base = "MetricType"
+            final = true
+            properties:
+            {
+                representations:
+                {
+                    description = "Metric type representations."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "MetricRepresentation"
+                    }
+                }
+            }
+        }
+		
+		StackIdsMetric:
+        {
+            instanceOf = "object"
+            description = "StackIds metric type."
+            base = "MetricType"
+            final = true
+            properties:
+            {
+                representations:
+                {
+                    allowed = false
+                    required = false
+                    type:
+                    {
+                        instanceOf = "any"
+                    }
+                }
+            }
+        }
+        
+		WorkloadIndexRepresentation:
+        {
+            instanceOf = "object"
+            description = "Workload index representation."
+            base = "MetricRepresentation"
+        }
+        
+        ErrorsIndexRepresentation:
+        {
+            instanceOf = "object"
+            description = "Errors index representation."
+            base = "MetricRepresentation"
+        }
+            
+        HealthIndexRepresentation:
+        {
+            instanceOf = "object"
+            description = "Health index representation."
+            base = "MetricRepresentation"
+        }
+        
+		ScopeAggregationStrategy:
+		{
+			instanceOf = "object"
+			description = "Scope aggregation strategy."
+			abstract = true
+		}
+		
+		SimpleScopeAggregationStrategy:
+        {
+            instanceOf = "object"
+            description = "Simple scope aggregation strategy (defines hierarchy from node itself)."
+            base = "ScopeAggregationStrategy"
+            properties:
+            {
+                hasSubScope:
+                {
+                    description = "Does aggregation node have subscope of main component scope?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            }
+        }
+        
+		NameScopeAggregationStrategy:
+        {
+            instanceOf = "object"
+            description = "Name scope aggregation strategy (defines hierarchy from node hierarchical scope name)."
+            base = "ScopeAggregationStrategy"
+        }
+			
+		MetricAggregationStrategy:
+		{
+			instanceOf = "object"
+			description = "Metric aggregation strategy."
+			abstract = true
+		}
+		
+        SimpleMetricAggregationStrategy:
+        {
+            instanceOf = "object"
+            description = "Simple metric aggregation strategy (defines hierarchy from node itself)."
+            base = "MetricAggregationStrategy"
+            properties:
+            {
+                root:
+                {
+                    description = "Root hierarchy metric name."
+                    required = false
+                    type = "string"
+                }
+            }
+        }
+        
+        NameMetricAggregationStrategy:
+        {
+            instanceOf = "object"
+            description = "Name metric aggregation strategy (defines hierarchy from node hierarchical metric name)."
+            base = "MetricAggregationStrategy"
+            properties:
+            {
+                root:
+                {
+                    description = "Root hierarchy metric name."
+                    required = false
+                    type = "string"
+                }
+            }
+        }
+            
+		AggregationFilter:
+		{
+			instanceOf = "object"
+			description = "Aggregation filter."
+			abstract = true
+		}
+			
+		ComponentBindingStrategy:
+		{
+			instanceOf = "object"
+			description = "Component binding strategy."
+			abstract = true
+		}
+			
+		SimpleComponentBindingStrategy:
+        {
+            instanceOf = "object"
+            description = "Simple component binding strategy, which bind component by aggregation node scope."
+            base = "ComponentBindingStrategy"
+            final = true
+            properties:
+            {
+                hasSubScope:
+                {
+                    description = "Does aggregation node have subscope of main component scope?"
+                    required = true
+                    default = false
+                    type = "boolean"
+                }
+            }
+        }
+			
+		AggregationAnalyzer:
+		{
+			instanceOf = "object"
+			description = "Aggregation analyzer."
+			abstract = true
+		}
+			
+		AggregationComponentType:
+		{
+			instanceOf = "object"
+			description = "Aggregation component type."
+			abstract = true
+			properties:
+			{
+				metricTypes:
+				{
+					description = "List of metric types."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "MetricType"
+					}
+				}
+				
+				hasLog:
+				{
+					description = "Does component type have log?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				filter:
+				{
+					description = "Filter for measurements."
+					required = false
+					type = "MeasurementFilter"
+				}
+					
+				componentBindingStrategies:
+				{
+					description = "Component binding strategies to bind aggregation nodes to components."
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "ComponentBindingStrategy" 
+					}
+				}
+					
+				ruleRepresentation:
+				{
+					description = "Representation to be used when computing rules."
+					required = false
+					default = "default"
+					type = "string"
+				}
+				
+				analyzers:
+				{
+					description = "Aggregation analyzers."
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "AggregationAnalyzer" 
+					}
+				}
+			}
+		}
+			
+		ComponentDiscoveryStrategy:
+		{
+			instanceOf = "object"
+			description = "Component discovery strategy."
+			abstract = true
+		}
+		
+		ComponentDeletionStrategy:
+		{
+			instanceOf = "object"
+			description = "Component deletion strategy."
+			abstract = true
+		}
+		
+		NameComponentType:
+		{
+			instanceOf = "object"
+			description = "Name component type."
+			base = "AggregationComponentType"
+			properties:
+			{
+				scopeAggregationStrategies:
+				{
+					description = "List of scope aggregation strategies."
+					required = true
+					default = [ { instanceOf = "SimpleScopeAggregationStrategy" }]
+					type:
+					{
+						instanceOf = "array"
+						elementType = "ScopeAggregationStrategy"
+					}
+				}
+					
+				metricAggregationStrategies:
+				{
+					description = "List of metric aggregation strategies."
+					required = true
+					default = [ { instanceOf = "SimpleMetricAggregationStrategy" }]
+					type:
+					{
+						instanceOf = "array"
+						elementType = "MetricAggregationStrategy"
+					}
+				}
+				
+				aggregationFilter:
+				{
+					description = "Aggregation filter."
+					required = false
+					type = "AggregationFilter"
+				}
+			
+				allowHierarchyAggregation:
+				{
+					description = "Is hierarchy aggregation allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			
+				allowTransferDerived:
+				{
+					description = "Is transfer of derived allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				componentDiscoveryStrategies:
+				{
+					description = "Discovery strategies for named components (mutually exclusive)."
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "ComponentDiscoveryStrategy" 
+					}
+				}
+					
+				componentDeletionStrategy:
+				{
+					description = "Deletion strategy for named components."
+					required = false
+					type = "ComponentDeletionStrategy"
+				}
+			}
+		}
+		
+		StackNameComponentType:
+		{
+			instanceOf = "object"
+			description = "Stack name component type."
+			base = "NameComponentType"
+			final = true
+			properties:
+			{
+				componentDiscoveryStrategies:
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+					
+				componentDeletionStrategy:
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			}
+		}
+			
+		StackComponentType:
+		{
+			instanceOf = "object"
+			description = "Stack component type."
+			base = "AggregationComponentType"
+			properties:
+			{
+				stackNameComponentType:
+				{
+					description = "Stack name component type."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		EntryPointComponentType:
+        {
+            instanceOf = "object"
+            description = "Entry point component type."
+            base = "StackComponentType"
+            abstract = true
+        }
+        
+        ExitPointComponentType:
+        {
+            instanceOf = "object"
+            description = "Exit point component type."
+            base = "StackComponentType"
+        }
+        
+		BackgroundRootComponentType:
+		{
+			instanceOf = "object"
+			description = "Background root component type."
+			base = "EntryPointComponentType"
+			final = true
+			properties:
+			{
+				scopeAggregationStrategies:
+				{
+					description = "List of scope aggregation strategies."
+					required = true
+					default = [ { instanceOf = "SimpleScopeAggregationStrategy" }]
+					type:
+					{
+						instanceOf = "array"
+						elementType = "ScopeAggregationStrategy"
+					}
+				}
+				
+				allowHierarchyAggregation:
+				{
+					description = "Is hierarchy aggregation allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			
+				allowStackNameAggregation:
+				{
+					description = "Is stack name aggregation allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				allowAnomaliesCorrelation:
+				{
+					description = "Is correlation of background root anomalies allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				anomaliesComponentType:
+				{
+					description = "Anomalies stack log component type."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		PrimaryEntryPointComponentType:
+		{
+			instanceOf = "object"
+			description = "Primary entry point component type."
+			base = "EntryPointComponentType"
+			final = true
+			properties:
+			{
+				scopeAggregationStrategies:
+				{
+					description = "List of scope aggregation strategies."
+					required = true
+					default = [ { instanceOf = "SimpleScopeAggregationStrategy" }]
+					type:
+					{
+						instanceOf = "array"
+						elementType = "ScopeAggregationStrategy"
+					}
+				}
+				
+				allowHierarchyAggregation:
+				{
+					description = "Is hierarchy aggregation allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				allowStackNameAggregation:
+				{
+					description = "Is stack name aggregation allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				allowAnomaliesCorrelation:
+				{
+					description = "Is correlation of transaction anomalies allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				allowTransactionFailureDependenciesAggregation:
+				{
+					description = "Is transaction failure dependencies aggregation allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				anomaliesComponentType:
+				{
+					description = "Anomalies stack log component type."
+					required = false
+					type = "string"
+				}
+					
+				transactionFailureDependenciesComponentType:
+				{
+					description = "Transaction failure dependencies stack log component type."
+					required = false
+					type = "string"
+				}
+					
+				componentDiscoveryStrategies:
+				{
+					description = "Discovery strategies (mutually exclusive) for primary entry point components."
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "ComponentDiscoveryStrategy" 
+					}
+				}
+					
+				componentDeletionStrategy:
+                {
+                    description = "Deletion strategy for primary entry point components."
+                    required = false
+                    type = "ComponentDeletionStrategy"
+                }
+			}
+		}
+		
+		SecondaryEntryPointComponentType:
+		{
+			instanceOf = "object"
+			description = "Secondary entry point component type."
+			base = "EntryPointComponentType"
+			final = true
+		}
+		
+		IntermediateExitPointComponentType:
+		{
+			instanceOf = "object"
+			description = "Intermediate exit point component type."
+			base = "ExitPointComponentType"
+			final = true
+		}
+		
+		ErrorAggregationStrategy:
+		{
+			instanceOf = "object"
+			description = "Error aggregation strategy."
+			abstract = true
+		}
+			
+		SimpleErrorAggregationStrategy:
+        {
+            instanceOf = "object"
+            description = "Error aggregation strategy."
+            base = "ErrorAggregationStrategy"
+            final = true
+            properties:
+            {
+                pattern:
+                {
+                    description = "Error name glob/regexp pattern."
+                    required = false
+                    type = "string"
+                }
+            
+                prefix:
+                {
+                    description = "Derived error name prefix."
+                    required = false
+                    type = "string"
+                }
+            }
+        }
+		
+		StackLogComponentType:
+		{
+			instanceOf = "object"
+			description = "Stack log component type."
+			base = "AggregationComponentType"
+			properties:
+			{
+				allowHierarchyAggregation:
+				{
+					description = "Is hierarchy aggregation allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+		
+		StackErrorLogComponentType:
+		{
+			instanceOf = "object"
+			description = "Stack error log component type."
+			base = "StackLogComponentType"
+			properties:
+			{
+                metricTypes:
+                {
+                    allowed = false
+                    required = false
+                    type:
+                    {
+                        instanceOf = "any"
+                    }
+                }
+                
+                hasLog:
+                {
+                    allowed = false
+                    required = false
+                    type:
+                    {
+                        instanceOf = "any"
+                    }
+                }
+                
+                metricType:
+                {
+                    description = "Metric type."
+                    required = true
+                    default = {}
+                    type = "Log"
+                }
+                
+				allowTypedErrorAggregation:
+				{
+					description = "Is typed error aggregation allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				allowTransactionFailureAggregation:
+				{
+					description = "Is transaction failure aggregation allowed?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				errorComponentType:
+				{
+					description = "Name component type for typed aggregation of errors."
+					required = false
+					type = "string"
+				}
+				
+				transactionFailureComponentType:
+				{
+					description = "Name component type for transaction failures aggregation."
+					required = false
+					type = "string"
+				}
+				
+				stackTraceFilter:
+				{
+					description = "Stack trace filter."
+					required = false
+					type = "CompoundNameFilterExpression"
+				}
+				
+				errorAggregationStrategies:
+				{
+					description = "Error aggregation strategies."
+					required = true
+					default = [ { instanceOf = "SimpleErrorAggregationStrategy" }]
+					type:
+					{
+						instanceOf = "array"
+						elementType = "ErrorAggregationStrategy"
+					}
+				}
+				
+				transactionFailureFilter:
+				{
+					description = "Transaction failure filter."
+					required = false
+					type = "CompoundNameFilterExpression"
+				}
+				
+				transactionFailureErrorLog:
+				{
+					description = "Is current error log a main transaction failure log?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+			}
+		}
+
+		PeriodTypeAggregationSchema:
+		{
+			instanceOf = "map"
+			description = "Period type aggregation schema."
+			valueType = "AggregationComponentType"
+		}
+		
+		PeriodType:
+		{
+			instanceOf = "object"
+			description = "Period type."
+			final = true
+			properties:
+			{
+				period:
+				{
+					description = "Period."
+					required = true
+					type = "StandardSchedulePeriod"
+				}
+			
+				cyclePeriodCount:
+				{
+					description = "Number of periods in cycle."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+					
+				componentTypes:
+				{
+					description = "Component types."
+					required = true
+					type = "PeriodTypeAggregationSchema"
+				}
+				
+				nonAggregating:
+				{
+					description = "Is period type non aggregating?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				parentDomain:
+				{
+					description = "Name of parent domain. If parent domain is set, measurements of current period will be transferred to this domain."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		AggregationSchema:
+		{
+			instanceOf = "object"
+			description = "Aggregation schema."
+			base = "SchemaObject"
+			final = true
+			properties:
+			{
+				periodTypes:
+				{
+					description = "Period types."
+					required = true
+					type:
+					{
+						instanceOf = "map"
+						minCount = 1
+						valueType = "PeriodType"
+					}
+				}
+			
+			    combineType:
+                {
+                    description = "Combine type defines how measurements of secondary entry point are combined - \
+                        by calling stack, by calling transaction type, by calling node or\
+                        secondary entry point combining all measurements."
+                    required = true
+                    default = "stack"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["stack", "transaction", "node", "all"]
+                    }
+                }
+				
+				version:
+				{
+					description = "Schema version."
+					required = true
+					type = "long"
+				}
+			}
+		}
+	}
+}

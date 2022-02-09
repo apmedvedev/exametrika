@@ -1,0 +1,1176 @@
+{
+	name = "com.exametrika.metrics.jvm-1.0"
+	description = "JVM metrics schema."
+
+	types:
+	{
+	    UrlRequestGroupingStrategy:
+        {
+            instanceOf = "object"
+            description = "Request grouping strategy organizing requests by url hierarchy."
+            base = "RequestGroupingStrategy"
+            final = true
+        }
+	
+	    JdbcRequestGroupingStrategy:
+        {
+            instanceOf = "object"
+            description = "Request grouping strategy organizing requests by jdbc parameters order."
+            base = "RequestGroupingStrategy"
+            final = true
+        }
+	
+		GcFilter:
+		{
+			instanceOf = "object"
+			description = "Filter of garbage collection events."
+			final = true
+			properties:
+			{
+				minDuration:
+				{
+					description = "Minimum duration in milliseconds of single garbage collection event."
+					required = true
+					default = 0
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			
+				minBytes:
+				{
+					description = "Minimum amount of memory in bytes freed by single garbage collection event."
+					required = true
+					default = 0
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+			}
+		}
+	
+		JvmBufferPoolMonitor:
+		{
+			instanceOf = "object"
+			description = "JVM buffer pool monitor."
+			final = true
+			base = "Monitor"
+		}
+		
+		JvmCodeMonitor:
+		{
+			instanceOf = "object"
+			description = "JVM code monitor."
+			final = true
+			base = "Monitor"
+		}
+		
+		JvmKpiMonitor:
+		{
+			instanceOf = "object"
+			description = "JVM key performance indicators (KPI) monitor."
+			final = true
+			base = "Monitor"
+		    properties:
+            {
+                componentType:
+                {
+                    description = "Monitor component type."
+                    required = true
+                    default = "jvm.kpi"
+                    type = "string"
+                }
+			
+			    maxGcDuration:
+                {
+                    description = "Maximum garbage collection duration in milliseconds, after which gc event is considered error."
+                    required = true
+                    default = 5000
+                    type = "long"
+                }
+            }
+		}
+			
+		JvmMemoryMonitor:
+		{
+			instanceOf = "object"
+			description = "JVM memory monitor."
+			base = "Monitor"
+		}
+			
+		JvmSunMemoryMonitor:
+		{
+			instanceOf = "object"
+			description = "Sun/Oracle JVM memory monitor."
+			final = true
+			base = "JvmMemoryMonitor"
+			properties:
+			{
+				timeCounter:
+				{
+					description = "Garbage collection time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "UniformHistogramFields"
+								minBound = 0
+								maxBound = 2000
+								binCount = 20
+							}
+							instance:
+							{
+								instanceOf = "InstanceFields"
+							}
+						}
+					}
+					type = "Counter"
+				}
+			
+				bytesCounter:
+				{
+					description = "Garbage collection bytes counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000
+                                binCount = 20
+							}
+							instance:
+							{
+								instanceOf = "InstanceFields"
+							}
+						}
+					}
+					type = "Counter"
+				}
+					
+				log:
+				{
+					description = "Garbage collection log."
+					required = true
+					default:
+					{
+						filter = "(parameters.end - parameters.start) > 100 || parameters.bytes > 100000"
+					}
+					type = "Log"
+				}
+			
+				filter:
+				{
+					description = "Garbage collection filter."
+					required = false
+					type = "GcFilter"
+				}
+					
+				maxGcDuration:
+                {
+                    description = "Maximum garbage collection duration in milliseconds, after which gc event is considered stop."
+                    required = true
+                    default = 5000
+                    type = "long"
+                }
+			}
+		}
+			
+		JvmThreadMonitor:
+		{
+			instanceOf = "object"
+			description = "JVM thread monitor."
+			base = "Monitor"
+			properties:
+			{
+				contention:
+				{
+					description = "Is thread contention monitoring enabled?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			
+				locks:
+				{
+					description = "Is thread locks monitoring enabled?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				stackTraces:
+				{
+					description = "Is thread stack traces monitoring enabled?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				maxStackTraceDepth:
+				{
+					description = "Maximum depth of stack trace."
+					required = true
+					default = 100
+					type = "long"
+				}
+			}
+		}
+		
+		JvmSunThreadMonitor:
+		{
+			instanceOf = "object"
+			description = "Sun/Oracle JVM thread monitor."
+			final = true
+			base = "JvmThreadMonitor"
+			properties:
+			{
+				memoryAllocation:
+				{
+					description = "Is thread memory allocation monitoring enabled?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+		
+		JmxAttribute:
+		{
+			instanceOf = "object"
+			description = "JMX attribute."
+			final = true
+			properties:
+			{
+				metricType:
+				{
+					description = "Metric type."
+					required = true
+					type = "string"
+				}
+			
+				meter:
+				{
+					description = "Attribute's meter."
+					required = true
+					type = "Meter"
+				}
+					
+				attribute:
+				{
+					description = "JMX bean attribute name."
+					required = true
+					type = "string"
+				}
+				
+				converterExpression:
+				{
+					description = "Expression which converts attribute value to measured value."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		JmxMonitor:
+		{
+			instanceOf = "object"
+			description = "JMX monitor."
+			base = "Monitor"
+			properties:
+			{
+				componentType:
+				{
+					description = "Component type of monitor."
+					required = true
+					type = "string"
+				}
+			
+				object:
+				{
+					description = "JMX bean object name."
+					required = true
+					type:
+					{
+						instanceOf = "string"
+						validators = ["jmxObjectName"]
+					}
+				}
+					
+				attributes:
+				{
+					description = "JMX bean attribute name."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						elementType = "JmxAttribute"
+					}
+				}
+			}
+		}
+		
+		JulProbe:
+		{
+			instanceOf = "object"
+			description = "java.util.logging log probe."
+			base = "LogProbe"
+			final = true
+		}
+		
+		Log4jProbe:
+		{
+			instanceOf = "object"
+			description = "Log4j log probe."
+			base = "LogProbe"
+			final = true
+		}
+			
+		LogbackProbe:
+		{
+			instanceOf = "object"
+			description = "Logback log probe."
+			base = "LogProbe"
+			final = true
+		}
+		
+		HttpServletProbe:
+		{
+			instanceOf = "object"
+			description = "HTTP servlet entry point probe."
+			base = "EntryPointProbe"
+			final = true
+			properties:
+			{
+				requestMappingStrategy:
+				{
+					description = "Request mapping strategy."
+					required = true
+					default:
+					{
+						instanceOf = "CompositeRequestMappingStrategy"
+						strategies:
+						[
+						 	{
+						 		instanceOf = "ThresholdRequestMappingStrategy"
+					 			nameExpression = "'threshold:' + appUrlWithQueryString"
+				 				metadataExpression = "{'requestType':'threshold', 'url':urlWithQueryString, 'servlet':servlet.servletName,\
+			 						'app':servlet.servletContext.servletContextName,\
+				 				    'group':('transactions.' + contextName + '.' + appUrlWithQueryString)}"
+			 					parametersExpression = "{'url':urlWithQueryString, 'servlet':servlet.servletName,\
+			 						'app':servlet.servletContext.servletContextName}"
+						 	},
+						 	{
+						 		instanceOf = "HotspotRequestMappingStrategy"
+					 			nameExpression = "'hotspot:' + appUrlWithQueryString"
+				 				metadataExpression = "{'requestType':'hotspot', 'url':nameNoPrefix(2), 'servlet':rawRequest.servlet.servletName,\
+			 						'app':rawRequest.servlet.servletContext.servletContextName,\
+                                    'group':('transactions.' + rawRequest.contextName + '.' + nameNoPrefix(1))}"
+			 					parametersExpression = "{'url':urlWithQueryString, 'servlet':servlet.servletName,\
+			 						'app':servlet.servletContext.servletContextName}"
+		 					    groupingStrategy:
+                                {
+                                    instanceOf = "UrlRequestGroupingStrategy"
+                                }
+						 	},
+						 	{
+						 		instanceOf = "SimpleRequestMappingStrategy"
+					 			nameExpression = "'app:' + contextName"
+				 				metadataExpression = "{'requestType':'app', 'url':request.contextPath, \
+				 					'app':servlet.servletContext.servletContextName,\
+                                    'group':('transactions.' + contextName)}"
+			 					parametersExpression = "{'url':urlWithQueryString, 'servlet':servlet.servletName,\
+			 						'app':servlet.servletContext.servletContextName}"
+						 	}
+						]
+					}
+					type = "RequestMappingStrategy"
+				}
+			
+				primaryEntryPointExpression:
+				{
+					description = "Expression for computing that entry point can be primary entry point."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		HttpConnectionProbe:
+		{
+			instanceOf = "object"
+			description = "HTTP connection exit point probe."
+			base = "ExitPointProbe"
+			final = true
+			properties:
+			{
+				requestMappingStrategy:
+				{
+					description = "Request mapping strategy."
+					required = true
+					default:
+					{
+						instanceOf = "CompositeRequestMappingStrategy"
+						strategies:
+						[
+						 	{
+						 		instanceOf = "ThresholdRequestMappingStrategy"
+					 			nameExpression = "'threshold:' + urlWithQueryString"
+				 				metadataExpression = "{'requestType':'threshold', 'url':urlWithQueryString}"
+			 					parametersExpression = "{'url':urlWithQueryString}"
+						 	},
+						 	{
+						 		instanceOf = "HotspotRequestMappingStrategy"
+					 			nameExpression = "'hotspot:' + urlWithQueryString"
+				 				metadataExpression = "{'requestType':'hotspot', 'url':nameNoPrefix(1)}"
+			 					parametersExpression = "{'url':urlWithQueryString}"
+		 					    groupingStrategy:
+                                {
+                                    instanceOf = "UrlRequestGroupingStrategy"
+                                }
+						 	},
+						 	{
+						 		instanceOf = "SimpleRequestMappingStrategy"
+					 			nameExpression = "'app:' + hostPort"
+				 				metadataExpression = "{'requestType':'app', 'url':hostPort}"
+			 					parametersExpression = "{'url':urlWithQueryString}"
+						 	}
+						]
+					}
+					type = "RequestMappingStrategy"
+				}
+			
+				timeCounter:
+				{
+					description = "Http connection time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							statistics:
+							{
+								instanceOf = "StatisticsFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+                                binCount = 15
+							}
+							instance:
+							{
+								instanceOf = "InstanceFields"
+							}
+						}
+					}
+					type = "Counter"
+				}
+			
+				receiveBytesCounter:
+				{
+					description = "Http connection receive bytes counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							statistics:
+							{
+								instanceOf = "StatisticsFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    binCount = 30
+							}
+							instance:
+							{
+								instanceOf = "InstanceFields"
+							}
+						}
+					}
+					type = "Counter"
+				}
+				
+				sendBytesCounter:
+				{
+					description = "Http connection send bytes counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							statistics:
+							{
+								instanceOf = "StatisticsFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    binCount = 30
+							}
+							instance:
+							{
+								instanceOf = "InstanceFields"
+							}
+						}
+					}
+					type = "Counter"
+				}
+				
+				errorsLog:
+				{
+					description = "Http connection errors log."
+					required = true
+					default:
+					{
+						meters:
+						{
+							app.httpConnection.errors.count:
+							{
+								meter:
+								{
+									instanceOf = "Counter"
+									useDeltas = true
+								}
+							
+								provider:
+								{
+									instanceOf = "ErrorCountLogProvider"
+								}
+							}
+						}
+					}
+					type = "Log"
+				}
+			}
+		}
+		
+		JmsConsumerProbe:
+		{
+			instanceOf = "object"
+			description = "JMS consumer entry point probe."
+			base = "EntryPointProbe"
+			final = true
+			properties:
+			{
+				enclosingMessageHandler:
+				{
+					description = "Filter of methods representing enclosing message handlers for javax.jms.JMSConsumer.receive*, \
+						javax.jms.MessageConsumer.receive* methods."
+					required = true
+					default:
+					{
+						class:
+						{
+							include = ["*"]
+							exclude = ["java.*", "sun.*", "javax.*", "com.sun.*", "jdk.*"] 
+						}
+						method = "*"
+					}
+					type = "QualifiedMethodFilter"
+				}
+			
+				requestMappingStrategy:
+				{
+					description = "Request mapping strategy."
+					required = true
+					default:
+					{
+				 		instanceOf = "SimpleRequestMappingStrategy"
+			 			nameExpression = "'jms:' + destinationType + ':' + destinationName"
+		 				metadataExpression = "{'destinationType':destinationType, 'destination':destinationName,\
+                            'group':('jms:' + destinationType + ':' + destinationName)}"
+	 					parametersExpression = "{'destinationType':destinationType, 'destination':destinationName}"
+					}
+					type = "RequestMappingStrategy"
+				}
+			
+				allowPrimary:
+                {
+                    required = true
+                    default = "no"
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["yes", "no", "always"]
+                    }
+                }
+					
+				primaryEntryPointExpression:
+				{
+					description = "Expression for computing that entry point can be primary entry point."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		JmsProducerProbe:
+		{
+			instanceOf = "object"
+			description = "JMS producer exit point probe."
+			base = "ExitPointProbe"
+			final = true
+			properties:
+			{
+				requestMappingStrategy:
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			
+				bytesCounter:
+				{
+					description = "Jms producer bytes counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							statistics:
+							{
+								instanceOf = "StatisticsFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    binCount = 30
+							}
+							instance:
+							{
+								instanceOf = "InstanceFields"
+							}
+						}
+					}
+					type = "Counter"
+				}
+			}
+		}
+		
+		FileProbe:
+		{
+			instanceOf = "object"
+			description = "File probe."
+			base = "ExitPointProbe"
+			final = true
+			properties:
+			{
+				requestMappingStrategy:
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			
+				readTimeCounter:
+				{
+					description = "File read time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+                                binCount = 15
+							}
+						}
+					}
+					type = "Counter"
+				}
+			
+				readBytesCounter:
+				{
+					description = "File read bytes counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    binCount = 30
+							}
+						}
+					}
+					type = "Counter"
+				}
+					
+				writeTimeCounter:
+				{
+					description = "File write time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+                                binCount = 15
+							}
+						}
+					}
+					type = "Counter"
+				}
+			
+				writeBytesCounter:
+				{
+					description = "File write bytes counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    binCount = 30
+							}
+						}
+					}
+					type = "Counter"
+				}
+			}
+		}
+		
+		TcpProbe:
+		{
+			instanceOf = "object"
+			description = "TCP socket probe."
+			base = "ExitPointProbe"
+			final = true
+			properties:
+			{
+				requestMappingStrategy:
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			
+				connectTimeCounter:
+				{
+					description = "TCP socket connect time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+                                binCount = 15
+							}
+						}
+					}
+					type = "Counter"
+				}
+			
+				receiveTimeCounter:
+				{
+					description = "TCP socket receive time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+                                binCount = 15
+							}
+						}
+					}
+					type = "Counter"
+				}
+			
+				receiveBytesCounter:
+				{
+					description = "TCP socket receive bytes counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    binCount = 30
+							}
+						}
+					}
+					type = "Counter"
+				}
+					
+				sendTimeCounter:
+				{
+					description = "TCP socket send time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+                                binCount = 15
+							}
+						}
+					}
+					type = "Counter"
+				}
+			
+				sendBytesCounter:
+				{
+					description = "TCP socket send bytes counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    binCount = 30
+							}
+						}
+					}
+					type = "Counter"
+				}
+			}
+		}
+		
+		UdpProbe:
+		{
+			instanceOf = "object"
+			description = "UDP socket probe."
+			base = "ExitPointProbe"
+			final = true
+			properties:
+			{
+				requestMappingStrategy:
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			
+				receiveTimeCounter:
+				{
+					description = "UDP socket receive time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+                                binCount = 15
+							}
+						}
+					}
+					type = "Counter"
+				}
+			
+				receiveBytesCounter:
+				{
+					description = "UDP socket receive bytes counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    binCount = 30
+							}
+						}
+					}
+					type = "Counter"
+				}
+					
+				sendTimeCounter:
+				{
+					description = "UDP socket send time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+                                binCount = 15
+							}
+						}
+					}
+					type = "Counter"
+				}
+			
+				sendBytesCounter:
+				{
+					description = "UDP socket send bytes counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    binCount = 30
+							}
+						}
+					}
+					type = "Counter"
+				}
+			}
+		}
+		
+		JdbcProbe:
+		{
+			instanceOf = "object"
+			description = "JDBC probe."
+			base = "ExitPointProbe"
+			final = true
+			properties:
+			{
+				requestMappingStrategy:
+				{
+					description = "Request mapping strategy."
+					required = true
+					default:
+					{
+ 						instanceOf = "CompositeRequestMappingStrategy"
+						strategies:
+						[
+						 	{
+						 		instanceOf = "ThresholdRequestMappingStrategy"
+					 			nameExpression = "'threshold:' + $.exa.truncate(query.textWithParameters, 512, true)"
+				 				metadataExpression = "{'queryType':'threshold', 'query':$.exa.truncate(query.textWithParameters, 512, true), 'db':url}"
+			 					parametersExpression = "{'query':$.exa.truncate(query.textWithParameters, 512, true), 'db':url}"
+						 	},
+						 	{
+						 		instanceOf = "HotspotRequestMappingStrategy"
+					 			nameExpression = "'hotspot:' + $.exa.truncate(query.textWithParameters, 512, true)"
+				 				metadataExpression = "{'queryType':'hotspot', 'query':$.exa.truncate(nameNoPrefix(1), 512, true), 'db':rawRequest.url}"
+			 					parametersExpression = "{'query':$.exa.truncate(query.textWithParameters, 512, true), 'db':url}"
+		 					    groupingStrategy:
+	 					        {
+		 					        instanceOf = "JdbcRequestGroupingStrategy"
+	 					        }
+						 	},
+						 	{
+						 		instanceOf = "SimpleRequestMappingStrategy"
+					 			nameExpression = "'db:' + url"
+				 				metadataExpression = "{'queryType':'db', 'db':url}"
+			 					parametersExpression = "{'query':$.exa.truncate(query.textWithParameters, 512, true), 'db':url}"
+						 	}
+						]
+					}
+					type = "RequestMappingStrategy"
+				}
+			
+				queryTimeCounter:
+				{
+					description = "Query time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							statistics:
+							{
+								instanceOf = "StatisticsFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+                                binCount = 15
+							}
+							instance:
+							{
+								instanceOf = "InstanceFields"
+							}
+						}
+					}
+					type = "Counter"
+				}
+			}
+		}
+		
+		JdbcConnectionProbe:
+		{
+			instanceOf = "object"
+			description = "JDBC connection probe."
+			base = "ExitPointProbe"
+			final = true
+			properties:
+			{
+				requestMappingStrategy:
+				{
+					description = "Request mapping strategy."
+					required = true
+					default:
+					{
+				 		instanceOf = "SimpleRequestMappingStrategy"
+			 			nameExpression = "url"
+		 				metadataExpression = "{}"
+	 					parametersExpression = "{}"
+					}
+					type = "RequestMappingStrategy"
+				}
+			
+				connectTimeCounter:
+				{
+					description = "JDBC connection acquisition time counter."
+					required = true
+					default:
+					{
+						fields:
+						{
+							standard:
+							{
+								instanceOf = "StandardFields"
+							}
+							statistics:
+							{
+								instanceOf = "StatisticsFields"
+							}
+							histogram:
+							{
+								instanceOf = "LogarithmicHistogramFields"
+							    minBound = 1000000 
+                                binCount = 15
+							}
+							instance:
+							{
+								instanceOf = "InstanceFields"
+							}
+						}
+					}
+					type = "Counter"
+				}
+			}
+		}
+	}
+}

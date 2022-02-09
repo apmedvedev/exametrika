@@ -1,0 +1,81 @@
+{
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "4@aggregation-aggregation-p1-17/data-17.dt[0]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "22@aggregation-aggregation-p1-17/data-17.dt[0]",
+                "scope": "hosts.host1",
+                "metric": "",
+                "componentType": "host.cpu",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 10,
+                            "std.sum": 40,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4
+                        }
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.1",
+                    "nodeProperties": 
+                    {
+                        "dynamic": true
+                    }
+                }
+            }
+        ]
+    }
+}

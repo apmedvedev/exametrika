@@ -1,0 +1,99 @@
+{
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "4@aggregation-aggregation-p1-17/data-17.dt[0]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "22@aggregation-aggregation-p1-17/data-17.dt[0]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": "value-1.1"
+                    },
+                    {
+                        "metricType1": "value-1.2"
+                    },
+                    {
+                        "metricType1": "value-1.3"
+                    },
+                    {
+                        "metricType1": "value-1.4"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.6"
+                    },
+                    {
+                        "metricType1": "value-1.1"
+                    },
+                    {
+                        "metricType1": "value-1.2"
+                    },
+                    {
+                        "metricType1": "value-1.3"
+                    },
+                    {
+                        "metricType1": "value-1.4"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.6"
+                    },
+                    {
+                        "metricType1": "value-1.1"
+                    },
+                    {
+                        "metricType1": "value-1.2"
+                    },
+                    {
+                        "metricType1": "value-1.3"
+                    },
+                    {
+                        "metricType1": "value-1.4"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.6"
+                    },
+                    {
+                        "metricType1": "value-1.1"
+                    },
+                    {
+                        "metricType1": "value-1.2"
+                    },
+                    {
+                        "metricType1": "value-1.3"
+                    },
+                    {
+                        "metricType1": "value-1.4"
+                    },
+                    {
+                        "metricType1": "value-1.5"
+                    },
+                    {
+                        "metricType1": "value-1.6"
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            }
+        ]
+    }
+}

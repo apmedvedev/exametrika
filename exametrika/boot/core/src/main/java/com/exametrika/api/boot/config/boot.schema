@@ -1,0 +1,163 @@
+{
+	name = "com.exametrika.boot-1.0"
+	description = "Boot schema."
+	
+	types:
+	{
+		HotDeploy:
+		{
+			instanceOf = "object"
+			description = "Boot hot deploy configuration."
+			final = true
+			properties:
+			{
+				configPath:
+				{
+					description = "Path to load configuration from."
+					required = false
+					type = "string"
+				}
+			
+				modulesPath:
+				{
+					description = "Path to load modules from."
+					required = false
+					type = "string"
+				}
+			
+				detectionPeriod:
+				{
+					description = "Period in milliseconds when hot deploy event is detected."
+					required = true
+					default = 1000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				redeploymentPeriod:
+				{
+					description = "Period in milliseconds when redeployment is occured."
+					required = true
+					default = 5000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+				
+				restartDelayPeriod:
+				{
+					description = "Period in milliseconds between stop of container and subsequent start of container."
+					required = true
+					default = 5000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			}
+		}
+			
+		Boot:
+		{
+			instanceOf = "object"
+			description = "Boot configuration."
+			final = true
+			properties:
+			{
+				hotDeploy:
+				{
+					description = "Boot hot deploy configuration."
+					required = true
+					default:{}
+					type = "HotDeploy"
+				}
+			
+				runModes:
+				{
+					description = "List of run modes of service container."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+					
+				bootClassPath:
+				{
+					description = "Path to classes loaded by boot classloader. This parameter is not used in native mode."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+				
+				systemClassPath:
+				{
+					description = "Path to classes loaded by system classloader. This parameter is not used in native mode."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+				
+				classPath:
+				{
+					description = "Path to classes available to container runtime."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+				
+				libraryPath:
+				{
+					description = "Path to native libraries used by container modules. If path points to directory,\
+						native libraries will be searched in this directory. If path points to file, file will \
+						be preloaded when container is started."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+				
+				systemPackages:
+				{
+					description = "Packages loaded by system classloader available to container.\
+						Packages java, javax, org.w3c, org.xml, sun, sunw, com.sun, org.ietf.jgss, org.omg, org.jcp.xml, jdk, \
+					    com.exametrika.impl.boot are already available by default."
+					required = false
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+				
+				workPath:
+				{
+					description = "Path to writable working directory where some internal data is stored."
+					required = false
+					type = "string"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,28 @@
+<project name="test" basedir="." default="jdbc1">
+
+    <include file="../base.xml" />
+    <property name="build.dir" value="../.." />
+    <property name="lib.dir" location="../../../../src-extern/tests.probes/lib" />
+    
+    <target name="jdbc1">
+		<java classname="jdbc.TestJdbcClass1" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${lib.dir}/h2-1.4.178.jar"/>
+		    <jvmarg line="-agentpath:${agent.dir}/lib/${agent.lib}" />
+		    <jvmarg line="-javaagent:${agent.dir}/lib/boot.core.jar" />
+		    <jvmarg value="-Xdebug" />
+		    <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n" />
+	    </java>
+    </target>
+    
+    <target name="diff">
+		<java classname="jdbc.Diff" fork="true">
+		    <classpath location="${build.dir}/bin"/>
+		    <classpath location="${agent.dir}/lib/common.jar"/>
+		    <arg value="${build.dir}/src/jdbc/main-50.json"/>
+		    <arg value="${build.dir}/src/jdbc/main-50-1.json"/>
+		    <arg value="${build.dir}/src/jdbc/diff-50-5.json"/>
+	    </java>
+    </target>
+
+</project>

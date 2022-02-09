@@ -1,0 +1,96 @@
+{
+    "<root>": 
+    {
+        "space": "system-security-13/data-13.dt",
+        "rootGroup": 
+        {
+            "space": "system-security-13/data-13.dt",
+            "key": ""
+        },
+        "users": 
+        {
+            "admin": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "admin",
+                "roles": 
+                {
+                    "admin": 
+                    {
+                        "space": "system-security-13/data-13.dt"
+                    }
+                }
+            },
+            "user1": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "user1"
+            },
+            "Admin": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "Admin",
+                "roles": 
+                {
+                    "administrator": 
+                    {
+                        "space": "system-security-13/data-13.dt"
+                    }
+                }
+            }
+        },
+        "auditLog": 
+        [
+            {
+                "user": "user1",
+                "permission": "session:open",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "admin",
+                "permission": "session:open",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "admin",
+                "permission": "session:open",
+                "object": null,
+                "succeeded": false
+            },
+            {
+                "user": "user1",
+                "permission": "domain1:action1",
+                "object": "",
+                "succeeded": false
+            },
+            {
+                "user": "user1",
+                "permission": "domain1:action1",
+                "object": "test (513@test-space1-22/data-22.dt)",
+                "succeeded": false
+            },
+            {
+                "user": "user1",
+                "permission": "session:close",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "admin",
+                "permission": "domain1:action1",
+                "object": "",
+                "succeeded": true
+            },
+            {
+                "user": "admin",
+                "permission": "domain1:action2",
+                "object": "test (513@test-space1-22/data-22.dt)",
+                "succeeded": true
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

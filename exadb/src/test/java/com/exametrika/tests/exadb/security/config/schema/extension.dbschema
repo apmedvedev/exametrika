@@ -1,0 +1,31 @@
+{
+	name = "test.security"
+	
+	types:
+	{
+		TestCheckPermissionStrategy:
+		{
+			instanceOf = "object"
+			base = "CheckPermissionStrategy"
+		}
+	
+		TestPatternCheckPermissionStrategy:
+		{
+			instanceOf = "object"
+			base = "CheckPermissionStrategy"
+		}
+	
+		TestSecurity:
+		{
+			instanceOf = "object"
+			base = "SchemaObject"
+			properties:
+			{
+				security:
+				{
+					type = "Security"
+				}
+			}
+		}
+	}
+}

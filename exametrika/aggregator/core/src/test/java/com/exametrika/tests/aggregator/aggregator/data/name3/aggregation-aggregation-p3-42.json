@@ -1,0 +1,1784 @@
+{
+    "cyclePeriod ": 
+    {
+        "<root>": 
+        {
+            "id": "3@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+            "scope": "",
+            "metric": ""
+        },
+        "<orphaned>": 
+        [
+            {
+                "id": "21@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-1.1"
+                }
+            },
+            {
+                "id": "26@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope2",
+                "metric": "metrics.metric2",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 400,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 400,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-2.1"
+                }
+            },
+            {
+                "id": "31@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope3",
+                "metric": "metrics.metric3",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 120,
+                            "std.sum": 800,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 120,
+                            "std.sum": 800,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    }
+                ],
+                "metadata": 
+                {
+                    "key": "value-3.1"
+                }
+            },
+            {
+                "id": "36@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 240,
+                            "std.sum": 1360,
+                            "std.min": 20,
+                            "std.max": 50,
+                            "std.avg": 5.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 6.167,
+                        "metricType4": 6.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 240,
+                            "std.sum": 1360,
+                            "std.min": 20,
+                            "std.max": 50,
+                            "std.avg": 5.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 6.167,
+                        "metricType4": 6.167
+                    }
+                ]
+            },
+            {
+                "id": "41@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "metrics.metric1",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    }
+                ]
+            },
+            {
+                "id": "46@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope1",
+                "metric": "metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 40,
+                            "std.sum": 160,
+                            "std.min": 20,
+                            "std.max": 30,
+                            "std.avg": 4,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 4.5,
+                        "metricType4": 4.5
+                    }
+                ]
+            },
+            {
+                "id": "51@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "metrics.metric2",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 400,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 400,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    }
+                ]
+            },
+            {
+                "id": "56@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope2",
+                "metric": "metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 400,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 80,
+                            "std.sum": 400,
+                            "std.min": 30,
+                            "std.max": 40,
+                            "std.avg": 5,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 5.5,
+                        "metricType4": 5.5
+                    }
+                ]
+            },
+            {
+                "id": "61@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes",
+                "metric": "metrics.metric3",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 120,
+                            "std.sum": 800,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 120,
+                            "std.sum": 800,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    }
+                ]
+            },
+            {
+                "id": "66@aggregation-aggregation-p3-42/data-43.cy[cycle]",
+                "scope": "scopes.scope3",
+                "metric": "metrics",
+                "componentType": "name1",
+                "measurements": 
+                [
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 120,
+                            "std.sum": 800,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    },
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 120,
+                            "std.sum": 800,
+                            "std.min": 40,
+                            "std.max": 50,
+                            "std.avg": 6.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true
+                        },
+                        "metricType2": "error",
+                        "metricType3": 7.167,
+                        "metricType4": 7.167
+                    }
+                ]
+            }
+        ]
+    },
+    "period 0": 
+    {
+        "<root>": 
+        {
+            "id": "6@aggregation-aggregation-p3-42/data-42.dt[0]",
+            "scope": "",
+            "metric": "",
+            "nodes": 
+            [
+                {
+                    "id": "71@aggregation-aggregation-p3-42/data-42.dt[0]",
+                    "scope": "scopes",
+                    "metric": "metrics",
+                    "componentType": "name1",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 240,
+                            "std.sum": 1360,
+                            "std.min": 20,
+                            "std.max": 50,
+                            "std.avg": 5.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true,
+                            "forecast(std.count).predictions": 
+                            [
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                }
+                            ]
+                        },
+                        "metricType2": "error",
+                        "metricType3": 6.167,
+                        "metricType4": 6.167
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "84@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes",
+                            "metric": "metrics.metric1",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 40,
+                                    "std.sum": 160,
+                                    "std.min": 20,
+                                    "std.max": 30,
+                                    "std.avg": 4,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 4.5,
+                                "metricType4": 4.5
+                            },
+                            "scopeChildren": 
+                            ["scope:scopes.scope1, location:metrics.metric1 (23@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                        },
+                        {
+                            "id": "110@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes",
+                            "metric": "metrics.metric2",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 80,
+                                    "std.sum": 400,
+                                    "std.min": 30,
+                                    "std.max": 40,
+                                    "std.avg": 5,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 5.5,
+                                "metricType4": 5.5
+                            },
+                            "scopeChildren": 
+                            ["scope:scopes.scope2, location:metrics.metric2 (36@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                        },
+                        {
+                            "id": "136@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes",
+                            "metric": "metrics.metric3",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 120,
+                                    "std.sum": 800,
+                                    "std.min": 40,
+                                    "std.max": 50,
+                                    "std.avg": 6.667,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 7.167,
+                                "metricType4": 7.167
+                            },
+                            "scopeChildren": 
+                            ["scope:scopes.scope3, location:metrics.metric3 (49@aggregation-aggregation-p3-42/data-42.dt[0])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "97@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes.scope1",
+                            "metric": "metrics",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 40,
+                                    "std.sum": 160,
+                                    "std.min": 20,
+                                    "std.max": 30,
+                                    "std.avg": 4,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 4.5,
+                                "metricType4": 4.5
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "23@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "metrics.metric1",
+                                    "componentType": "name1",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 40,
+                                            "std.sum": 160,
+                                            "std.min": 20,
+                                            "std.max": 30,
+                                            "std.avg": 4,
+                                            "anomaly(std.avg).score": 0.5,
+                                            "anomaly(std.avg).level": "error",
+                                            "anomaly(std.avg).primary": true,
+                                            "forecast(std.count).score": 0.5,
+                                            "forecast(std.count).level": "error",
+                                            "forecast(std.count).primary": true,
+                                            "forecast(std.count).predictions": 
+                                            [
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                }
+                                            ]
+                                        },
+                                        "metricType2": "error",
+                                        "metricType3": 4.5,
+                                        "metricType4": 4.5
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-1.1"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "123@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes.scope2",
+                            "metric": "metrics",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 80,
+                                    "std.sum": 400,
+                                    "std.min": 30,
+                                    "std.max": 40,
+                                    "std.avg": 5,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 5.5,
+                                "metricType4": 5.5
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "36@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes.scope2",
+                                    "metric": "metrics.metric2",
+                                    "componentType": "name1",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 80,
+                                            "std.sum": 400,
+                                            "std.min": 30,
+                                            "std.max": 40,
+                                            "std.avg": 5,
+                                            "anomaly(std.avg).score": 0.5,
+                                            "anomaly(std.avg).level": "error",
+                                            "anomaly(std.avg).primary": true,
+                                            "forecast(std.count).score": 0.5,
+                                            "forecast(std.count).level": "error",
+                                            "forecast(std.count).primary": true,
+                                            "forecast(std.count).predictions": 
+                                            [
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                }
+                                            ]
+                                        },
+                                        "metricType2": "error",
+                                        "metricType3": 5.5,
+                                        "metricType4": 5.5
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-2.1"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "149@aggregation-aggregation-p3-42/data-42.dt[0]",
+                            "scope": "scopes.scope3",
+                            "metric": "metrics",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 120,
+                                    "std.sum": 800,
+                                    "std.min": 40,
+                                    "std.max": 50,
+                                    "std.avg": 6.667,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 7.167,
+                                "metricType4": 7.167
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "49@aggregation-aggregation-p3-42/data-42.dt[0]",
+                                    "scope": "scopes.scope3",
+                                    "metric": "metrics.metric3",
+                                    "componentType": "name1",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 120,
+                                            "std.sum": 800,
+                                            "std.min": 40,
+                                            "std.max": 50,
+                                            "std.avg": 6.667,
+                                            "anomaly(std.avg).score": 0.5,
+                                            "anomaly(std.avg).level": "error",
+                                            "anomaly(std.avg).primary": true,
+                                            "forecast(std.count).score": 0.5,
+                                            "forecast(std.count).level": "error",
+                                            "forecast(std.count).primary": true,
+                                            "forecast(std.count).predictions": 
+                                            [
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                }
+                                            ]
+                                        },
+                                        "metricType2": "error",
+                                        "metricType3": 7.167,
+                                        "metricType4": 7.167
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-3.1"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "<orphaned>": 
+        []
+    },
+    "period 1": 
+    {
+        "<root>": 
+        {
+            "id": "215@aggregation-aggregation-p3-42/data-42.dt[1]",
+            "scope": "",
+            "metric": "",
+            "nodes": 
+            [
+                {
+                    "id": "280@aggregation-aggregation-p3-42/data-42.dt[1]",
+                    "scope": "scopes",
+                    "metric": "metrics",
+                    "componentType": "name1",
+                    "flags": "[derived]",
+                    "measurements": 
+                    {
+                        "metricType1": 
+                        {
+                            "std.count": 240,
+                            "std.sum": 1360,
+                            "std.min": 20,
+                            "std.max": 50,
+                            "std.avg": 5.667,
+                            "anomaly(std.avg).score": 0.5,
+                            "anomaly(std.avg).level": "error",
+                            "anomaly(std.avg).primary": true,
+                            "forecast(std.count).score": 0.5,
+                            "forecast(std.count).level": "error",
+                            "forecast(std.count).primary": true,
+                            "forecast(std.count).predictions": 
+                            [
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                },
+                                {
+                                    "value": 240
+                                }
+                            ]
+                        },
+                        "metricType2": "error",
+                        "metricType3": 6.167,
+                        "metricType4": 6.167
+                    },
+                    "metricChildren": 
+                    [
+                        {
+                            "id": "293@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes",
+                            "metric": "metrics.metric1",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 40,
+                                    "std.sum": 160,
+                                    "std.min": 20,
+                                    "std.max": 30,
+                                    "std.avg": 4,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 4.5,
+                                "metricType4": 4.5
+                            },
+                            "scopeChildren": 
+                            ["scope:scopes.scope1, location:metrics.metric1 (232@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                        },
+                        {
+                            "id": "319@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes",
+                            "metric": "metrics.metric2",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 80,
+                                    "std.sum": 400,
+                                    "std.min": 30,
+                                    "std.max": 40,
+                                    "std.avg": 5,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 5.5,
+                                "metricType4": 5.5
+                            },
+                            "scopeChildren": 
+                            ["scope:scopes.scope2, location:metrics.metric2 (245@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                        },
+                        {
+                            "id": "345@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes",
+                            "metric": "metrics.metric3",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 120,
+                                    "std.sum": 800,
+                                    "std.min": 40,
+                                    "std.max": 50,
+                                    "std.avg": 6.667,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 7.167,
+                                "metricType4": 7.167
+                            },
+                            "scopeChildren": 
+                            ["scope:scopes.scope3, location:metrics.metric3 (258@aggregation-aggregation-p3-42/data-42.dt[1])"]
+                        }
+                    ],
+                    "scopeChildren": 
+                    [
+                        {
+                            "id": "306@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes.scope1",
+                            "metric": "metrics",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 40,
+                                    "std.sum": 160,
+                                    "std.min": 20,
+                                    "std.max": 30,
+                                    "std.avg": 4,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        },
+                                        {
+                                            "value": 40
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 4.5,
+                                "metricType4": 4.5
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "232@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes.scope1",
+                                    "metric": "metrics.metric1",
+                                    "componentType": "name1",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 40,
+                                            "std.sum": 160,
+                                            "std.min": 20,
+                                            "std.max": 30,
+                                            "std.avg": 4,
+                                            "anomaly(std.avg).score": 0.5,
+                                            "anomaly(std.avg).level": "error",
+                                            "anomaly(std.avg).primary": true,
+                                            "forecast(std.count).score": 0.5,
+                                            "forecast(std.count).level": "error",
+                                            "forecast(std.count).primary": true,
+                                            "forecast(std.count).predictions": 
+                                            [
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                },
+                                                {
+                                                    "value": 40
+                                                }
+                                            ]
+                                        },
+                                        "metricType2": "error",
+                                        "metricType3": 4.5,
+                                        "metricType4": 4.5
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-1.1"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "332@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes.scope2",
+                            "metric": "metrics",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 80,
+                                    "std.sum": 400,
+                                    "std.min": 30,
+                                    "std.max": 40,
+                                    "std.avg": 5,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        },
+                                        {
+                                            "value": 80
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 5.5,
+                                "metricType4": 5.5
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "245@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes.scope2",
+                                    "metric": "metrics.metric2",
+                                    "componentType": "name1",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 80,
+                                            "std.sum": 400,
+                                            "std.min": 30,
+                                            "std.max": 40,
+                                            "std.avg": 5,
+                                            "anomaly(std.avg).score": 0.5,
+                                            "anomaly(std.avg).level": "error",
+                                            "anomaly(std.avg).primary": true,
+                                            "forecast(std.count).score": 0.5,
+                                            "forecast(std.count).level": "error",
+                                            "forecast(std.count).primary": true,
+                                            "forecast(std.count).predictions": 
+                                            [
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                },
+                                                {
+                                                    "value": 80
+                                                }
+                                            ]
+                                        },
+                                        "metricType2": "error",
+                                        "metricType3": 5.5,
+                                        "metricType4": 5.5
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-2.1"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "358@aggregation-aggregation-p3-42/data-42.dt[1]",
+                            "scope": "scopes.scope3",
+                            "metric": "metrics",
+                            "componentType": "name1",
+                            "flags": "[derived]",
+                            "measurements": 
+                            {
+                                "metricType1": 
+                                {
+                                    "std.count": 120,
+                                    "std.sum": 800,
+                                    "std.min": 40,
+                                    "std.max": 50,
+                                    "std.avg": 6.667,
+                                    "anomaly(std.avg).score": 0.5,
+                                    "anomaly(std.avg).level": "error",
+                                    "anomaly(std.avg).primary": true,
+                                    "forecast(std.count).score": 0.5,
+                                    "forecast(std.count).level": "error",
+                                    "forecast(std.count).primary": true,
+                                    "forecast(std.count).predictions": 
+                                    [
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        },
+                                        {
+                                            "value": 120
+                                        }
+                                    ]
+                                },
+                                "metricType2": "error",
+                                "metricType3": 7.167,
+                                "metricType4": 7.167
+                            },
+                            "metricChildren": 
+                            [
+                                {
+                                    "id": "258@aggregation-aggregation-p3-42/data-42.dt[1]",
+                                    "scope": "scopes.scope3",
+                                    "metric": "metrics.metric3",
+                                    "componentType": "name1",
+                                    "measurements": 
+                                    {
+                                        "metricType1": 
+                                        {
+                                            "std.count": 120,
+                                            "std.sum": 800,
+                                            "std.min": 40,
+                                            "std.max": 50,
+                                            "std.avg": 6.667,
+                                            "anomaly(std.avg).score": 0.5,
+                                            "anomaly(std.avg).level": "error",
+                                            "anomaly(std.avg).primary": true,
+                                            "forecast(std.count).score": 0.5,
+                                            "forecast(std.count).level": "error",
+                                            "forecast(std.count).primary": true,
+                                            "forecast(std.count).predictions": 
+                                            [
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                },
+                                                {
+                                                    "value": 120
+                                                }
+                                            ]
+                                        },
+                                        "metricType2": "error",
+                                        "metricType3": 7.167,
+                                        "metricType4": 7.167
+                                    },
+                                    "metadata": 
+                                    {
+                                        "key": "value-3.1"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "<orphaned>": 
+        []
+    }
+}

@@ -1,0 +1,19 @@
+{
+	name = "test.exadb"
+	
+	types:
+	{
+		TestDomainService:
+		{
+			instanceOf = "object"
+			base = "DomainService"
+		}
+		
+		TestDatabase:
+		{
+			instanceOf = "object"
+			base = "Database"
+			final = true
+		}
+	}
+}

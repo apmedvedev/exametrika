@@ -1,0 +1,78 @@
+{
+	name = "com.exametrika.server.web-1.0"
+	description = "Web server schema."
+	
+	types:
+	{
+		WebServer:
+		{
+			instanceOf = "object"
+			description = "Web server configuration."
+			final = true
+			validators = ["webServer"]
+			properties:
+			{
+				name:
+				{
+					description = "Host name of the server."
+					required = false
+					type = "string"
+				}
+					
+				port:
+				{
+					description = "Web server port."
+					required = true
+					default = 8080
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 65535
+					}
+				}
+				
+				unsecuredPort:
+				{
+					description = "Web server unsecured port which redirects to secured port."
+					required = false
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 65535
+					}
+				}
+				
+				bindAddress:
+				{
+					description = "Address of the local network interface this channel bound to."
+					required = false
+					type = "string"
+				}
+					
+				secured:
+				{
+					description = "Is channel secured by SSL/TLS?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+					
+				keyStorePath:
+				{
+					description = "Path to key store of secured channel."
+					required = false
+					type = "string"
+				}
+					
+				keyStorePassword:
+				{
+					description = "Password for accessing key store of secured channel."
+					required = false
+					type = "string"
+				}
+			}
+		}
+	}
+}

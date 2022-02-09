@@ -1,0 +1,362 @@
+{
+	name = "com.exametrika.metrics.host.server-1.0"
+	description = "Server host metrics schema."
+	
+	types:
+	{
+		HostWorkloadRepresentation:
+        {
+            instanceOf = "object"
+            description = "Host workload metric representation."
+            base = "MetricRepresentation"
+            properties:
+            {
+                type:
+                {
+                    description = "Type of representation."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["host.cpu.workload", "host.memory.workload", "host.disk.workload", "host.net.receive.workload",
+                            "host.net.send.workload", "host.swap.workload"]
+                    }
+                }
+            
+                warningThreshold:
+                {
+                    description = "Warning percentage threshold."
+                    required = true
+                    default = 90
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                        max = 100
+                    }
+                }
+                
+                errorThreshold:
+                {
+                    description = "Error percentage threshold."
+                    required = true
+                    default = 95
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                        max = 100
+                    }
+                }
+            }
+        }
+		
+        HostWorkloadMetric:
+        {
+            instanceOf = "object"
+            description = "Host workload metric type."
+            base = "MetricType"
+            final = true
+            properties:
+            {
+                baseRepresentation:
+                {
+                    description = "Name of base representation to compute metrics from."
+                    required = true
+                    default = "default"
+                    type = "string"
+                }
+            
+                representations:
+                {
+                    description = "Metric type representations."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "HostWorkloadRepresentation"
+                    }
+                }
+            }
+        }
+        
+        HostErrorsRepresentation:
+        {
+            instanceOf = "object"
+            description = "Host errors metric representation."
+            base = "MetricRepresentation"
+            properties:
+            {
+                type:
+                {
+                    description = "Type of representation."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "string"
+                        enumeration = ["host.net.errors", "host.tcp.errors", "host.swap.errors"]
+                    }
+                }
+            
+                warningThreshold:
+                {
+                    description = "Warning level threshold."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                    }
+                }
+                
+                errorThreshold:
+                {
+                    description = "Error level threshold."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "double"
+                        min = 0
+                    }
+                }
+            }
+        }
+        
+        HostErrorsMetric:
+        {
+            instanceOf = "object"
+            description = "Host errors metric type."
+            base = "MetricType"
+            final = true
+            properties:
+            {
+                baseRepresentation:
+                {
+                    description = "Name of base representation to compute metrics from."
+                    required = true
+                    default = "default"
+                    type = "string"
+                }
+            
+                representations:
+                {
+                    description = "Metric type representations."
+                    required = true
+                    type:
+                    {
+                        instanceOf = "map"
+                        valueType = "HostErrorsRepresentation"
+                    }
+                }
+            }
+        }
+        
+        AllHostsSelector:
+        {
+            instanceOf = "object"
+            description = "All hosts selector."
+            base = "Selector"
+            final = true
+        }
+        
+        HostSelector:
+        {
+            instanceOf = "object"
+            description = "Host selector."
+            base = "Selector"
+            final = true
+        }
+        
+        AllHostsView:
+        {
+            instanceOf = "object"
+            description = "All hosts view."
+            base = "View"
+            final = true
+        }
+            
+        AllFailedHostsView:
+        {
+            instanceOf = "object"
+            description = "All failed hosts view."
+            base = "View"
+            final = true
+        }
+            
+        AllMaintenanceHostsView:
+        {
+            instanceOf = "object"
+            description = "All maintenance hosts view."
+            base = "View"
+            final = true
+        }
+            
+        HostOverviewPage:
+        {
+            instanceOf = "object"
+            description = "Host overview page."
+            base = "View"
+            final = true
+        }
+        
+        HostHealthPage:
+        {
+            instanceOf = "object"
+            description = "Host health page."
+            base = "View"
+            final = true
+        }
+            
+        HostCpuPage:
+        {
+            instanceOf = "object"
+            description = "Host CPU page."
+            base = "View"
+            final = true
+        }
+            
+        HostMemoryPage:
+        {
+            instanceOf = "object"
+            description = "Host memory page."
+            base = "View"
+            final = true
+        }
+            
+        HostDiskPage:
+        {
+            instanceOf = "object"
+            description = "Host disk page."
+            base = "View"
+            final = true
+        }
+        
+        HostNetworkPage:
+        {
+            instanceOf = "object"
+            description = "Host network page."
+            base = "View"
+            final = true
+        }
+            
+        HostProcessPage:
+        {
+            instanceOf = "object"
+            description = "Host process page."
+            base = "View"
+            final = true
+        }
+        
+        HostKpiPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostHealthIndicatorsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostAvailabilityTimesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostCpuLoadListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostCpuMetricsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostMemoryListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostSwapListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostSwapPagesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostDiskUsageListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostDiskRatesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostDiskFilesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostNetworkRatesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostNetworkErrorsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostNetworkStatisticsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostProcessesListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+            
+        HostThreadsListPage:
+        {
+            instanceOf = "object"
+            base = "View"
+            final = true
+        }
+	}
+}

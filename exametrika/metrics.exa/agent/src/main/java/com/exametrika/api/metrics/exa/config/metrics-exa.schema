@@ -1,0 +1,102 @@
+{
+	name = "com.exametrika.metrics.exa-1.0"
+	description = "Exa metrics schema."
+
+	types:
+	{
+		ExaAgentMonitor:
+		{
+			instanceOf = "object"
+			description = "Exa agent monitor."
+			final = true
+			base = "Monitor"
+		}
+	
+		ExaProfilerMonitor:
+		{
+			instanceOf = "object"
+			description = "Exa profiler monitor."
+			base = "Monitor"
+			final = true
+		}
+		
+		ExaLogProbe:
+		{
+			instanceOf = "object"
+			description = "Exa log probe."
+			base = "LogProbe"
+			final = true
+			properties:
+			{
+				log:
+				{
+					description = "Log meter."
+					required = true
+					default:
+					{
+						meters:
+						{
+							exa.log.count:
+							{
+								meter:
+								{
+									instanceOf = "Counter"
+									useDeltas = true
+								}
+					
+								provider:
+								{
+									instanceOf = "CountLogProvider"
+								}
+							}
+					
+							exa.log.errorCount:
+							{
+								meter:
+								{
+									instanceOf = "Counter"
+									useDeltas = true
+								}
+							
+								provider:
+								{
+									instanceOf = "ErrorCountLogProvider"
+								}
+							}
+							
+							exa.log.errors:
+							{
+								meter:
+								{
+									instanceOf = "Log"
+								}
+							
+								provider:
+								{
+									instanceOf = "ErrorLogProvider"
+								}
+							}
+						}
+					}
+					type = "Log"
+				}
+			}
+		}
+		
+		ExaMessagingProbe:
+		{
+			instanceOf = "object"
+			description = "Exa messaging probe."
+			base = "Probe"
+			final = true
+		}
+		
+		ExaInstrumentProbe:
+		{
+			instanceOf = "object"
+			description = "Exa instrument probe."
+			base = "Probe"
+			final = true
+		}
+	}
+}

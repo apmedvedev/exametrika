@@ -1,0 +1,464 @@
+{
+	name = "com.exametrika.exadb.perfdb-1.0"
+	description = "Exa database PerfDB schema."
+	
+	types:
+	{
+		ArchivePolicy:
+		{
+			instanceOf = "object"
+			description = "Configuration of archive policy."
+			abstract = true
+		}
+			
+		SimpleArchivePolicy:
+		{
+			instanceOf = "object"
+			description = "Configuration of simple archive policy."
+			final = true
+			base = "ArchivePolicy"
+			properties:
+			{
+				maxFileSize:
+				{
+					description = "Maximum size of period cycle data file in bytes."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+			}
+		}
+			
+		TruncationPolicy:
+		{
+			instanceOf = "object"
+			description = "Configuration of truncation policy."
+			abstract = true
+		}
+	
+		SimpleTruncationPolicy:
+		{
+			instanceOf = "object"
+			description = "Configuration of simple truncation policy."
+			final = true
+			base = "TruncationPolicy"
+			properties:
+			{
+				minRetentionPeriod:
+				{
+					description = "Minimum period in milliseconds since cycle closure after which cycle can be deleted."
+					required = true
+					default = 0
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			
+				maxRetentionPeriod:
+				{
+					description = "Maximum period in milliseconds since cycle closure after which cycle is deleted."
+					required = true
+					default = 0x7fffffffffffffff
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				minFreeSpace:
+				{
+					description = "Minimum disk free space in bytes on database partition after which oldest cycles are deleted."
+					required = true
+					default = 0
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+				
+				pathIndex:
+				{
+					description = "Index of database path if database is multipath."
+					required = true
+					default = 0
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+					}
+				}
+			}
+		}
+			
+		ArchiveOperation:
+		{
+			instanceOf = "object"
+			description = "Configuration of database archive operation."
+			final = true
+			base = "JobOperation" 
+			properties:
+			{
+				spaceFilter:
+				{
+					description = "Space filter. If not set all spaces are used."
+					required = false
+					type = "CompoundNameFilterExpression"
+				}
+			
+				periods:
+				{
+					description = "Period names. If not set all periods are used."
+					required = false
+					type:
+				    {
+					    instanceOf = "array"
+				        elementType = "string"
+				    }
+				}
+				
+				archivePolicy:
+				{
+					description = "Archive policy."
+					required = true
+					type = "ArchivePolicy"
+				}
+					
+				archiveStore:
+				{
+					description = "Archive store."
+					required = true
+					type = "ArchiveStore"
+				}
+			}
+		}
+	
+		TruncationOperation:
+		{
+			instanceOf = "object"
+			description = "Configuration of database truncation operation."
+			final = true
+			base = "JobOperation" 
+			properties:
+			{
+				spaceFilter:
+				{
+					description = "Space filter. If not set all spaces are used."
+					required = false
+					type = "CompoundNameFilterExpression"
+				}
+			
+				periods:
+				{
+					description = "Period names. If not set all periods are used."
+					required = false
+					type:
+                    {
+                        instanceOf = "array"
+                        elementType = "string"
+                    }
+				}
+				
+				truncationPolicy:
+				{
+					description = "Truncation policy."
+					required = true
+					type = "TruncationPolicy"
+				}
+			}
+		}
+		
+		IndexedLocationField:
+		{
+			instanceOf = "object"
+			description = "Indexed location field schema."
+			base = "SimpleField"
+			properties:
+			{
+				pathIndex:
+				{
+					description = "Database path index of index datafile."
+					required = true
+					default = 0
+					type = "long"
+				}	
+			}
+		}
+	
+		MeasurementFilter:
+		{
+			instanceOf = "object"
+			description = "Measurement filter."
+			abstract = true
+		}
+		
+		SimpleMeasurementFilter:
+        {
+            instanceOf = "object"
+            description = "Simple measurement filter."
+            base = "MeasurementFilter"
+            properties:
+            {
+                scopeFilter:
+                {
+                    description = "Scope filter."
+                    required = false
+                    type = "CompoundNameFilterExpression"
+                }
+            
+                metricFilter:
+                {
+                    description = "Metric filter."
+                    required = false
+                    type = "CompoundNameFilterExpression"
+                }
+            }
+        }
+		
+		Period:
+		{
+			instanceOf = "object"
+			description = "Period."
+			base = "NodeSpace"
+			final = true
+			properties:
+			{
+				period:
+				{
+					description = "Period."
+					required = true
+					type = "StandardSchedulePeriod"
+				}
+			
+				cyclePeriodCount:
+				{
+					description = "Number of periods in cycle."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 1
+					}
+				}
+					
+				nonAggregating:
+				{
+					description = "Is period non aggregating?"
+					required = true
+					default = false
+					type = "boolean"
+				}
+				
+				parentDomain:
+				{
+					description = "Name of parent domain. If parent domain is set, measurements of current period will be transferred to this domain."
+					required = false
+					type = "string"
+				}
+					
+				cyclePeriodRootNode:
+				{
+					description = "Cycle period root node type."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		PeriodSpace:
+		{
+			instanceOf = "object"
+			description = "Period space schema."
+			base = "Space"
+			final = true
+			properties:
+			{
+				periods:
+				{
+					description = "Periods."
+					required = true
+					type:
+					{
+						instanceOf = "map"
+						valueType = "Period"
+					}
+				}
+			
+				pathIndex:
+				{
+					description = "Main space datafile path index."
+					required = true
+					default = 0
+					type = "long"
+				}
+			
+				fullTextPathIndex:
+				{
+					description = "Full-text search datafile path index."
+					required = true
+					default = 0
+					type = "long"
+				}
+			}
+		}
+		
+		NameSpace:
+		{
+			instanceOf = "object"
+			description = "Name space."
+			base = "SchemaObject"
+			final = true
+			properties:
+			{
+				pathIndex:
+				{
+					description = "Main space datafile path index."
+					required = true
+					default = 0
+					type = "long"
+				}
+			
+				indexPathIndex:
+				{
+					description = "Index datafile path index."
+					required = true
+					default = 0
+					type = "long"
+				}
+					
+				maxNameSize:
+				{
+					description = "Maximum size of name."
+					required = true
+					default = 256
+					type = "long"
+				}
+			}
+		}
+		
+		PeriodDatabaseExtension:
+		{
+			instanceOf = "object"
+			description = "Period database extension."
+			base = "DatabaseExtension"
+			final = true
+			properties:
+			{
+				nameSpace:
+				{
+					description = "Name space schema."
+					required = true
+					default = {}
+					type = "NameSpace"
+				}
+			}
+		}
+		
+		LocationKeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "Location key normalizer schema."
+			base = "KeyNormalizer"
+			final = true
+		}
+		
+		PeriodNode:
+		{
+			instanceOf = "object"
+			description = "Base period node schema."
+			base = "Node"
+			abstract = true
+			properties:
+			{
+				primaryField:
+				{
+					description = "Node's primary field."
+					required = true
+					default:{}
+					type = "IndexedLocationField"
+				}
+			}
+		}
+			
+		LogAggregationField:
+		{
+			instanceOf = "object"
+			description = "Log aggregation field schema."
+			base = "SimpleField"
+			final = true
+			properties:
+			{
+				componentType:
+				{
+					description = "Component type."
+					required = true
+					type = "AggregationComponentType"
+				}
+			
+				blobStoreField:
+				{
+					description = "Field name of blob store in root node of period cycle."
+					required = true
+					type = "string"
+				}
+			}
+		}
+		
+		PeriodAggregationField:
+		{
+			instanceOf = "object"
+			description = "Period aggregation field schema."
+			base = "ComplexField"
+			final = true
+			properties:
+			{
+				componentType:
+				{
+					description = "Component type."
+					required = true
+					type = "AggregationComponentType"
+				}
+			
+				aggregationLogNode:
+				{
+					description = "Node name of aggregation log."
+					required = false
+					type = "string"
+				}
+			}
+		}
+		
+		CompoundAggregationField:
+		{
+			instanceOf = "compound"
+			types = ["PeriodAggregationField", "LogAggregationField"]
+		}
+		
+		AggregationNode:
+		{
+			instanceOf = "object"
+			description = "Base aggregation node schema."
+			base = "PeriodNode"
+			abstract = true
+			properties:
+			{
+				aggregationField:
+				{
+					description = "Node's aggregation field."
+					required = true
+					type = "CompoundAggregationField"
+				}
+			}
+		}
+	}
+}

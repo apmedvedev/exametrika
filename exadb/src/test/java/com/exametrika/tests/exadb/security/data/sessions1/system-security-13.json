@@ -1,0 +1,102 @@
+{
+    "<root>": 
+    {
+        "space": "system-security-13/data-13.dt",
+        "rootGroup": 
+        {
+            "space": "system-security-13/data-13.dt",
+            "key": ""
+        },
+        "users": 
+        {
+            "admin": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "admin",
+                "roles": 
+                {
+                    "admin": 
+                    {
+                        "space": "system-security-13/data-13.dt"
+                    }
+                }
+            },
+            "user2": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "user2"
+            },
+            "Admin": 
+            {
+                "space": "system-security-13/data-13.dt",
+                "key": "Admin",
+                "roles": 
+                {
+                    "administrator": 
+                    {
+                        "space": "system-security-13/data-13.dt"
+                    }
+                }
+            }
+        },
+        "auditLog": 
+        [
+            {
+                "user": "user1",
+                "permission": "session:open",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "user2",
+                "permission": "session:open",
+                "object": null,
+                "succeeded": false
+            },
+            {
+                "user": "admin",
+                "permission": "session:open",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "user1",
+                "permission": "session:close",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "user1",
+                "permission": "session:open",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "user1",
+                "permission": "session:close",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "admin",
+                "permission": "session:open",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "admin",
+                "permission": "session:close",
+                "object": null,
+                "succeeded": true
+            },
+            {
+                "user": "admin",
+                "permission": "session:close",
+                "object": null,
+                "succeeded": true
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

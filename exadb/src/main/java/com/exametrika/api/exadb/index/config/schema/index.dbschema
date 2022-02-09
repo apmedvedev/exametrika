@@ -1,0 +1,483 @@
+{
+	name = "com.exametrika.exadb.index-1.0"
+	description = "Exa database index schema."
+	
+	types:
+	{
+		RebuildStatisticsOperation:
+		{
+			instanceOf = "object"
+			description = "Configuration of database rebuild index statistics operation."
+			final = true
+			base = "JobOperation" 
+			properties:
+			{
+				keyRatio:
+				{
+					description = "Ratio between number of keys in statistics and number of keys in index in percents."
+					required = true
+					default = 1
+					type = "double"
+				}
+			
+				rebuildThreshold:
+				{
+					description = "Minimal number of changes allowed to rebuild statistics."
+					required = true
+					default = 1000
+					type = "long"
+				}
+			}
+		}
+	
+		Index:
+		{
+			instanceOf = "object"
+			description = "Index schema."
+			base = "SchemaObject"
+			abstract = true
+			properties:
+			{
+				name:
+				{
+					description = "Index name."
+					required = true
+					type = "string"
+				}
+			
+				pathIndex:
+				{
+					description = "Index datafile path index."
+					required = true
+					default = 0
+					type = "long"
+				}
+			
+				properties:
+				{
+					description = "Additional page classification properties."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "string"
+					}
+				}
+			}
+		}
+	
+		FullTextIndex:
+		{
+			instanceOf = "object"
+			description = "Full text index schema."
+			base = "Index"
+			final = true
+			properties:
+			{
+				properties: 
+				{
+					allowed = false
+					required = false
+					type:
+					{
+						instanceOf = "any"
+					}
+				}
+			}
+		}
+		
+		KeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "Index key normalizer."
+			abstract = true
+		}
+		
+		ValueConverter:
+		{
+			instanceOf = "object"
+			description = "Index value converter."
+			abstract = true
+		}
+		
+		BTreeIndex:
+		{
+			instanceOf = "object"
+			description = "BTree index schema."
+			base = "Index"
+			final = true
+			properties:
+			{
+				fixedKey:
+				{
+					description = "Is index key fixed?"
+					required = true
+					type = "boolean"
+				}
+			
+				maxKeySize:
+				{
+					description = "Maximum size of index key."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 1024
+					}
+				}
+					
+				fixedValue:
+				{
+					description = "Is index value fixed?"
+					required = true
+					type = "boolean"
+				}
+			
+				maxValueSize:
+				{
+					description = "Maximum size of index value."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 1024
+					}
+				}
+				
+				keyNormalizer:
+				{
+					description = "Index key normalizer."
+					required = true
+					type = "KeyNormalizer"
+				}
+				
+				valueConverter:
+				{
+					description = "Index value converter."
+					required = true
+					type = "ValueConverter"
+				}
+					
+				sorted:
+				{
+					description = "Are index keys sorted?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				unique:
+				{
+					description = "Are index keys unique?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+			
+		TreeIndex:
+		{
+			instanceOf = "object"
+			description = "Tree index schema."
+			base = "Index"
+			final = true
+			properties:
+			{
+				fixedKey:
+				{
+					description = "Is index key fixed?"
+					required = true
+					type = "boolean"
+				}
+			
+				maxKeySize:
+				{
+					description = "Maximum size of index key."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 1024
+					}
+				}
+					
+				fixedValue:
+				{
+					description = "Is index value fixed?"
+					required = true
+					type = "boolean"
+				}
+			
+				maxValueSize:
+				{
+					description = "Maximum size of index value."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 1024
+					}
+				}
+				
+				keyNormalizer:
+				{
+					description = "Index key normalizer."
+					required = true
+					type = "KeyNormalizer"
+				}
+				
+				valueConverter:
+				{
+					description = "Index value converter."
+					required = true
+					type = "ValueConverter"
+				}
+					
+				sorted:
+				{
+					description = "Are index keys sorted?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+					
+				unique:
+				{
+					description = "Are index keys unique?"
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+		
+		HashIndex:
+		{
+			instanceOf = "object"
+			description = "Hash index schema."
+			base = "Index"
+			final = true
+			properties:
+			{
+				fixedKey:
+				{
+					description = "Is index key fixed?"
+					required = true
+					type = "boolean"
+				}
+			
+				maxKeySize:
+				{
+					description = "Maximum size of index key."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 1024
+					}
+				}
+					
+				fixedValue:
+				{
+					description = "Is index value fixed?"
+					required = true
+					type = "boolean"
+				}
+			
+				maxValueSize:
+				{
+					description = "Maximum size of index value."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						max = 1024
+					}
+				}
+				
+				keyNormalizer:
+				{
+					description = "Index key normalizer."
+					required = true
+					type = "KeyNormalizer"
+				}
+				
+				valueConverter:
+				{
+					description = "Index value converter."
+					required = true
+					type = "ValueConverter"
+				}
+			}
+		}
+		
+		ByteArrayKeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "Byte array key normalizer schema."
+			base = "KeyNormalizer"
+			final = true
+		}
+		
+		CollatorKeyNormalizer.Strength:
+		{
+			instanceOf = "string"
+			enumeration = ["primary", "secondary", "tertiary", "quaternary", "identical"]
+		}
+		
+		CollatorKeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "Collator key normalizer schema."
+			base = "KeyNormalizer"
+			final = true
+			properties:
+			{
+				locale:
+				{
+					description = "Collator locale."
+					required = true
+					type = "string"
+				}
+			
+				strength:
+				{
+					description = "Collator strength."
+					required = true
+					default = "secondary"
+					type = "CollatorKeyNormalizer.Strength"
+				}
+			}
+		}
+
+		CompositeKeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "Composite key normalizer schema."
+			base = "KeyNormalizer"
+			final = true
+			properties:
+			{
+				keyNormalizers:
+				{
+					description = "Key normalizers."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						elementType = "KeyNormalizer"
+					}
+				}
+			}
+		}
+
+		FixedCompositeKeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "Fixed composite key normalizer schema."
+			base = "KeyNormalizer"
+			final = true
+			properties:
+			{
+				keyNormalizers:
+				{
+					description = "Key normalizers."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						elementType = "KeyNormalizer"
+					}
+				}
+			}
+		}
+		
+		FixedStringKeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "Fixed string key normalizer schema."
+			base = "KeyNormalizer"
+			final = true
+		}
+		
+		StringKeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "String key normalizer schema."
+			base = "KeyNormalizer"
+			final = true
+		}
+			
+		UuidKeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "UUID key normalizer schema."
+			base = "KeyNormalizer"
+			final = true
+		}
+			
+		NumericKeyNormalizer.DataType:
+		{
+			instanceOf = "string"
+			enumeration : ["byte" "short" "int" "long" "float" "double"]
+		}
+			
+		NumericKeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "Fixed string key normalizer schema."
+			base = "KeyNormalizer"
+			final = true
+			properties:
+			{
+				dataType:
+				{
+					description = "Key data type."
+					required = true
+					type = "NumericKeyNormalizer.DataType"
+				}
+			}
+		}
+			
+		DescendingKeyNormalizer:
+		{
+			instanceOf = "object"
+			description = "Descending key normalizer schema."
+			base = "KeyNormalizer"
+			final = true
+			properties:
+			{
+				keyNormalizer:
+				{
+					description = "Key normalizer."
+					required = true
+					type = "KeyNormalizer"
+				}
+			}
+		}
+
+		ByteArrayValueConverter:
+		{
+			instanceOf = "object"
+			description = "Byte array value converter schema."
+			base = "ValueConverter"
+			final = true
+		}
+		
+		LongValueConverter:
+		{
+			instanceOf = "object"
+			description = "Long value converter schema."
+			base = "ValueConverter"
+			final = true
+		}
+	}
+}

@@ -1,0 +1,261 @@
+{
+    "<root>": 
+    {
+        "space": "component-component-28/data-28.dt",
+        "rootGroup": 
+        {
+            "space": "component-component-28/data-28.dt",
+            "key": 0,
+            "scope": "",
+            "component": "RootGroup",
+            "versions": 
+            [
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:group1 (component-component-28/data-28.dt)", "scope:group2 (component-component-28/data-28.dt)"]
+                },
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:group1 (component-component-28/data-28.dt)", "scope:group3 (component-component-28/data-28.dt)"]
+                },
+                {
+                    "space": "component-component-28/data-28.dt",
+                    "scope": "",
+                    "component": "RootGroup",
+                    "flags": "[readonly]",
+                    "children": 
+                    ["scope:group1 (component-component-28/data-28.dt)", "scope:group2 (component-component-28/data-28.dt)"]
+                }
+            ]
+        },
+        "components": 
+        [
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 9,
+                "scope": "group3",
+                "component": "Group1",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group3",
+                        "component": "Group1",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group3",
+                        "component": "Group1",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value3-2"
+                        }
+                    }
+                ],
+                "tags": 
+                ["tag3-"]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 7,
+                "scope": "group1.group13",
+                "component": "Group2",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group13",
+                        "component": "Group2",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group13",
+                        "component": "Group2",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value13-2"
+                        }
+                    }
+                ],
+                "tags": 
+                ["tag13-"]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 6,
+                "scope": "group2",
+                "component": "Group1",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group2",
+                        "component": "Group1",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value2-3"
+                        }
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group2",
+                        "component": "Group1",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group2",
+                        "component": "Group1",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value2-1"
+                        }
+                    }
+                ],
+                "tags": 
+                ["tag2"]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 4,
+                "scope": "group1.group12",
+                "component": "Group2",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group12",
+                        "component": "Group2",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value12-3"
+                        }
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group12",
+                        "component": "Group2",
+                        "flags": "[readonly, deleted]"
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group12",
+                        "component": "Group2",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value12-1"
+                        }
+                    }
+                ],
+                "tags": 
+                ["tag12"]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 2,
+                "scope": "group1.group11",
+                "component": "Group2",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group11",
+                        "component": "Group2",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value11-3"
+                        }
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group11",
+                        "component": "Group2",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value11-2"
+                        }
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1.group11",
+                        "component": "Group2",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value11-1"
+                        }
+                    }
+                ],
+                "tags": 
+                ["tag11"]
+            },
+            {
+                "space": "component-component-28/data-28.dt",
+                "key": 1,
+                "scope": "group1",
+                "component": "Group1",
+                "versions": 
+                [
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1",
+                        "component": "Group1",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value1-3"
+                        },
+                        "children": 
+                        ["scope:group1.group11 (component-component-28/data-28.dt)", "scope:group1.group13 (component-component-28/data-28.dt)", "scope:group1.group12 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1",
+                        "component": "Group1",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value1-2"
+                        },
+                        "children": 
+                        ["scope:group1.group11 (component-component-28/data-28.dt)", "scope:group1.group12 (component-component-28/data-28.dt)", "scope:group1.group13 (component-component-28/data-28.dt)"]
+                    },
+                    {
+                        "space": "component-component-28/data-28.dt",
+                        "scope": "group1",
+                        "component": "Group1",
+                        "flags": "[readonly, predefined]",
+                        "options": 
+                        {
+                            "key1": "value1-1"
+                        },
+                        "children": 
+                        ["scope:group1.group11 (component-component-28/data-28.dt)", "scope:group1.group12 (component-component-28/data-28.dt)"]
+                    }
+                ],
+                "tags": 
+                ["tag1"]
+            }
+        ]
+    },
+    "<orphaned>": 
+    []
+}

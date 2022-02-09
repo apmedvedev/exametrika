@@ -1,0 +1,875 @@
+{
+	name = "com.exametrika.exadb-1.0"
+	description = "Exa database schema."
+	
+	types:
+	{
+		ResourceProvider:
+		{
+			instanceOf = "object"
+			description = "Resource provider."
+			abstract = true
+		}
+	
+		PercentageResourceProvider:
+		{
+			instanceOf = "object"
+			description = "Percentage resource provider."
+			final = true
+			base = "ResourceProvider"
+			properties:
+			{
+				percentage:
+				{
+					description = "Percentage of base resource provider."
+					required = true
+					type:
+					{ 
+						instanceOf = "double"
+						min = 0
+						max = 100
+					}
+				}
+			
+				resourceProvider:
+				{
+					description = "Base resource provider."
+					required = true
+					type = "ResourceProvider"
+				}
+			}
+		}
+			
+		FixedResourceProvider:
+		{
+			instanceOf = "object"
+			description = "Fixed resource provider."
+			final = true
+			base = "ResourceProvider"
+			properties:
+			{
+				amount:
+				{
+					description = "Fixed amount of available resource."
+					required = true
+					default = 10000000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+			}
+		}
+		
+		MemoryResourceProvider:
+		{
+			instanceOf = "object"
+			description = "Memory resource provider."
+			final = true
+			base = "ResourceProvider"
+			properties:
+			{
+				nativeMemory:
+				{
+					description = "Native or heap based resource provider."
+					required = true
+					default = true
+					type = "boolean"
+				}
+			}
+		}
+		
+		SharedMemoryResourceProvider:
+		{
+			instanceOf = "object"
+			description = "Shared memory resource provider."
+			final = true
+			base = "ResourceProvider"
+		}
+			
+		AllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Resource allocation policy."
+			abstract = true
+		}
+		
+		FixedAllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Fixed resource allocation policy."
+			final = true
+			base = "AllocationPolicy"
+			properties:
+			{
+				quotas:
+				{
+					description = "Map of fixed quotas available to resource consumers."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType:
+						{
+							instanceOf = "long"
+							min = 0
+							converter = "bytes"
+						}
+					}
+				}
+			
+				otherPolicy:
+				{
+					description = "Allocation policy to be used for segments not listed in quotas."
+					required = true
+					default:
+					{
+						instanceOf = "UniformAllocationPolicy"
+					}
+					type = "AllocationPolicy"
+				}
+			}
+		}
+			
+		PercentageAllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Percentage resource allocation policy."
+			final = true
+			base = "AllocationPolicy"
+			properties:
+			{
+				quotas:
+				{
+					description = "Map of percentage quotas available to resource consumers."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType:
+						{
+							instanceOf = "double"
+							min = 0
+							max = 100
+						}
+					}
+				}
+			
+				otherPolicy:
+				{
+					description = "Allocation policy to be used for segments not listed in quotas."
+					required = true
+					default:
+					{
+						instanceOf = "UniformAllocationPolicy"
+					}
+					type = "AllocationPolicy"
+				}
+			}
+		}
+		
+		FloatingAllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Floating resource allocation policy."
+			final = true
+			base = "AllocationPolicy"
+			properties:
+			{
+				floatingSegment:
+				{
+					description = "Name of floating segment."
+					required = true
+					type = "string"
+				}
+			
+				reservePercentage:
+				{
+					description = "Reserve percentage."
+					required = true
+					type:
+					{ 
+						instanceOf = "double"
+						min = 0
+						max = 100
+					}
+				}
+					
+				minQuota:
+				{
+					description = "Minimum quota."
+					required = true
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+			}
+		}
+	
+		ThresholdAllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Threshold resource allocation policy."
+			final = true
+			base = "AllocationPolicy"
+			properties:
+			{
+				thresholds:
+				{
+					description = "List of thresholds and applied allocation policies."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "AllocationPolicy"
+					}
+				}
+			}
+		}
+		
+		UniformAllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Uniform resource allocation policy."
+			final = true
+			base = "AllocationPolicy"
+		}
+		
+		DynamicAllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Dynamic resource allocation policy."
+			abstract = true
+			base = "AllocationPolicy"
+			properties:
+			{
+				underloadedThresholdPercentage:
+				{
+					description = "Underloaded threshold percentage."
+					required = true
+					default = 40
+					type:
+					{
+						instanceOf = "double"
+						min = 0
+						max = 100
+					}
+				}
+			
+				overloadedThresholdPercentage:
+				{
+					description = "Overloaded threshold percentage."
+					required = true
+					default = 90
+					type:
+					{
+						instanceOf = "double"
+						min = 0
+						max = 100
+					}
+				}
+			
+				underloadedReservePercentage:
+				{
+					description = "Underloaded reserve percentage."
+					required = true
+					default = 100
+					type:
+					{
+						instanceOf = "double"
+						min = 0
+					}
+				}
+			
+				overloadedReservePercentage:
+				{
+					description = "Overloaded reserve percentage."
+					required = true
+					default = 10
+					type:
+					{
+						instanceOf = "double"
+						min = 0
+					}
+				}
+				
+				minQuota:
+				{
+					description = "Minimum quota."
+					required = true
+					default = 10000000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+			}
+		}
+			
+		DynamicFixedAllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Dynamic fixed resource allocation policy."
+			final = true
+			base = "DynamicAllocationPolicy"
+			properties:
+			{
+				quotas:
+				{
+					description = "Map of fixed quotas available to resource consumers."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType:
+						{
+							instanceOf = "long"
+							min = 0
+							converter = "bytes"
+						}
+					}
+				}
+			
+				otherPolicy:
+				{
+					description = "Allocation policy to be used for segments not listed in quotas."
+					required = true
+					default:
+					{
+						instanceOf = "UniformAllocationPolicy"
+					}
+					type = "AllocationPolicy"
+				}
+			}
+		}
+			
+		DynamicPercentageAllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Dynamic percentage resource allocation policy."
+			final = true
+			base = "DynamicAllocationPolicy"
+			properties:
+			{
+				quotas:
+				{
+					description = "Map of percentage quotas available to resource consumers."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType:
+						{
+							instanceOf = "double"
+							min = 0
+							max = 100
+						}
+					}
+				}
+			
+				otherPolicy:
+				{
+					description = "Allocation policy to be used for segments not listed in quotas."
+					required = true
+					default:
+					{
+						instanceOf = "UniformAllocationPolicy"
+					}
+					type = "AllocationPolicy"
+				}
+			}
+		}
+	
+		DynamicUniformAllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Dynamic uniform resource allocation policy."
+			final = true
+			base = "DynamicAllocationPolicy"
+		}
+		
+		LimitingAllocationPolicy:
+		{
+			instanceOf = "object"
+			description = "Limiting allocation policy."
+			final = true
+			base = "AllocationPolicy"
+			properties:
+			{
+				basePolicy:
+				{
+					description = "Base allocation policy."
+					required = true
+					default:
+					{
+						instanceOf = "UniformAllocationPolicy"
+					}
+					type = "AllocationPolicy"
+				}
+			
+				limitPercentage:
+				{
+					description = "Percentage of limit to be used."
+					required = true
+					default = 75
+					type:
+					{ 
+						instanceOf = "double"
+						min = 0
+						max = 100
+					}
+				}
+			}
+		}
+			
+		ResourceAllocator:
+		{
+			instanceOf = "object"
+			description = "Resource allocator."
+			abstract = true
+			properties:
+			{
+				name:
+				{
+					description = "Resource allocator name."
+					required = true
+					default = "resource allocator"
+					type = "string"
+				}
+			
+				allocationPolicies:
+				{
+					description = "Resource allocation policies."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "AllocationPolicy"
+					}
+				}
+					
+				defaultAllocationPolicy:
+				{
+					description = "Default resource allocation policy."
+					required = true
+					default:
+					{
+						instanceOf = "DynamicUniformAllocationPolicy"
+					}
+					type = "AllocationPolicy"
+				}
+				
+				quotaIncreaseDelay:
+				{
+					description = "Quota increase delay in milliseconds."
+					required = true
+					default = 1000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				initializePeriod:
+				{
+					description = "Initialize period in milliseconds."
+					required = true
+					default = 60000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			}
+		}
+	
+		ChildResourceAllocator:
+		{
+			instanceOf = "object"
+			description = "Child resource allocator."
+			final = true
+			base = "ResourceAllocator"
+		}
+		
+		RootResourceAllocator:
+		{
+			instanceOf = "object"
+			description = "Root resource allocator."
+			base = "ResourceAllocator"
+			properties:
+			{
+				timerPeriod:
+				{
+					description = "Timer period in milliseconds."
+					required = true
+					default = 100
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			
+				allocationPeriod:
+				{
+					description = "Allocation period in milliseconds."
+					required = true
+					default = 3000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+				
+				resourceProvider:
+				{
+					description = "Resource provider."
+					required = true
+					default:
+					{
+						instanceOf = "FixedResourceProvider"
+					}
+					type = "ResourceProvider"
+				}
+			}
+		}
+		
+		SharedResourceAllocator:
+		{
+			instanceOf = "object"
+			description = "Interprocess share resource allocator."
+			final = true
+			base = "RootResourceAllocator"
+			properties:
+			{
+				dataExchangeFileName:
+				{
+					description = "Data exchange file name."
+					required = true
+					default = "${com.exametrika.workPath=/opt/exametrika/work}/db/alloc.dat"
+					type = "string"
+				}
+			
+				dataExchangePeriod:
+				{
+					description = "Data exchange period in milliseconds."
+					required = true
+					default = 500
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				staleAllocatorPeriod:
+				{
+					description = "Stale allocator period in milliseconds."
+					required = true
+					default = 10000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+				
+				initialQuota:
+				{
+					description = "Initial quota."
+					required = true
+					default = 10000000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+			}
+		}
+		
+		CacheCategoryType:
+		{
+			instanceOf = "object"
+			description = "Cache category type."
+			final = true
+			properties:
+			{
+				initialCacheSize:
+				{
+					description = "Initial cache size."
+					required = true
+					default = 10000000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+			
+				minCachePercentage:
+				{
+					description = "Minimum cache size as percentage of available quota."
+					required = true
+					default = 90
+					type:
+					{
+						instanceOf = "double"
+						min = 90
+						max = 100
+					}
+				}
+				
+				maxIdlePeriod:
+				{
+					description = "Maximum idle period of cache element in milliseconds."
+					required = true
+					default = 600000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			}
+		}
+	
+		CacheCategorizationStrategy:
+		{
+			instanceOf = "object"
+			description = "Database cache categorization strategy."
+			abstract = true
+		}
+	
+		ExpressionCacheCategorizationStrategy:
+		{
+			instanceOf = "object"
+			description = "Expression based cache categorization strategy."
+			final = true
+			base = "CacheCategorizationStrategy" 
+			properties:
+			{
+				expression:
+				{
+					description = "Expression."
+					required = true
+					type = "string"
+				}
+			}
+		}
+	
+		DatabaseExtension:
+		{
+			instanceOf = "object"
+			description = "Configuration of database extension."
+			abstract = true
+		}
+		
+		DomainService:
+		{
+			instanceOf = "object"
+			description = "Configuration of domain service."
+			abstract = true
+		}
+		
+		Database:
+		{
+			instanceOf = "object"
+			description = "Configuration of exa database."
+			properties:
+			{
+				name:
+				{
+					description = "Database name."
+					required = true
+					default = "exadb"
+					type = "string"
+				}
+			
+				paths:
+				{
+					description = "Paths to database."
+					required = true
+					type:
+					{
+						instanceOf = "array"
+						elementType = "string"
+					}
+				}
+			
+				initialSchemaPath:
+				{
+					description = "Database initial schema path."
+					required = false
+					type = "string"
+				}
+				
+				extensions:
+				{
+					description = "Database extensions."
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "DatabaseExtension"
+					}
+				}
+				
+				domainServices:
+				{
+					description = "Domain services."
+					required = true
+					default = []
+					type:
+					{
+						instanceOf = "array"
+						elementType = "DomainService"
+					}
+				}
+			
+				resourceAllocator:
+				{
+					description = "Resource allocator."
+					required = true
+					default:
+					{
+						instanceOf = "RootResourceAllocator"
+						resourceProvider:
+						{
+							instanceOf = "PercentageResourceProvider"
+							percentage = 70
+							resourceProvider:
+							{
+								instanceOf = "MemoryResourceProvider"
+							}
+						}
+					}
+					type = "ResourceAllocator"
+				}
+				
+				cacheCategoryTypes:
+				{
+					description = "Cache category types."
+					required = true
+					default = {}
+					type:
+					{
+						instanceOf = "map"
+						valueType = "CacheCategoryType"
+					}
+				}
+					
+				defaultCacheCategoryType:
+				{
+					description = "Default cache category type."
+					required = true
+					default = {}
+					type = "CacheCategoryType"
+				}
+				
+				cacheCategorizationStrategy:
+				{
+					description = "Cache categorization strategy."
+					required = true
+					default:
+					{
+						instanceOf = "ExpressionCacheCategorizationStrategy"
+						expression = "['','']"
+					}
+					type = "CacheCategorizationStrategy"
+				}
+				
+				flushPeriod:
+				{
+					description = "Committed pages flush period in milliseconds."
+					required = true
+					default = 3000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+				
+				maxFlushSize:
+				{
+					description = "Maximum size of committed but not flushed data."
+					required = true
+					default = 0x7fffffffffffffff
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "bytes"
+					}
+				}
+									
+				timerPeriod:
+				{
+					description = "Database internal timer period in milliseconds."
+					required = true
+					default = 1000
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				batchRunPeriod:
+				{
+					description = "Period in milliseconds of batch processing in presence of ordinary transactions."
+					required = true
+					default = 100
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+					
+				batchIdlePeriod:
+				{
+					description = "Period in milliseconds of normal transactions processing in presence of batch transaction."
+					required = true
+					default = 900
+					type:
+					{
+						instanceOf = "long"
+						min = 0
+						converter = "periods"
+					}
+				}
+			}
+		}
+	}
+}
